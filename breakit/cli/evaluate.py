@@ -39,7 +39,7 @@ def comp_corr(good_scores: List[float],
         return np.nan
 
     concordant = np.sum(good_scores > incorrect_scores)
-    discordant = np.sum(good_scores < incorrect_scores)
+    discordant = np.sum(good_scores <= incorrect_scores)
 
     tau = (concordant - discordant) / (concordant + discordant)
 
@@ -60,10 +60,10 @@ def evaluate() -> None:
         # Compute Kendall Tau grouped by phenomenon and metric
         if cfg.pretty_print:
             print(f'\n\nEvaluating {f}')
-        phenomena_dfs = [(l, df) for l, df in tsv_f.groupby(['phenomena'])]
+        phenomena_dfs = [(l, df) for l, df in tsv_f.groupby('phenomena')]
 
         if not cfg.pretty_print:
-            print('phenomenon\t'+'\t'.join(metrics))
+            print('phenomenon\t'+'num_examples'+'\t'+'\t'.join(metrics))
 
         for label, p in phenomena_dfs:
             results = []
@@ -75,7 +75,7 @@ def evaluate() -> None:
                 if cfg.pretty_print:
                     print(f'\t{m}\t{tau}')
             if not cfg.pretty_print:
-                print(label+'\t'+'\t'.join(results))
+                print(label+'\t'+str(len(p))+'\t'+'\t'.join(results))
 
 
 if __name__ == '__main__':
