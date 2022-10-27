@@ -38,4 +38,8 @@ You can evaluate metrics by running:
 
 Output: STDOUT overview of Kendall Tau scores per file, phenomenon and metric.
 
+## Coming Soon:
 
+- code for automatic perturbations we implemented ourselves
+- explanations for automatic perturbations that use other libraries
+- guidelines for manual creation/annotation of examples
