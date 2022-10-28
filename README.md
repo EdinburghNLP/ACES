@@ -3,6 +3,10 @@
 As machine translation (MT) metrics improve their correlation with human judgement every year, it is crucial to understand the limitations of these metrics at the segment level. Specifically, it is important to investigate metric behaviour when facing accuracy errors in MT because these can have dangerous consequences in certain contexts (e.g., legal, medical). We curate ACES, a translation accuracy challenge set, consisting of 68 phenomena ranging from simple perturbations at the word/character level to more complex errors based on discourse and real-world knowledge. 
 We use ACES to evaluate a wide range of MT metrics including the submissions to the WMT 2022 metrics shared task and perform several analyses leading to general recommendations for metric developers. We recommend: a) combining metrics with different strengths, b) developing metrics that give more weight to the source and less to surface-level overlap with the reference and c) explicitly modelling additional language-specific information beyond what is available via multilingual embeddings.
 
+## Download the Dataset
+
+We provide our collection of challenge sets on HuggingFace: [https://huggingface.co/datasets/nikitam/ACES](https://huggingface.co/datasets/nikitam/ACES)
+
 ## Command Line Interface
 
 ### Installation
@@ -46,15 +50,17 @@ Output: STDOUT overview of Kendall Tau scores per file, phenomenon and metric.
 
 ## Citation
 
-@inproceedings{amrhein-aces-2022,
-title = "{ACES}: Translation Accuracy Challenge Sets for Evaluating Machine Translation Metrics",
-author = {Amrhein, Chantal  and
-  Moghe, Nikita and
-  Guillou, Liane},
-booktitle = "Seventh Conference on Machine Translation (WMT22)",
-month = dec,
-year = "2022",
-address = "Abu Dhabi, United Arab Emirates",
-publisher = "Association for Computational Linguistics",
-eprint = {2210.15615}
-}
+If you use this code, please cite our [paper](https://arxiv.org/pdf/2210.15615.pdf):
+
+    @inproceedings{amrhein-aces-2022,
+    title = "{ACES}: Translation Accuracy Challenge Sets for Evaluating Machine Translation Metrics",
+    author = {Amrhein, Chantal and
+    Moghe, Nikita and 
+    Guillou, Liane},
+    booktitle = "Seventh Conference on Machine Translation (WMT22)",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates",
+    publisher = "Association for Computational Linguistics",
+    eprint = {2210.15615}
+    }
