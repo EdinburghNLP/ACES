@@ -43,3 +43,18 @@ Output: STDOUT overview of Kendall Tau scores per file, phenomenon and metric.
 - code for automatic perturbations we implemented ourselves
 - explanations for automatic perturbations that use other libraries
 - guidelines for manual creation/annotation of examples
+
+## Citation
+
+@inproceedings{amrhein-aces-2022,
+title = "{ACES}: Translation Accuracy Challenge Sets for Evaluating Machine Translation Metrics",
+author = {Amrhein, Chantal  and
+  Moghe, Nikita and
+  Guillou, Liane},
+booktitle = "Seventh Conference on Machine Translation (WMT22)",
+month = dec,
+year = "2022",
+address = "Abu Dhabi, United Arab Emirates",
+publisher = "Association for Computational Linguistics",
+eprint = {2210.15615}
+}
