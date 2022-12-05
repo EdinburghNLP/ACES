@@ -6,14 +6,14 @@ with open('README.md') as f:
     readme = f.read()
 
 setup(
-    name='breakit',
+    name='aces',
     version='1.0.0',
     author='Nikita Moghe, Liane Guillou, Chantal Amrhein',
     author_email='nikita.moghe@ed.ac.uk,liane.guillou@ed.ac.uk,amrhein@cl.uzh.ch',
     description='a tool to create and score adversarial translation hypothesis pairs and evaluate metrics',
     long_description=readme,
     packages=[
-        'breakit',
+        'aces',
     ],
     install_requires=[
         'jsonargparse',
@@ -35,9 +35,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'breakit-perturb = breakit.cli.perturb:perturb',
-            'breakit-score = breakit.cli.score:score',
-            'breakit-eval = breakit.cli.evaluate:evaluate',
+            'aces-score = aces.cli.score:score',
+            'aces-eval = aces.cli.evaluate:evaluate',
         ],
     },
     python_requires='>=3.8',

@@ -7,8 +7,8 @@ from jsonargparse.typing import Path_fr
 
 import pandas as pd
 
-from breakit.scorers import BLEUScorer, CHRFScorer, COMETScorer
-from breakit.utils import read_file
+from aces.scorers import BLEUScorer, CHRFScorer, COMETScorer
+from aces.utils import read_file
 
 SCORERS = {'bleu': BLEUScorer,
            'chrf': CHRFScorer,
