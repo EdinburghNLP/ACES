@@ -2,3 +2,4 @@ datasets
 numpy
 tqdm
 logging
+quantulum3

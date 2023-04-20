@@ -1,5 +1,8 @@
 from datasets import load_dataset
 import argparse, os
+import logging
+logger = logging.getLogger('logger')
+logging.basicConfig(level=logging.INFO)
 
 def download_dataset(out_path):
     dataset = load_dataset("nikitam/ACES")
