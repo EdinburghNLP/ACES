@@ -10,7 +10,7 @@ import random
 import argparse, os, json
 from tqdm import tqdm
 
-import logging
+import logging, copy
 logger = logging.getLogger('logger')
 logging.basicConfig(level=logging.INFO)
 
@@ -33,25 +33,16 @@ def tokenize(sentence):
     return tokenized, spans
 
 # choose whether the reference sentence or the good sentence was changed to create the incorrect translation.
-# might not be working properly so check again
-# another implementation in the jupyter notebook
 def ref_or_good(ref, good, bad):
     g, g_spans = tokenize(good)
     b, b_spans = tokenize(bad)
     r, r_spans = tokenize(ref)
-    wb, wr = 0, 0
-    overlap = 0
-    if intersection(r, b) > intersection(g, b):
+    g_change = diff_flexible(good, g, g_spans, bad, b, b_spans)
+    r_change = diff_flexible(ref, r, r_spans, bad, b, b_spans)
+    if len(r_change[0]["in_good"]["token"]) <= len(g_change[0]["in_good"]["token"]):
         return ref, r, r_spans
     else:
         return good, g, g_spans
-    
-# helper function for ref_or_good
-def intersection(lst1, lst2):
-    # Use of hybrid method
-    temp = set(lst2)
-    lst3 = [value for value in lst1 if value in temp]
-    return lst3
 
 # Span annotations for the addition data - word ids for now
 # can handle multiple replacements, only one adddition and omission
@@ -85,7 +76,7 @@ def diff(g, g_spans, b, b_spans, phenomena="addition"):
                                'in_bad': None} for ix in range(i,len(g))])
     return change
      
-def annotate(good, incorrect):
+def annotate_word(good, incorrect):
     g, g_spans = tokenize(good)
     b, b_spans = tokenize(incorrect)
     try:
@@ -104,15 +95,16 @@ def annotate(good, incorrect):
         return None
 
 # find addition, omission and SINGLE replacements but directly annotates on the characater level now
+# find addition, omission and SINGLE replacements but directly annotates on the characater level now
 def diff_char_level(good, bad):
-    s = difflib.SequenceMatcher(lambda x: x == "", good, bad)
+    s = difflib.SequenceMatcher(lambda x: x == "", good, bad, autojunk=False)
     good_extra = list()
     bad_extra = list()
     g_lim = 0
     b_lim = 0
     for block in s.get_matching_blocks():
         a,b,size = block
-        logger.debug("good[%s:%s] and bad[%s:%s] match for %s characters" % (a, a+size, b, b+size, size))
+        logger.debug("good[%s:%s] and bad[%s:%s] match for %s characters: %s" % (a, a+size, b, b+size, size, good[a:a+size]))
         if a > g_lim:
             good_extra.append((g_lim, a, good[g_lim:a]))
         g_lim = a + size
@@ -130,19 +122,17 @@ def diff_char_level(good, bad):
         for block in good_extra:
             change.append({'in_good': {'token_index':None, 'character_span':(block[0],block[1]), 'token':block[2]}, 'in_bad': None})
     elif len(bad_extra) > 0 and len(good_extra) > 0:   
-        """
-        if len(bad_extra) == len(good_extra):
-            for i in range(len(good_extra)):
-                b1 = bad_extra[i]
-                g1 = good_extra[i]
-                change.append({'in_good': {'token_index':None, 'character_span':(g1[0],g1[1]), 'token':g1[2]},
-                       'in_bad': {'token_index':None, 'character_span':(b1[0],b1[1]), 'token':b1[2]}})
-        else:
+        for i in range(len(bad_extra)):
+            b_start, b_end = bad_extra[i][0], bad_extra[i][1]
+            g_start, g_end = good_extra[i][0], good_extra[i][1]
+            change.append({'in_good': {'token_index':None, 'character_span':(g_start, g_end), 'token':good_extra[i][2]},
+                   'in_bad': {'token_index':None, 'character_span':(b_start, b_end), 'token':bad_extra[i][2]}})
         """
         b_start, b_end = bad_extra[0][0], bad_extra[-1][1]
         g_start, g_end = good_extra[0][0], good_extra[-1][1]
         change.append({'in_good': {'token_index':None, 'character_span':(g_start, g_end), 'token':good[g_start:g_end]},
                    'in_bad': {'token_index':None, 'character_span':(b_start, b_end), 'token':bad[b_start:b_end]}})
+        """
         logger.debug("in diff replacement: \ngood: %s, \nbad: %s, \nchange: %s" %(good, bad, change))
 
     return change
@@ -378,22 +368,22 @@ phenomena = {
     'ambiguous-translation-wrong-gender-male-pro':'diff_flexible',
     'ambiguous-translation-wrong-sense-frequent':'diff_flexible',
     'ambiguous-translation-wrong-sense-infrequent':'diff_flexible',
-    'anaphoric_group_it-they:deletion':'add-omit',
-    'anaphoric_group_it-they:substitution':'diff_flexible',
-    'anaphoric_intra_non-subject_it:deletion':'add-omit',
-    'anaphoric_intra_non-subject_it:substitution':'diff_flexible',
-    'anaphoric_intra_subject_it:deletion':'add-omit',
-    'anaphoric_intra_subject_it:substitution':'diff_flexible',
-    'anaphoric_intra_they:deletion':'add-omit',
-    'anaphoric_intra_they:substitution':'diff_flexible',
-    'anaphoric_singular_they:deletion':'add-omit',
-    'anaphoric_singular_they:substitution':'diff_flexible',
-    'antonym-replacement':'diff_flexible',
-    'commonsense-only-ref-ambiguous':'',
-    'commonsense-src-and-ref-ambiguous':'',
-    'copy-source':'',
+    'anaphoric_group_it-they:deletion':'annotate_word',
+    'anaphoric_group_it-they:substitution':'annotate_word',
+    'anaphoric_intra_non-subject_it:deletion':'annotate_word',
+    'anaphoric_intra_non-subject_it:substitution':'annotate_word',
+    'anaphoric_intra_subject_it:deletion':'annotate_word',
+    'anaphoric_intra_subject_it:substitution':'annotate_word',
+    'anaphoric_intra_they:deletion':'annotate_word',
+    'anaphoric_intra_they:substitution':'annotate_word',
+    'anaphoric_singular_they:deletion':'annotate_word',
+    'anaphoric_singular_they:substitution':'annotate_word',
+    'antonym-replacement':'REF_flexible',
+    'commonsense-only-ref-ambiguous':'diff_flexible',
+    'commonsense-src-and-ref-ambiguous':'diff_flexible',
+    'copy-source':'?',
     'coreference-based-on-commonsense':'mixed_flexible',
-    'do-not-translate':'',
+    'do-not-translate':'diff_flexible',
     'hallucination-date-time':'date',
     'hallucination-named-entity-level-1':'diff_flexible',
     'hallucination-named-entity-level-2':'REF_flexible',
@@ -405,8 +395,8 @@ phenomena = {
     'hallucination-real-data-vs-synonym':'diff_flexible',
     'hallucination-unit-conversion-amount-matches-ref':'units',
     'hallucination-unit-conversion-unit-matches-ref':'units',
-    'hypernym-replacement':'',
-    'hyponym-replacement':'',
+    'hypernym-replacement':'REF_flexible',
+    'hyponym-replacement':'REF_flexible',
     'lexical-overlap':'?',
     'modal_verb:deletion':'add-omit',
     'modal_verb:substitution':'diff_flexible',
@@ -417,20 +407,20 @@ phenomena = {
     'overly-literal-vs-explanation':'diff_flexible',
     'overly-literal-vs-ref-word':'diff_flexible',
     'overly-literal-vs-synonym':'diff_flexible',
-    'pleonastic_it:deletion':'',
-    'pleonastic_it:substitution':'',
-    'punctuation:deletion_all':'',
-    'punctuation:deletion_commas':'',
-    'punctuation:deletion_quotes':'',
-    'punctuation:statement-to-question':'',
-    'real-world-knowledge-entailment':'',
-    'real-world-knowledge-hypernym-vs-distractor':'',
-    'real-world-knowledge-hypernym-vs-hyponym':'',
-    'real-world-knowledge-synonym-vs-antonym':'',
-    'similar-language-high':'',
-    'similar-language-low':'',
-    'untranslated-vs-ref-word':'',
-    'untranslated-vs-synonym':'',
+    'pleonastic_it:deletion':'annotate_word',
+    'pleonastic_it:substitution':'annotate_word',
+    'punctuation:deletion_all':'add-omit',
+    'punctuation:deletion_commas':'add-omit',
+    'punctuation:deletion_quotes':'add-omit',
+    'punctuation:statement-to-question':'add-omit',
+    'real-world-knowledge-entailment':'diff_flexible',
+    'real-world-knowledge-hypernym-vs-distractor':'diff_flexible',
+    'real-world-knowledge-hypernym-vs-hyponym':'diff_flexible',
+    'real-world-knowledge-synonym-vs-antonym':'diff_flexible',
+    'similar-language-high':'?',
+    'similar-language-low':'?',
+    'untranslated-vs-ref-word':'diff_flexible',   # here add-omit can be used for getting character level replacements too
+    'untranslated-vs-synonym':'diff_flexible',
     'xnli-addition-contradiction':'?',
     'xnli-addition-neutral':'?',
     'xnli-omission-contradiction':'?',
@@ -446,104 +436,180 @@ if os.path.exists(annotated_dataset_path):
 else:
     annotations = dict()
     
+# calculate statistics about the annotations:
+# for every mode, calculate no. of skipped, no. of unsure and ids, and no. of done.
+stats_template = {
+            'total':0,
+            'success':0,
+            'too_long':[],
+            'no_change':[],
+            'error':[],
+            'other':[]  
+        }
+stats = {}
+for key in phenomena.keys():
+    stats[key] = copy.deepcopy(stats_template)
+    
 annotations = {}
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.ERROR)
 for idx,sample in tqdm(enumerate(dataset["train"])):
     # if sample["phenomena"] in phenomena.keys() and 'Le garçon voulait mettre le jeu dans la boîte, mais c\'était trop grand.' in sample['good-translation']:
-    if sample["phenomena"] in phenomena.keys() and phenomena[sample["phenomena"]] == 'swap':
+    if sample["phenomena"] in phenomena.keys():
+        stats[sample["phenomena"]]["total"] += 1
         if phenomena[sample["phenomena"]] == 'add-omit':
             try:
-                change_char = diff_char_level(sample["good-translation"], sample["incorrect-translation"])
+                change = diff_char_level(sample["good-translation"], sample["incorrect-translation"])
+                if len(change) == 0:
+                    logger.warning('No change in id {}'.format(idx))
+                    stats[sample["phenomena"]]["no_change"].append(idx)
+                else:
+                    stats[sample["phenomena"]]["success"] += 1
+                sample['annotation'] = change
+                sample['method'] = phenomena[sample["phenomena"]]
+                annotations[idx] = sample
             except:
                 logger.warning('error in char level annotate, id {}'.format(idx))
-                break
-            if len(change_char) == 0:
-                logger.warning('No change in id {}'.format(idx))
-            else:
-                sample['annotation'] = change_char
+                stats[sample["phenomena"]]["error"].append(idx)
+                
+        elif phenomena[sample["phenomena"]] == 'annotate_word':
+            try:
+                change = annotate_word(sample["good-translation"], sample["incorrect-translation"])
+                if len(change) == 0:
+                    logger.warning('No change in id {}'.format(idx))
+                    stats[sample["phenomena"]]["no_change"].append(idx)
+                else:
+                    stats[sample["phenomena"]]["success"] += 1
+                sample['annotation'] = change
+                sample['method'] = phenomena[sample["phenomena"]]
                 annotations[idx] = sample
+            except:
+                logger.warning('error in word level annotate, id {}'.format(idx))
+                stats[sample["phenomena"]]["error"].append(idx)
 
         elif phenomena[sample["phenomena"]] in ['diff_flexible', 'REF_flexible', 'mixed_flexible']:
             if phenomena[sample["phenomena"]] == 'diff_flexible':
                 good = sample["good-translation"]
             elif phenomena[sample["phenomena"]] == 'mixed_flexible':
-                good, g, s_spans = ref_or_good(sample["reference"], sample["good-translation"], sample["incorrect-translation"])
+                good, g, g_spans = ref_or_good(sample["reference"], sample["good-translation"], sample["incorrect-translation"])
             else: 
                 good = sample["reference"]
             bad = sample["incorrect-translation"]
             g, g_spans = tokenize(good)
             b, b_spans = tokenize(bad)
+            
+            if len(g) == len(b) and len(b) > 1 and len(g) > 1:
+                change_w = diff(g, g_spans, b, b_spans, phenomena="replacement")
+                
+            else:
+                change_w = diff_flexible(good, g, g_spans, bad, b, b_spans)
+            change_c = diff_char_level(good, bad) 
+            
+            # sanity checks
+            if change_w == 0 and change_c == 0 and good != bad:
+                logger.warning('No change in id {}'.format(idx,g,b,change))
+                stats[sample["phenomena"]]["no_change"].append(idx)
+            if len():
+                continue
+            
             # special treatment to japanese chinese and thailandish because they don't use spaces, so can't be split
+            """
             if sample['langpair'][-2:] not in ['ja', 'zh', 'th']:      
                 if len(g) == len(b):   # if there are multiple one word replacements
                     change = diff(g, g_spans, b, b_spans, phenomena="replacement")
-                else:
+                if len(g) != len(b) or len(change) == 0:
                     try:
                         change = diff_flexible(good, g, g_spans, bad, b, b_spans)
+                        if len(change) == 0 and good != bad:
+                            change = diff_char_level(good, bad) 
                     except:
                         logger.warning('error in id {}'.format(idx))
-                        break
-                if len(change) == 0 and good != bad:
-                    # if only some punctuation changed
-                    change = diff_char_level(good, bad) 
-                    if len(change) == 0:
-                        logger.warning('No change in id {}'.format(idx,g,b,change))
-                # elif sample['langpair'][-2:] != 'es' and sample['langpair'][-2:] != 'et' and (len(change[0]['in_good']['token']) > 10 or len(change[0]['in_bad']['token'])) > 10:
-                else:
-                    sample['annotation'] = change
-                    annotations[idx] = sample
-                if len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50)):
-                    logger.warning('check this: %s' %idx)
-            else:
-                change = diff_char_level(good, bad) 
-                if len(change) == 0 and good != bad:
+                        stats[sample["phenomena"]]["error"].append(idx)
+                        continue
+                if len(change) == 0:
                     logger.warning('No change in id {}'.format(idx,g,b,change))
+                    stats[sample["phenomena"]]["no_change"].append(idx)
+                elif len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50)):
+                    logger.warning('check this - too long: %s' %idx)
+                    stats[sample["phenomena"]]["too_long"].append(idx)
                 else:
+                    stats[sample["phenomena"]]["success"] += 1
+                sample['annotation'] = change
+                sample['method'] = phenomena[sample["phenomena"]]
+                annotations[idx] = sample  
+            else:
+                try:
+                    change = diff_char_level(good, bad) 
+                    if len(change) == 0 and good != bad:
+                        logger.warning('No change in id {}'.format(idx,g,b,change))
+                        stats[sample["phenomena"]]["no_change"].append(idx)
+                    elif len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 30) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 30)):
+                        logger.warning('check this - too long: %s' %idx)
+                        stats[sample["phenomena"]]["too_long"].append(idx)
+                    else:
+                        stats[sample["phenomena"]]["success"] += 1
                     sample['annotation'] = change
+                    sample['method'] = phenomena[sample["phenomena"]]
                     annotations[idx] = sample
-                if len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 30) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 30)):
-                    logger.warning('check this: %s' %idx)
+                except: 
+                    logger.warning('error in id {}'.format(idx))
+                    stats[sample["phenomena"]]["error"].append(idx)
+            """
                 
         elif phenomena[sample["phenomena"]] == 'units':
             try:
                 g, b, change = annotate_units(sample["good-translation"],sample["incorrect-translation"])
-            except: 
-                print(idx)
-                break
-            if len(change) == 0 and g != b:
-                logger.warning('No change in id {}, \ng: {}, \nb: {},\nr: {}'.format(idx, g, b, r))
-            else:
+                if len(change) == 0 and g != b:
+                    logger.warning('No change in id {}, \ng: {}, \nb: {},\nr: {}'.format(idx, g, b))
+                    stats[sample["phenomena"]]["no_change"].append(idx)
+                elif len(change) > 1:
+                    logger.warning('Multiple changes in {} id {}'.format(sample["phenomena"], idx))
+                    stats[sample["phenomena"]]["other"].append(idx)
+                else:
+                    stats[sample["phenomena"]]["success"] += 1
                 sample['annotation'] = change
-                annotations[idx] = sample
-                if len(change) > 1:
-                    print(idx)
-                    break
-                
+                sample['method'] = phenomena[sample["phenomena"]]
+                annotations[idx] = sample  
+            except: 
+                logger.warning('error in id {}'.format(idx))
+                stats[sample["phenomena"]]["error"].append(idx)
+            
         elif phenomena[sample["phenomena"]] == 'swap':
             try:
                 change = annotate_swap_word_lvl(sample["good-translation"],sample["incorrect-translation"])
-            except: 
-                print(idx)
-                break
-            if len(change) < 2 and sample["good-translation"] != sample["incorrect-translation"]:
-                logger.warning('No/one change in id {}, \ng: {}, \nb: {}'.format(idx, sample["good-translation"], sample["incorrect-translation"]))
-            elif change[0]['in_good'] != None and change[1]['in_good'] != None and change[0]['in_good'] == change[1]['in_good']:
-                 logger.warning('check this: %s - swapped words are the same!' %idx)
-            elif (change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50):
-                logger.warning('check this: %s' %idx)
-            else:
+                if len(change) < 2 and sample["good-translation"] != sample["incorrect-translation"]:
+                    logger.warning('No change in id {}, \ng: {}, \nb: {}'.format(idx, sample["good-translation"], sample["incorrect-translation"]))
+                    stats[sample["phenomena"]]["no_change"].append(idx)
+                elif change[0]['in_good'] != None and change[1]['in_good'] != None and change[0]['in_good'] == change[1]['in_good']:
+                    logger.warning('check this: %s - swapped words are the same!' %idx)
+                    stats[sample["phenomena"]]["other"].append(idx)
+                elif (change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50):
+                    logger.warning('check this: %s' %idx)
+                    stats[sample["phenomena"]]["too_long"].append(idx)
+                else:
+                    stats[sample["phenomena"]]["success"] += 1
                 sample['annotation'] = change
+                sample['method'] = phenomena[sample["phenomena"]]
                 annotations[idx] = sample
+            except: 
+                logger.warning('error in id {}'.format(idx))
+                stats[sample["phenomena"]]["error"].append(idx)
             
         elif phenomena[sample["phenomena"]] == 'date':
             try:
                 change = diff_dates(sample["good-translation"],sample["incorrect-translation"])
+                stats[sample["phenomena"]]["success"] += 1
+                sample['annotation'] = change
+                sample['method'] = phenomena[sample["phenomena"]]
+                annotations[idx] = sample
             except: 
-                print(idx)
-                break
-            sample['annotation'] = change
-            annotations[idx] = sample
+                logger.warning('error in id {}'.format(idx))
+                stats[sample["phenomena"]]["error"].append(idx)
+                
+        # else:
+        #    stats[sample["phenomena"]]["other"].append(idx)
 
 with open(annotated_dataset_path, "w") as f:
     json.dump(annotations, f)  # encode dict into JSON
+with open(stats_path, "w") as f:
+    json.dump(stats, f)  # encode dict into JSON
 logger.info("Done writing dict into {} file".format(annotated_dataset_path))
