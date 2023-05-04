@@ -14,23 +14,46 @@ import logging
 logger = logging.getLogger('logger')
 logging.basicConfig(level=logging.INFO)
 
-# given tokenize a sentence, return the tokens and their start and end indices
+# given a sentence, return the tokens and their start and end indices
 def tokenize(sentence):
-    s1 = re.sub(r"[\"\[\]\.,!?:;'\(\)$]+\s", ' ', sentence)
-    s2 = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$]+",' ', s1)
+    s0 = sentence.lower()
+    s1 = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
+    s2 = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s1)
     s3 = s2.strip("\"[].,!?:;'\(\)$")
     tokenized = s3.split()
     
     spans = []
     split = 0
     for token in tokenized:
-        res = re.search(re.escape(token), sentence[split:])
+        res = re.search(re.escape(token), s0[split:])
         start = res.start() + split
         end = res.end() + split
         spans.append((start, end))
         split = end
     return tokenized, spans
 
+# choose whether the reference sentence or the good sentence was changed to create the incorrect translation.
+# might not be working properly so check again
+# another implementation in the jupyter notebook
+def ref_or_good(ref, good, bad):
+    g, g_spans = tokenize(good)
+    b, b_spans = tokenize(bad)
+    r, r_spans = tokenize(ref)
+    wb, wr = 0, 0
+    overlap = 0
+    if intersection(r, b) > intersection(g, b):
+        return ref, r, r_spans
+    else:
+        return good, g, g_spans
+    
+# helper function for ref_or_good
+def intersection(lst1, lst2):
+    # Use of hybrid method
+    temp = set(lst2)
+    lst3 = [value for value in lst1 if value in temp]
+    return lst3
+
+# Span annotations for the addition data - word ids for now
 # can handle multiple replacements, only one adddition and omission
 def diff(g, g_spans, b, b_spans, phenomena="addition"):
     i, j = 0, 0
@@ -145,57 +168,140 @@ def diff_flexible(good, g, g_spans, bad, b, b_spans, phenomena="default"):
             j -= 1
         logger.debug([i, j, start])
         change.append({"in_good":{'token_index':list(range(start,i+1)), 
-                    'character_span':(g_spans[start][0],g_spans[i+1][1]), 
-                                  'token':good[g_spans[start][0]:g_spans[i+1][1]]}, 
+                    'character_span':(g_spans[start][0],g_spans[i][1]), 
+                                  'token':good[g_spans[start][0]:g_spans[i][1]]}, 
                     "in_bad":{'token_index':list(range(start,j+1)), 
-                    'character_span':(b_spans[start][0],b_spans[j+1][1]), 
-                               'token':bad[b_spans[start][0]:b_spans[j+1][1]]}})          
+                    'character_span':(b_spans[start][0],b_spans[j][1]), 
+                               'token':bad[b_spans[start][0]:b_spans[j][1]]}})          
         
     return change
 
 # this can detect multiple spans, but they don't exist in hallucination-unit-conversion-amount-matches-ref 
 # and hallucination-unit-conversion-unit-matches-ref. I assume only the numbers and units are changed, so the starting index
 # is same in both good and bad translations. But the length of the units can be different (100 miles -> 100 miles per hour)
-def annotate_units(g,b):
-    units_g = [u.surface for u in parser.parse(g)]
-    units_b = [u.surface for u in parser.parse(b)]
+def annotate_units(good,bad):
+    units_g = [u.surface for u in parser.parse(good)]
+    units_b = [u.surface for u in parser.parse(bad)]
     i = 0
     gid, bid = 0, 0
-    g_split = g.split()
-    b_split = b.split()
-    change = []
+    g, g_spans = tokenize(good)
+    b, b_spans = tokenize(bad)
+    changes = []
     for i in range(len(units_g)):
         logger.debug([units_g[i], i])
         if units_g[i] != units_b[i]:
             ref_pattern = units_g[i].split()[0]
             logger.debug('ref_pattern: ' + ref_pattern)
-            for pid in range(len(g_split)-len(units_g[i].split())+1):
-                logger.debug([g_split[pid], g_split[pid] == ref_pattern])
-                if ref_pattern in g_split[pid]:
+            for pid in range(len(g)-len(units_g[i].split())+1):
+                logger.debug([g[pid], g[pid] == ref_pattern])
+                if ref_pattern in g[pid]:
                     start = pid
+            g_tokens = list(range(start,start+len(units_g[i].split())))
+            b_tokens = list(range(start,start+len(units_b[i].split())))
+            changes.append({"in_good":{'token_index':g_tokens, 
+                    'character_span':(g_spans[g_tokens[0]][0], g_spans[g_tokens[-1]][1]), 'token':units_g[i]}, 
+                         "in_bad":{'token_index':b_tokens, 
+                    'character_span':(b_spans[b_tokens[0]][0], b_spans[b_tokens[-1]][1]), 'token':units_b[i]}})
+    return g, b, changes
 
-            change.append((units_g[i], list(range(start,start+len(units_g[i].split()))), units_b[i], list(range(start,start+len(units_b[i].split())))))
-    return g, b, change
-
-def annotate_swap(g, b):
+# find two substrings which are swapped. Maybe later get rid of diff_flexible and make it complately character level?
+def annotate_swap_word_lvl(good, bad):
     changes = []
-    r = diff_flexible(g.split(),b.split(), g.split(), phenomena='swap')
-    prev_len = r[1]+1
-    g = r[0][0][0]
-    b = r[0][0][2]
+    g, g_spans = tokenize(good)
+    b, b_spans = tokenize(bad)
+    r = diff_flexible(good, g, g_spans, bad, b, b_spans, phenomena='swap')[0]
 
-    temp = difflib.SequenceMatcher(None, g ,b)
+    start = r["in_good"]["token_index"][0]
+    end = r["in_good"]["token_index"][-1]
 
-    blocks = temp.get_matching_blocks()
+    g = np.array(g)[r["in_good"]["token_index"]]
+    b = np.array(b)[r["in_bad"]["token_index"]]
+    logger.debug([g, b, (start, end)])
+    w1_g = [g[0]]
+    w1_b = [b[-1]]
+    logger.debug([w1_g, w1_b])
+    i = 1
+    while w1_g != w1_b and i < len(g):
+        w1_g += [g[i]]
+        w1_b = [b[len(b)-1-i]] + w1_b
+        i += 1
+        logger.debug([w1_g, w1_b])
+    w1_g_tokens = list(range(start,start+len(w1_g)))
+    w1_b_tokens = list(range(end-len(w1_b)+1,end+1))
+                       
+    w1_g_span = (g_spans[w1_g_tokens[0]][0], g_spans[w1_g_tokens[-1]][1])
+    w1_b_span = (b_spans[w1_b_tokens[0]][0], b_spans[w1_b_tokens[-1]][1])
+                                             
+    changes.append({"in_good":{'token_index':w1_g_tokens, 
+            'character_span':w1_g_span, 
+                          'token':good[w1_g_span[0]:w1_g_span[-1]]}, 
+         "in_bad":{'token_index':w1_b_tokens, 
+            'character_span':w1_b_span, 
+                          'token':bad[w1_b_span[0]:w1_b_span[-1]]}})
+    # now exact opposite:
+    w2_g = [g[-1]]
+    w2_b = [b[0]]
+    logger.debug([w2_g, w2_b])
+    i = 1
+    while w2_g != w2_b and i < len(g):
+        w2_b += [b[i]]
+        w2_g = [g[len(g)-1-i]] + w2_g
+        i += 1
+        logger.debug([w2_g, w2_b])
+    w2_b_tokens = list(range(start,start+len(w2_b)))
+    w2_g_tokens = list(range(end-len(w2_g)+1,end+1))
+                       
+    w2_g_span = (g_spans[w2_g_tokens[0]][0], g_spans[w2_g_tokens[-1]][1])
+    w2_b_span = (b_spans[w2_b_tokens[0]][0], b_spans[w2_b_tokens[-1]][1])
+                                             
+    changes.append({"in_good":{'token_index':w2_g_tokens, 
+            'character_span':w2_g_span, 
+                          'token':good[w2_g_span[0]:w2_g_span[-1]]}, 
+         "in_bad":{'token_index':w2_b_tokens, 
+            'character_span':w2_b_span, 
+                          'token':bad[w2_b_span[0]:w2_b_span[-1]]}})
+    return changes
+
+# find the s spans in both sentences which are swapped.
+# I assume both sentences have the same length, and everything other than the swap are same
+# not working well
+def annotate_swap_char_lvl(good, bad):
+    changes = []
+    blocks = difflib.SequenceMatcher(lambda x: x == "", good ,bad).get_matching_blocks()
+
+    start = 0
+    end = len(good)
+    
+    # matching blocks function don't match them when the words are swapped but we can cut out the 
+    # 3 largest matching blocks (before first word, between two words, after second word) then we are
+    # left with 2 swapped words
+    
+    # remove the first block if it starts from index 0
+    if blocks[0].a == 0:
+        start = blocks[0].size
+        
+    # remove last block if it is at the end of the sentence - sometimes the last block has length 0 so ignore them
+    last_id = len(blocks)-1
+    while blocks[last_id].size == 0:
+        last_id -= 1
+    if blocks[last_id].a + blocks[last_id].size == len(good):
+        end = blocks[last_id].a
+    
+    g = good[start:end]
+    b = bad[start:end]
+    
+    # now match again
+    blocks = difflib.SequenceMatcher(lambda x: x == "", g ,b).get_matching_blocks()
+
     max_size = 0
     index = 0
     for i, block in enumerate(blocks):
         if block.size > max_size:
             max_size = block.size
             index = i
-
-    changes.append({'good-translation_range':(blocks[index].a+prev_len,blocks[index].a+max_size+prev_len),
-                   'incorrect-traslation_range':(blocks[index].b+prev_len,blocks[index].b+max_size+prev_len),
+    
+    changes.append({'good-translation_range':(blocks[index].a+start,blocks[index].a+max_size+start),
+                   'incorrect-traslation_range':(blocks[index].b+start,blocks[index].b+max_size+start),
                    'string':g[blocks[index].a:blocks[index].a+max_size]})
 
     g2 = g[:blocks[index].a] + g[blocks[index].a+max_size:]
@@ -215,17 +321,14 @@ def annotate_swap(g, b):
     word = g2[blocks[index].a:blocks[index].a+max_size]
     logger.debug('second word; {} size {}'.format(word, max_size))
     logger.debug(blocks[index])
-    changes.append({'good-translation_range':(g.index(word)+prev_len,g.index(word)+max_size+prev_len),
-                   'incorrect-traslation_range':(b.index(word)+prev_len,b.index(word)+max_size+prev_len),
+    changes.append({'good-translation_range':(g.index(word)+start,g.index(word)+max_size+start),
+                   'incorrect-traslation_range':(b.index(word)+start,b.index(word)+max_size+start),
                    'string':word})
-
     return changes
 
 # Assuming from the paper: there is only one month name which was changed to another month. 
 # reference->good change one month name with its abbreviation.
 # good->incorrect change one month name to another.
-# also according to the paper there is no hallucination-date-time to ja, za or th languages
-# which are not tokenizable
 def diff_dates(good, bad):
     g, g_spans = tokenize(good)
     b, b_spans = tokenize(bad)
@@ -250,17 +353,19 @@ def diff_dates(good, bad):
         if len(change) != 1:
             logger.error('in hallucination-dates: after removing the abbr. there are %s changes %s, %s'%(len(change), good, bad))
     return change
+    
 
 folder = os.getcwd()
 dataset_path = os.path.join(folder, 'dataset')
 if not os.path.exists(dataset_path):
-    logger.error('No dataset path: '.format(dataset_path))
+    logger.error('No dataset path: %s' %(dataset_path))
     exit()
 
 logger.info('Loading the dataset...')
 dataset = load_from_disk(dataset_path)
 logger.info('Dataset loaded.')
 
+# this is the list of phenomena and which option they need to be annotated with:
 phenomena = {
     'addition':'add-omit',
     'ambiguous-translation-wrong-discourse-connective-since-causal':'diff_flexible',
@@ -287,7 +392,7 @@ phenomena = {
     'commonsense-only-ref-ambiguous':'',
     'commonsense-src-and-ref-ambiguous':'',
     'copy-source':'',
-    'coreference-based-on-commonsense':'REF_flexible',
+    'coreference-based-on-commonsense':'mixed_flexible',
     'do-not-translate':'',
     'hallucination-date-time':'date',
     'hallucination-named-entity-level-1':'diff_flexible',
@@ -341,10 +446,11 @@ if os.path.exists(annotated_dataset_path):
 else:
     annotations = dict()
     
+annotations = {}
 logger.setLevel(logging.INFO)
 for idx,sample in tqdm(enumerate(dataset["train"])):
-    if sample["phenomena"] in phenomena.keys() and sample["phenomena"] == 'overly-literal-vs-ref-word':
-    # if sample["phenomena"] in phenomena.keys() and phenomena[sample["phenomena"]] == 'REF_flexible':
+    # if sample["phenomena"] in phenomena.keys() and 'Le garçon voulait mettre le jeu dans la boîte, mais c\'était trop grand.' in sample['good-translation']:
+    if sample["phenomena"] in phenomena.keys() and phenomena[sample["phenomena"]] == 'swap':
         if phenomena[sample["phenomena"]] == 'add-omit':
             try:
                 change_char = diff_char_level(sample["good-translation"], sample["incorrect-translation"])
@@ -357,9 +463,11 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                 sample['annotation'] = change_char
                 annotations[idx] = sample
 
-        elif phenomena[sample["phenomena"]] in ['diff_flexible', 'REF_flexible']:
+        elif phenomena[sample["phenomena"]] in ['diff_flexible', 'REF_flexible', 'mixed_flexible']:
             if phenomena[sample["phenomena"]] == 'diff_flexible':
                 good = sample["good-translation"]
+            elif phenomena[sample["phenomena"]] == 'mixed_flexible':
+                good, g, s_spans = ref_or_good(sample["reference"], sample["good-translation"], sample["incorrect-translation"])
             else: 
                 good = sample["reference"]
             bad = sample["incorrect-translation"]
@@ -384,7 +492,7 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                 else:
                     sample['annotation'] = change
                     annotations[idx] = sample
-                if len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 30) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 30)):
+                if len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50)):
                     logger.warning('check this: %s' %idx)
             else:
                 change = diff_char_level(good, bad) 
@@ -413,12 +521,19 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                 
         elif phenomena[sample["phenomena"]] == 'swap':
             try:
-                change = annotate_swap(sample["good-translation"],sample["incorrect-translation"])
+                change = annotate_swap_word_lvl(sample["good-translation"],sample["incorrect-translation"])
             except: 
                 print(idx)
                 break
-            sample['annotation'] = change
-            annotations[idx] = sample
+            if len(change) < 2 and sample["good-translation"] != sample["incorrect-translation"]:
+                logger.warning('No/one change in id {}, \ng: {}, \nb: {}'.format(idx, sample["good-translation"], sample["incorrect-translation"]))
+            elif change[0]['in_good'] != None and change[1]['in_good'] != None and change[0]['in_good'] == change[1]['in_good']:
+                 logger.warning('check this: %s - swapped words are the same!' %idx)
+            elif (change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50):
+                logger.warning('check this: %s' %idx)
+            else:
+                sample['annotation'] = change
+                annotations[idx] = sample
             
         elif phenomena[sample["phenomena"]] == 'date':
             try:
