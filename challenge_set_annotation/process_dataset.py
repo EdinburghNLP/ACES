@@ -7,10 +7,10 @@ import difflib, re
 import numpy as np
 np.random.seed(42)
 import random
-import argparse, os, json
+import argparse, os, json, copy
 from tqdm import tqdm
 
-import logging, copy
+import logging
 logger = logging.getLogger('logger')
 logging.basicConfig(level=logging.INFO)
 
@@ -121,19 +121,20 @@ def diff_char_level(good, bad):
     elif len(good_extra) > 0 and len(bad_extra) == 0:
         for block in good_extra:
             change.append({'in_good': {'token_index':None, 'character_span':(block[0],block[1]), 'token':block[2]}, 'in_bad': None})
-    elif len(bad_extra) > 0 and len(good_extra) > 0:   
-        for i in range(len(bad_extra)):
-            b_start, b_end = bad_extra[i][0], bad_extra[i][1]
-            g_start, g_end = good_extra[i][0], good_extra[i][1]
-            change.append({'in_good': {'token_index':None, 'character_span':(g_start, g_end), 'token':good_extra[i][2]},
-                   'in_bad': {'token_index':None, 'character_span':(b_start, b_end), 'token':bad_extra[i][2]}})
-        """
-        b_start, b_end = bad_extra[0][0], bad_extra[-1][1]
-        g_start, g_end = good_extra[0][0], good_extra[-1][1]
-        change.append({'in_good': {'token_index':None, 'character_span':(g_start, g_end), 'token':good[g_start:g_end]},
-                   'in_bad': {'token_index':None, 'character_span':(b_start, b_end), 'token':bad[b_start:b_end]}})
-        """
-        logger.debug("in diff replacement: \ngood: %s, \nbad: %s, \nchange: %s" %(good, bad, change))
+    elif len(bad_extra) > 0 and len(good_extra) > 0:  
+        if len(bad_extra) == len(good_extra):
+            for i in range(len(bad_extra)):
+                b_start, b_end = bad_extra[i][0], bad_extra[i][1]
+                g_start, g_end = good_extra[i][0], good_extra[i][1]
+                change.append({'in_good': {'token_index':None, 'character_span':(g_start, g_end), 'token':good_extra[i][2]},
+                       'in_bad': {'token_index':None, 'character_span':(b_start, b_end), 'token':bad_extra[i][2]}})
+        else:
+            b_start, b_end = bad_extra[0][0], bad_extra[-1][1]
+            g_start, g_end = good_extra[0][0], good_extra[-1][1]
+            change.append({'in_good': {'token_index':None, 'character_span':(g_start, g_end), 'token':good[g_start:g_end]},
+                       'in_bad': {'token_index':None, 'character_span':(b_start, b_end), 'token':bad[b_start:b_end]}})
+        
+        # logger.debug("in diff replacement: \ngood: %s, \nbad: %s, \nchange: %s" %(good, bad, change))
 
     return change
 
@@ -173,7 +174,6 @@ def annotate_units(good,bad):
     units_g = [u.surface for u in parser.parse(good)]
     units_b = [u.surface for u in parser.parse(bad)]
     i = 0
-    gid, bid = 0, 0
     g, g_spans = tokenize(good)
     b, b_spans = tokenize(bad)
     changes = []
@@ -435,7 +435,7 @@ if os.path.exists(annotated_dataset_path):
         annotations = json.load(f)
 else:
     annotations = dict()
-    
+
 # calculate statistics about the annotations:
 # for every mode, calculate no. of skipped, no. of unsure and ids, and no. of done.
 stats_template = {
@@ -461,7 +461,7 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                 change = diff_char_level(sample["good-translation"], sample["incorrect-translation"])
                 if len(change) == 0:
                     logger.warning('No change in id {}'.format(idx))
-                    stats[sample["phenomena"]]["no_change"].append(idx)
+                    stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
                 else:
                     stats[sample["phenomena"]]["success"] += 1
                 sample['annotation'] = change
@@ -469,14 +469,14 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                 annotations[idx] = sample
             except:
                 logger.warning('error in char level annotate, id {}'.format(idx))
-                stats[sample["phenomena"]]["error"].append(idx)
+                stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
                 
         elif phenomena[sample["phenomena"]] == 'annotate_word':
             try:
                 change = annotate_word(sample["good-translation"], sample["incorrect-translation"])
                 if len(change) == 0:
                     logger.warning('No change in id {}'.format(idx))
-                    stats[sample["phenomena"]]["no_change"].append(idx)
+                    stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
                 else:
                     stats[sample["phenomena"]]["success"] += 1
                 sample['annotation'] = change
@@ -484,7 +484,7 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                 annotations[idx] = sample
             except:
                 logger.warning('error in word level annotate, id {}'.format(idx))
-                stats[sample["phenomena"]]["error"].append(idx)
+                stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
 
         elif phenomena[sample["phenomena"]] in ['diff_flexible', 'REF_flexible', 'mixed_flexible']:
             if phenomena[sample["phenomena"]] == 'diff_flexible':
@@ -496,23 +496,8 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
             bad = sample["incorrect-translation"]
             g, g_spans = tokenize(good)
             b, b_spans = tokenize(bad)
-            
-            if len(g) == len(b) and len(b) > 1 and len(g) > 1:
-                change_w = diff(g, g_spans, b, b_spans, phenomena="replacement")
-                
-            else:
-                change_w = diff_flexible(good, g, g_spans, bad, b, b_spans)
-            change_c = diff_char_level(good, bad) 
-            
-            # sanity checks
-            if change_w == 0 and change_c == 0 and good != bad:
-                logger.warning('No change in id {}'.format(idx,g,b,change))
-                stats[sample["phenomena"]]["no_change"].append(idx)
-            if len():
-                continue
-            
-            # special treatment to japanese chinese and thailandish because they don't use spaces, so can't be split
-            """
+
+            # special treatment to japanese chinese and thailandish because they don't use spaces, so can't be split            
             if sample['langpair'][-2:] not in ['ja', 'zh', 'th']:      
                 if len(g) == len(b):   # if there are multiple one word replacements
                     change = diff(g, g_spans, b, b_spans, phenomena="replacement")
@@ -523,14 +508,14 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                             change = diff_char_level(good, bad) 
                     except:
                         logger.warning('error in id {}'.format(idx))
-                        stats[sample["phenomena"]]["error"].append(idx)
+                        stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
                         continue
                 if len(change) == 0:
                     logger.warning('No change in id {}'.format(idx,g,b,change))
-                    stats[sample["phenomena"]]["no_change"].append(idx)
+                    stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
                 elif len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50)):
                     logger.warning('check this - too long: %s' %idx)
-                    stats[sample["phenomena"]]["too_long"].append(idx)
+                    stats[sample["phenomena"]]["too_long"].append((idx, sample['langpair']))
                 else:
                     stats[sample["phenomena"]]["success"] += 1
                 sample['annotation'] = change
@@ -541,10 +526,10 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                     change = diff_char_level(good, bad) 
                     if len(change) == 0 and good != bad:
                         logger.warning('No change in id {}'.format(idx,g,b,change))
-                        stats[sample["phenomena"]]["no_change"].append(idx)
+                        stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
                     elif len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 30) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 30)):
                         logger.warning('check this - too long: %s' %idx)
-                        stats[sample["phenomena"]]["too_long"].append(idx)
+                        stats[sample["phenomena"]]["too_long"].append((idx, sample['langpair']))
                     else:
                         stats[sample["phenomena"]]["success"] += 1
                     sample['annotation'] = change
@@ -552,18 +537,18 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                     annotations[idx] = sample
                 except: 
                     logger.warning('error in id {}'.format(idx))
-                    stats[sample["phenomena"]]["error"].append(idx)
-            """
+                    stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
+            
                 
         elif phenomena[sample["phenomena"]] == 'units':
             try:
                 g, b, change = annotate_units(sample["good-translation"],sample["incorrect-translation"])
                 if len(change) == 0 and g != b:
                     logger.warning('No change in id {}, \ng: {}, \nb: {},\nr: {}'.format(idx, g, b))
-                    stats[sample["phenomena"]]["no_change"].append(idx)
+                    stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
                 elif len(change) > 1:
                     logger.warning('Multiple changes in {} id {}'.format(sample["phenomena"], idx))
-                    stats[sample["phenomena"]]["other"].append(idx)
+                    stats[sample["phenomena"]]["other"].append((idx, sample['langpair']))
                 else:
                     stats[sample["phenomena"]]["success"] += 1
                 sample['annotation'] = change
@@ -571,20 +556,20 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                 annotations[idx] = sample  
             except: 
                 logger.warning('error in id {}'.format(idx))
-                stats[sample["phenomena"]]["error"].append(idx)
+                stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
             
         elif phenomena[sample["phenomena"]] == 'swap':
             try:
                 change = annotate_swap_word_lvl(sample["good-translation"],sample["incorrect-translation"])
                 if len(change) < 2 and sample["good-translation"] != sample["incorrect-translation"]:
                     logger.warning('No change in id {}, \ng: {}, \nb: {}'.format(idx, sample["good-translation"], sample["incorrect-translation"]))
-                    stats[sample["phenomena"]]["no_change"].append(idx)
+                    stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
                 elif change[0]['in_good'] != None and change[1]['in_good'] != None and change[0]['in_good'] == change[1]['in_good']:
                     logger.warning('check this: %s - swapped words are the same!' %idx)
-                    stats[sample["phenomena"]]["other"].append(idx)
+                    stats[sample["phenomena"]]["other"].append((idx, sample['langpair']))
                 elif (change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50):
                     logger.warning('check this: %s' %idx)
-                    stats[sample["phenomena"]]["too_long"].append(idx)
+                    stats[sample["phenomena"]]["too_long"].append((idx, sample['langpair']))
                 else:
                     stats[sample["phenomena"]]["success"] += 1
                 sample['annotation'] = change
@@ -592,7 +577,7 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                 annotations[idx] = sample
             except: 
                 logger.warning('error in id {}'.format(idx))
-                stats[sample["phenomena"]]["error"].append(idx)
+                stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
             
         elif phenomena[sample["phenomena"]] == 'date':
             try:
@@ -603,13 +588,14 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
                 annotations[idx] = sample
             except: 
                 logger.warning('error in id {}'.format(idx))
-                stats[sample["phenomena"]]["error"].append(idx)
+                stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
                 
         # else:
-        #    stats[sample["phenomena"]]["other"].append(idx)
+        #    stats[sample["phenomena"]]["other"].append((idx, sample['langpair']))
 
 with open(annotated_dataset_path, "w") as f:
     json.dump(annotations, f)  # encode dict into JSON
+stats_path = os.path.join(folder, 'stats.txt')
 with open(stats_path, "w") as f:
     json.dump(stats, f)  # encode dict into JSON
 logger.info("Done writing dict into {} file".format(annotated_dataset_path))
