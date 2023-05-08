@@ -11,9 +11,9 @@
 # cd folder
 
 source .env/bin/activate
-# python -m pip install --upgrade pip
-# pip install -r ./ACES_private/challenge_set_annotation/requirements.txt
-# python3 ./ACES_private/challenge_set_annotation/download_dataset.py
+python -m pip install --upgrade pip
+pip install -r ./ACES_private/challenge_set_annotation/requirements.txt
+python3 ./ACES_private/challenge_set_annotation/download_dataset.py
 python3 ./ACES_private/challenge_set_annotation/process_dataset.py
 
 deactivate
