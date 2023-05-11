@@ -3,3 +3,4 @@ numpy
 tqdm
 logging
 quantulum3
+# plotly

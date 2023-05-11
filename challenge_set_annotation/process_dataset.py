@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 from datasets import load_from_disk
 
 import numpy as np

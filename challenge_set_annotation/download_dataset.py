@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 from datasets import load_dataset
 import argparse, os
 import logging
