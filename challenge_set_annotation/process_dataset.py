@@ -96,13 +96,23 @@ phenomena = {
     'xnli-omission-neutral':'?'
 }
 
+# change this part to specify which phenomena to process!
+"""
+phenomena_tobe_processed = ["coreference-based-on-commonsense", "hallucination-real-data-vs-ref-word",
+                            "hallucination-real-data-vs-synonym", "lexical-overlap", "xnli-addition-contradiction",
+                            "xnli-addition-neutral", "xnli-omission-contradiction", "xnli-omission-neutral"]
+"""
+# or to process all of them
+phenomena_tobe_processed = phenomena.keys()
+
 # if there are already some annotations overwrite them and append new ones
-annotated_dataset_path = os.path.join(folder, 'annotated.txt')
+annotated_dataset_path = os.path.join(folder, 'ACES_private/challenge_set_annotation/annotated.txt')
 if os.path.exists(annotated_dataset_path):
     logger.info('Path {} already exists. Loading..'.format(annotated_dataset_path))
     with open(annotated_dataset_path, "r") as f:
         annotations = json.load(f)
 else:
+    logger.info('Creating new annotations.txt file at {}'.format(annotated_dataset_path))
     annotations = dict()
 
 # calculate statistics about the annotations:
@@ -115,15 +125,25 @@ stats_template = {
             'error':[],
             'other':[]  
         }
-stats = {}
-for key in phenomena.keys():
-    stats[key] = copy.deepcopy(stats_template)
-    
-annotations = {}
+stats_path = os.path.join(folder, 'ACES_private/challenge_set_annotation/stats.txt')
+if os.path.exists(stats_path):
+    logger.info('Path {} already exists. Loading..'.format(stats_path))
+    with open(stats_path, "r") as f:
+        stats = json.load(f)
+    # we want to overwrite the statistics for the new phenomena
+    for p in phenomena_tobe_processed:
+        stats[p] = copy.deepcopy(stats_template)
+else:
+    logger.info('Creating new stats.txt file at {}'.format(stats_path))
+    stats = {}
+    for key in phenomena.keys():
+        stats[key] = copy.deepcopy(stats_template)
+
+logger.info('Processing running...')
 logger.setLevel(logging.ERROR)
 for idx,sample in tqdm(enumerate(dataset["train"])):
     # if sample["phenomena"] in phenomena.keys() and 'Le garçon voulait mettre le jeu dans la boîte, mais c\'était trop grand.' in sample['good-translation']:
-    if sample["phenomena"] in phenomena.keys():
+    if sample["phenomena"] in phenomena_tobe_processed:
         stats[sample["phenomena"]]["total"] += 1
         if phenomena[sample["phenomena"]] == 'add-omit':
             try:
@@ -264,7 +284,6 @@ for idx,sample in tqdm(enumerate(dataset["train"])):
 
 with open(annotated_dataset_path, "w") as f:
     json.dump(annotations, f)  # encode dict into JSON
-stats_path = os.path.join(folder, 'stats.txt')
 with open(stats_path, "w") as f:
     json.dump(stats, f)  # encode dict into JSON
 logger.info("Done writing dict into {} file".format(annotated_dataset_path))

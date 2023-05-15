@@ -21,18 +21,30 @@ Setup the environment and download the dataset
 
     bash ./ACES_private/challenge_set_annotation/setup.sh
 
+## Running the Jupyter Notebook
+
 Activate the environment
 
+    cd folder
     source .env/bin/activate
 
-Run test cases
+Start the Jupyter Notebook
 
+    jupyter notebook --port=8889 --no-browser
+
+## Running the whole annotation script
+
+Run test cases 
+
+    cd folder
+    source .env/bin/activate
     cd folder/ACES_private/challenge_set_annotation/
     python -m unittest discover
 
 Run the process_dataset.py script and generate annotated.txt and stats.txt files
 
     cd folder
+    source .env/bin/activate
     python ACES_private/challenge_set_annotation/process_dataset.py
 
 In folder/annotated.txt, the format looks like this:

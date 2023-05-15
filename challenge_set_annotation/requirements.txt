@@ -1,6 +1,6 @@
 datasets
 numpy
 tqdm
-logging
+# logging
 quantulum3
 # plotly

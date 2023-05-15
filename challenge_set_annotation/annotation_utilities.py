@@ -13,10 +13,12 @@ logging.basicConfig(level=logging.INFO)
 # given a sentence, return the tokens and their start and end indices
 def tokenize(sentence):
     s0 = sentence.lower()
-    s1 = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
-    s2 = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s1)
-    s3 = s2.strip("\"[].,!?:;'\(\)$")
-    tokenized = s3.split()
+    s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
+    s = re.sub(r"^[\"\[\]\.,!?:;'\(\)$“„”]+", ' ', s)
+    s = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s)
+    s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+$",' ', s)
+    s = s.strip("\"[].,!?:;'\(\)$")
+    tokenized = s.split()
     
     spans = []
     split = 0
@@ -336,6 +338,13 @@ def diff_dates(good, bad):
                 min_size = block.size
                 min_ch = ch
         return [min_ch]
-        if len(change) != 1:
-            logger.error('in hallucination-dates: after removing the abbr. there are %s changes %s, %s'%(len(change), good, bad))
+    return change
+
+def whole_sentence(good, bad):
+    change = [{"in_good":{'token_index':None, 
+                'character_span':(0,len(good)), 
+                            'token':good}, 
+            "in_bad":{'token_index':None, 
+                'character_span':(0,len(bad)), 
+                            'token':bad}}]
     return change
