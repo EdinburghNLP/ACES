@@ -10,9 +10,13 @@ import logging
 logger = logging.getLogger('logger')
 logging.basicConfig(level=logging.INFO)
 
+from sacremoses import MosesPunctNormalizer
+from sacremoses import MosesTokenizer, MosesDetokenizer
+
 # given a sentence, return the tokens and their start and end indices
 def tokenize(sentence):
     s0 = sentence.lower()
+    s0 = re.sub('i̇', 'i', s0)
     s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
     s = re.sub(r"^[\"\[\]\.,!?:;'\(\)$“„”]+", ' ', s)
     s = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s)
@@ -38,9 +42,9 @@ def ref_or_good(ref, good, bad):
     g_change = diff_flexible(good, g, g_spans, bad, b, b_spans)
     r_change = diff_flexible(ref, r, r_spans, bad, b, b_spans)
     if len(r_change[0]["in_good"]["token"]) <= len(g_change[0]["in_good"]["token"]):
-        return ref, r, r_spans
+        return ref
     else:
-        return good, g, g_spans
+        return good
 
 # Span annotations for the addition data - word ids for now
 # can handle multiple replacements, only one adddition and omission
@@ -352,7 +356,7 @@ def whole_sentence(good, bad):
 # if we have multiple word spans next to each other, then concatenate them in one span.
 # no need for this when we have token_index: None or token_index:list because then it is already one big span
 # also make sure token_index is a list for all changes
-def standardize_annotation(change, good, bad):
+def standardize_annotation(change, good, bad, maps=None, original=None):
     skip = False
     for c in change:
         if (c['in_good'] != None and (c['in_good']['token_index'] == None or type(c['in_good']['token_index'])==list))\
@@ -404,5 +408,32 @@ def standardize_annotation(change, good, bad):
                     'in_bad': {'token_index': bad_tokens,
                         'character_span': bad_span,
                         'token': bad[bad_span[0]:bad_span[1]]}})
-
+    
+    if maps != None:
+        good_mapping, bad_mapping = maps[0], maps[1]
+        good_og, bad_og = original[0], original[1]
+        for c in change_new:
+            c["in_good"]['character_span'] = (good_mapping[c["in_good"]['character_span'][0]], good_mapping[c["in_good"]['character_span'][1]])
+            c["in_bad"]['character_span'] = (bad_mapping[c["in_bad"]['character_span'][0]], bad_mapping[c["in_bad"]['character_span'][1]])
+            c["in_good"]['token'] = good_og[c["in_good"]['character_span'][0]:c["in_good"]['character_span'][1]]
+            c["in_bad"]['token'] = bad_og[c["in_bad"]['character_span'][0]:c["in_bad"]['character_span'][1]]
+        
     return change_new
+
+# return detokenized sentence, and the ids of the removed spaces
+# or mapping for each char from detokenized sentence to original?
+def detokenize_text(sentence, lang='en'):
+    mt, md = MosesTokenizer(lang=lang), MosesDetokenizer(lang=lang)
+    mpn = MosesPunctNormalizer()
+    detokenized = md.detokenize(mt.tokenize(md.detokenize(mpn.normalize(sentence).split())))
+    logger.debug("detokenized: {}".format(detokenized))
+    mapping = dict()
+    i = 0
+    for d_id in range(len(detokenized)):
+        logger.debug("outer: {}".format([detokenized[d_id], d_id, sentence[i], i]))
+        while detokenized[d_id] != sentence[i]:
+            i += 1
+            logger.debug("inner: {}".format([detokenized[d_id], d_id, sentence[i], i]))
+        mapping[d_id] = i 
+    mapping[len(detokenized)] = len(sentence)       
+    return detokenized, mapping

@@ -1,7 +1,7 @@
 {
   "addition": {
     "total": 999,
-    "success": 999,
+    "success": 998,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -9,7 +9,7 @@
   },
   "ambiguous-translation-wrong-discourse-connective-since-causal": {
     "total": 106,
-    "success": 106,
+    "success": 53,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -17,7 +17,7 @@
   },
   "ambiguous-translation-wrong-discourse-connective-since-temporal": {
     "total": 106,
-    "success": 106,
+    "success": 53,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -41,7 +41,7 @@
   },
   "ambiguous-translation-wrong-gender-female-anti": {
     "total": 1000,
-    "success": 1000,
+    "success": 594,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -49,7 +49,7 @@
   },
   "ambiguous-translation-wrong-gender-female-pro": {
     "total": 806,
-    "success": 806,
+    "success": 497,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -57,7 +57,7 @@
   },
   "ambiguous-translation-wrong-gender-male-anti": {
     "total": 806,
-    "success": 806,
+    "success": 497,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -65,7 +65,7 @@
   },
   "ambiguous-translation-wrong-gender-male-pro": {
     "total": 1000,
-    "success": 1000,
+    "success": 594,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -73,7 +73,7 @@
   },
   "ambiguous-translation-wrong-sense-frequent": {
     "total": 471,
-    "success": 471,
+    "success": 255,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -81,7 +81,7 @@
   },
   "ambiguous-translation-wrong-sense-infrequent": {
     "total": 471,
-    "success": 471,
+    "success": 255,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -89,7 +89,7 @@
   },
   "anaphoric_group_it-they:deletion": {
     "total": 138,
-    "success": 138,
+    "success": 106,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -97,7 +97,7 @@
   },
   "anaphoric_group_it-they:substitution": {
     "total": 79,
-    "success": 79,
+    "success": 63,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -105,7 +105,7 @@
   },
   "anaphoric_intra_non-subject_it:deletion": {
     "total": 397,
-    "success": 397,
+    "success": 357,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -113,7 +113,7 @@
   },
   "anaphoric_intra_non-subject_it:substitution": {
     "total": 238,
-    "success": 238,
+    "success": 217,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -121,7 +121,7 @@
   },
   "anaphoric_intra_subject_it:deletion": {
     "total": 425,
-    "success": 425,
+    "success": 339,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -129,7 +129,7 @@
   },
   "anaphoric_intra_subject_it:substitution": {
     "total": 274,
-    "success": 274,
+    "success": 226,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -137,7 +137,7 @@
   },
   "anaphoric_intra_they:deletion": {
     "total": 152,
-    "success": 152,
+    "success": 134,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -145,7 +145,7 @@
   },
   "anaphoric_intra_they:substitution": {
     "total": 121,
-    "success": 121,
+    "success": 111,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -169,76 +169,15 @@
   },
   "antonym-replacement": {
     "total": 790,
-    "success": 775,
-    "too_long": [
-      [
-        2182,
-        "zh-en"
-      ],
-      [
-        2184,
-        "zh-en"
-      ],
-      [
-        2273,
-        "zh-en"
-      ],
-      [
-        5299,
-        "fr-en"
-      ],
-      [
-        5302,
-        "fr-en"
-      ],
-      [
-        9376,
-        "es-en"
-      ],
-      [
-        9405,
-        "es-en"
-      ],
-      [
-        14412,
-        "de-en"
-      ],
-      [
-        14415,
-        "de-en"
-      ],
-      [
-        14462,
-        "de-en"
-      ],
-      [
-        29053,
-        "ja-en"
-      ],
-      [
-        29062,
-        "ja-en"
-      ],
-      [
-        29179,
-        "ja-en"
-      ],
-      [
-        31521,
-        "ko-en"
-      ],
-      [
-        31522,
-        "ko-en"
-      ]
-    ],
+    "success": 154,
+    "too_long": [],
     "no_change": [],
     "error": [],
     "other": []
   },
   "commonsense-only-ref-ambiguous": {
     "total": 999,
-    "success": 999,
+    "success": 984,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -246,7 +185,7 @@
   },
   "commonsense-src-and-ref-ambiguous": {
     "total": 999,
-    "success": 999,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -344,7 +283,7 @@
   },
   "hallucination-date-time": {
     "total": 886,
-    "success": 886,
+    "success": 885,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -382,7 +321,7 @@
   },
   "hallucination-named-entity-level-2": {
     "total": 999,
-    "success": 999,
+    "success": 996,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -390,7 +329,7 @@
   },
   "hallucination-named-entity-level-3": {
     "total": 999,
-    "success": 997,
+    "success": 993,
     "too_long": [],
     "no_change": [
       [
@@ -416,7 +355,7 @@
   },
   "hallucination-number-level-1": {
     "total": 999,
-    "success": 999,
+    "success": 996,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -424,7 +363,7 @@
   },
   "hallucination-number-level-2": {
     "total": 999,
-    "success": 999,
+    "success": 979,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -432,7 +371,7 @@
   },
   "hallucination-number-level-3": {
     "total": 999,
-    "success": 999,
+    "success": 986,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -440,7 +379,7 @@
   },
   "hallucination-real-data-vs-ref-word": {
     "total": 246,
-    "success": 242,
+    "success": 208,
     "too_long": [
       [
         15347,
@@ -466,12 +405,8 @@
   },
   "hallucination-real-data-vs-synonym": {
     "total": 144,
-    "success": 125,
+    "success": 14,
     "too_long": [
-      [
-        25320,
-        "fr-de"
-      ],
       [
         35808,
         "en-mr"
@@ -551,7 +486,7 @@
   },
   "hallucination-unit-conversion-amount-matches-ref": {
     "total": 1000,
-    "success": 835,
+    "success": 831,
     "too_long": [],
     "no_change": [],
     "error": [
@@ -1224,7 +1159,7 @@
   },
   "hallucination-unit-conversion-unit-matches-ref": {
     "total": 1000,
-    "success": 835,
+    "success": 831,
     "too_long": [],
     "no_change": [],
     "error": [
@@ -1893,91 +1828,15 @@
   },
   "hypernym-replacement": {
     "total": 1000,
-    "success": 969,
+    "success": 717,
     "too_long": [
-      [
-        2696,
-        "zh-en"
-      ],
-      [
-        2729,
-        "zh-en"
-      ],
-      [
-        2771,
-        "zh-en"
-      ],
-      [
-        2807,
-        "zh-en"
-      ],
-      [
-        2851,
-        "zh-en"
-      ],
-      [
-        2853,
-        "zh-en"
-      ],
-      [
-        6005,
-        "fr-en"
-      ],
       [
         6129,
         "fr-en"
       ],
       [
-        6143,
-        "fr-en"
-      ],
-      [
-        6153,
-        "fr-en"
-      ],
-      [
-        9899,
-        "es-en"
-      ],
-      [
         9989,
         "es-en"
-      ],
-      [
-        15514,
-        "de-en"
-      ],
-      [
-        15529,
-        "de-en"
-      ],
-      [
-        15550,
-        "de-en"
-      ],
-      [
-        15585,
-        "de-en"
-      ],
-      [
-        15586,
-        "de-en"
-      ],
-      [
-        15665,
-        "de-en"
-      ],
-      [
-        29564,
-        "ja-en"
-      ],
-      [
-        29571,
-        "ja-en"
-      ],
-      [
-        29586,
-        "ja-en"
       ],
       [
         29615,
@@ -1986,34 +1845,6 @@
       [
         29729,
         "ja-en"
-      ],
-      [
-        32005,
-        "ko-en"
-      ],
-      [
-        32039,
-        "ko-en"
-      ],
-      [
-        32051,
-        "ko-en"
-      ],
-      [
-        32075,
-        "ko-en"
-      ],
-      [
-        32080,
-        "ko-en"
-      ],
-      [
-        32113,
-        "ko-en"
-      ],
-      [
-        32114,
-        "ko-en"
       ],
       [
         32130,
@@ -2026,26 +1857,14 @@
   },
   "hyponym-replacement": {
     "total": 1000,
-    "success": 981,
+    "success": 662,
     "too_long": [
       [
         2997,
         "zh-en"
       ],
       [
-        6171,
-        "fr-en"
-      ],
-      [
         6183,
-        "fr-en"
-      ],
-      [
-        6186,
-        "fr-en"
-      ],
-      [
-        6254,
         "fr-en"
       ],
       [
@@ -2053,56 +1872,12 @@
         "fr-en"
       ],
       [
-        10136,
-        "es-en"
-      ],
-      [
         10144,
         "es-en"
       ],
       [
-        10146,
-        "es-en"
-      ],
-      [
-        10176,
-        "es-en"
-      ],
-      [
-        10186,
-        "es-en"
-      ],
-      [
-        10205,
-        "es-en"
-      ],
-      [
-        15735,
-        "de-en"
-      ],
-      [
-        15853,
-        "de-en"
-      ],
-      [
-        29731,
-        "ja-en"
-      ],
-      [
-        29763,
-        "ja-en"
-      ],
-      [
         29816,
         "ja-en"
-      ],
-      [
-        32160,
-        "ko-en"
-      ],
-      [
-        32250,
-        "ko-en"
       ]
     ],
     "no_change": [],
@@ -2135,7 +1910,7 @@
   },
   "nonsense": {
     "total": 1000,
-    "success": 859,
+    "success": 868,
     "too_long": [
       [
         11559,
@@ -2151,10 +1926,6 @@
       ],
       [
         11564,
-        "ko-ja"
-      ],
-      [
-        11566,
         "ko-ja"
       ],
       [
@@ -2179,10 +1950,6 @@
       ],
       [
         11585,
-        "ko-ja"
-      ],
-      [
-        11586,
         "ko-ja"
       ],
       [
@@ -2234,15 +2001,7 @@
         "ko-ja"
       ],
       [
-        11630,
-        "ko-ja"
-      ],
-      [
         11631,
-        "ko-ja"
-      ],
-      [
-        11632,
         "ko-ja"
       ],
       [
@@ -2311,10 +2070,6 @@
       ],
       [
         11691,
-        "ko-ja"
-      ],
-      [
-        11692,
         "ko-ja"
       ],
       [
@@ -2426,6 +2181,10 @@
         "ko-ja"
       ],
       [
+        16018,
+        "de-en"
+      ],
+      [
         16048,
         "de-en"
       ],
@@ -2494,7 +2253,7 @@
         "en-ko"
       ],
       [
-        27399,
+        27396,
         "fr-ja"
       ],
       [
@@ -2503,10 +2262,6 @@
       ],
       [
         27409,
-        "fr-ja"
-      ],
-      [
-        27425,
         "fr-ja"
       ],
       [
@@ -2554,10 +2309,6 @@
         "fr-ja"
       ],
       [
-        27496,
-        "fr-ja"
-      ],
-      [
         27506,
         "fr-ja"
       ],
@@ -2590,10 +2341,6 @@
         "fr-ja"
       ],
       [
-        27548,
-        "fr-ja"
-      ],
-      [
         27549,
         "fr-ja"
       ],
@@ -2607,10 +2354,6 @@
       ],
       [
         27559,
-        "fr-ja"
-      ],
-      [
-        27563,
         "fr-ja"
       ],
       [
@@ -2639,10 +2382,6 @@
       ],
       [
         27617,
-        "fr-ja"
-      ],
-      [
-        27619,
         "fr-ja"
       ],
       [
@@ -2860,7 +2599,7 @@
   },
   "overly-literal-vs-ref-word": {
     "total": 151,
-    "success": 150,
+    "success": 129,
     "too_long": [
       [
         16341,
@@ -2873,12 +2612,8 @@
   },
   "overly-literal-vs-synonym": {
     "total": 114,
-    "success": 98,
+    "success": 6,
     "too_long": [
-      [
-        16348,
-        "de-en"
-      ],
       [
         35839,
         "en-mr"
@@ -2946,7 +2681,7 @@
   },
   "pleonastic_it:deletion": {
     "total": 614,
-    "success": 614,
+    "success": 421,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -2954,7 +2689,7 @@
   },
   "pleonastic_it:substitution": {
     "total": 575,
-    "success": 575,
+    "success": 453,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -2962,7 +2697,7 @@
   },
   "punctuation:deletion_all": {
     "total": 1000,
-    "success": 1000,
+    "success": 995,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -3027,7 +2762,7 @@
   },
   "real-world-knowledge-synonym-vs-antonym": {
     "total": 40,
-    "success": 39,
+    "success": 35,
     "too_long": [
       [
         24654,
@@ -3056,7 +2791,7 @@
   },
   "untranslated-vs-ref-word": {
     "total": 195,
-    "success": 195,
+    "success": 166,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -3064,7 +2799,7 @@
   },
   "untranslated-vs-synonym": {
     "total": 105,
-    "success": 105,
+    "success": 1,
     "too_long": [],
     "no_change": [],
     "error": [],
