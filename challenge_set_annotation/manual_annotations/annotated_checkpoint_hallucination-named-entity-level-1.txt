@@ -1,0 +1,278 @@
+{
+  "37": {
+    "source": "On 9 August Lloyd was selected with 51.1% of the vote. Andy Burnham placed second with 29.1%.",
+    "good-translation": "Lloyd fue electo el 9 de agosto con el 51,1% de los votos, segundo Andy Burnham con el 29,1%.",
+    "incorrect-translation": "Llod fue electo el 9 de agosto con el 51,1% de los votos, segundo Andy Burnham con el 29,1%.",
+    "reference": "El 9 de agosto Lloyd fue seleccionado con el 51,1% de los votos. Andy Burnham se ubicó segundo con el 29,1%.",
+    "phenomena": "hallucination-named-entity-level-1",
+    "langpair": "en-es",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            0
+          ],
+          "character_span": [
+            0,
+            5
+          ],
+          "token": "Lloyd"
+        },
+        "in_bad": {
+          "token_index": [
+            0
+          ],
+          "character_span": [
+            0,
+            4
+          ],
+          "token": "Llod"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "38": {
+    "source": "The song was written and composed by Gala produced by Filippo Andrea Carmeni and Maurizio Molella.",
+    "good-translation": "Esta canción fue escrita y compuesta por la gala producida por Filippo Andrea Carmeni y Maurizio Molella.",
+    "incorrect-translation": "Esta canción fue escrita y compuesta por la gala producida por Karen Gamboa y Maurizio Molella.",
+    "reference": "La canción fue escrita y compuesta por Gala producida por Filippo Andrea Carmeni y Maurizio Molella.",
+    "phenomena": "hallucination-named-entity-level-1",
+    "langpair": "en-es",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            11,
+            12,
+            13
+          ],
+          "character_span": [
+            63,
+            85
+          ],
+          "token": "Filippo Andrea Carmeni"
+        },
+        "in_bad": {
+          "token_index": [
+            11,
+            12
+          ],
+          "character_span": [
+            63,
+            75
+          ],
+          "token": "Karen Gamboa"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "39": {
+    "source": "When Lee became military adviser to President Jefferson Davis at the beginning of 1862, he appointed Long as his military secretary in the rank of Colonel.",
+    "good-translation": "Cuando Lee se convirtió en el consejero militar del presidente Jefferson Davis a principios de 1862, nombró a Long como su secretario militar con el rango de coronel.",
+    "incorrect-translation": "Cuando Lee se convirtió en el consejero militar del presidente Guy Ball a principios de 1862, nombró a Long como su secretario militar con el rango de coronel.",
+    "reference": "Cuando Lee se convirtió en asesor militar del Presidente Jefferson Davis a comienzos de 1862, nombró a Long como su secretario militar con el rango de Coronel.",
+    "phenomena": "hallucination-named-entity-level-1",
+    "langpair": "en-es",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10,
+            11
+          ],
+          "character_span": [
+            63,
+            78
+          ],
+          "token": "Jefferson Davis"
+        },
+        "in_bad": {
+          "token_index": [
+            10,
+            11
+          ],
+          "character_span": [
+            63,
+            71
+          ],
+          "token": "Guy Ball"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "40": {
+    "source": "Among them are Marie Teresa Rios, a composer of Boleros, Julita Ross, author, and Sylvia Rexach, a singer.",
+    "good-translation": "Entre ellos están Marie Teresa Ríos, compositora de boleros, Julita Ross, autora y Sylvia Rexach, cantante.",
+    "incorrect-translation": "Entre ellos están Marie Teresa Ríos, compositora de boleros, Julita Ross, autora y Diane Oliver, cantante.",
+    "reference": "Entre ellos están María Teresa Ríos, compositora de boleros, Julita Ross, autora y Sylvia Rexach, cantante.",
+    "phenomena": "hallucination-named-entity-level-1",
+    "langpair": "en-es",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            13,
+            14
+          ],
+          "character_span": [
+            83,
+            96
+          ],
+          "token": "Sylvia Rexach"
+        },
+        "in_bad": {
+          "token_index": [
+            13,
+            14
+          ],
+          "character_span": [
+            83,
+            95
+          ],
+          "token": "Diane Oliver"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "41": {
+    "source": "He continued his relationship with ESPN to turn two more films for the network, ``Wendell Scott ''and`` Herschel''.",
+    "good-translation": "Continuó su relación con ESPN dirigiendo dos películas más para la red, ``Herschel'' y ``Wendell Scott''.",
+    "incorrect-translation": "Continuó su relación con ESPN dirigiendo dos películas más para la red, ``Herschel'' y ``Wendellw Scott''.",
+    "reference": "\"Continuó su relación con ESPN para dirigir dos películas más para la cadena, \"\"Wendel Scott\"\" y \"\"Herschel\"\".\"",
+    "phenomena": "hallucination-named-entity-level-1",
+    "langpair": "en-es",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            87,
+            96
+          ],
+          "token": "``Wendell"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            87,
+            97
+          ],
+          "token": "``Wendellw"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "42": {
+    "source": "He is the uncle of musician Tal Bachman and father of Ryder Bachman.",
+    "good-translation": "Es el tío del músico Tal Bachman y padre de Ryder Bachman.",
+    "incorrect-translation": "Es el tío del músico Tal Bachman y padre de Colette Walls.",
+    "reference": "Es el tío del músico Tal Bachman y el padre de Ryder Bachman.",
+    "phenomena": "hallucination-named-entity-level-1",
+    "langpair": "en-es",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10,
+            11
+          ],
+          "character_span": [
+            44,
+            57
+          ],
+          "token": "Ryder Bachman"
+        },
+        "in_bad": {
+          "token_index": [
+            10,
+            11
+          ],
+          "character_span": [
+            44,
+            57
+          ],
+          "token": "Colette Walls"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "43": {
+    "source": "On November 13, 2016, David Machado was murdered in Fox Grove Park near the city of Hughson by Dennis Wallace.",
+    "good-translation": "El 13 de noviembre de 2016, el Adjunto David Machado fue asesinado en Fox Grove Park cerca de la ciudad de Hughson por Dennis Wallace.",
+    "incorrect-translation": "El 13 de noviembre de 2016, el Magnolia Harvey fue asesinado en Fox Grove Park cerca de la ciudad de Hughson por Dennis Wallace.",
+    "reference": "El 13 de noviembre de 2016, David Machado fue asesinado en Fox Grove Park cerca de la ciudad de Hughson en manos de Dennis Wallace.",
+    "phenomena": "hallucination-named-entity-level-1",
+    "langpair": "en-es",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            7,
+            8,
+            9
+          ],
+          "character_span": [
+            31,
+            52
+          ],
+          "token": "Adjunto David Machado"
+        },
+        "in_bad": {
+          "token_index": [
+            7,
+            8
+          ],
+          "character_span": [
+            31,
+            46
+          ],
+          "token": "Magnolia Harvey"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "44": {
+    "source": "Siebenberg has described the song as his favourite on the album ``because it's so personal and so pure. ''",
+    "good-translation": "\"Siebenberg describió la canción como su favorita en el álbum \"\"porque es tan personal y pura\"\".\"",
+    "incorrect-translation": "\"Sibenberg describió la canción como su favorita en el álbum \"\"porque es tan personal y pura\"\".\"",
+    "reference": "\"Siebenberg ha descrito la canción como la favorita en su álbum \"\"porque es muy personal y pura\"\".\"",
+    "phenomena": "hallucination-named-entity-level-1",
+    "langpair": "en-es",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            0
+          ],
+          "character_span": [
+            1,
+            11
+          ],
+          "token": "Siebenberg"
+        },
+        "in_bad": {
+          "token_index": [
+            0
+          ],
+          "character_span": [
+            1,
+            10
+          ],
+          "token": "Sibenberg"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  }
+}

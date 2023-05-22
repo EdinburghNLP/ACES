@@ -1,0 +1,3605 @@
+{
+  "1067": {
+    "source": "The song took longer to sing than the ballad because it was more words.",
+    "good-translation": "La chanson a pris plus de temps à chanter que la ballade parce que c'était plus de mots.",
+    "incorrect-translation": "La chanson a pris plus de temps à chanter que la ballade parce que la ballade était plus de mots.",
+    "reference": "La chanson a pris plus de temps à chanter que la ballade parce que la chanson était plus de mots.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            70,
+            77
+          ],
+          "token": "chanson"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            70,
+            77
+          ],
+          "token": "ballade"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1068": {
+    "source": "The song took longer to sing than the ballad because it was less words.",
+    "good-translation": "La chanson a pris plus de temps à chanter que la ballade parce que c'était moins de mots.",
+    "incorrect-translation": "La chanson a mis plus de temps à chanter que la ballade car la chanson était moins de mots.",
+    "reference": "La chanson a mis plus de temps à chanter que la ballade car la ballade était moins de mots.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            63,
+            70
+          ],
+          "token": "ballade"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            63,
+            70
+          ],
+          "token": "chanson"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1069": {
+    "source": "Sergey appreciated intricate designs and decided to keep the painting instead of the sculpture because it was interesting.",
+    "good-translation": "Sergey appréciait les dessins complexes et décida de garder la peinture au lieu de la sculpture parce qu'elle était intéressante.",
+    "incorrect-translation": "Sergey a apprécié les dessins complexes et a décidé de conserver la peinture au lieu de la sculpture parce que la sculpture était intéressante.",
+    "reference": "Sergey a apprécié les dessins complexes et a décidé de conserver la peinture au lieu de la sculpture parce que la peinture était intéressante.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            21
+          ],
+          "character_span": [
+            114,
+            122
+          ],
+          "token": "peinture"
+        },
+        "in_bad": {
+          "token_index": [
+            21
+          ],
+          "character_span": [
+            114,
+            123
+          ],
+          "token": "sculpture"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1070": {
+    "source": "Sergey appreciated intricate designs and decided to keep the painting instead of the sculpture because it was dull.",
+    "good-translation": "Sergey appréciait les dessins complexes et décida de garder la peinture au lieu de la sculpture parce qu'elle était terne.",
+    "incorrect-translation": "Sergey a apprécié les dessins complexes et a décidé de conserver la peinture au lieu de la sculpture car la peinture était terne.",
+    "reference": "Sergey a apprécié les dessins complexes et a décidé de conserver la peinture au lieu de la sculpture car la sculpture était terne.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            20
+          ],
+          "character_span": [
+            108,
+            117
+          ],
+          "token": "sculpture"
+        },
+        "in_bad": {
+          "token_index": [
+            20
+          ],
+          "character_span": [
+            108,
+            116
+          ],
+          "token": "peinture"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1071": {
+    "source": "John suspect there is no sugar in the tea but there is some in the coffee because it is sweet.",
+    "good-translation": "John soupçonne qu'il n'y a pas de sucre dans le thé mais il y en a dans le café parce qu'il est doux.",
+    "incorrect-translation": "John soupçonne qu' il n' y a pas de sucre dans le thé mais il y en a dans le café parce que le thé est sucré.",
+    "reference": "John soupçonne qu' il n' y a pas de sucre dans le thé mais il y en a dans le café parce que le café est sucré.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            95,
+            99
+          ],
+          "token": "café"
+        },
+        "in_bad": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            95,
+            98
+          ],
+          "token": "thé"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1072": {
+    "source": "John suspect there is no sugar in the tea but there is some in the coffee because it is bitter.",
+    "good-translation": "John soupçonne qu'il n'y a pas de sucre dans le thé mais il y en a dans le café parce qu'il est amer.",
+    "incorrect-translation": "John soupçonne qu' il n' y a pas de sucre dans le thé, mais il y en a dans le café parce que le café est amer.",
+    "reference": "John soupçonne qu' il n' y a pas de sucre dans le thé, mais il y en a dans le café parce que le thé est amer.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            96,
+            99
+          ],
+          "token": "thé"
+        },
+        "in_bad": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            96,
+            100
+          ],
+          "token": "café"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1073": {
+    "source": "The barn was devastated by the flood but the house remained unharmed, since it was on higher ground.",
+    "good-translation": "La grange a été dévastée par le déluge mais la maison est restée indemne, puisqu'elle était sur un terrain plus élevé.",
+    "incorrect-translation": "La grange a été dévastée par l' inondation mais la maison est restée indemne, car la grange était sur un terrain plus élevé.",
+    "reference": "La grange a été dévastée par l' inondation mais la maison est restée indemne, car la maison était sur un terrain plus élevé.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            85,
+            91
+          ],
+          "token": "maison"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            85,
+            91
+          ],
+          "token": "grange"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1074": {
+    "source": "The kid got up the nerve to go to the basement, but not the shed, because it was darker.",
+    "good-translation": "Le gamin s'est levé le cul pour aller au sous-sol, mais pas au hangar, parce qu'il faisait plus sombre.",
+    "incorrect-translation": "Le gamin a eu le courage d' aller au sous-sol, mais pas au hangar, car le sous-sol était plus sombre.",
+    "reference": "Le gamin a eu le courage d' aller au sous-sol, mais pas au hangar, car le hangar était plus sombre.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            74,
+            80
+          ],
+          "token": "hangar"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            74,
+            82
+          ],
+          "token": "sous-sol"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1075": {
+    "source": "Barb wanted a party at the country club rather than the community center because it was private.",
+    "good-translation": "Barb voulait une fête au country club plutôt que le centre communautaire parce que c'était privé.",
+    "incorrect-translation": "Barb voulait une fête au country club plutôt qu' au centre communautaire parce que le centre était privé.",
+    "reference": "Barb voulait une fête au country club plutôt qu' au centre communautaire parce que le club était privé.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            86,
+            90
+          ],
+          "token": "club"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            86,
+            92
+          ],
+          "token": "centre"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1076": {
+    "source": "Barb wanted a party at the country club rather than the community center because it was public.",
+    "good-translation": "Barb voulait une fête au country club plutôt que le centre communautaire parce qu'il était public.",
+    "incorrect-translation": "Barb voulait une fête au country club plutôt qu' au centre communautaire parce que le club était public.",
+    "reference": "Barb voulait une fête au country club plutôt qu' au centre communautaire parce que le centre était public.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            86,
+            92
+          ],
+          "token": "centre"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            86,
+            90
+          ],
+          "token": "club"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1077": {
+    "source": "I was very tired, so I chose the pillow on the bed instead of the couch, since it was close by.",
+    "good-translation": "J'étais très fatiguée, donc j'ai choisi l'oreiller sur le lit au lieu du canapé, puisqu'il était tout près.",
+    "incorrect-translation": "J' étais très fatiguée, alors j' ai choisi l' oreiller sur le lit au lieu du canapé, car le canapé était à proximité.",
+    "reference": "J' étais très fatiguée, alors j' ai choisi l' oreiller sur le lit au lieu du canapé, car le lit était à proximité.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            92,
+            95
+          ],
+          "token": "lit"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            92,
+            98
+          ],
+          "token": "canapé"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1078": {
+    "source": "I was very tired, so I chose the pillow on the bed instead of the couch, since it was far away.",
+    "good-translation": "J'étais très fatiguée, donc j'ai choisi l'oreiller sur le lit au lieu du canapé, car c'était loin.",
+    "incorrect-translation": "J' étais très fatiguée, alors j' ai choisi l' oreiller sur le lit au lieu du canapé, car le lit était loin.",
+    "reference": "J' étais très fatiguée, alors j' ai choisi l' oreiller sur le lit au lieu du canapé, car le canapé était loin.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            92,
+            98
+          ],
+          "token": "canapé"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            92,
+            95
+          ],
+          "token": "lit"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1079": {
+    "source": "I enjoyed the game more than I did the movie, because it was interactive.",
+    "good-translation": "J'ai apprécié le jeu plus que le film, parce que c'était interactif.",
+    "incorrect-translation": "J' ai aimé le jeu plus que le film, car le film était interactif.",
+    "reference": "J' ai aimé le jeu plus que le film, car le jeu était interactif.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            11
+          ],
+          "character_span": [
+            43,
+            46
+          ],
+          "token": "jeu"
+        },
+        "in_bad": {
+          "token_index": [
+            11
+          ],
+          "character_span": [
+            43,
+            47
+          ],
+          "token": "film"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1080": {
+    "source": "I enjoyed the game more than I did the movie, because it was boring.",
+    "good-translation": "J'ai apprécié le jeu plus que le film, parce que c'était ennuyeux.",
+    "incorrect-translation": "J' ai aimé le jeu plus que le film, car le jeu était ennuyeux.",
+    "reference": "J' ai aimé le jeu plus que le film, car le film était ennuyeux.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            11
+          ],
+          "character_span": [
+            43,
+            47
+          ],
+          "token": "film"
+        },
+        "in_bad": {
+          "token_index": [
+            11
+          ],
+          "character_span": [
+            43,
+            46
+          ],
+          "token": "jeu"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1081": {
+    "source": "He boiled water in the pot a lot more than oil, because it reacted well to the pot 's composition.",
+    "good-translation": "Il a fait bouillir de l'eau dans le pot beaucoup plus que de l'huile, parce qu'il a bien réagi à la composition du pot.",
+    "incorrect-translation": "Il a fait bouillir de l' eau dans la marmite beaucoup plus que de l' huile, car l' huile réagissait bien à la composition de la marmite.",
+    "reference": "Il a fait bouillir de l' eau dans la marmite beaucoup plus que de l' huile, car l' eau réagissait bien à la composition de la marmite.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            83,
+            86
+          ],
+          "token": "eau"
+        },
+        "in_bad": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            83,
+            88
+          ],
+          "token": "huile"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1082": {
+    "source": "He boiled water in the pot a lot more than oil, because it reacted poorly to the pot 's composition.",
+    "good-translation": "Il a fait bouillir de l'eau dans le pot beaucoup plus que de l'huile, parce qu'il a mal réagi à la composition du pot.",
+    "incorrect-translation": "Il a fait bouillir de l' eau dans la casserole beaucoup plus que de l' huile, car l' eau réagissait mal à la composition de la casserole.",
+    "reference": "Il a fait bouillir de l' eau dans la casserole beaucoup plus que de l' huile, car l' huile réagissait mal à la composition de la casserole.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            85,
+            90
+          ],
+          "token": "huile"
+        },
+        "in_bad": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            85,
+            88
+          ],
+          "token": "eau"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1083": {
+    "source": "The meltdown destroyed the core of the facility but not the office, as it was so vulnerable.",
+    "good-translation": "L'effondrement a détruit le noyau de l'installation, mais pas le bureau, car il était si vulnérable.",
+    "incorrect-translation": "L' effondrement a détruit le cœur de l' installation mais pas le bureau, car le bureau était si vulnérable.",
+    "reference": "L' effondrement a détruit le cœur de l' installation mais pas le bureau, car le cœur était si vulnérable.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            80,
+            84
+          ],
+          "token": "cœur"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            80,
+            86
+          ],
+          "token": "bureau"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1084": {
+    "source": "The meltdown destroyed the core of the facility but not the office, as it was so secure.",
+    "good-translation": "L'effondrement a détruit le noyau de l'installation, mais pas le bureau, car il était si sûr.",
+    "incorrect-translation": "L' effondrement a détruit le cœur de l' établissement mais pas le bureau, car le cœur était si sécurisé.",
+    "reference": "L' effondrement a détruit le cœur de l' établissement mais pas le bureau, car le bureau était si sécurisé.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            81,
+            87
+          ],
+          "token": "bureau"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            81,
+            85
+          ],
+          "token": "cœur"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1085": {
+    "source": "Kelly decided to fertilize the lilies with coffee instead of compost because it is less acidic and lilies thrive in acidic conditions.",
+    "good-translation": "Kelly a décidé de fertiliser les lys avec du café au lieu du compost parce qu'il est moins acide et les lys prospèrent dans des conditions acides.",
+    "incorrect-translation": "Kelly a décidé de fertiliser les lis avec du café au lieu du compost car le café est moins acide et les lis prospèrent dans des conditions acides.",
+    "reference": "Kelly a décidé de fertiliser les lis avec du café au lieu du compost car le compost est moins acide et les lis prospèrent dans des conditions acides.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            76,
+            83
+          ],
+          "token": "compost"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            76,
+            80
+          ],
+          "token": "café"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1086": {
+    "source": "The wooden fence will not fit through the door because it is too wide.",
+    "good-translation": "La clôture en bois ne passera pas par la porte parce qu'elle est trop large.",
+    "incorrect-translation": "La clôture en bois ne passe pas à travers la porte car la porte est trop large.",
+    "reference": "La clôture en bois ne passe pas à travers la porte car la clôture est trop large.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            13
+          ],
+          "character_span": [
+            58,
+            65
+          ],
+          "token": "clôture"
+        },
+        "in_bad": {
+          "token_index": [
+            13
+          ],
+          "character_span": [
+            58,
+            63
+          ],
+          "token": "porte"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1087": {
+    "source": "The boy was so tired that he went to sleep on the couch instead of the bed because it was right there.",
+    "good-translation": "Le garçon était tellement fatigué qu'il est allé dormir sur le canapé au lieu du lit parce qu'il était juste là.",
+    "incorrect-translation": "Le garçon était si fatigué qu' il s' est endormi sur le canapé au lieu du lit parce que le lit était juste là.",
+    "reference": "Le garçon était si fatigué qu' il s' est endormi sur le canapé au lieu du lit parce que le canapé était juste là.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            20
+          ],
+          "character_span": [
+            91,
+            97
+          ],
+          "token": "canapé"
+        },
+        "in_bad": {
+          "token_index": [
+            20
+          ],
+          "character_span": [
+            91,
+            94
+          ],
+          "token": "lit"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1088": {
+    "source": "The boy was so tired that he went to sleep on the couch instead of the bed because it was in the other room.",
+    "good-translation": "Le garçon était tellement fatigué qu'il est allé dormir sur le canapé au lieu du lit parce qu'il était dans l'autre chambre.",
+    "incorrect-translation": "Le garçon était si fatigué qu' il s' est endormi sur le canapé au lieu du lit parce que le canapé était dans l' autre pièce.",
+    "reference": "Le garçon était si fatigué qu' il s' est endormi sur le canapé au lieu du lit parce que le lit était dans l' autre pièce.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            20
+          ],
+          "character_span": [
+            91,
+            94
+          ],
+          "token": "lit"
+        },
+        "in_bad": {
+          "token_index": [
+            20
+          ],
+          "character_span": [
+            91,
+            97
+          ],
+          "token": "canapé"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1089": {
+    "source": "The kids were excited to leave school to go to the party because it was fun.",
+    "good-translation": "Les enfants étaient excités de quitter l'école pour aller à la fête parce que c'était amusant.",
+    "incorrect-translation": "Les enfants étaient ravis de quitter l' école pour aller à la fête parce que l' école était amusante.",
+    "reference": "Les enfants étaient ravis de quitter l' école pour aller à la fête parce que la fête était amusante.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            77,
+            84
+          ],
+          "token": "la fête"
+        },
+        "in_bad": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            77,
+            85
+          ],
+          "token": "l' école"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1090": {
+    "source": "The kids were excited to leave school to go to the party because it was boring.",
+    "good-translation": "Les enfants étaient excités de quitter l'école pour aller à la fête parce que c'était ennuyeux.",
+    "incorrect-translation": "Les enfants étaient ravis de quitter l' école pour aller à la fête parce que la fête était ennuyeuse.",
+    "reference": "Les enfants étaient ravis de quitter l' école pour aller à la fête parce que l' école était ennuyeuse.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            77,
+            85
+          ],
+          "token": "l' école"
+        },
+        "in_bad": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            77,
+            84
+          ],
+          "token": "la fête"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1091": {
+    "source": "The music sounded better coming from the organ than the piano because it was old and needed tuning.",
+    "good-translation": "La musique sonnait mieux de l'orgue que du piano parce qu'il était vieux et avait besoin d'accord.",
+    "incorrect-translation": "La musique sonnait mieux à l' orgue qu' au piano car l' orgue était vieux et avait besoin d' être accordé.",
+    "reference": "La musique sonnait mieux à l' orgue qu' au piano car le piano était vieux et avait besoin d' être accordé.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            11,
+            12
+          ],
+          "character_span": [
+            53,
+            61
+          ],
+          "token": "le piano"
+        },
+        "in_bad": {
+          "token_index": [
+            11,
+            12
+          ],
+          "character_span": [
+            53,
+            61
+          ],
+          "token": "l' orgue"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1092": {
+    "source": "The ceiling in my house was better than the roof on Johns because it had a leak.",
+    "good-translation": "Le plafond de ma maison était meilleur que le toit de Johns parce qu'il avait une fuite.",
+    "incorrect-translation": "Le plafond de ma maison était meilleur que le toit de Johns parce que le plafond avait une fuite.",
+    "reference": "Le plafond de ma maison était meilleur que le toit de Johns parce que le toit avait une fuite.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            73,
+            77
+          ],
+          "token": "toit"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            73,
+            80
+          ],
+          "token": "plafond"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1093": {
+    "source": "The hunters had to wear the bear fur coats in the valley, but didn't need them on the mountain, since it was so warm.",
+    "good-translation": "Les chasseurs devaient porter des manteaux de fourrure d'ours dans la vallée, mais ils n'en avaient pas besoin sur la montagne, car il faisait si chaud.",
+    "incorrect-translation": "Les chasseurs devaient porter les manteaux de fourrure d' ours dans la vallée, mais n' en avaient pas besoin sur la montagne, car la vallée était si chaude.",
+    "reference": "Les chasseurs devaient porter les manteaux de fourrure d' ours dans la vallée, mais n' en avaient pas besoin sur la montagne, car la montagne était si chaude.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            133,
+            141
+          ],
+          "token": "montagne"
+        },
+        "in_bad": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            133,
+            139
+          ],
+          "token": "vallée"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1094": {
+    "source": "By my judgment, you should get the dictionary instead of the atlas because it is more useful.",
+    "good-translation": "À mon avis, vous devriez obtenir le dictionnaire au lieu de l'atlas parce qu'il est plus utile.",
+    "incorrect-translation": "À mon avis, vous devriez obtenir le dictionnaire au lieu de l' atlas car l' atlas est plus utile.",
+    "reference": "À mon avis, vous devriez obtenir le dictionnaire au lieu de l' atlas car le dictionnaire est plus utile.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14,
+            15
+          ],
+          "character_span": [
+            73,
+            88
+          ],
+          "token": "le dictionnaire"
+        },
+        "in_bad": {
+          "token_index": [
+            14,
+            15
+          ],
+          "character_span": [
+            73,
+            81
+          ],
+          "token": "l' atlas"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1095": {
+    "source": "By my judgment, you should get the dictionary instead of the atlas because it is less useful.",
+    "good-translation": "A mon avis, vous devriez obtenir le dictionnaire au lieu de l'atlas parce qu'il est moins utile.",
+    "incorrect-translation": "À mon avis, vous devriez obtenir le dictionnaire au lieu de l' atlas parce que le dictionnaire est moins utile.",
+    "reference": "À mon avis, vous devriez obtenir le dictionnaire au lieu de l' atlas parce que l' atlas est moins utile.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            79,
+            87
+          ],
+          "token": "l' atlas"
+        },
+        "in_bad": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            79,
+            94
+          ],
+          "token": "le dictionnaire"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1096": {
+    "source": "The procedure was more dangerous than the surgery, because it would take very long.",
+    "good-translation": "L'intervention était plus dangereuse que l'opération, car elle prendrait très longtemps.",
+    "incorrect-translation": "La procédure était plus dangereuse que la chirurgie, car la chirurgie prendrait beaucoup de temps.",
+    "reference": "La procédure était plus dangereuse que la chirurgie, car la procédure prendrait beaucoup de temps.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            60,
+            69
+          ],
+          "token": "procédure"
+        },
+        "in_bad": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            60,
+            69
+          ],
+          "token": "chirurgie"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1097": {
+    "source": "The procedure was more dangerous than the surgery, because it would be very short.",
+    "good-translation": "La procédure était plus dangereuse que la chirurgie, car elle serait très courte.",
+    "incorrect-translation": "La procédure était plus dangereuse que la chirurgie, car la procédure serait très courte.",
+    "reference": "La procédure était plus dangereuse que la chirurgie, car la chirurgie serait très courte.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            57,
+            61
+          ],
+          "token": "elle"
+        },
+        "in_bad": {
+          "token_index": [
+            9,
+            10
+          ],
+          "character_span": [
+            57,
+            69
+          ],
+          "token": "la procédure"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1098": {
+    "source": "I always used the street near my house and not the road, because it was always clearer.",
+    "good-translation": "J'ai toujours utilisé la rue près de ma maison et pas la route, parce que c'était toujours plus clair.",
+    "incorrect-translation": "J' ai toujours utilisé la rue près de chez moi et non la route, car la route était toujours plus claire.",
+    "reference": "J' ai toujours utilisé la rue près de chez moi et non la route, car la rue était toujours plus claire.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            71,
+            74
+          ],
+          "token": "rue"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            71,
+            76
+          ],
+          "token": "route"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1099": {
+    "source": "I always used the street near my house and not the road, because it was always busier.",
+    "good-translation": "J'ai toujours utilisé la rue près de ma maison et pas la route, parce que c'était toujours plus occupé.",
+    "incorrect-translation": "J' ai toujours utilisé la rue près de chez moi et non la route, car la rue était toujours plus fréquentée.",
+    "reference": "J' ai toujours utilisé la rue près de chez moi et non la route, car la route était toujours plus fréquentée.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            71,
+            76
+          ],
+          "token": "route"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            71,
+            74
+          ],
+          "token": "rue"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1100": {
+    "source": "Susan made the decision of getting in an airplane instead of train to go to Miami because it travels fast.",
+    "good-translation": "Susan a pris la décision de monter dans un avion au lieu du train pour aller à Miami parce qu'il voyage rapidement.",
+    "incorrect-translation": "Susan a pris la décision de monter dans un avion au lieu du train pour se rendre à Miami parce que le train voyage vite.",
+    "reference": "Susan a pris la décision de monter dans un avion au lieu du train pour se rendre à Miami parce que l' avion voyage vite.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            21,
+            22
+          ],
+          "character_span": [
+            99,
+            107
+          ],
+          "token": "l' avion"
+        },
+        "in_bad": {
+          "token_index": [
+            21,
+            22
+          ],
+          "character_span": [
+            99,
+            107
+          ],
+          "token": "le train"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1101": {
+    "source": "Susan made the decision of getting in an Airplane instead of train to go to Miami because it travels slow.",
+    "good-translation": "Susan a pris la décision de monter dans un avion plutôt que de prendre le train pour aller à Miami parce qu'il voyage lentement.",
+    "incorrect-translation": "Susan a pris la décision de monter dans un avion au lieu du train pour aller à Miami parce que l' avion roule lentement.",
+    "reference": "Susan a pris la décision de monter dans un avion au lieu du train pour aller à Miami parce que le train roule lentement.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            20,
+            21
+          ],
+          "character_span": [
+            95,
+            103
+          ],
+          "token": "le train"
+        },
+        "in_bad": {
+          "token_index": [
+            20,
+            21
+          ],
+          "character_span": [
+            95,
+            103
+          ],
+          "token": "l' avion"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1102": {
+    "source": "Jill poured the entire bag of flour into the mixing bowl until it was empty.",
+    "good-translation": "Jill a versé tout le sac de farine dans le bol de mélange jusqu'à ce qu'il soit vide.",
+    "incorrect-translation": "Jill a versé tout le sac de farine dans le bol jusqu' à ce que le bol soit vide.",
+    "reference": "Jill a versé tout le sac de farine dans le bol jusqu' à ce que le sac soit vide.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            66,
+            69
+          ],
+          "token": "sac"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            66,
+            69
+          ],
+          "token": "bol"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1103": {
+    "source": "The two boys planned out a game and then went to draw it on the paper, but quickly realized that it was too complex.",
+    "good-translation": "Les deux garçons planifièrent un jeu puis allèrent le dessiner sur le papier, mais se rendirent vite compte que c'était trop complexe.",
+    "incorrect-translation": "Les deux garçons ont planifié un jeu puis sont allés le dessiner sur le papier, mais ont vite compris que le papier était trop complexe.",
+    "reference": "Les deux garçons ont planifié un jeu puis sont allés le dessiner sur le papier, mais ont vite compris que le jeu était trop complexe.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            21
+          ],
+          "character_span": [
+            109,
+            112
+          ],
+          "token": "jeu"
+        },
+        "in_bad": {
+          "token_index": [
+            21
+          ],
+          "character_span": [
+            109,
+            115
+          ],
+          "token": "papier"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1104": {
+    "source": "The theater always did much better than the cinema because it was very popular in town.",
+    "good-translation": "Le théâtre a toujours fait beaucoup mieux que le cinéma parce qu'il était très populaire en ville.",
+    "incorrect-translation": "Le théâtre a toujours fait beaucoup mieux que le cinéma car le cinéma était très populaire en ville.",
+    "reference": "Le théâtre a toujours fait beaucoup mieux que le cinéma car le théâtre était très populaire en ville.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            12
+          ],
+          "character_span": [
+            63,
+            70
+          ],
+          "token": "théâtre"
+        },
+        "in_bad": {
+          "token_index": [
+            12
+          ],
+          "character_span": [
+            63,
+            69
+          ],
+          "token": "cinéma"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1105": {
+    "source": "The manual is always better than a catalog because it is specific to what you need.",
+    "good-translation": "Le manuel est toujours meilleur qu'un catalogue car il est spécifique à ce dont vous avez besoin.",
+    "incorrect-translation": "Le manuel est toujours meilleur qu' un catalogue car le catalogue est spécifique à ce dont vous avez besoin.",
+    "reference": "Le manuel est toujours meilleur qu' un catalogue car le manuel est spécifique à ce dont vous avez besoin.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            56,
+            62
+          ],
+          "token": "manuel"
+        },
+        "in_bad": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            56,
+            65
+          ],
+          "token": "catalogue"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1106": {
+    "source": "The manual is always better than a catalog because it is non-specific to what you need.",
+    "good-translation": "Le manuel est toujours meilleur qu'un catalogue car il n'est pas spécifique à ce dont vous avez besoin.",
+    "incorrect-translation": "Le manuel est toujours meilleur qu' un catalogue car le manuel n' est pas spécifique à ce dont vous avez besoin.",
+    "reference": "Le manuel est toujours meilleur qu' un catalogue car le catalogue n' est pas spécifique à ce dont vous avez besoin.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            56,
+            65
+          ],
+          "token": "catalogue"
+        },
+        "in_bad": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            56,
+            62
+          ],
+          "token": "manuel"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1107": {
+    "source": "The man used the rope instead of the vine in order to survive, because it was weak.",
+    "good-translation": "L'homme utilisait la corde au lieu de la vigne pour survivre, parce qu'elle était faible.",
+    "incorrect-translation": "L' homme a utilisé la corde au lieu de la vigne pour survivre, car la corde était faible.",
+    "reference": "L' homme a utilisé la corde au lieu de la vigne pour survivre, car la vigne était faible.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            70,
+            75
+          ],
+          "token": "vigne"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            70,
+            75
+          ],
+          "token": "corde"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1108": {
+    "source": "The man used the rope instead of the vine in order to survive, because it was strong.",
+    "good-translation": "L'homme utilisait la corde au lieu de la vigne pour survivre, parce qu'elle était forte.",
+    "incorrect-translation": "L' homme a utilisé la corde au lieu de la vigne pour survivre, car la vigne était solide.",
+    "reference": "L' homme a utilisé la corde au lieu de la vigne pour survivre, car la corde était solide.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            70,
+            75
+          ],
+          "token": "corde"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            70,
+            75
+          ],
+          "token": "vigne"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1109": {
+    "source": "The woman had more success throwing the axe than the dart, because it was easy to aim.",
+    "good-translation": "La femme a eu plus de succès à lancer la hache que la fléchette, parce qu'il était facile de viser.",
+    "incorrect-translation": "La femme avait plus de succès à lancer la hache que la fléchette, car la fléchette était facile à viser.",
+    "reference": "La femme avait plus de succès à lancer la hache que la fléchette, car la hache était facile à viser.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            73,
+            78
+          ],
+          "token": "hache"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            73,
+            82
+          ],
+          "token": "fléchette"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1110": {
+    "source": "The woman had more success throwing the axe than the dart, because it was difficult to aim.",
+    "good-translation": "La femme a eu plus de succès à lancer la hache que la fléchette, parce qu'il était difficile de viser.",
+    "incorrect-translation": "La femme avait plus de succès à lancer la hache que la fléchette, car la hache était difficile à viser.",
+    "reference": "La femme avait plus de succès à lancer la hache que la fléchette, car la fléchette était difficile à viser.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            73,
+            82
+          ],
+          "token": "fléchette"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            73,
+            78
+          ],
+          "token": "hache"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1111": {
+    "source": "The money couldn't be used as currency at the store because it wasn't local.",
+    "good-translation": "L'argent ne pouvait pas être utilisé comme monnaie au magasin parce qu'il n'était pas local.",
+    "incorrect-translation": "L' argent ne pouvait pas être utilisé comme monnaie au magasin car le magasin n' était pas local.",
+    "reference": "L' argent ne pouvait pas être utilisé comme monnaie au magasin car l' argent n' était pas local.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            12,
+            13
+          ],
+          "character_span": [
+            67,
+            76
+          ],
+          "token": "l' argent"
+        },
+        "in_bad": {
+          "token_index": [
+            12,
+            13
+          ],
+          "character_span": [
+            67,
+            77
+          ],
+          "token": "le magasin"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1112": {
+    "source": "The contractor wanted to build a new building on the land but it was too small.",
+    "good-translation": "L'entrepreneur voulait construire un nouveau bâtiment sur le terrain, mais il était trop petit.",
+    "incorrect-translation": "L' entrepreneur voulait construire un nouveau bâtiment sur le terrain, mais le bâtiment était trop petit.",
+    "reference": "L' entrepreneur voulait construire un nouveau bâtiment sur le terrain, mais le terrain était trop petit.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            12
+          ],
+          "character_span": [
+            79,
+            86
+          ],
+          "token": "terrain"
+        },
+        "in_bad": {
+          "token_index": [
+            12
+          ],
+          "character_span": [
+            79,
+            87
+          ],
+          "token": "bâtiment"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1113": {
+    "source": "The contractor wanted to build a new building on the land but it was too large.",
+    "good-translation": "L'entrepreneur voulait construire un nouveau bâtiment sur le terrain, mais il était trop grand.",
+    "incorrect-translation": "L' entrepreneur voulait construire un nouveau bâtiment sur le terrain mais le terrain était trop grand.",
+    "reference": "L' entrepreneur voulait construire un nouveau bâtiment sur le terrain mais le bâtiment était trop grand.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            12
+          ],
+          "character_span": [
+            78,
+            86
+          ],
+          "token": "bâtiment"
+        },
+        "in_bad": {
+          "token_index": [
+            12
+          ],
+          "character_span": [
+            78,
+            85
+          ],
+          "token": "terrain"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1114": {
+    "source": "After the divorce, the man sleeps on the couch instead of the bed because it is more comfortable.",
+    "good-translation": "Après le divorce, l'homme dort sur le canapé au lieu du lit parce qu'il est plus confortable.",
+    "incorrect-translation": "Après le divorce, l' homme dort sur le canapé au lieu du lit car le lit est plus confortable.",
+    "reference": "Après le divorce, l' homme dort sur le canapé au lieu du lit car le canapé est plus confortable.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            68,
+            74
+          ],
+          "token": "canapé"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            68,
+            71
+          ],
+          "token": "lit"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1115": {
+    "source": "After the divorce, the man sleeps on the couch instead of the bed although it is more comfortable.",
+    "good-translation": "Après le divorce, l'homme dort sur le canapé au lieu du lit, bien qu'il soit plus confortable.",
+    "incorrect-translation": "Après le divorce, l' homme dort sur le canapé au lieu du lit bien que le canapé soit plus confortable.",
+    "reference": "Après le divorce, l' homme dort sur le canapé au lieu du lit bien que le lit soit plus confortable.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            73,
+            76
+          ],
+          "token": "lit"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            73,
+            79
+          ],
+          "token": "canapé"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1116": {
+    "source": "John suspected the pork, not the hamburger, had given him food poisoning, because it had been improperly cooked.",
+    "good-translation": "John soupçonnait que le porc, et non le hamburger, lui avait donné un empoisonnement alimentaire, parce qu'il avait été mal cuit.",
+    "incorrect-translation": "John soupçonnait que le porc, et non le hamburger, lui avait donné une intoxication alimentaire, parce que le hamburger avait été mal cuit.",
+    "reference": "John soupçonnait que le porc, et non le hamburger, lui avait donné une intoxication alimentaire, parce que le porc avait été mal cuit.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            110,
+            114
+          ],
+          "token": "porc"
+        },
+        "in_bad": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            110,
+            119
+          ],
+          "token": "hamburger"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1117": {
+    "source": "John suspected the pork, not the hamburger, had given him food poisoning, because it had been properly cooked.",
+    "good-translation": "John soupçonnait que le porc, et non le hamburger, lui avait donné un empoisonnement alimentaire, parce qu'il avait été bien cuit.",
+    "incorrect-translation": "John soupçonnait que le porc, et non le hamburger, lui avait donné une intoxication alimentaire, parce que le porc avait été correctement cuit.",
+    "reference": "John soupçonnait que le porc, et non le hamburger, lui avait donné une intoxication alimentaire, parce que le hamburger avait été correctement cuit.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            110,
+            119
+          ],
+          "token": "hamburger"
+        },
+        "in_bad": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            110,
+            114
+          ],
+          "token": "porc"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1118": {
+    "source": "The industrious chicken keeper took eggs from the nest and put them in her basket until it was full.",
+    "good-translation": "Le gardien de poulet industriel a pris des œufs du nid et les a mis dans son panier jusqu'à ce qu'il soit plein.",
+    "incorrect-translation": "L' industrieuse éleveuse de poulets a pris les œufs du nid et les a mis dans son panier jusqu' à ce que le nid soit plein.",
+    "reference": "L' industrieuse éleveuse de poulets a pris les œufs du nid et les a mis dans son panier jusqu' à ce que le panier soit plein.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            107,
+            113
+          ],
+          "token": "panier"
+        },
+        "in_bad": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            107,
+            110
+          ],
+          "token": "nid"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1119": {
+    "source": "The industrious chicken keeper took eggs from the nest and put them in her basket until it was empty.",
+    "good-translation": "Le gardien de poulet industriel a pris des œufs du nid et les a mis dans son panier jusqu'à ce qu'il soit vide.",
+    "incorrect-translation": "L' industrieuse éleveuse de poulets a pris les œufs du nid et les a mis dans son panier jusqu' à ce que le panier soit vide.",
+    "reference": "L' industrieuse éleveuse de poulets a pris les œufs du nid et les a mis dans son panier jusqu' à ce que le nid soit vide.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            107,
+            110
+          ],
+          "token": "nid"
+        },
+        "in_bad": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            107,
+            113
+          ],
+          "token": "panier"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1120": {
+    "source": "The pistol was quieter than the shotgun when fired because it was more powerful.",
+    "good-translation": "Le pistolet était plus silencieux que le fusil quand il a été tiré parce qu'il était plus puissant.",
+    "incorrect-translation": "Le pistolet était plus silencieux que le fusil de chasse au moment du tir parce que le pistolet de chasse était plus puissant.",
+    "reference": "Le pistolet était plus silencieux que le fusil de chasse au moment du tir parce que le fusil de chasse était plus puissant.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            87,
+            92
+          ],
+          "token": "fusil"
+        },
+        "in_bad": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            87,
+            95
+          ],
+          "token": "pistolet"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1121": {
+    "source": "I picked up a book at the store on how to find love at 50 but it was too old.",
+    "good-translation": "J'ai ramassé un livre au magasin sur la façon de trouver l'amour à 50 ans, mais il était trop vieux.",
+    "incorrect-translation": "J' ai pris un livre au magasin sur la façon de trouver l' amour à 50 ans mais le magasin était trop vieux.",
+    "reference": "J' ai pris un livre au magasin sur la façon de trouver l' amour à 50 ans mais le livre était trop vieux.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            81,
+            86
+          ],
+          "token": "livre"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            81,
+            88
+          ],
+          "token": "magasin"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1122": {
+    "source": "I picked up a book at the store on how to find love at 50 but it was too crowded.",
+    "good-translation": "J'ai ramassé un livre au magasin sur la façon de trouver l'amour à 50 ans, mais c'était trop bondé.",
+    "incorrect-translation": "J' ai pris un livre au magasin sur la façon de trouver l' amour à 50 ans mais le livre était trop bondé.",
+    "reference": "J' ai pris un livre au magasin sur la façon de trouver l' amour à 50 ans mais le magasin était trop bondé.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            81,
+            88
+          ],
+          "token": "magasin"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            81,
+            86
+          ],
+          "token": "livre"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1123": {
+    "source": "Jennifer took food from the bag and put it in the pantry until it was full.",
+    "good-translation": "Jennifer a pris de la nourriture dans le sac et l'a mis dans le garde-manger jusqu'à ce qu'il soit plein.",
+    "incorrect-translation": "Jennifer prit la nourriture du sac et la mit dans le garde-manger jusqu' à ce que le sac soit plein.",
+    "reference": "Jennifer prit la nourriture du sac et la mit dans le garde-manger jusqu' à ce que le garde-manger soit plein.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            85,
+            97
+          ],
+          "token": "garde-manger"
+        },
+        "in_bad": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            85,
+            88
+          ],
+          "token": "sac"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1124": {
+    "source": "Jennifer took food from the bag and put it in the pantry until it was empty.",
+    "good-translation": "Jennifer a pris de la nourriture dans le sac et l'a mis dans le garde-manger jusqu'à ce qu'il soit vide.",
+    "incorrect-translation": "Jennifer a pris la nourriture du sac et l' a mise dans le garde-manger jusqu' à ce que le garde-manger soit vide.",
+    "reference": "Jennifer a pris la nourriture du sac et l' a mise dans le garde-manger jusqu' à ce que le sac soit vide.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            90,
+            93
+          ],
+          "token": "sac"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            90,
+            102
+          ],
+          "token": "garde-manger"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1125": {
+    "source": "Adam was summoned to appear before the court to testify in the trial, but the lawyer called a recess and it was delayed.",
+    "good-translation": "Adam a été convoqué pour comparaître devant le tribunal pour témoigner dans le procès, mais l'avocat a appelé une suspension et il a été retardé.",
+    "incorrect-translation": "Adam a été convoqué à comparaître devant le tribunal pour témoigner au procès, mais l' avocat a demandé une suspension et le tribunal a été retardé.",
+    "reference": "Adam a été convoqué à comparaître devant le tribunal pour témoigner au procès, mais l' avocat a demandé une suspension et le procès a été retardé.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            125,
+            131
+          ],
+          "token": "procès"
+        },
+        "in_bad": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            125,
+            133
+          ],
+          "token": "tribunal"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1126": {
+    "source": "Adam was summoned to appear before the court to testify in the trial, but the lawyer called a recess and it was evacuated.",
+    "good-translation": "Adam a été convoqué pour comparaître devant le tribunal pour témoigner au procès, mais l'avocat a appelé une suspension et il a été évacué.",
+    "incorrect-translation": "Adam a été convoqué à comparaître devant le tribunal pour témoigner au procès, mais l' avocat a demandé une suspension et le procès a été évacué.",
+    "reference": "Adam a été convoqué à comparaître devant le tribunal pour témoigner au procès, mais l' avocat a demandé une suspension et le tribunal a été évacué.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            125,
+            133
+          ],
+          "token": "tribunal"
+        },
+        "in_bad": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            125,
+            131
+          ],
+          "token": "procès"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1127": {
+    "source": "My hammer that I just bought was better than the screwdriver because it was the right tool for the job.",
+    "good-translation": "Mon marteau que je viens d'acheter était meilleur que le tournevis parce que c'était le bon outil pour le travail.",
+    "incorrect-translation": "Mon marteau que je viens d' acheter était meilleur que le tournevis car le tournevis était le bon outil pour le travail.",
+    "reference": "Mon marteau que je viens d' acheter était meilleur que le tournevis car le marteau était le bon outil pour le travail.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            75,
+            82
+          ],
+          "token": "marteau"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            75,
+            84
+          ],
+          "token": "tournevis"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1128": {
+    "source": "My hammer that I just bought was better than the screwdriver because it was the wrong tool for the job.",
+    "good-translation": "Mon marteau que je viens d'acheter était meilleur que le tournevis parce que c'était le mauvais outil pour le travail.",
+    "incorrect-translation": "Mon marteau que je viens d' acheter était meilleur que le tournevis car le marteau n' était pas le bon outil pour le travail.",
+    "reference": "Mon marteau que je viens d' acheter était meilleur que le tournevis car le tournevis n' était pas le bon outil pour le travail.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            75,
+            84
+          ],
+          "token": "tournevis"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            75,
+            82
+          ],
+          "token": "marteau"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1129": {
+    "source": "The choice of fabric for the clothes instead of using a composite was made because it was pliable.",
+    "good-translation": "Le choix du tissu pour les vêtements au lieu d'utiliser un composite a été fait parce qu'il était souple.",
+    "incorrect-translation": "Le choix du tissu pour les vêtements au lieu d' utiliser un composite a été fait parce que le composite était pliable.",
+    "reference": "Le choix du tissu pour les vêtements au lieu d' utiliser un composite a été fait parce que le tissu était pliable.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            94,
+            99
+          ],
+          "token": "tissu"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            94,
+            103
+          ],
+          "token": "composite"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1130": {
+    "source": "The choice of fabric for the clothes instead of using a composite was made because it was stiff.",
+    "good-translation": "Le choix du tissu pour les vêtements au lieu d'utiliser un composite a été fait parce qu'il était rigide.",
+    "incorrect-translation": "Le choix du tissu pour les vêtements au lieu d' utiliser un composite a été fait parce que le tissu était rigide.",
+    "reference": "Le choix du tissu pour les vêtements au lieu d' utiliser un composite a été fait parce que le composite était rigide.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            94,
+            103
+          ],
+          "token": "composite"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            94,
+            99
+          ],
+          "token": "tissu"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1131": {
+    "source": "Wanting to catch up on current events, the man chose to read the magazine instead of the newspaper, because it was recent.",
+    "good-translation": "Désireux de rattraper les événements actuels, l'homme a choisi de lire le magazine au lieu du journal, parce qu'il était récent.",
+    "incorrect-translation": "Voulant se tenir au courant de l' actualité, l' homme a choisi de lire le magazine plutôt que le journal, car le journal était récent.",
+    "reference": "Voulant se tenir au courant de l' actualité, l' homme a choisi de lire le magazine plutôt que le journal, car le magazine était récent.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            113,
+            121
+          ],
+          "token": "magazine"
+        },
+        "in_bad": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            113,
+            120
+          ],
+          "token": "journal"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1132": {
+    "source": "The muffin was less delicious than the cake, because it was made by a beginner baker.",
+    "good-translation": "Le muffin était moins délicieux que le gâteau, parce qu'il était fait par un boulanger débutant.",
+    "incorrect-translation": "Le muffin était moins délicieux que le gâteau, car le gâteau était fait par un boulanger débutant.",
+    "reference": "Le muffin était moins délicieux que le gâteau, car le muffin était fait par un boulanger débutant.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            54,
+            60
+          ],
+          "token": "muffin"
+        },
+        "in_bad": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            54,
+            60
+          ],
+          "token": "gâteau"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1133": {
+    "source": "The muffin was less delicious than the cake, because it was made by a professional baker.",
+    "good-translation": "Le muffin était moins délicieux que le gâteau, parce qu'il était fait par un boulanger professionnel.",
+    "incorrect-translation": "Le muffin était moins délicieux que le gâteau, car le muffin était fait par un boulanger professionnel.",
+    "reference": "Le muffin était moins délicieux que le gâteau, car le gâteau était fait par un boulanger professionnel.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            54,
+            60
+          ],
+          "token": "gâteau"
+        },
+        "in_bad": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            54,
+            60
+          ],
+          "token": "muffin"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1134": {
+    "source": "The rose withered in the garden, but grew heartily in the pot, since it was lacking in nutrients.",
+    "good-translation": "La rose se flétrissait dans le jardin, mais poussait de tout cœur dans le pot, car il manquait de nutriments.",
+    "incorrect-translation": "La rose se fanait dans le jardin, mais poussait de bon cœur dans le pot, car le pot manquait de nutriments.",
+    "reference": "La rose se fanait dans le jardin, mais poussait de bon cœur dans le pot, car le jardin manquait de nutriments.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            80,
+            86
+          ],
+          "token": "jardin"
+        },
+        "in_bad": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            80,
+            83
+          ],
+          "token": "pot"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1135": {
+    "source": "John could not finish watching the movie within the time his mom gave him because it is short.",
+    "good-translation": "John n'a pas pu finir de regarder le film dans le temps que sa mère lui a donné parce que c'est court.",
+    "incorrect-translation": "John n' a pas pu finir de regarder le film dans le temps que sa mère lui a donné parce que le film est court.",
+    "reference": "John n' a pas pu finir de regarder le film dans le temps que sa mère lui a donné parce que le temps est court.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            94,
+            99
+          ],
+          "token": "temps"
+        },
+        "in_bad": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            94,
+            98
+          ],
+          "token": "film"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1136": {
+    "source": "The vacuum that I bought was a lot better than the simple broom, because it was weak.",
+    "good-translation": "L'aspirateur que j'ai acheté était beaucoup mieux que le balai simple, parce qu'il était faible.",
+    "incorrect-translation": "L' aspirateur que j' ai acheté était bien meilleur que le simple balai, car l' aspirateur était faible.",
+    "reference": "L' aspirateur que j' ai acheté était bien meilleur que le simple balai, car le balai était faible.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14,
+            15
+          ],
+          "character_span": [
+            76,
+            84
+          ],
+          "token": "le balai"
+        },
+        "in_bad": {
+          "token_index": [
+            14,
+            15
+          ],
+          "character_span": [
+            76,
+            89
+          ],
+          "token": "l' aspirateur"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1137": {
+    "source": "She felt a lot of anger when seeing the school, but not when seeing the church, because it is where she had bad experiences.",
+    "good-translation": "Elle a ressenti beaucoup de colère en voyant l'école, mais pas en voyant l'église, parce que c'est là qu'elle a eu de mauvaises expériences.",
+    "incorrect-translation": "Elle a ressenti beaucoup de colère en voyant l' école, mais pas en voyant l' église, parce que l' église est l' endroit où elle a eu de mauvaises expériences.",
+    "reference": "Elle a ressenti beaucoup de colère en voyant l' école, mais pas en voyant l' église, parce que l' école est l' endroit où elle a eu de mauvaises expériences.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            98,
+            103
+          ],
+          "token": "école"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            98,
+            104
+          ],
+          "token": "église"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1138": {
+    "source": "She felt a lot of anger when seeing the school, but not when seeing the church, because it is where she had good experiences.",
+    "good-translation": "Elle a ressenti beaucoup de colère en voyant l'école, mais pas en voyant l'église, parce que c'est là qu'elle a eu de bonnes expériences.",
+    "incorrect-translation": "Elle a ressenti beaucoup de colère en voyant l' école, mais pas en voyant l' église, parce que c' est dans l' école qu' elle a eu de bonnes expériences.",
+    "reference": "Elle a ressenti beaucoup de colère en voyant l' école, mais pas en voyant l' église, parce que c' est dans l' église qu' elle a eu de bonnes expériences.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            110,
+            116
+          ],
+          "token": "église"
+        },
+        "in_bad": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            110,
+            115
+          ],
+          "token": "école"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1139": {
+    "source": "Jeremy preferred to put honey on his toast instead of butter because it was sweet.",
+    "good-translation": "Jeremy préférait mettre du miel sur son toast au beurre parce que c'était sucré.",
+    "incorrect-translation": "Jeremy préférait mettre du miel sur ses toasts plutôt que du beurre car le beurre était sucré.",
+    "reference": "Jeremy préférait mettre du miel sur ses toasts plutôt que du beurre car le miel était sucré.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            75,
+            79
+          ],
+          "token": "miel"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            75,
+            81
+          ],
+          "token": "beurre"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1140": {
+    "source": "Jeremy preferred to put honey on his toast instead of butter because it was bland.",
+    "good-translation": "Jeremy préférait mettre du miel sur son toast au beurre parce que c'était fade.",
+    "incorrect-translation": "Jeremy préférait mettre du miel sur ses toasts plutôt que du beurre car le miel était fade.",
+    "reference": "Jeremy préférait mettre du miel sur ses toasts plutôt que du beurre car le beurre était fade.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            75,
+            81
+          ],
+          "token": "beurre"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            75,
+            79
+          ],
+          "token": "miel"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1141": {
+    "source": "The woman sewed the lace onto the dress because she thought it looked beautiful.",
+    "good-translation": "La femme a cousu la dentelle sur la robe parce qu'elle pensait que c'était beau.",
+    "incorrect-translation": "La femme a cousu la dentelle sur la robe parce qu' elle trouvait que la robe était belle.",
+    "reference": "La femme a cousu la dentelle sur la robe parce qu' elle trouvait que la dentelle était belle.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            72,
+            80
+          ],
+          "token": "dentelle"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            72,
+            76
+          ],
+          "token": "robe"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1142": {
+    "source": "Sarah wanted to put the mirror in her purse, but it wouldn't fit because it was too large.",
+    "good-translation": "Sarah voulait mettre le miroir dans son sac, mais ça n'allait pas parce qu'il était trop grand.",
+    "incorrect-translation": "Sarah voulait mettre le miroir dans son sac à main, mais il ne rentrerait pas parce que le sac était trop grand.",
+    "reference": "Sarah voulait mettre le miroir dans son sac à main, mais il ne rentrerait pas parce que le miroir était trop grand.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            91,
+            97
+          ],
+          "token": "miroir"
+        },
+        "in_bad": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            91,
+            94
+          ],
+          "token": "sac"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1143": {
+    "source": "Sarah wanted to put the mirror in her purse, but it wouldn't fit because it was too small.",
+    "good-translation": "Sarah voulait mettre le miroir dans son sac, mais ça n'allait pas parce qu'il était trop petit.",
+    "incorrect-translation": "Sarah voulait mettre le miroir dans son sac à main, mais il ne rentrerait pas parce que le miroir était trop petit.",
+    "reference": "Sarah voulait mettre le miroir dans son sac à main, mais il ne rentrerait pas parce que le sac était trop petit.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            91,
+            94
+          ],
+          "token": "sac"
+        },
+        "in_bad": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            91,
+            97
+          ],
+          "token": "miroir"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1144": {
+    "source": "The tomatoes ripen faster in the pot than in the garden, as it exposes them to sunlight.",
+    "good-translation": "Les tomates mûrissent plus vite dans le pot que dans le jardin, car elles s'exposent à la lumière du soleil.",
+    "incorrect-translation": "Les tomates mûrissent plus vite dans le pot que dans le jardin, car le jardin les expose au soleil.",
+    "reference": "Les tomates mûrissent plus vite dans le pot que dans le jardin, car le pot les expose au soleil.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            71,
+            74
+          ],
+          "token": "pot"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            71,
+            77
+          ],
+          "token": "jardin"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1145": {
+    "source": "I am more comfortable cooking chicken in an oven rather than on the grill because it lacks a temperature gauge.",
+    "good-translation": "Je suis plus à l'aise de cuisiner le poulet dans un four plutôt que sur le grill parce qu'il manque une jauge de température.",
+    "incorrect-translation": "Je suis plus à l' aise pour cuire le poulet dans un four que sur le gril car le four n' a pas d' indicateur de température.",
+    "reference": "Je suis plus à l' aise pour cuire le poulet dans un four que sur le gril car le gril n' a pas d' indicateur de température.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            80,
+            84
+          ],
+          "token": "gril"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            80,
+            84
+          ],
+          "token": "four"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1146": {
+    "source": "The CEO replaced the carpet at work in the break room with hardwood over the winter vacation, it was old.",
+    "good-translation": "Le PDG a remplacé le tapis au travail dans la salle de pause avec du bois dur pendant les vacances d'hiver, il était vieux.",
+    "incorrect-translation": "Le PDG a remplacé le tapis au travail dans la salle de repos par du bois dur pendant les vacances d' hiver, le bois était vieux.",
+    "reference": "Le PDG a remplacé le tapis au travail dans la salle de repos par du bois dur pendant les vacances d' hiver, le tapis était vieux.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            111,
+            116
+          ],
+          "token": "tapis"
+        },
+        "in_bad": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            111,
+            115
+          ],
+          "token": "bois"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1147": {
+    "source": "The CEO replaced the carpet at work in the break room with hardwood over the winter vacation, it was trendy.",
+    "good-translation": "Le PDG a remplacé le tapis au travail dans la salle de pause avec du bois dur pendant les vacances d'hiver, il était à la mode.",
+    "incorrect-translation": "Le PDG a remplacé le tapis au travail dans la salle de repos par du bois dur pendant les vacances d' hiver, le tapis était à la mode.",
+    "reference": "Le PDG a remplacé le tapis au travail dans la salle de repos par du bois dur pendant les vacances d' hiver, le franc était à la mode.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            111,
+            116
+          ],
+          "token": "franc"
+        },
+        "in_bad": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            111,
+            116
+          ],
+          "token": "tapis"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1148": {
+    "source": "The young pet animal would run around and play with the string but not the shoe because it was interesting.",
+    "good-translation": "Le jeune animal de compagnie courait autour et jouait avec la ficelle mais pas la chaussure parce que c'était intéressant.",
+    "incorrect-translation": "Le jeune animal de compagnie courait et jouait avec la ficelle mais pas la chaussure parce que la chaussure était intéressante.",
+    "reference": "Le jeune animal de compagnie courait et jouait avec la ficelle mais pas la chaussure parce que la ficelle était intéressante.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            98,
+            105
+          ],
+          "token": "ficelle"
+        },
+        "in_bad": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            98,
+            107
+          ],
+          "token": "chaussure"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1149": {
+    "source": "The young pet animal would run around and play with the string but not the shoe because it was boring.",
+    "good-translation": "Le jeune animal de compagnie courait et jouait avec la ficelle, mais pas avec la chaussure parce que c'était ennuyeux.",
+    "incorrect-translation": "Le jeune animal de compagnie courait et jouait avec la ficelle mais pas la chaussure parce que la ficelle était ennuyeuse.",
+    "reference": "Le jeune animal de compagnie courait et jouait avec la ficelle mais pas la chaussure parce que la chaussure était ennuyeuse.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            98,
+            107
+          ],
+          "token": "chaussure"
+        },
+        "in_bad": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            98,
+            105
+          ],
+          "token": "ficelle"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1150": {
+    "source": "Joey used communication in the form of text to break off their relationship with his girlfriend but it was too complicated.",
+    "good-translation": "Joey a utilisé la communication sous forme de texte pour rompre leur relation avec sa petite amie, mais c'était trop compliqué.",
+    "incorrect-translation": "Joey a utilisé la communication sous forme de texte pour rompre leur relation avec sa petite amie, mais la communication était trop compliquée.",
+    "reference": "Joey a utilisé la communication sous forme de texte pour rompre leur relation avec sa petite amie, mais la relation était trop compliquée.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            107,
+            115
+          ],
+          "token": "relation"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            107,
+            120
+          ],
+          "token": "communication"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1151": {
+    "source": "Joey used communication in the form of text to break off their relationship with his girlfriend but it was too easy.",
+    "good-translation": "Joey a utilisé la communication sous forme de texte pour rompre leur relation avec sa petite amie, mais c'était trop facile.",
+    "incorrect-translation": "Joey a utilisé la communication sous forme de texte pour rompre leur relation avec sa petite amie, mais la relation était trop facile.",
+    "reference": "Joey a utilisé la communication sous forme de texte pour rompre leur relation avec sa petite amie, mais la communication était trop facile.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            104,
+            111
+          ],
+          "token": "c'était"
+        },
+        "in_bad": {
+          "token_index": [
+            18,
+            19,
+            20
+          ],
+          "character_span": [
+            104,
+            121
+          ],
+          "token": "la relation était"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1152": {
+    "source": "We needed a longer ladder to reach the top of the box because it was too short.",
+    "good-translation": "Nous avions besoin d'une échelle plus longue pour atteindre le haut de la boîte parce qu'elle était trop courte.",
+    "incorrect-translation": "Nous avions besoin d' une échelle plus longue pour atteindre le haut de la boîte car la boîte était trop courte.",
+    "reference": "Nous avions besoin d' une échelle plus longue pour atteindre le haut de la boîte car l' échelle était trop courte.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16,
+            17
+          ],
+          "character_span": [
+            85,
+            95
+          ],
+          "token": "l' échelle"
+        },
+        "in_bad": {
+          "token_index": [
+            16,
+            17
+          ],
+          "character_span": [
+            85,
+            93
+          ],
+          "token": "la boîte"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1153": {
+    "source": "We needed a longer ladder to reach the top of the box because it was too high.",
+    "good-translation": "Nous avions besoin d'une échelle plus longue pour atteindre le haut de la boîte parce qu'elle était trop haute.",
+    "incorrect-translation": "Nous avions besoin d' une échelle plus longue pour atteindre le haut de la boîte car l' échelle était trop haute.",
+    "reference": "Nous avions besoin d' une échelle plus longue pour atteindre le haut de la boîte car la boîte était trop haute.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16,
+            17
+          ],
+          "character_span": [
+            85,
+            93
+          ],
+          "token": "la boîte"
+        },
+        "in_bad": {
+          "token_index": [
+            16,
+            17
+          ],
+          "character_span": [
+            85,
+            95
+          ],
+          "token": "l' échelle"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1154": {
+    "source": "After reading the review, the man decided to stay in a hotel rather than a motel because it was nicer.",
+    "good-translation": "Après avoir lu la critique, l'homme a décidé de rester dans un hôtel plutôt qu'un motel parce que c'était plus agréable.",
+    "incorrect-translation": "Après avoir lu la critique, l' homme a décidé de séjourner dans un hôtel plutôt que dans un motel car le motel était plus agréable.",
+    "reference": "Après avoir lu la critique, l' homme a décidé de séjourner dans un hôtel plutôt que dans un motel car l' hôtel était plus agréable.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            20,
+            21
+          ],
+          "character_span": [
+            102,
+            110
+          ],
+          "token": "l' hôtel"
+        },
+        "in_bad": {
+          "token_index": [
+            20,
+            21
+          ],
+          "character_span": [
+            102,
+            110
+          ],
+          "token": "le motel"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1155": {
+    "source": "After reading the review, the man decided to stay in a hotel rather than a motel because it was less appealing.",
+    "good-translation": "Après avoir lu la revue, l'homme a décidé de rester dans un hôtel plutôt qu'un motel parce qu'il était moins attrayant.",
+    "incorrect-translation": "Après avoir lu la critique, l' homme a décidé de séjourner dans un hôtel plutôt que dans un motel car l' hôtel était moins attrayant.",
+    "reference": "Après avoir lu la critique, l' homme a décidé de séjourner dans un hôtel plutôt que dans un motel car le motel était moins attrayant.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            20,
+            21
+          ],
+          "character_span": [
+            102,
+            110
+          ],
+          "token": "le motel"
+        },
+        "in_bad": {
+          "token_index": [
+            20,
+            21
+          ],
+          "character_span": [
+            102,
+            110
+          ],
+          "token": "l' hôtel"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1156": {
+    "source": "The call came in first and the message later in the day because it travels fast.",
+    "good-translation": "L'appel est arrivé en premier et le message plus tard dans la journée parce qu'il voyage rapidement.",
+    "incorrect-translation": "L' appel est arrivé en premier et le message plus tard dans la journée car le message se déroule rapidement.",
+    "reference": "L' appel est arrivé en premier et le message plus tard dans la journée car l' appel se déroule rapidement.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            75,
+            83
+          ],
+          "token": "l' appel"
+        },
+        "in_bad": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            75,
+            85
+          ],
+          "token": "le message"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1157": {
+    "source": "The call came in first and the message later in the day because it travels slow.",
+    "good-translation": "L'appel est arrivé en premier et le message plus tard dans la journée parce qu'il voyage lentement.",
+    "incorrect-translation": "L' appel est arrivé en premier et le message plus tard dans la journée car l' appel est lent.",
+    "reference": "L' appel est arrivé en premier et le message plus tard dans la journée car le message est lent.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            75,
+            85
+          ],
+          "token": "le message"
+        },
+        "in_bad": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            75,
+            83
+          ],
+          "token": "l' appel"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1158": {
+    "source": "The homeowners had to replace the vinyl on the siding but left the wood intact because it was still good.",
+    "good-translation": "Les propriétaires ont dû remplacer le vinyle sur la voie d'évitement, mais ont laissé le bois intact parce qu'il était encore bon.",
+    "incorrect-translation": "Les propriétaires ont dû remplacer le vinyle sur le revêtement, mais ont laissé le bois intact parce que le vinyle était encore bon.",
+    "reference": "Les propriétaires ont dû remplacer le vinyle sur le revêtement, mais ont laissé le bois intact parce que le bois était encore bon.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            108,
+            112
+          ],
+          "token": "bois"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            108,
+            114
+          ],
+          "token": "vinyle"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1159": {
+    "source": "The giant hamburger was placed into the microwave on the counter because it was hot.",
+    "good-translation": "Le hamburger géant a été placé dans le micro-ondes sur le comptoir parce qu'il était chaud.",
+    "incorrect-translation": "Le hamburger géant a été placé dans le micro-ondes sur le comptoir car le hamburger était chaud.",
+    "reference": "Le hamburger géant a été placé dans le micro-ondes sur le comptoir car le micro-ondes était chaud.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            74,
+            85
+          ],
+          "token": "micro-ondes"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            74,
+            83
+          ],
+          "token": "hamburger"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1160": {
+    "source": "The giant hamburger was placed into the microwave on the counter because it was cold.",
+    "good-translation": "Le hamburger géant a été placé dans le micro-ondes sur le comptoir parce qu'il faisait froid.",
+    "incorrect-translation": "Le hamburger géant a été placé dans le micro-ondes sur le comptoir car le micro-ondes était froid.",
+    "reference": "Le hamburger géant a été placé dans le micro-ondes sur le comptoir car le hamburger était froid.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            74,
+            83
+          ],
+          "token": "hamburger"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            74,
+            85
+          ],
+          "token": "micro-ondes"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1161": {
+    "source": "The farmer put fertilizer from the cart onto the garden until it was covered.",
+    "good-translation": "L'agriculteur a mis de l'engrais du chariot sur le jardin jusqu'à ce qu'il soit couvert.",
+    "incorrect-translation": "Le fermier a mis l' engrais du chariot sur le jardin jusqu' à ce que le chariot soit couvert.",
+    "reference": "Le fermier a mis l' engrais du chariot sur le jardin jusqu' à ce que le jardin soit couvert.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            72,
+            78
+          ],
+          "token": "jardin"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            72,
+            79
+          ],
+          "token": "chariot"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1162": {
+    "source": "The farmer put fertilizer from the cart onto the garden until it was empty.",
+    "good-translation": "L'agriculteur a mis de l'engrais du chariot sur le jardin jusqu'à ce qu'il soit vide.",
+    "incorrect-translation": "Le fermier a mis l' engrais du chariot dans le jardin jusqu' à ce que le jardin soit vide.",
+    "reference": "Le fermier a mis l' engrais du chariot dans le jardin jusqu' à ce que le chariot soit vide.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            73,
+            80
+          ],
+          "token": "chariot"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            73,
+            79
+          ],
+          "token": "jardin"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1163": {
+    "source": "Since the man was trying to stick to his financial plan, he purchased the sandwich instead of the burger because it was cheap.",
+    "good-translation": "Puisque l'homme essayait de s'en tenir à son plan financier, il a acheté le sandwich au lieu du burger parce que c'était bon marché.",
+    "incorrect-translation": "Comme l' homme essayait de s' en tenir à son plan financier, il a acheté le sandwich au lieu du hamburger parce que le hamburger était bon marché.",
+    "reference": "Comme l' homme essayait de s' en tenir à son plan financier, il a acheté le sandwich au lieu du hamburger parce que le sandwich était bon marché.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            119,
+            127
+          ],
+          "token": "sandwich"
+        },
+        "in_bad": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            119,
+            128
+          ],
+          "token": "hamburger"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1164": {
+    "source": "Since the man was trying to stick to his financial plan, he purchased the sandwich instead of the burger because it was expensive.",
+    "good-translation": "Puisque l'homme essayait de s'en tenir à son plan financier, il a acheté le sandwich au lieu du burger parce que c'était cher.",
+    "incorrect-translation": "Comme l' homme essayait de s' en tenir à son plan financier, il a acheté le sandwich au lieu du hamburger parce que le sandwich était cher.",
+    "reference": "Comme l' homme essayait de s' en tenir à son plan financier, il a acheté le sandwich au lieu du hamburger parce que le hamburger était cher.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            119,
+            128
+          ],
+          "token": "hamburger"
+        },
+        "in_bad": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            119,
+            127
+          ],
+          "token": "sandwich"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1165": {
+    "source": "The carpenter was able to use a chisel to cut the wood because it was sharp.",
+    "good-translation": "Le charpentier a pu utiliser un ciseau pour couper le bois parce qu'il était tranchant.",
+    "incorrect-translation": "Le charpentier a pu utiliser un ciseau pour couper le bois parce que le bois était tranchant.",
+    "reference": "Le charpentier a pu utiliser un ciseau pour couper le bois parce que le ciseau était tranchant.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            12
+          ],
+          "character_span": [
+            65,
+            70
+          ],
+          "token": "qu'il"
+        },
+        "in_bad": {
+          "token_index": [
+            12,
+            13,
+            14
+          ],
+          "character_span": [
+            65,
+            76
+          ],
+          "token": "que le bois"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1166": {
+    "source": "The airplane was steady, but the bus was shaky, because it had a lazy mechanic.",
+    "good-translation": "L'avion était stable, mais le bus était instable, parce qu'il avait un mécanicien paresseux.",
+    "incorrect-translation": "L' avion était stable, mais le bus tremblait, car l' avion avait un mécanicien paresseux.",
+    "reference": "L' avion était stable, mais le bus tremblait, car le bus avait un mécanicien paresseux.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            9,
+            10
+          ],
+          "character_span": [
+            50,
+            56
+          ],
+          "token": "le bus"
+        },
+        "in_bad": {
+          "token_index": [
+            9,
+            10
+          ],
+          "character_span": [
+            50,
+            58
+          ],
+          "token": "l' avion"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1167": {
+    "source": "The airplane was steady, but the bus was shaky, because it had a hard working mechanic.",
+    "good-translation": "L'avion était stable, mais le bus était instable, parce qu'il avait un mécanicien qui travaillait dur.",
+    "incorrect-translation": "L' avion était stable, mais le bus tremblait, parce que le bus avait un mécanicien qui travaillait dur.",
+    "reference": "L' avion était stable, mais le bus tremblait, parce que l' avion avait un mécanicien qui travaillait dur.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10,
+            11
+          ],
+          "character_span": [
+            56,
+            64
+          ],
+          "token": "l' avion"
+        },
+        "in_bad": {
+          "token_index": [
+            10,
+            11
+          ],
+          "character_span": [
+            56,
+            62
+          ],
+          "token": "le bus"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1168": {
+    "source": "As the wolf approached the house, the man quickly took the knife and not the gun to defend himself because it was near him.",
+    "good-translation": "Alors que le loup s'approchait de la maison, l'homme prit rapidement le couteau et non l'arme pour se défendre parce qu'il était près de lui.",
+    "incorrect-translation": "Alors que le loup s' approchait de la maison, l' homme prit rapidement le couteau et non l' arme pour se défendre car elle était près de lui.",
+    "reference": "Alors que le loup s' approchait de la maison, l' homme prit rapidement le couteau et non l' arme pour se défendre car il était près de lui.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            118,
+            120
+          ],
+          "token": "il"
+        },
+        "in_bad": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            118,
+            122
+          ],
+          "token": "elle"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1169": {
+    "source": "As the wolf approached the house, the man quickly took the knife and not the gun to defend himself because it was stored away.",
+    "good-translation": "Alors que le loup s'approchait de la maison, l'homme prit rapidement le couteau et non l'arme pour se défendre parce qu'il était rangé.",
+    "incorrect-translation": "Alors que le loup s' approchait de la maison, l' homme prit rapidement le couteau et non l' arme pour se défendre car il était rangé.",
+    "reference": "Alors que le loup s' approchait de la maison, l' homme prit rapidement le couteau et non l' arme pour se défendre car elle était rangée.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            118,
+            122
+          ],
+          "token": "elle"
+        },
+        "in_bad": {
+          "token_index": [
+            23
+          ],
+          "character_span": [
+            118,
+            120
+          ],
+          "token": "il"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": [
+            25
+          ],
+          "character_span": [
+            129,
+            135
+          ],
+          "token": "rangée"
+        },
+        "in_bad": {
+          "token_index": [
+            25
+          ],
+          "character_span": [
+            127,
+            132
+          ],
+          "token": "rangé"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1171": {
+    "source": "I moved my wet clothing from the suitcase to the laundry bag, and as a result, it became heavy.",
+    "good-translation": "J'ai déplacé mes vêtements mouillés de la valise au sac à linge, et par conséquent, il est devenu lourd.",
+    "incorrect-translation": "J' ai déplacé mes vêtements mouillés de la valise au sac à linge et, par conséquent, elle est devenue lourde.",
+    "reference": "J' ai déplacé mes vêtements mouillés de la valise au sac à linge et, par conséquent, il est devenu lourd.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            85,
+            87
+          ],
+          "token": "il"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            85,
+            89
+          ],
+          "token": "elle"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            92,
+            98
+          ],
+          "token": "devenu"
+        },
+        "in_bad": {
+          "token_index": [
+            18
+          ],
+          "character_span": [
+            94,
+            101
+          ],
+          "token": "devenue"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            99,
+            104
+          ],
+          "token": "lourd"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            102,
+            108
+          ],
+          "token": "lourde"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1172": {
+    "source": "Before the football game, we were trying to choose between watching at the bar or watching at home and we chose to stay home because it would be expensive.",
+    "good-translation": "Avant le match de football, nous essayions de choisir entre regarder au bar ou regarder à la maison et nous avons choisi de rester à la maison parce que ce serait cher.",
+    "incorrect-translation": "Avant le match de football, nous essayions de choisir entre regarder au bar ou regarder à la maison et nous avons choisi de rester à la maison car elle coûterait cher.",
+    "reference": "Avant le match de football, nous essayions de choisir entre regarder au bar ou regarder à la maison et nous avons choisi de rester à la maison car il coûterait cher.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            28
+          ],
+          "character_span": [
+            147,
+            149
+          ],
+          "token": "il"
+        },
+        "in_bad": {
+          "token_index": [
+            28
+          ],
+          "character_span": [
+            147,
+            151
+          ],
+          "token": "elle"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1173": {
+    "source": "Before the football game, we were trying to choose between watching at the bar or watching at home and we chose to stay home because it would be cheap.",
+    "good-translation": "Avant le match de football, nous essayions de choisir entre regarder au bar ou regarder à la maison et nous avons choisi de rester à la maison parce que ce serait pas cher.",
+    "incorrect-translation": "Avant le match de football, nous essayions de choisir entre regarder au bar ou regarder à la maison et nous avons choisi de rester à la maison car il serait bon marché.",
+    "reference": "Avant le match de football, nous essayions de choisir entre regarder au bar ou regarder à la maison et nous avons choisi de rester à la maison car elle serait bon marché.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            28
+          ],
+          "character_span": [
+            147,
+            151
+          ],
+          "token": "elle"
+        },
+        "in_bad": {
+          "token_index": [
+            28
+          ],
+          "character_span": [
+            147,
+            149
+          ],
+          "token": "il"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  }
+}

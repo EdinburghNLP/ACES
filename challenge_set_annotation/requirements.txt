@@ -3,4 +3,5 @@ numpy
 tqdm
 # logging
 quantulum3
+sklearn==1.2.2
 # plotly
