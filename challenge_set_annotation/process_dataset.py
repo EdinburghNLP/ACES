@@ -185,7 +185,7 @@ def process_phenomena(phenomena_tobe_processed, detokenize=False):
             stats[sample["phenomena"]]["total"] += 1
             
             # check if it was annotated before
-            res = check_seen_before(sample)
+            res = check_seen_before(sample, annotations)
             if res != None:
                 sample['annotation'] = res[0]
                 sample['method'] = res[1]
@@ -198,13 +198,6 @@ def process_phenomena(phenomena_tobe_processed, detokenize=False):
                     raise Exception
                 if res == -1:
                     return -1
-            
-# If same ref and incorrect sentence was annotated before then just copy the annotation
-def check_seen_before(sample):
-    for annotated_sample in annotations.values():
-        if annotated_sample["reference"] == sample["reference"] and annotated_sample["incorrect-translation"] == sample["incorrect-translation"]:
-              return (annotated_sample["annotation"], annotated_sample["method"])
-    return None
 
 if __name__ == "__main__":
     # Get arguments

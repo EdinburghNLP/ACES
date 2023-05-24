@@ -1,0 +1,1421 @@
+{
+  "16390": {
+    "source": "In einem Wirtschaftssystem der Reinvestition, was geschieht, wenn wir unsere Handelvorteile verwenden und alle Überschüsse wiederinvestieren, damit wir mehr Äpfel und Birnen herstellen können, als wir zu Beginn hatten?",
+    "good-translation": "In an economic system of reinvestment, what if we use our trading advantages and reinvest any surpluses so we can produce more fruit than we started with?",
+    "incorrect-translation": "In an economic system of reinvestment, what if we use our trading advantages and reinvest any surpluses so we can produce more bananas and oranges than we started with?",
+    "reference": "In an economy with reinvestment, what happens if we can take our advantages of trade and reinvest any excess so that we can create more apples and pears than we had to start with?",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            22
+          ],
+          "character_span": [
+            127,
+            132
+          ],
+          "token": "fruit"
+        },
+        "in_bad": {
+          "token_index": [
+            22,
+            23,
+            24
+          ],
+          "character_span": [
+            127,
+            146
+          ],
+          "token": "bananas and oranges"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16391": {
+    "source": "Ich bin zu meiner Schwester gegangen, die dort gewohnt hat.",
+    "good-translation": "I went to my sibling who lived there.",
+    "incorrect-translation": "I went to my brother who lived there.",
+    "reference": "I went to my sister's that lived there.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            13,
+            20
+          ],
+          "token": "sibling"
+        },
+        "in_bad": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            13,
+            20
+          ],
+          "token": "brother"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16392": {
+    "source": "Sie müssen durch zahlreiche Luftdruckkammern, eh, Fahrten gehen, ehe sie überhaupt U2's fliegen oder mit Druckanzug fliegen.",
+    "good-translation": "They have to go through numerous air pressure chambers, eh, rides before they even fly spy planes or fly in a pressure suit.",
+    "incorrect-translation": "They have to go through numerous air pressure chambers, eh, rides before they even fly SR-71's or fly in a pressure suit.",
+    "reference": "They have to go through a number of altitude chambers, uh, rides before they start even flying U2's or flying with pressure suits.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            87,
+            97
+          ],
+          "token": "spy planes"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            87,
+            94
+          ],
+          "token": "SR-71's"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16393": {
+    "source": "und wir trennen unsere Dosen, Glas und Papier und wenn die verschiedenen Behälter voll sind, wird es ins Auto geladen und wir bringen es weg, es ist nervig. Es ist schwierig, das Papier, Glas und die Dose aufzuladen, nachdem man ihnen in ihre eigene Behälter hat getrennen.",
+    "good-translation": "and we separate our cans, glass and paper and when the different containers are full it is loaded into the vehicle and we take it away, it's annoying. It is difficult to charge the paper, glass and can after separating them into their own containers.",
+    "incorrect-translation": "and we separate our cans, glass and paper and when the different containers are full it is loaded into the truck and we take it away, it's annoying. It is difficult to charge the paper, glass and can after separating them into their own containers.",
+    "reference": "and we keep our cans in one thing and glass in another and paper in another it once it gets full getting it loaded into the car and taking it is a pain. It's hard to load up the paper, glass and can after separating them into their own container.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            20
+          ],
+          "character_span": [
+            107,
+            114
+          ],
+          "token": "vehicle"
+        },
+        "in_bad": {
+          "token_index": [
+            20
+          ],
+          "character_span": [
+            107,
+            112
+          ],
+          "token": "truck"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16394": {
+    "source": "Das Mädchen, das mir helfen kann, ist auf der anderen Seite der Stadt.",
+    "good-translation": "The person who can help me is on the other side of town.",
+    "incorrect-translation": "The guy who can help me is on the other side of town.",
+    "reference": "The girl that can help me is all the way across town.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            4,
+            10
+          ],
+          "token": "person"
+        },
+        "in_bad": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            4,
+            7
+          ],
+          "token": "guy"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16395": {
+    "source": "Das Buch erklärt nur, wie das Haus aussah.",
+    "good-translation": "The book just explains what the building looked like.",
+    "incorrect-translation": "The book just explains what the greenhouse looked like.",
+    "reference": "The book just explains what the house looked like.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            32,
+            40
+          ],
+          "token": "building"
+        },
+        "in_bad": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            32,
+            42
+          ],
+          "token": "greenhouse"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16396": {
+    "source": "und, oh jee, es geht mir nicht aus dem Kopf, dass er eintausendachthundert Dollar für einen Papageien gezahlt hat, das war einfach irrsinnig.",
+    "good-translation": "and, oh yeah, I can't get it out of my head that he paid one thousand eight hundred dollars for a bird, that was just insane.",
+    "incorrect-translation": "and, oh yeah, I can't get it out of my head that he paid one thousand eight hundred dollars for a seagull, that was just insane.",
+    "reference": "and uh gosh sticks in my mind he paid eighteen hundred dollars for a parrot and that was just mind boggling.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            21
+          ],
+          "character_span": [
+            98,
+            102
+          ],
+          "token": "bird"
+        },
+        "in_bad": {
+          "token_index": [
+            21
+          ],
+          "character_span": [
+            98,
+            105
+          ],
+          "token": "seagull"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16397": {
+    "source": "Nun, am nächsten Tag blockierte natürlich Präsident Kennedy Kuba und, äh, unsere Schiffe stoppten ein russisches Schiff, das außerhalb von Kuba unterwegs war, und sie fanden Raketen auf diesem.",
+    "good-translation": "Well, the next day, of course, President Kennedy blocked Cuba and, uh, our ships stopped a Russian ship that was sailing outside of Cuba and they found weapons on it.",
+    "incorrect-translation": "Well, the next day, of course, President Kennedy blocked Cuba and, uh, our ships stopped a Russian ship that was sailing outside of Cuba and they found swords on it.",
+    "reference": "Well, the next day, of course, President Kennedy, uh, blockaded Cuba, and, uh, our ships stopped a Russian ship that was headed just outside of Cuba within, and they found missiles on them.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            27
+          ],
+          "character_span": [
+            152,
+            159
+          ],
+          "token": "weapons"
+        },
+        "in_bad": {
+          "token_index": [
+            27
+          ],
+          "character_span": [
+            152,
+            158
+          ],
+          "token": "swords"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16398": {
+    "source": "Amsterdam hat viele Facetten, fast genauso viele wie die Diamanten, für die die Stadt bekannt ist.",
+    "good-translation": "Amsterdam has many facets, almost as many as the gemstones the city is known for.",
+    "incorrect-translation": "Amsterdam has many facets, almost as many as the emeralds the city is known for.",
+    "reference": "Amsterdam has many facets, almost as many as the diamonds for which the city is famous.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            49,
+            58
+          ],
+          "token": "gemstones"
+        },
+        "in_bad": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            49,
+            57
+          ],
+          "token": "emeralds"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16399": {
+    "source": "Ich erinnerte mich daran, Gänseblümchen im Garten gepflückt zu haben.",
+    "good-translation": "I remembered picking flowers in the garden.",
+    "incorrect-translation": "I remembered picking roses in the garden.",
+    "reference": "I remembered picking daisies in the backyard.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            3
+          ],
+          "character_span": [
+            21,
+            28
+          ],
+          "token": "flowers"
+        },
+        "in_bad": {
+          "token_index": [
+            3
+          ],
+          "character_span": [
+            21,
+            26
+          ],
+          "token": "roses"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16400": {
+    "source": "Merediths Tochter Sonja weinte und schlug um sich.",
+    "good-translation": "Meredith's child Sonja wept and thrashed.",
+    "incorrect-translation": "Meredith's son Sonja wept and thrashed.",
+    "reference": "Meredith's daughter, Sonja cried and thrashed about.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            11,
+            16
+          ],
+          "token": "child"
+        },
+        "in_bad": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            11,
+            14
+          ],
+          "token": "son"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16401": {
+    "source": "Sie haben gewährt, ich habe gesagt, das Engagement des Königs zu diesem Mann. Sein Ton verriet die Bitterkeit seines Grolls. Ich bin sicher, du hast diesem Mann nicht die Genehmigung des Königs erteilt, sagte er fröhlich.",
+    "good-translation": "You have granted, I have said, the monarch’s commitment to this man. His tone betrayed the bitterness of his resentment. I'm sure you didn't give this man the monarch's approval, he said cheerfully.",
+    "incorrect-translation": "You have granted, I have said, the Queen’s commitment to this man. His tone betrayed the bitterness of his resentment. I'm sure you didn't give this man the Queen's approval, he said cheerfully.",
+    "reference": "You have granted, I am told, the King's commission to this man. His very tone betrayed the bitterness of his rancour. I'm sure you didn't grant the King's commission to this man, he said cheerfully.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            7
+          ],
+          "character_span": [
+            35,
+            44
+          ],
+          "token": "monarch’s"
+        },
+        "in_bad": {
+          "token_index": [
+            7
+          ],
+          "character_span": [
+            35,
+            42
+          ],
+          "token": "Queen’s"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": [
+            28
+          ],
+          "character_span": [
+            159,
+            168
+          ],
+          "token": "monarch's"
+        },
+        "in_bad": {
+          "token_index": [
+            28
+          ],
+          "character_span": [
+            157,
+            164
+          ],
+          "token": "Queen's"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16402": {
+    "source": "Aber obwohl ich als Junge auf einem Bauernhof direkt an der mexikanischen Grenze gelebt habe, erinnere ich mich daran, dass ich mich landwirtschaftliche Begriffe verwirrt gefühlt haben, die sich in westlichen Lieder Nördlich von uns eingeschlichen haben. Zum Beispiel Cayuse.",
+    "good-translation": "But even though I lived on a farm right on the Mexican border as a child, I remember feeling confused about agricultural terms that crept into western songs North of Us. For example Cayuse.",
+    "incorrect-translation": "But even though I lived on a farm right on the Mexican border as a girl, I remember feeling confused about agricultural terms that crept into western songs North of Us. For example Cayuse.",
+    "reference": "But even though as a boy I lived on a ranch right on the Mexican border, I remember being mystified by ranching terms that crept into Western songs from north of us, cayuse, for example.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            67,
+            72
+          ],
+          "token": "child"
+        },
+        "in_bad": {
+          "token_index": [
+            15
+          ],
+          "character_span": [
+            67,
+            71
+          ],
+          "token": "girl"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16403": {
+    "source": "Ich habe ihnen gesagt, dass der Hund meiner Schwester gehört.",
+    "good-translation": "I told them the pet belonged to my sister.",
+    "incorrect-translation": "I told them the cat belonged to my sister.",
+    "reference": "I told them the dog belonged to my sister.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            16,
+            19
+          ],
+          "token": "pet"
+        },
+        "in_bad": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            16,
+            19
+          ],
+          "token": "cat"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16404": {
+    "source": "Es gibt einen Ausschlag, der mit einigen Geschlechtskrankheiten einhergeht.",
+    "good-translation": "There is a rash that is associated with some infections.",
+    "incorrect-translation": "There is a rash that is associated with some prion diseases.",
+    "reference": "There is a rash that comes along with some STIs.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            45,
+            55
+          ],
+          "token": "infections"
+        },
+        "in_bad": {
+          "token_index": [
+            9,
+            10
+          ],
+          "character_span": [
+            45,
+            59
+          ],
+          "token": "prion diseases"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16405": {
+    "source": "Nun es kam soweit, dass zwei oder drei Flugzeuge pro Woche ankamen und ich nicht wusste, wohin sie flogen.",
+    "good-translation": "Now it got to the point that two or three aircraft a week came in and I didn't know where they were going.",
+    "incorrect-translation": "Now it got to the point that two or three helicopters a week came in and I didn't know where they were going.",
+    "reference": "Well it got to where there's two or three planes arrive in a week and I didn't know where they're flying to.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            42,
+            50
+          ],
+          "token": "aircraft"
+        },
+        "in_bad": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            42,
+            53
+          ],
+          "token": "helicopters"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16406": {
+    "source": "Die republikanische Nationalversammlung in Houston fand im August statt.",
+    "good-translation": "The Republican National Assembly in Houston was held in summer.",
+    "incorrect-translation": "The Republican National Assembly in Houston was held in July.",
+    "reference": "The Republican National Convention in Houston was in August.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            56,
+            62
+          ],
+          "token": "summer"
+        },
+        "in_bad": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            56,
+            60
+          ],
+          "token": "July"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16407": {
+    "source": "Ich möchte wissen, sind sie oft in England?",
+    "good-translation": "I want to know, are you often in the UK?",
+    "incorrect-translation": "I want to know, are you often in Scotland?",
+    "reference": "I want to know, are they often in England?",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            8,
+            9
+          ],
+          "character_span": [
+            33,
+            39
+          ],
+          "token": "the UK"
+        },
+        "in_bad": {
+          "token_index": [
+            8
+          ],
+          "character_span": [
+            33,
+            41
+          ],
+          "token": "Scotland"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16408": {
+    "source": "Eigentlich wollte er Bier für Amerika kaufen, aber ein Sprachfehler hinderte ihn daran, dies klar zum Ausdruck zu bringen.",
+    "good-translation": "He actually wanted to buy alcohol for America, but a speech impediment prevented him from being able to express this clearly.",
+    "incorrect-translation": "He actually wanted to buy cider for America, but a speech impediment prevented him from being able to express this clearly.",
+    "reference": "He actually wanted to buy beer for America, but a speech impediment kept him from expressing this clearly.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            5
+          ],
+          "character_span": [
+            26,
+            33
+          ],
+          "token": "alcohol"
+        },
+        "in_bad": {
+          "token_index": [
+            5
+          ],
+          "character_span": [
+            26,
+            31
+          ],
+          "token": "cider"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "16409": {
+    "source": "Sie können die Anzüge in jeder gewünschten Farbe erhalten.",
+    "good-translation": "You can get the clothes in any color you want.",
+    "incorrect-translation": "You can get the dresses in any color you want.",
+    "reference": "You can get the suits in any color you want.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            16,
+            23
+          ],
+          "token": "clothes"
+        },
+        "in_bad": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            16,
+            23
+          ],
+          "token": "dresses"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24596": {
+    "source": "The book just explains what the house looked like.",
+    "good-translation": "Das Buch erklärt nur, wie das Gebäude aussah.",
+    "incorrect-translation": "Das Buch erklärt nur, wie der Stall aussah.",
+    "reference": "Das Buch erklärt nur, wie das Haus aussah.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            5,
+            6
+          ],
+          "character_span": [
+            26,
+            37
+          ],
+          "token": "das Gebäude"
+        },
+        "in_bad": {
+          "token_index": [
+            5,
+            6
+          ],
+          "character_span": [
+            26,
+            35
+          ],
+          "token": "der Stall"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24597": {
+    "source": "I remembered picking daisies in the backyard.",
+    "good-translation": "Ich erinnerte mich daran, im Garten Blumen zu pflücken.",
+    "incorrect-translation": "Ich erinnerte mich daran, im Garten Rosen zu pflücken.",
+    "reference": "Ich erinnerte mich daran, Gänseblümchen im Garten gepflückt zu haben.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            36,
+            42
+          ],
+          "token": "Blumen"
+        },
+        "in_bad": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            36,
+            41
+          ],
+          "token": "Rosen"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24598": {
+    "source": "He actually wanted to buy beer for America, but a speech impediment kept him from expressing this clearly.",
+    "good-translation": "Eigentlich wollte er Alkohol für Amerika kaufen, aber ein Sprachfehler hinderte ihn daran, dies klar auszudrücken.",
+    "incorrect-translation": "Eigentlich wollte er Apfelwein für Amerika kaufen, aber ein Sprachfehler hinderte ihn daran, dies klar auszudrücken.",
+    "reference": "Eigentlich wollte er Bier für Amerika kaufen, aber ein Sprachfehler hinderte ihn daran, dies klar zum Ausdruck zu bringen.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            3
+          ],
+          "character_span": [
+            21,
+            28
+          ],
+          "token": "Alkohol"
+        },
+        "in_bad": {
+          "token_index": [
+            3
+          ],
+          "character_span": [
+            21,
+            30
+          ],
+          "token": "Apfelwein"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24599": {
+    "source": "In an economy with reinvestment, what happens if we can take our advantages of trade and reinvest any excess so that we can create more apples and pears than we had to start with?",
+    "good-translation": "Was wäre, wenn wir in einem Wirtschaftssystem der Reinvestition unsere Handelsvorteile nutzen und alle Überschüsse reinvestieren, damit wir mehr Früchte produzieren können, als wir begonnen haben?",
+    "incorrect-translation": "Was wäre, wenn wir in einem Wirtschaftssystem der Reinvestition unsere Handelsvorteile nutzen und alle Überschüsse reinvestieren, damit wir mehr Bananen und Orangen produzieren können, als wir begonnen haben?",
+    "reference": "In einem Wirtschaftssystem der Reinvestition, was geschieht, wenn wir unsere Handelvorteile verwenden und alle Überschüsse wiederinvestieren, damit wir mehr Äpfel und Birnen herstellen können, als wir zu Beginn hatten?",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            145,
+            152
+          ],
+          "token": "Früchte"
+        },
+        "in_bad": {
+          "token_index": [
+            19,
+            20,
+            21
+          ],
+          "character_span": [
+            145,
+            164
+          ],
+          "token": "Bananen und Orangen"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24600": {
+    "source": "You have granted, I am told, the King's commission to this man. His very tone betrayed the bitterness of his rancour. I'm sure you didn't grant the King's commission to this man, he said cheerfully.",
+    "good-translation": "Sie haben, sagte ich, die Verpflichtung des Monarchen gegenüber diesem Mann gewährt. Sein Ton verriet die Bitterkeit seines Grolls. Ich bin sicher, Sie haben diesem Mann nicht die Zustimmung des Monarchen gegeben, sagte er fröhlich.",
+    "incorrect-translation": "Sie haben, sagte ich, die Verpflichtung der Königin gegenüber diesem Mann gewährt. Sein Ton verriet die Bitterkeit seines Grolls. Ich bin sicher, Sie haben diesem Mann nicht die Zustimmung der Königin gegeben, sagte er fröhlich.",
+    "reference": "Sie haben gewährt, ich habe gesagt, das Engagement des Königs zu diesem Mann. Sein Ton verriet die Bitterkeit seines Grolls. Ich bin sicher, du hast diesem Mann nicht die Genehmigung des Königs erteilt, sagte er fröhlich.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            6,
+            7
+          ],
+          "character_span": [
+            40,
+            53
+          ],
+          "token": "des Monarchen"
+        },
+        "in_bad": {
+          "token_index": [
+            6,
+            7
+          ],
+          "character_span": [
+            40,
+            51
+          ],
+          "token": "der Königin"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": [
+            29,
+            30
+          ],
+          "character_span": [
+            191,
+            204
+          ],
+          "token": "des Monarchen"
+        },
+        "in_bad": {
+          "token_index": [
+            29,
+            30
+          ],
+          "character_span": [
+            189,
+            200
+          ],
+          "token": "der Königin"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24601": {
+    "source": "But even though as a boy I lived on a ranch right on the Mexican border, I remember being mystified by ranching terms that crept into Western songs from north of us, cayuse, for example.",
+    "good-translation": "Aber obwohl ich als Kind auf einer Farm direkt an der mexikanischen Grenze lebte, erinnere ich mich, dass ich verwirrt war über landwirtschaftliche Begriffe, die sich nördlich von uns in westliche Lieder einschlichen. Cayuse zum Beispiel.",
+    "incorrect-translation": "Aber obwohl ich als Mädchen auf einer Farm direkt an der mexikanischen Grenze lebte, erinnere ich mich, dass ich verwirrt war über landwirtschaftliche Begriffe, die sich nördlich von uns in westliche Lieder einschlichen. Cayuse zum Beispiel.",
+    "reference": "Aber obwohl ich als Junge auf einem Bauernhof direkt an der mexikanischen Grenze gelebt habe, erinnere ich mich daran, dass ich mich landwirtschaftliche Begriffe verwirrt gefühlt haben, die sich in westlichen Lieder Nördlich von uns eingeschlichen haben. Zum Beispiel Cayuse.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            20,
+            24
+          ],
+          "token": "Kind"
+        },
+        "in_bad": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            20,
+            27
+          ],
+          "token": "Mädchen"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24602": {
+    "source": "You can get the suits in any color you want.",
+    "good-translation": "Sie können die Kleidung in jeder gewünschten Farbe erhalten.",
+    "incorrect-translation": "Sie können die Hosen in jeder gewünschten Farbe erhalten.",
+    "reference": "Sie können die Anzüge in jeder gewünschten Farbe erhalten.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            3
+          ],
+          "character_span": [
+            15,
+            23
+          ],
+          "token": "Kleidung"
+        },
+        "in_bad": {
+          "token_index": [
+            3
+          ],
+          "character_span": [
+            15,
+            20
+          ],
+          "token": "Hosen"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24603": {
+    "source": "and we keep our cans in one thing and glass in another and paper in another it once it gets full getting it loaded into the car and taking it is a pain. It's hard to load up the paper, glass and can after separating them into their own container.",
+    "good-translation": "und wir trennen unsere dosen, glas und papier und wenn die verschiedenen container voll sind, wird es ins fahrzeug geladen und wir nehmen es mit, das ist ärgerlich. Es ist schwierig, das Papier, das Glas und die Dose zu füllen, nachdem sie in ihre eigenen Behälter getrennt wurden.",
+    "incorrect-translation": "und wir trennen unsere dosen, glas und papier und wenn die verschiedenen container voll sind, wird es in den lastwagen geladen und wir nehmen es mit, das ist ärgerlich. Es ist schwierig, das Papier, das Glas und die Dose zu füllen, nachdem sie in ihre eigenen Behälter getrennt wurden.",
+    "reference": "und wir trennen unsere Dosen, Glas und Papier und wenn die verschiedenen Behälter voll sind, werden sie ins Auto geladen und wir bringen sie weg, es ist nervig. Es ist schwierig, das Papier, Glas und die Dosen aufzuladen, nachdem man sie in ihre eigenen Behälter getrennt hat.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            17,
+            18
+          ],
+          "character_span": [
+            102,
+            114
+          ],
+          "token": "ins fahrzeug"
+        },
+        "in_bad": {
+          "token_index": [
+            17,
+            18,
+            19
+          ],
+          "character_span": [
+            102,
+            118
+          ],
+          "token": "in den lastwagen"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24604": {
+    "source": "Well, the next day, of course, President Kennedy, uh, blockaded Cuba, and, uh, our ships stopped a Russian ship that was headed just outside of Cuba within, and they found missiles on them.",
+    "good-translation": "Nun, am nächsten Tag blockierte natürlich Präsident Kennedy Kuba und, äh, unsere Schiffe stoppten ein russisches Schiff, das außerhalb Kubas segelte, und sie fanden Waffen darauf.",
+    "incorrect-translation": "Nun, am nächsten Tag blockierte natürlich Präsident Kennedy Kuba und, äh, unsere Schiffe stoppten ein russisches Schiff, das außerhalb Kubas segelte, und sie fanden Schwerter darauf.",
+    "reference": "Nun, am nächsten Tag blockierte natürlich Präsident Kennedy Kuba und, äh, unsere Schiffe stoppten ein russisches Schiff, das außerhalb von Kuba unterwegs war, und sie fanden Raketen auf diesem.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            165,
+            171
+          ],
+          "token": "Waffen"
+        },
+        "in_bad": {
+          "token_index": [
+            24
+          ],
+          "character_span": [
+            165,
+            174
+          ],
+          "token": "Schwerter"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24605": {
+    "source": "and uh gosh sticks in my mind he paid eighteen hundred dollars for a parrot and that was just mind boggling.",
+    "good-translation": "und, oh ja, ich bekomme es nicht aus dem Kopf, dass er tausendachthundert Dollar für einen Vogel bezahlt hat, das war einfach verrückt.",
+    "incorrect-translation": "und, oh ja, ich bekomme es nicht aus dem Kopf, dass er tausendachthundert Dollar für eine Möve bezahlt hat, das war einfach verrückt.",
+    "reference": "und, oh jee, es geht mir nicht aus dem Kopf, dass er eintausendachthundert Dollar für einen Papageien gezahlt hat, das war einfach irrsinnig.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            85,
+            96
+          ],
+          "token": "einen Vogel"
+        },
+        "in_bad": {
+          "token_index": [
+            15,
+            16
+          ],
+          "character_span": [
+            85,
+            94
+          ],
+          "token": "eine Möve"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24606": {
+    "source": "I told them the dog belonged to my sister.",
+    "good-translation": "Ich sagte ihnen, das Haustier gehöre meiner Schwester.",
+    "incorrect-translation": "Ich sagte ihnen, die Katze gehöre meiner Schwester.",
+    "reference": "Ich habe ihnen gesagt, dass der Hund meiner Schwester gehört.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            3,
+            4
+          ],
+          "character_span": [
+            17,
+            29
+          ],
+          "token": "das Haustier"
+        },
+        "in_bad": {
+          "token_index": [
+            3,
+            4
+          ],
+          "character_span": [
+            17,
+            26
+          ],
+          "token": "die Katze"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24607": {
+    "source": "The Republican National Convention in Houston was in August.",
+    "good-translation": "Im Sommer fand die Republikanische Nationalversammlung in Houston statt.",
+    "incorrect-translation": "Im Juli fand die Republikanische Nationalversammlung in statt.",
+    "reference": "Die republikanische Nationalversammlung in Houston fand im August statt.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            3,
+            7
+          ],
+          "token": "Juli"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": null,
+          "character_span": [
+            3,
+            9
+          ],
+          "token": "Sommer"
+        },
+        "in_bad": null
+      },
+      {
+        "in_good": {
+          "token_index": null,
+          "character_span": [
+            58,
+            65
+          ],
+          "token": "Houston"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "24608": {
+    "source": "I went to my sisters' that lived there.",
+    "good-translation": "Ich ging zu meinen Geschwistern, die dort lebten.",
+    "incorrect-translation": "Ich ging zu meinen Brüdern, die dort lebten.",
+    "reference": "Ich bin zu meinen Schwestern gegangen, die dort gewohnt hat.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            19,
+            31
+          ],
+          "token": "Geschwistern"
+        },
+        "in_bad": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            19,
+            26
+          ],
+          "token": "Brüdern"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24609": {
+    "source": "They have to go through a number of altitude chambers, uh, rides before they start even flying U2's or flying with pressure suits.",
+    "good-translation": "Sie müssen durch zahlreiche Luftdruckkammern, eh, Fahrten, bevor sie überhaupt Spionageflugzeuge fliegen oder in einem Druckanzug fliegen.",
+    "incorrect-translation": "Sie müssen durch zahlreiche Luftdruckkammern, eh, Fahrten, bevor sie überhaupt SR-71s fliegen oder in einem Druckanzug fliegen.",
+    "reference": "Sie müssen durch zahlreiche Luftdruckkammern, eh, Fahrten gehen, ehe sie überhaupt U2's fliegen oder mit Druckanzug fliegen.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            79,
+            96
+          ],
+          "token": "Spionageflugzeuge"
+        },
+        "in_bad": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            79,
+            85
+          ],
+          "token": "SR-71s"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24610": {
+    "source": "Well it got to where there's two or three planes arrive in a week and I didn't know where they're flying to.",
+    "good-translation": "Jetzt kam es so weit, dass zwei oder drei Flugobjekte pro Woche ankamen und ich nicht wusste, wohin sie flogen.",
+    "incorrect-translation": "Jetzt kam es so weit, dass zwei oder drei Helikopter pro Woche ankamen und ich nicht wusste, wohin sie flogen.",
+    "reference": "Nun es kam soweit, dass zwei oder drei Flugzeuge pro Woche ankamen und ich nicht wusste, wohin sie flogen.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            42,
+            53
+          ],
+          "token": "Flugobjekte"
+        },
+        "in_bad": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            42,
+            52
+          ],
+          "token": "Helikopter"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24611": {
+    "source": "The girl that can help me is all the way across town.",
+    "good-translation": "Die Person, die mir helfen kann, ist am anderen Ende der Stadt.",
+    "incorrect-translation": "Der Typ, die mir helfen kann, ist am anderen Ende der Stadt.",
+    "reference": "Das Mädchen, das mir helfen kann, ist auf der anderen Seite der Stadt.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            0,
+            1
+          ],
+          "character_span": [
+            0,
+            10
+          ],
+          "token": "Die Person"
+        },
+        "in_bad": {
+          "token_index": [
+            0,
+            1
+          ],
+          "character_span": [
+            0,
+            7
+          ],
+          "token": "Der Typ"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24612": {
+    "source": "There is a rash that comes along with some STIs.",
+    "good-translation": "Es gibt einen Ausschlag, der mit einigen Infektionen verbunden ist.",
+    "incorrect-translation": "Es gibt einen Hautausschlag, der mit einigen Prionenerkrankungen in Verbindung gebracht wird.",
+    "reference": "Es gibt einen Ausschlag, der mit einigen Geschlechtskrankheiten einhergeht.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            14,
+            27
+          ],
+          "token": "Hautausschlag"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            45,
+            92
+          ],
+          "token": "Prionenerkrankungen in Verbindung gebracht wird"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": null,
+          "character_span": [
+            14,
+            23
+          ],
+          "token": "Ausschlag"
+        },
+        "in_bad": null
+      },
+      {
+        "in_good": {
+          "token_index": null,
+          "character_span": [
+            41,
+            66
+          ],
+          "token": "Infektionen verbunden ist"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "24613": {
+    "source": "Meredith's daughter, Sonja cried and thrashed about.",
+    "good-translation": "Merediths Kind Sonja weinte und schlug um sich.",
+    "incorrect-translation": "Merediths Sohn Sonja weinte und schlug um sich.",
+    "reference": "Merediths Tochter Sonja weinte und schlug um sich.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            10,
+            14
+          ],
+          "token": "Kind"
+        },
+        "in_bad": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            10,
+            14
+          ],
+          "token": "Sohn"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24614": {
+    "source": "Amsterdam has many facets, almost as many as the diamonds for which the city is famous.",
+    "good-translation": "Amsterdam hat viele Facetten, fast so viele wie die Edelsteine, für die die Stadt bekannt ist.",
+    "incorrect-translation": "Amsterdam hat viele Facetten, fast so viele wie die Smaragde, für die die Stadt bekannt ist.",
+    "reference": "Amsterdam hat viele Facetten, fast genauso viele wie die Diamanten, für die die Stadt bekannt ist.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            52,
+            62
+          ],
+          "token": "Edelsteine"
+        },
+        "in_bad": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            52,
+            60
+          ],
+          "token": "Smaragde"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "24615": {
+    "source": "I want to know, are they often in England?",
+    "good-translation": "Ich möchte wissen, sind Sie oft in Großbritannien?",
+    "incorrect-translation": "Ich möchte wissen, sind Sie oft in Schottland?",
+    "reference": "Ich möchte wissen, sind sie oft in England?",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            7
+          ],
+          "character_span": [
+            35,
+            49
+          ],
+          "token": "Großbritannien"
+        },
+        "in_bad": {
+          "token_index": [
+            7
+          ],
+          "character_span": [
+            35,
+            45
+          ],
+          "token": "Schottland"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  }
+}

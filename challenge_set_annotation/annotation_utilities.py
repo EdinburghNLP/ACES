@@ -437,3 +437,10 @@ def detokenize_text(sentence, lang='en'):
         mapping[d_id] = i 
     mapping[len(detokenized)] = len(sentence)       
     return detokenized, mapping
+
+# If same ref and incorrect sentence was annotated before then just copy the annotation
+def check_seen_before(sample, annotations):
+    for annotated_sample in annotations.values():
+        if annotated_sample["reference"] == sample["reference"] and annotated_sample["incorrect-translation"] == sample["incorrect-translation"]:
+              return (annotated_sample["annotation"], annotated_sample["method"])
+    return None
