@@ -13,6 +13,18 @@
           - ./annotations/subset.json
     </py-env>
   </head>
+  <style>
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  </style>
   <body>
     <py-title>Compare Annotations</py-title>
     <label for="myfile">Select a file:</label>
@@ -58,11 +70,28 @@
                     document.getElementById("debug").innerHTML += "error!!!\n"
                 if res == -1:
                     document.getElementById("debug").innerHTML += "DONE!!"
+                else:
+                    vis_item(res)
+
+        def next(*args, **kwargs):
+            try:
+                res = annotations_obj.next()
+            except:
+                document.getElementById("debug").innerHTML += "Error in next function<br />"
+            if res == -1:
+                document.getElementById("debug").innerHTML += "In next: samples finished<br />"
+            else:
                 vis_item(res)
 
-        def next():
-            print("hereeee")
-        
+        def back(*args, **kwargs):
+            try:
+                res = annotations_obj.back()
+            except:
+                document.getElementById("debug").innerHTML += "Error in back function<br />"
+            if res == -1:
+                document.getElementById("debug").innerHTML += "In back: cant go more back<br />"
+            else:
+                vis_item(res)
         
         def main():
             # Create a Python proxy for the callback function
@@ -72,13 +101,21 @@
             # Set the listener to the callback
             e = document.getElementById("myfile")
             e.addEventListener("change", file_event, False)
+            
+            next_button_proxy = create_proxy(next)
+            e = document.getElementById("next_button")
+            e.addEventListener("click", next_button_proxy)
+
+            back_button_proxy = create_proxy(back)
+            e = document.getElementById("back_button")
+            e.addEventListener("click", back_button_proxy)
 
         main()
 </py-script>
 
 <div id="raw">
     <p>Sample</p>
-    <div style="border:5px inset #c7299a;cursor:text;height:200px;overflow:auto;resize:both">
+    <div style="border:5px inset #c7299a;cursor:text;height:120px;overflow:auto;resize:both">
         <div id="out_raw">
     </div>
 </div>
@@ -116,22 +153,16 @@
     </div>
 </py-box>
 
-<button id = "next" class = "btn btn-primary" type = "submit" pys-onClick="next_tmp">Next</button>
-
 <py-script>          
-    def next_tmp(*args, **kwargs):
-        print("hereee")
+
 </py-script>
 
 <py-box widths="1/2;1/2">
     <div>
-        <button type="button" id="next">Next</button>
+        <button class="button" type="button" id="back_button">Back</button> 
     </div>
     <div>
-        <py-button label="Back" styles="btn big">
-            def on_click(event):
-                print(event)
-        </py-button>
+        <button class="button" type="button" id="next_button">Next</button> 
     </div>
 </py-box>
 

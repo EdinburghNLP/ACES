@@ -356,12 +356,14 @@ def whole_sentence(good, bad):
 # if we have multiple word spans next to each other, then concatenate them in one span.
 # no need for this when we have token_index: None or token_index:list because then it is already one big span
 # also make sure token_index is a list for all changes
+"""
 def standardize_annotation(change, good, bad, maps=None, original=None):
+    print("here")
     skip = False
     for c in change:
-        if (c['in_good'] != None and (c['in_good']['token_index'] == None or type(c['in_good']['token_index'])==list))\
-            or (c['in_bad'] != None and (c['in_bad']['token_index'] == None or type(c['in_bad']['token_index'])==list))\
-            or c['in_good'] == None or c['in_bad'] == None:
+        if (c['in_good'] != None and (c['in_good']['token_index'] == None or (type(c['in_good']['token_index'])==list and len(c['in_good']['token_index']) > 1)))\
+        or (c['in_bad'] != None and (c['in_bad']['token_index'] == None or (type(c['in_bad']['token_index'])==list and len(c['in_bad']['token_index']) > 1)))\
+        or c['in_good'] == None or c['in_bad'] == None:
             skip = True
             logger.debug("first check")
             break
@@ -380,6 +382,10 @@ def standardize_annotation(change, good, bad, maps=None, original=None):
     for c in change:
         g = c['in_good']
         b = c['in_bad']
+        if type(g['token_index']) == list:
+            g['token_index'] = g['token_index'][0]
+        if type(b['token_index']) == list:
+            b['token_index'] = b['token_index'][0]
         if len(good_tokens) == 0 and len(bad_tokens) == 0:
             good_tokens.append(g['token_index'])
             bad_tokens.append(b['token_index'])
@@ -418,6 +424,77 @@ def standardize_annotation(change, good, bad, maps=None, original=None):
             c["in_good"]['token'] = good_og[c["in_good"]['character_span'][0]:c["in_good"]['character_span'][1]]
             c["in_bad"]['token'] = bad_og[c["in_bad"]['character_span'][0]:c["in_bad"]['character_span'][1]]
         
+    return change_new
+"""
+def standardize_annotation(change, good, bad, maps=None, original=None):
+    change_tmp = copy.deepcopy(change)
+    if maps != None:
+        good_mapping, bad_mapping = maps[0], maps[1]
+        good_og, bad_og = original[0], original[1]
+        for c in change_tmp:
+            c["in_good"]['character_span'] = (good_mapping[c["in_good"]['character_span'][0]], good_mapping[c["in_good"]['character_span'][1]])
+            c["in_bad"]['character_span'] = (bad_mapping[c["in_bad"]['character_span'][0]], bad_mapping[c["in_bad"]['character_span'][1]])
+            c["in_good"]['token'] = good_og[c["in_good"]['character_span'][0]:c["in_good"]['character_span'][1]]
+            c["in_bad"]['token'] = bad_og[c["in_bad"]['character_span'][0]:c["in_bad"]['character_span'][1]]
+        
+    skip = False
+    for c in change_tmp:
+        if (c['in_good'] != None and (c['in_good']['token_index'] == None or (type(c['in_good']['token_index'])==list and len(c['in_good']['token_index']) > 1)))\
+        or (c['in_bad'] != None and (c['in_bad']['token_index'] == None or (type(c['in_bad']['token_index'])==list and len(c['in_bad']['token_index']) > 1)))\
+        or c['in_good'] == None or c['in_bad'] == None:
+            skip = True
+            logger.debug("first check")
+            break
+    if skip:   # if skipping then change all the integer token indices to lists
+        for c in change_tmp:
+            if c['in_good'] != None and c['in_good']['token_index'] != None and type(c['in_good']['token_index']) != list:
+                c['in_good']['token_index'] = [c['in_good']['token_index']]
+            if c['in_bad'] != None and c['in_bad']['token_index'] != None and type(c['in_bad']['token_index']) != list:
+                c['in_bad']['token_index'] = [c['in_bad']['token_index']]
+        print("here")
+        return change_tmp
+    good_tokens = []
+    bad_tokens = []
+    good_span = ()   # char span
+    bad_span = ()
+    change_new = []
+    for c in change_tmp:
+        g = c['in_good']
+        b = c['in_bad']
+        if type(g['token_index']) == list:
+            g['token_index'] = g['token_index'][0]
+        if type(b['token_index']) == list:
+            b['token_index'] = b['token_index'][0]
+        if len(good_tokens) == 0 and len(bad_tokens) == 0:
+            good_tokens.append(g['token_index'])
+            bad_tokens.append(b['token_index'])
+            good_span = g['character_span']
+            bad_span = b['character_span']
+        elif g['token_index'] == good_tokens[-1] + 1 and b['token_index'] == bad_tokens[-1] + 1:
+            good_tokens.append(g['token_index'])
+            bad_tokens.append(b['token_index'])
+            good_span = (good_span[0], g['character_span'][1])
+            bad_span = (bad_span[0], b['character_span'][1])
+        else:
+            change_new.append({'in_good': {'token_index': good_tokens,
+                        'character_span': good_span,
+                        'token': good[good_span[0]:good_span[1]]}, 
+                    'in_bad': {'token_index': bad_tokens,
+                        'character_span': bad_span,
+                        'token': bad[bad_span[0]:bad_span[1]]}})
+            good_tokens = [g['token_index']]
+            bad_tokens = [b['token_index']]
+            good_span = g['character_span']
+            bad_span = b['character_span']
+
+    change_new.append({'in_good': {'token_index': good_tokens,
+                        'character_span': good_span,
+                        'token': good[good_span[0]:good_span[1]]}, 
+                    'in_bad': {'token_index': bad_tokens,
+                        'character_span': bad_span,
+                        'token': bad[bad_span[0]:bad_span[1]]}})
+    
+    
     return change_new
 
 # return detokenized sentence, and the ids of the removed spaces
