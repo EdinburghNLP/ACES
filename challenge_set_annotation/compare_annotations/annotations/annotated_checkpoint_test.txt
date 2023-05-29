@@ -1,0 +1,79 @@
+{
+  "19572": {
+    "source": "Ottawa is Canada's charming, bilingual capital and features an array of art galleries and museums that showcase Canada's past and present.",
+    "good-translation": "Ottawa ist Kanadas charmante, zweisprachige Hauptstadt und bietet eine Reihe von Kunstgalerien und Museen, die Kanadas Vergangenheit und Gegenwart zeigen.",
+    "incorrect-translation": "Ottawa ist Kanadas charmante Hauptstadt und bietet eine Reihe von zweisprachigen Kunstgalerien und Museen, die Kanadas Vergangenheit und Gegenwart zeigen.",
+    "reference": "Ottawa ist Kanadas bezaubernde, zweisprachige Hauptstadt und zeichnet sich durch eine Reihe von Kunstgalerien und Museen aus, die Kanadas Vergangenheit und Gegenwart präsentieren.",
+    "phenomena": "ordering-mismatch",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            66,
+            80
+          ],
+          "token": "zweisprachigen"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": null,
+          "character_span": [
+            28,
+            43
+          ],
+          "token": ", zweisprachige"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "24607": {
+    "source": "The Republican National Convention in Houston was in August.",
+    "good-translation": "Im Sommer fand die Republikanische Nationalversammlung in Houston statt.",
+    "incorrect-translation": "Im Juli fand die Republikanische Nationalversammlung in statt.",
+    "reference": "Die republikanische Nationalversammlung in Houston fand im August statt.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            3,
+            7
+          ],
+          "token": "Juli"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": null,
+          "character_span": [
+            3,
+            9
+          ],
+          "token": "Sommer"
+        },
+        "in_bad": null
+      },
+      {
+        "in_good": {
+          "token_index": null,
+          "character_span": [
+            58,
+            65
+          ],
+          "token": "Houston"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "manual annotation"
+  }
+}
