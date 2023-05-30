@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from quantulum3 import parser
-import difflib, re
+import difflib, re, copy
 import numpy as np
 np.random.seed(42)
 
@@ -432,33 +432,34 @@ def standardize_annotation(change, good, bad, maps=None, original=None):
         good_mapping, bad_mapping = maps[0], maps[1]
         good_og, bad_og = original[0], original[1]
         for c in change_tmp:
-            c["in_good"]['character_span'] = (good_mapping[c["in_good"]['character_span'][0]], good_mapping[c["in_good"]['character_span'][1]])
-            c["in_bad"]['character_span'] = (bad_mapping[c["in_bad"]['character_span'][0]], bad_mapping[c["in_bad"]['character_span'][1]])
-            c["in_good"]['token'] = good_og[c["in_good"]['character_span'][0]:c["in_good"]['character_span'][1]]
-            c["in_bad"]['token'] = bad_og[c["in_bad"]['character_span'][0]:c["in_bad"]['character_span'][1]]
+            if c["in_good"] != None:
+                c["in_good"]['character_span'] = (good_mapping[c["in_good"]['character_span'][0]], good_mapping[c["in_good"]['character_span'][1]])
+                c["in_good"]['token'] = good_og[c["in_good"]['character_span'][0]:c["in_good"]['character_span'][1]]
+            if c["in_bad"] != None:
+                c["in_bad"]['character_span'] = (bad_mapping[c["in_bad"]['character_span'][0]], bad_mapping[c["in_bad"]['character_span'][1]])
+                c["in_bad"]['token'] = bad_og[c["in_bad"]['character_span'][0]:c["in_bad"]['character_span'][1]]
         
     skip = False
-    for c in change_tmp:
-        if (c['in_good'] != None and (c['in_good']['token_index'] == None or (type(c['in_good']['token_index'])==list and len(c['in_good']['token_index']) > 1)))\
-        or (c['in_bad'] != None and (c['in_bad']['token_index'] == None or (type(c['in_bad']['token_index'])==list and len(c['in_bad']['token_index']) > 1)))\
-        or c['in_good'] == None or c['in_bad'] == None:
+    for c in change:
+        if c['in_good'] == None or c['in_bad'] == None \
+        or c['in_good']['token_index'] == None or (type(c['in_good']['token_index'])==list and len(c['in_good']['token_index']) > 1)\
+        or c['in_bad']['token_index'] == None or (type(c['in_bad']['token_index'])==list and len(c['in_bad']['token_index']) > 1):
             skip = True
             logger.debug("first check")
             break
     if skip:   # if skipping then change all the integer token indices to lists
-        for c in change_tmp:
+        for c in change:
             if c['in_good'] != None and c['in_good']['token_index'] != None and type(c['in_good']['token_index']) != list:
                 c['in_good']['token_index'] = [c['in_good']['token_index']]
             if c['in_bad'] != None and c['in_bad']['token_index'] != None and type(c['in_bad']['token_index']) != list:
                 c['in_bad']['token_index'] = [c['in_bad']['token_index']]
-        print("here")
-        return change_tmp
+        return change
     good_tokens = []
     bad_tokens = []
     good_span = ()   # char span
     bad_span = ()
     change_new = []
-    for c in change_tmp:
+    for c in change:
         g = c['in_good']
         b = c['in_bad']
         if type(g['token_index']) == list:
@@ -493,8 +494,6 @@ def standardize_annotation(change, good, bad, maps=None, original=None):
                     'in_bad': {'token_index': bad_tokens,
                         'character_span': bad_span,
                         'token': bad[bad_span[0]:bad_span[1]]}})
-    
-    
     return change_new
 
 # return detokenized sentence, and the ids of the removed spaces
