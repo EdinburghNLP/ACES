@@ -24,14 +24,27 @@
     display: inline-block;
     font-size: 16px;
   }
+  mark1 { 
+    background-color: #f9b4cf;
+    color: black;
+  }
+  mark2 { 
+    background-color: #bad8a6;
+    color: black;
+  }
+  mark3 { 
+    background-color: #ecdeb5;
+    color: black;
+  }
+  mark4 { 
+    background-color: #72bfef;
+    color: black;
+  }
   </style>
   <body>
-    <py-title>Compare Annotations</py-title>
     <label for="myfile">Select a file:</label>
     <input type="file" id="myfile" name="myfile">
-    <br />
     <div id="print_output"></div>
-    <br />
     <py-script output="print_output">
         import asyncio
         from js import document, FileReader
@@ -45,16 +58,9 @@
         annotations_obj = Annotations("./subset.json")
 
         def vis_item(res):
-            document.getElementById("debug").innerHTML += "here!!\n"
             document.getElementById("out_raw").innerHTML = res[0]
             for i in range(1, len(res)):
-                if res[i] != "-":
-                    ref, good, bad, spans = res[i]
-                    text = "\nReference: {}\nGood translation: {}\nIncorrect translation: {}".format(ref, good, bad)
-                else:
-                    text = res[i]
-                document.getElementById("out"+str(i)).innerHTML = text
-            document.getElementById("debug").innerHTML += "vis_item successfull!!\n"
+                document.getElementById("out"+str(i)).innerHTML = res[i]
 
         async def process_file(event):
             fileList = event.target.files.to_py()
@@ -67,9 +73,9 @@
                     else:
                         res = annotations_obj.next()
                 except:
-                    document.getElementById("debug").innerHTML += "error!!!\n"
+                    print("Error in adding data or get_item!!")
                 if res == -1:
-                    document.getElementById("debug").innerHTML += "DONE!!"
+                    document.getElementById("out_raw").innerHTML = "That's all the samples!"
                 else:
                     vis_item(res)
 
@@ -77,9 +83,9 @@
             try:
                 res = annotations_obj.next()
             except:
-                document.getElementById("debug").innerHTML += "Error in next function<br />"
+                print("Error in next function")
             if res == -1:
-                document.getElementById("debug").innerHTML += "In next: samples finished<br />"
+                document.getElementById("out_raw").innerHTML = "That's all the samples!"
             else:
                 vis_item(res)
 
@@ -87,9 +93,9 @@
             try:
                 res = annotations_obj.back()
             except:
-                document.getElementById("debug").innerHTML += "Error in back function<br />"
+                print("Error in back function")
             if res == -1:
-                document.getElementById("debug").innerHTML += "In back: cant go more back<br />"
+                document.getElementById("out_raw").innerHTML = "Can't go back more!"
             else:
                 vis_item(res)
         
@@ -115,7 +121,7 @@
 
 <div id="raw">
     <p>Sample</p>
-    <div style="border:5px inset #c7299a;cursor:text;height:120px;overflow:auto;resize:both">
+    <div style="border:5px inset #c7299a;cursor:text;height:180px;overflow:auto;resize:both">
         <div id="out_raw">
     </div>
 </div>
@@ -123,14 +129,14 @@
 <py-box widths="1/2;1/2">
     <div>
         <p>Annotation 1</p>
-        <div style="border:5px inset #f9b4cf;cursor:text;height:200px;overflow:auto;resize:both">
+        <div style="border:5px inset #f9b4cf;cursor:text;height:100px;overflow:auto;resize:both">
         <div id="out1">
         </div>
         </div>
     </div>
     <div>
         <p>Annotation 2</p>
-        <div style="border:5px inset #bad8a6;cursor:text;height:200px;overflow:auto;resize:both">
+        <div style="border:5px inset #bad8a6;cursor:text;height:100px;overflow:auto;resize:both">
         <div id="out2">
         </div>
         </div>
@@ -139,14 +145,14 @@
 <py-box widths="1/2;1/2">
     <div>
         <p>Annotation 3</p>
-        <div style="border:5px inset #ecdeb5;cursor:text;height:200px;overflow:auto;resize:both">
+        <div style="border:5px inset #ecdeb5;cursor:text;height:100px;overflow:auto;resize:both">
         <div id="out3">
         </div>
         </div>
     </div>
     <div>
         <p>Annotation 4</p>
-        <div style="border:5px inset #72bfef;cursor:text;height:200px;overflow:auto; resize:both">
+        <div style="border:5px inset #72bfef;cursor:text;height:100px;overflow:auto; resize:both">
         <div id="out4">
         </div>
         </div>
@@ -166,11 +172,5 @@
     </div>
 </py-box>
 
-
-<p>Debugger:</p>
-    <div style="border:2px inset #AAA;cursor:text;height:120px;overflow:auto;width:600px; resize:both">
-      <div id="debug">
-      </div>
-    </div>
 </body>
 </html>

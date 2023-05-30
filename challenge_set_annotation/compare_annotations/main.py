@@ -35,15 +35,24 @@ class Annotations(object):
         sample = self.raw[key]
         raw_text = "Reference: {}<br />Good translation: {}<br>Incorrect translation: {}<br />Phenomenon: {}".format(sample["reference"], sample["good-translation"], sample["incorrect-translation"], sample["phenomena"])
         res[0] = raw_text
+        print(raw_text)
         for i,f in enumerate(self.files):
             if f != {} and key in f:
                 sample = f[key]
                 annotations = sample["annotation"]
-                spans = []
+                bad = sample["incorrect-translation"]
+                bad_new = bad
+                n_spans = 0
+                m1 = "<mark"+str(i+1)+">"
+                m2 = "</mark"+str(i+1)+">"
+                m_len = len(m1) + len(m2)
                 for annotation in annotations:
                     if annotation["in_bad"] != None:
-                        spans.append(annotation["in_bad"]["character_span"])
-                res[i+1] = [sample["reference"], sample["good-translation"], sample["incorrect-translation"], spans]
+                        span = annotation["in_bad"]["character_span"]
+                        indices = (span[0]+n_spans*m_len, span[1]+n_spans*m_len)
+                        bad_new = bad_new[:indices[0]] + m1 + bad_new[indices[0]:indices[1]] + m2 + bad_new[indices[1]:]
+                        n_spans += 1
+                res[i+1] = "Incorrect: "+bad_new
         return res
     
     def next(self):
