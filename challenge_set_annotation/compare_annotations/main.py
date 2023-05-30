@@ -52,7 +52,7 @@ class Annotations(object):
                         indices = (span[0]+n_spans*m_len, span[1]+n_spans*m_len)
                         bad_new = bad_new[:indices[0]] + m1 + bad_new[indices[0]:indices[1]] + m2 + bad_new[indices[1]:]
                         n_spans += 1
-                res[i+1] = "Incorrect: "+bad_new
+                res[i+1] = bad_new
         return res
     
     def next(self):
