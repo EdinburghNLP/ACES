@@ -16,7 +16,10 @@ class Annotations(object):
         print("in add ")
         for i,f in enumerate(self.files):
             if f == {}:
-                self.files[i] = json.loads(data)
+                # change all to string
+                annotations = json.loads(data)
+                annotations = {int(k):v for k,v in annotations.items()}
+                self.files[i] = annotations
                 print("add succesful")
                 return 
         

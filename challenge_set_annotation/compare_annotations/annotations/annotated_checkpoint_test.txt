@@ -1,5 +1,5 @@
 {
-  "19572": {
+  19572: {
     "source": "Ottawa is Canada's charming, bilingual capital and features an array of art galleries and museums that showcase Canada's past and present.",
     "good-translation": "Ottawa ist Kanadas charmante, zweisprachige Hauptstadt und bietet eine Reihe von Kunstgalerien und Museen, die Kanadas Vergangenheit und Gegenwart zeigen.",
     "incorrect-translation": "Ottawa ist Kanadas charmante Hauptstadt und bietet eine Reihe von zweisprachigen Kunstgalerien und Museen, die Kanadas Vergangenheit und Gegenwart zeigen.",
