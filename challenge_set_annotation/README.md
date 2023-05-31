@@ -63,9 +63,9 @@ Run the process_dataset.py script and generate annotated.txt and stats.txt files
 
     cd folder
     source .env/bin/activate
-    python ACES_private/challenge_set_annotation/process_dataset.py
+    python ACES_private/challenge_set_annotation/process_dataset.py -d False
 
-Or run the process_dataset.py script using the detokenize option:
+Or run the process_dataset.py script using the detokenize option (this option will annotate the detokenized sentences, but then map the annotations back to the original so at the end we will have the original data):
 
     python ACES_private/challenge_set_annotation/process_dataset.py -d True
 
