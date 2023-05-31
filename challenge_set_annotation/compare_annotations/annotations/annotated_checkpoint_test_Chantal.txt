@@ -1,0 +1,2904 @@
+{
+  "19572": {
+    "source": "Ottawa is Canada's charming, bilingual capital and features an array of art galleries and museums that showcase Canada's past and present.",
+    "good-translation": "Ottawa ist Kanadas charmante, zweisprachige Hauptstadt und bietet eine Reihe von Kunstgalerien und Museen, die Kanadas Vergangenheit und Gegenwart zeigen.",
+    "incorrect-translation": "Ottawa ist Kanadas charmante Hauptstadt und bietet eine Reihe von zweisprachigen Kunstgalerien und Museen, die Kanadas Vergangenheit und Gegenwart zeigen.",
+    "reference": "Ottawa ist Kanadas bezaubernde, zweisprachige Hauptstadt und zeichnet sich durch eine Reihe von Kunstgalerien und Museen aus, die Kanadas Vergangenheit und Gegenwart präsentieren.",
+    "phenomena": "ordering-mismatch",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            66,
+            80
+          ],
+          "token": "zweisprachigen"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "25385": {
+    "source": "Le pont devrait être pleinement opérationnel en septembre 2017, date à laquelle devraient être achevés les postes de contrôle des douanes brésiliennes.",
+    "good-translation": "Die Brücke wird voraussichtlich im September 2017 voll funktionsfähig sein, als die brasilianischen Zollkontrollstellen fertiggestellt werden sollen.",
+    "incorrect-translation": "Die brasilianische Brücke wird voraussichtlich im September 2017 voll funktionsfähig sein, als die Zollkontrollstellen fertiggestellt werden sollen.",
+    "reference": "Die Brücke soll im September 2017 vollständig den Betrieb aufnehmen. Es wird erwartet, dass die brasilianischen Zollkontrollpunkte dann fertig gestellt sein werden.",
+    "phenomena": "ordering-mismatch",
+    "langpair": "fr-de",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            4,
+            18
+          ],
+          "token": "brasilianische"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "24607": {
+    "source": "The Republican National Convention in Houston was in August.",
+    "good-translation": "Im Sommer fand die Republikanische Nationalversammlung in Houston statt.",
+    "incorrect-translation": "Im Juli fand die Republikanische Nationalversammlung in statt.",
+    "reference": "Die republikanische Nationalversammlung in Houston fand im August statt.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            3,
+            7
+          ],
+          "token": "Juli"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            56,
+            56
+          ],
+          "token": ""
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "24612": {
+    "source": "There is a rash that comes along with some STIs.",
+    "good-translation": "Es gibt einen Ausschlag, der mit einigen Infektionen verbunden ist.",
+    "incorrect-translation": "Es gibt einen Hautausschlag, der mit einigen Prionenerkrankungen in Verbindung gebracht wird.",
+    "reference": "Es gibt einen Ausschlag, der mit einigen Geschlechtskrankheiten einhergeht.",
+    "phenomena": "real-world-knowledge-hypernym-vs-distractor",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            14,
+            27
+          ],
+          "token": "Hautausschlag"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            45,
+            64
+          ],
+          "token": "Prionenerkrankungen"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "18901": {
+    "source": "James moved the wheel over the apple and crushed it because it is soft.",
+    "good-translation": "James bewegte das Rad über den Apfel und zerdrückte ihn, weil er weich ist.",
+    "incorrect-translation": "James bewegte das Rad über den Apfel und zerdrückte ihn, weil das Rad weich ist.",
+    "reference": "James bewegte das Rad über den Apfel und zerdrückte ihn, weil der Apfel weich ist.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            11
+          ],
+          "character_span": [
+            62,
+            64
+          ],
+          "token": "er"
+        },
+        "in_bad": {
+          "token_index": [
+            11,
+            12
+          ],
+          "character_span": [
+            62,
+            69
+          ],
+          "token": "das Rad"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "18897": {
+    "source": "The woman moved her chair from the deck to the patio because it was shaded.",
+    "good-translation": "Die Frau schob ihren Stuhl vom Deck auf die Terrasse, weil sie beschattet war.",
+    "incorrect-translation": "Die Frau schob ihren Stuhl vom Deck auf die Terrasse, weil das Deck beschattet war.",
+    "reference": "Die Frau schob ihren Stuhl vom Deck auf die Terrasse, weil die Terrasse beschattet war.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            11
+          ],
+          "character_span": [
+            59,
+            62
+          ],
+          "token": "sie"
+        },
+        "in_bad": {
+          "token_index": [
+            11,
+            12
+          ],
+          "character_span": [
+            59,
+            67
+          ],
+          "token": "das Deck"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1100": {
+    "source": "Susan made the decision of getting in an airplane instead of train to go to Miami because it travels fast.",
+    "good-translation": "Susan a pris la décision de monter dans un avion au lieu du train pour aller à Miami parce qu'il voyage rapidement.",
+    "incorrect-translation": "Susan a pris la décision de monter dans un avion au lieu du train pour se rendre à Miami parce que le train voyage vite.",
+    "reference": "Susan a pris la décision de monter dans un avion au lieu du train pour se rendre à Miami parce que l' avion voyage vite.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            21
+          ],
+          "character_span": [
+            99,
+            106
+          ],
+          "token": "l'avion"
+        },
+        "in_bad": {
+          "token_index": [
+            21,
+            22
+          ],
+          "character_span": [
+            99,
+            107
+          ],
+          "token": "le train"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "18827": {
+    "source": "The pair of movers were able to bring the bed inside the apartment and left the couch in the truck because it was too heavy.",
+    "good-translation": "Die beiden Umzugsunternehmen konnten das Bett in die Wohnung bringen und ließen die Couch im Lastwagen, weil die Couch zu schwer war.",
+    "incorrect-translation": "Die beiden Umzugsunternehmen konnten das Bett in die Wohnung bringen und ließen die Couch im Lastwagen, weil es zu schwer war.",
+    "reference": "Die beiden Umzugsunternehmen konnten das Bett in die Wohnung bringen und ließen die Couch im Lastwagen, weil sie zu schwer war.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            109,
+            112
+          ],
+          "token": "sie"
+        },
+        "in_bad": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            109,
+            111
+          ],
+          "token": "es"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "1160": {
+    "source": "The giant hamburger was placed into the microwave on the counter because it was cold.",
+    "good-translation": "Le hamburger géant a été placé dans le micro-ondes sur le comptoir parce qu'il faisait froid.",
+    "incorrect-translation": "Le hamburger géant a été placé dans le micro-ondes sur le comptoir car le micro-ondes était froid.",
+    "reference": "Le hamburger géant a été placé dans le micro-ondes sur le comptoir car le hamburger était froid.",
+    "phenomena": "coreference-based-on-commonsense",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            74,
+            83
+          ],
+          "token": "hamburger"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            74,
+            85
+          ],
+          "token": "micro-ondes"
+        }
+      }
+    ],
+    "method": "mixed_flexible"
+  },
+  "23006": {
+    "source": "LP: The amazing thing about this is this is, I mean, obviously, these are old games, but the system just sees what you see, the pixels, and it has the controls and it has the score, and it's learned to play all of these games, same program.",
+    "good-translation": "LP: Das Erstaunliche daran ist, das ist, ich meine, offensichtlich, das sind alte Spiele, aber das System sieht nur, was Sie sehen, die Pixel, und es hat die Steuerung und es hat die Punktzahl, und es hat gelernt, alle diese Spiele zu spielen, dasselbe Programm.",
+    "incorrect-translation": "LP: Das Erstaunliche daran ist, das ist, ich meine, offensichtlich, das sind alte Spiele, aber das System sieht nur, was Sie sehen, die Pixel, und es hat die Steuerung und hat die Punktzahl, und es hat gelernt, alle diese Spiele zu spielen, dasselbe Programm.",
+    "reference": "LP: Das Faszinierende ist: Das sind zwar offensichtlich alte Computerspiele, aber das System sieht, was du siehst: Pixel. Es hat die Steuerung und den Spielstand. Es hat gelernt, all diese Spiele zu spielen. Dasselbe Programm hat gelernt,",
+    "phenomena": "anaphoric_intra_subject_it:deletion",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            30
+          ],
+          "character_span": [
+            172,
+            174
+          ],
+          "token": "es"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "annotate_word"
+  },
+  "22820": {
+    "source": "LP: The amazing thing about this is this is, I mean, obviously, these are old games, but the system just sees what you see, the pixels, and it has the controls and it has the score, and it's learned to play all of these games, same program.",
+    "good-translation": "LP: das erstaunliche daran ist, das ist, ich meine, natürlich, das sind alte Spiele, aber das System sieht nur, was Sie sehen, die Pixel, und es hat die Kontrollen und es hat die Partitur, und es ist gelernt, alle diese Spiele, das gleiche Programm zu spielen.",
+    "incorrect-translation": "LP: das erstaunliche daran ist, das ist, ich meine, natürlich, das sind alte Spiele, aber das System sieht nur, was Sie sehen, die Pixel, und hat die Kontrollen und es hat die Partitur, und es ist gelernt, alle diese Spiele, das gleiche Programm zu spielen.",
+    "reference": "LP: Das Faszinierende ist: Das sind zwar offensichtlich alte Computerspiele, aber das System sieht, was du siehst: Pixel. Es hat die Steuerung und den Spielstand. Es hat gelernt, all diese Spiele zu spielen. Dasselbe Programm hat gelernt,",
+    "phenomena": "anaphoric_intra_subject_it:deletion",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            25
+          ],
+          "character_span": [
+            142,
+            144
+          ],
+          "token": "es"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "annotate_word"
+  },
+  "22022": {
+    "source": "LP: The amazing thing about this is this is, I mean, obviously, these are old games, but the system just sees what you see, the pixels, and it has the controls and it has the score, and it's learned to play all of these games, same program.",
+    "good-translation": "LP: Das Erstaunliche daran ist das, ich meine natürlich, das sind alte Spiele, aber das System sieht nur, was man sieht, die Pixel, und es hat die Kontrollen und es hat die Partitur, und es ist gelernt, all diese Spiele zu spielen, gleiches Programm.",
+    "incorrect-translation": "LP: Das Erstaunliche daran ist das, ich meine natürlich, das sind alte Spiele, aber das System sieht nur, was man sieht, die Pixel, und es hat die Kontrollen und hat die Partitur, und es ist gelernt, all diese Spiele zu spielen, gleiches Programm.",
+    "reference": "LP: Das Faszinierende ist: Das sind zwar offensichtlich alte Computerspiele, aber das System sieht, was du siehst: Pixel. Es hat die Steuerung und den Spielstand. Es hat gelernt, all diese Spiele zu spielen. Dasselbe Programm hat gelernt,",
+    "phenomena": "anaphoric_intra_subject_it:deletion",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            29
+          ],
+          "character_span": [
+            162,
+            164
+          ],
+          "token": "es"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "annotate_word"
+  },
+  "22776": {
+    "source": "In fact, they've come down in recent years very dramatically indeed, to the point where the cost is now below 1,000 dollars, and it's confidently predicted that by the year 2015 it will be below 100 dollars -- a five or six order of magnitude drop in the cost of genomic mapping in just a 15-year period, an extraordinary phenomenon.",
+    "good-translation": "In der Tat, Sie haben sich in den letzten Jahren sehr dramatisch in der Tat, bis zu dem Punkt, wo die Kosten jetzt unter 1.000 Dollar, und es ist zuversichtlich, dass bis zum Jahr 2015 wird es unter 100 Dollar-ein fünf oder sechs Größenordnung Rückgang der Kosten der genomischen Mapp nur 15 Jahre lang ein außergewöhnliches Phänomen.",
+    "incorrect-translation": "In der Tat, Sie haben sich in den letzten Jahren sehr dramatisch in der Tat, bis zu dem Punkt, wo die Kosten jetzt unter 1.000 Dollar, und es ist zuversichtlich, dass bis zum Jahr 2015 wird unter 100 Dollar-ein fünf oder sechs Größenordnung Rückgang der Kosten der genomischen Mapp nur 15 Jahre lang ein außergewöhnliches Phänomen.",
+    "reference": "Genauer gesagt sind sie in den letzten Jahren sehr drastisch gesunken: Jetzt liegen die Kosten unter 1.000 US-Dollar und wir können vermuten, dass sie bis zum Jahr 2015 unter 100 Dollar liegen werden -- ein Fall um fünf oder sechs Größenordnungen bei den Kosten der genomischen Kartierung in einem Zeitraum von nur 15 Jahren -- ein außergewöhnliches Phänomen.",
+    "phenomena": "anaphoric_intra_subject_it:deletion",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            36
+          ],
+          "character_span": [
+            190,
+            192
+          ],
+          "token": "es"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "annotate_word"
+  },
+  "23516": {
+    "source": "Or I would decide I should have lunch, and then I would think, but I'd have to get the food out and put it on a plate and cut it up and chew it and swallow it, and it felt to me like the Stations of the Cross.",
+    "good-translation": "Oder ich würde entscheiden, ich sollte zu Mittag essen, und dann würde ich denken, aber ich müsste das Essen rausholen und es auf einen Teller legen und es zerschneiden und kauen und schlucken, und es fühlte sich für mich wie die Stationen des Kreuzes.",
+    "incorrect-translation": "Oder ich würde entscheiden, ich sollte zu Mittag essen, und dann würde ich denken, aber ich müsste das Essen rausholen und es auf einen Teller legen und zerschneiden und kauen und schlucken, und es fühlte sich für mich wie die Stationen des Kreuzes.",
+    "reference": "Oder ich entschied zu Mittag zu essen, und dann dachte ich, dass ich dafür das Essen rausholen und es auf einen Teller tun muss, es schneiden und kauen und schlucken muss, und das fühlte sich für mich wie ein Kreuzweg an.",
+    "phenomena": "anaphoric_intra_subject_it:deletion",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            27
+          ],
+          "character_span": [
+            153,
+            155
+          ],
+          "token": "es"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "annotate_word"
+  },
+  "5586": {
+    "source": "Il a été annoncé le 22 décembre 2011 et est sorti en février 2012.",
+    "good-translation": "It was registered on 22 December 2011 and was released in February 2012 .",
+    "incorrect-translation": "Il a été annoncé le 22 décembre 2011 et est sorti en février 2012.",
+    "reference": "It was announced on 22 December 2011 and was released in February 2012 .",
+    "phenomena": "copy-source",
+    "langpair": "fr-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "character_span": [
+            0,
+            72
+          ],
+          "token": "It was registered on 22 December 2011 and was released in February 2012."
+        },
+        "in_bad": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "character_span": [
+            0,
+            66
+          ],
+          "token": "Il a été annoncé le 22 décembre 2011 et est sorti en février 2012."
+        }
+      }
+    ],
+    "method": "whole_sentence"
+  },
+  "10648": {
+    "source": "I golf, i rugby powrócą na Igrzyska Olimpijskie.",
+    "good-translation": "गोल्फ आणि रग्बी दोघेही ओलंपिक खेळाडूमध्ये परत जाणार आहेत.",
+    "incorrect-translation": "I golf, i rugby powrócą na Igrzyska Olimpijskie.",
+    "reference": "गोल्फ आणि रग्बी दोन्ही ऑलिम्पिक गेम्समध्ये पुनरागमन करण्यासाठी तयार आहेत.",
+    "phenomena": "copy-source",
+    "langpair": "pl-mr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "character_span": [
+            0,
+            57
+          ],
+          "token": "गोल्फ आणि रग्बी दोघेही ओलंपिक खेळाडूमध्ये परत जाणार आहेत."
+        },
+        "in_bad": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "character_span": [
+            0,
+            48
+          ],
+          "token": "I golf, i rugby powrócą na Igrzyska Olimpijskie."
+        }
+      }
+    ],
+    "method": "whole_sentence"
+  },
+  "7055": {
+    "source": "Kimin pamuk tarlasında kimin yer paspasında çalışması gerektiği konusunda hem fikir olamadılar.",
+    "good-translation": "They could not agree on who should work in the cotton field and who should work on the floor mat.",
+    "incorrect-translation": "Kimin pamuk tarlasında kimin yer paspasında çalışması gerektiği konusunda hem fikir olamadılar.",
+    "reference": "They couldn't agree who should work in the cotton field and who should mop the floors.",
+    "phenomena": "copy-source",
+    "langpair": "tr-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "character_span": [
+            0,
+            97
+          ],
+          "token": "They could not agree on who should work in the cotton field and who should work on the floor mat."
+        },
+        "in_bad": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "character_span": [
+            0,
+            95
+          ],
+          "token": "Kimin pamuk tarlasında kimin yer paspasında çalışması gerektiği konusunda hem fikir olamadılar."
+        }
+      }
+    ],
+    "method": "whole_sentence"
+  },
+  "10586": {
+    "source": "John Grant z WNED Buffalo (stacji nadającej program Reading Rainbow) powiedział: „Program Reading Rainbow uczył dzieci czytania… miłości do czytania – zachęcał je, by chwytać za książki i czytać”.",
+    "good-translation": "\"जॉन ग्रॅंट, WNED बफॅलो (Read Rainbow's home station) म्हणाले, \"\"Read Rainbow मुलांना वाचण्यासाठी कशाला शिकवतो... वाचण्याचा प्रेम - [शॉट] मुलांना पुस्तक काढण्यासाठी आणि वाचण्यासाठी प्रोत्साहित केले. \"\"\"",
+    "incorrect-translation": "John Grant z WNED Buffalo (stacji nadającej program Reading Rainbow) powiedział: „Program Reading Rainbow uczył dzieci czytania… miłości do czytania – zachęcał je, by chwytać za książki i czytać”.",
+    "reference": "\"WNED बफेलो (इंद्रधनुष्याचे मुख्य स्टेशन वाचणे) मधील जॉन ग्रँट म्हणाले, \"\"इंद्रधनुष्य वाचन मुलांनी का वाचायचे ते शिकवले,... वाचनाची आवड - [कार्यक्रम] मुलांना पुस्तक निवडण्यास आणि वाचण्यास प्रोत्साहित केले.\"\"\"",
+    "phenomena": "copy-source",
+    "langpair": "pl-mr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "character_span": [
+            0,
+            202
+          ],
+          "token": "\"जॉन ग्रॅंट, WNED बफॅलो (Read Rainbow's home station) म्हणाले, \"\"Read Rainbow मुलांना वाचण्यासाठी कशाला शिकवतो... वाचण्याचा प्रेम - [शॉट] मुलांना पुस्तक काढण्यासाठी आणि वाचण्यासाठी प्रोत्साहित केले. \"\"\""
+        },
+        "in_bad": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "character_span": [
+            0,
+            196
+          ],
+          "token": "John Grant z WNED Buffalo (stacji nadającej program Reading Rainbow) powiedział: „Program Reading Rainbow uczył dzieci czytania… miłości do czytania – zachęcał je, by chwytać za książki i czytać”."
+        }
+      }
+    ],
+    "method": "whole_sentence"
+  },
+  "32558": {
+    "source": "Τα παιδιά ήπιαν λίγη σαμπάνια.",
+    "good-translation": "The children drank some champagne.",
+    "incorrect-translation": "Τα παιδιά ήπιαν λίγη σαμπάνια.",
+    "reference": "The kids drank some of the champagne.",
+    "phenomena": "copy-source",
+    "langpair": "el-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "character_span": [
+            0,
+            34
+          ],
+          "token": "The children drank some champagne."
+        },
+        "in_bad": {
+          "token_index": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "character_span": [
+            0,
+            30
+          ],
+          "token": "Τα παιδιά ήπιαν λίγη σαμπάνια."
+        }
+      }
+    ],
+    "method": "whole_sentence"
+  },
+  "6363": {
+    "source": "Il était le cousin du joueur national tchèque Jaroslav Hlinka et le fils de l'ancien joueur Miroslav Hlinka Sr.",
+    "good-translation": "He is the cousin of Jaroslav Hlinka, a Czech national athlete, and the son of Miroslav Hlinka Sr, a former athlete.",
+    "incorrect-translation": "He was the cousin of the Czech national player Miroslav Hlinka and son of former player Jaroslav Hlinka sr.",
+    "reference": "He was the cousin of the Czech national player Jaroslav Hlinka and son of former player Miroslav Hlinka sr.",
+    "phenomena": "lexical-overlap",
+    "langpair": "fr-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            47,
+            55
+          ],
+          "token": "Miroslav"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            88,
+            96
+          ],
+          "token": "Jaroslav"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "7647": {
+    "source": "Su hermano fue el autor Claudio Achillini, y su sobrino nieto, Giovanni Filoteo Achillini (1572-1640), fue abogado.",
+    "good-translation": "Son frère était l'auteur Claudio Achillini, et son grand-nephew, Giovanni Filoteo Achillini ( 1572-1640 ), était un avocat.",
+    "incorrect-translation": "Son frère était l'auteur Giovanni Filoteo Achillini et son petit-neveu, Claudio Achillini (1572-1640), était avocat.",
+    "reference": "Son frère était l'auteur Claudio Achillini et son petit-neveu, Giovanni Filoteo Achillini (1572-1640), était avocat .",
+    "phenomena": "lexical-overlap",
+    "langpair": "es-fr",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            25,
+            41
+          ],
+          "token": "Giovanni Filoteo"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            72,
+            79
+          ],
+          "token": "Claudio"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "32333": {
+    "source": "\"많은 사람들이 그들의 음악을 랩 메탈과 인더스트리얼 메탈에 영향을 많이 받은 얼터너티브 메탈로 여겼고 예전에 한 인터뷰에 따르면 자신을 \"\"머더-롹\"\"이라 자칭했습니다.\"",
+    "good-translation": "Many view their music as an alternative metal affected by rap metals and industrial metals and, according to previous interviews, they call themselves “murder-rock”.",
+    "incorrect-translation": "Their music is considered by many as industrial metal with rap metal and alternative metal influences. According to previous interviews, they consider themselves ``murder rock ''.",
+    "reference": "Their music is considered by many as an alternative metal with rap metal and industrial metal influences, which according to previous interviews call themselves ''murder - rock ``.",
+    "phenomena": "lexical-overlap",
+    "langpair": "ko-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            37,
+            47
+          ],
+          "token": "industrial"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            73,
+            84
+          ],
+          "token": "alternative"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "26606": {
+    "source": "彼はミュージシャンのタル・バックマンの叔父であり、ライダー・バックマンの父親です。",
+    "good-translation": "Il est l'oncle du musicien Tal Bachman et le père de Ryder Bachman.",
+    "incorrect-translation": "Il est l'oncle du musicien Ryder Bachman et père de Tal Bachman.",
+    "reference": "Il est l'oncle du musicien Tal Bachman et père de Ryder Bachman.",
+    "phenomena": "lexical-overlap",
+    "langpair": "ja-fr",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            27,
+            32
+          ],
+          "token": "Ryder"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            52,
+            55
+          ],
+          "token": "Tal"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "7629": {
+    "source": "Su padre murió durante su juventud, y su madre, Catherine A. Fagan, se casó con Samuel Adams en 1842, que luego se convirtió en gobernador de Arkansas dos años más tarde.",
+    "good-translation": "Son père mourut pendant sa jeunesse, et sa mère, Catherine A. Fagan, épousa Samuel Adams en 1842, qui devint plus tard gouverneur d'Arkansas deux ans plus tard.",
+    "incorrect-translation": "Son père est mort quand il était jeune et sa mère, Samuel Adams, a épousé Catherine A. Fagan en 1842, qui est devenue Gouverneure de l'Arkansas deux ans plus tard.",
+    "reference": "Son père est mort quand il était jeune et sa mère, Catherine A. Fagan, a épousé Samuel Adams en 1842, qui est ensuite devenu Gouverneur de l'Arkansas deux ans plus tard.",
+    "phenomena": "lexical-overlap",
+    "langpair": "es-fr",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            51,
+            63
+          ],
+          "token": "Samuel Adams"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            74,
+            92
+          ],
+          "token": "Catherine A. Fagan"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "15381": {
+    "source": "Andere Wissenschaftler argumentieren, dass diese Pflanzen sehr giftig gewesen seien und daher wahrscheinlich kein Dinosaurier sie gefressen haben würde, obwohl heute das Faultier und andere Tiere, z. B. Papageien (die von den Dinosauriern abstammen), durchaus giftige Blätter und Früchte essen können.",
+    "good-translation": "Other scientists argue that these plants were very poisonous, and therefore probably no dinosaur would have eaten them, although today the sloth and other animals, such as parrot (which descended from the dinosaurs), can eat quite poisonous leaves and fruits.",
+    "incorrect-translation": "Other scientists argue that these plants were very poisonous, and therefore probably no dinosaur would have eaten them, although today the lax and other animals, such as parrot (which descended from the dinosaurs), can eat quite poisonous leaves and fruits.",
+    "reference": "Other scientists argue that these plants are very poisonous so it is unlikely that any dinosaur ate them, even though today the sloth and other animals like the parrot (a descendant of the dinosaurs) can eat poisonous leaves or fruit.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            21
+          ],
+          "character_span": [
+            139,
+            144
+          ],
+          "token": "sloth"
+        },
+        "in_bad": {
+          "token_index": [
+            21
+          ],
+          "character_span": [
+            139,
+            142
+          ],
+          "token": "lax"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "25278": {
+    "source": "Les lions sont les chats les plus sociables, vivant en grands groupes appelés meutes.",
+    "good-translation": "Löwen sind die geselligsten Katzen, die in großen Gruppen, sogenannten Rudeln, leben.",
+    "incorrect-translation": "Löwen sind die geselligsten Katzen, die in großen Gruppen, sogenannten Mütten, leben.",
+    "reference": "Löwen sind die sozialsten Katzen. Sie leben in großen Gruppen, die Rudel genannt werden.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "fr-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            71,
+            77
+          ],
+          "token": "Rudeln"
+        },
+        "in_bad": {
+          "token_index": [
+            10
+          ],
+          "character_span": [
+            71,
+            77
+          ],
+          "token": "Mütten"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "25225": {
+    "source": "La lame d'un patin à glace moderne est dotée de deux extrémités avec un creux concave situé entre les deux. Ces deux extrémités permettent une meilleure adhérence à la glace, même lorsqu'elles sont inclinées.",
+    "good-translation": "Das Blatt eines modernen Schlittschuh hat zwei Enden mit einem konkaven Loch zwischen den beiden. Diese beiden Enden ermöglichen eine bessere Haftung am Eis, auch wenn sie geneigt sind.",
+    "incorrect-translation": "Das Blatt eines modernen Eisrades hat zwei Enden mit einem konkaven Loch zwischen den beiden. Diese beiden Enden ermöglichen eine bessere Haftung am Eis, auch wenn sie geneigt sind.",
+    "reference": "Die Kufe an einem modernen Schlittschuh hat eine Doppelkante mit einer konkaven Einbuchtung dazwischen. Die beiden Kanten ermöglichen einen besseren Halt auf dem Eis, selbst wenn sie gekippt werden.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "fr-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            25,
+            37
+          ],
+          "token": "Schlittschuh"
+        },
+        "in_bad": {
+          "token_index": [
+            4
+          ],
+          "character_span": [
+            25,
+            33
+          ],
+          "token": "Eisrades"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "25203": {
+    "source": "Commençons par expliquer la stratégie de l'Italie, « dauphin » principal de l'Allemagne et du Japon.",
+    "good-translation": "\"\"\"Lassen Sie uns zunächst die Strategie von Italien erklären, dem wichtigsten \"\"kleine Bruder\"\" von Deutschland und Japan.\"\"\"",
+    "incorrect-translation": "\"\"\"Lassen Sie uns zunächst die Strategie von Italien erklären, dem wichtigsten \"\"Dolphin\"\" von Deutschland und Japan.\"\"\"",
+    "reference": "Beginnen wir mit einer Erläuterung der italienischen Pläne. Italien war in erster Linie der „kleine Bruder“ von Deutschland und Japan.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "fr-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            11,
+            12
+          ],
+          "character_span": [
+            81,
+            94
+          ],
+          "token": "kleine Bruder"
+        },
+        "in_bad": {
+          "token_index": [
+            11
+          ],
+          "character_span": [
+            81,
+            88
+          ],
+          "token": "Dolphin"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "25275": {
+    "source": "Certains scientifiques pensent que le tricératops mangeait des cycadées, un type de plante qui était très courant pendant la période crétacée.",
+    "good-translation": "Einige Wissenschaftler glauben, dass der Triceratops Palmfarne aß, eine Art Pflanze, die während der Kreidezeit sehr häufig war.",
+    "incorrect-translation": "Einige Wissenschaftler glauben, dass der Triceratops Cycades aß, eine Art Pflanze, die während der Kreta sehr häufig war.",
+    "reference": "Manche Wissenschaftler denken, dass Triceratops Palmfarne fraß. Das ist eine Pflanzenart, die in der Kreidezeit verbreitet war.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "fr-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            53,
+            62
+          ],
+          "token": "Palmfarne"
+        },
+        "in_bad": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            53,
+            60
+          ],
+          "token": "Cycades"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            101,
+            111
+          ],
+          "token": "Kreidezeit"
+        },
+        "in_bad": {
+          "token_index": [
+            14
+          ],
+          "character_span": [
+            99,
+            104
+          ],
+          "token": "Kreta"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "25228": {
+    "source": "Plusieurs endroits à Rotorua offrent des hangis géothermiques, tandis que d’autres hangis peuvent être échantillonnés à Christchurch, Wellington et ailleurs.",
+    "good-translation": "Mehrere Standorte in Rotorua bieten geothermische Hangi, während andere Hangi in Christchurch, Wellington und anderswo getestet werden können.",
+    "incorrect-translation": "Mehrere Standorte in Rotorua bieten geothermische Hängematten, während andere Hängematten in Christchurch, Wellington und anderswo getestet werden können.",
+    "reference": "Mehrere Orte in Rotorua bieten geothermales Hangi an, während anderes Hangi in Christchurch, Wellington und anderswo gekostet werden kann.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "fr-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            50,
+            55
+          ],
+          "token": "Hangi"
+        },
+        "in_bad": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            50,
+            61
+          ],
+          "token": "Hängematten"
+        }
+      },
+      {
+        "in_good": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            72,
+            77
+          ],
+          "token": "Hangi"
+        },
+        "in_bad": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            78,
+            89
+          ],
+          "token": "Hängematten"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "19483": {
+    "source": "They have feet with scales and claws, they lay eggs, and they walk on their two back legs like a T-Rex.",
+    "good-translation": "Sie haben Füße mit Schalen und Nägeln, sie legen Eier und sie gehen auf ihren beiden Hinterbeinen wie ein T-Rex.",
+    "incorrect-translation": "Sie haben Füße mit Schalen und Nägeln, sie legen Eier und sie gehen auf ihren beiden Rückenbeinen wie ein T-Rex.",
+    "reference": "Sie haben Füße mit Schuppen und Krallen, legen Eier und laufen auf beiden Hinterbeinen wie ein Tyrannosaurus rex.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            85,
+            97
+          ],
+          "token": "Hinterbeinen"
+        },
+        "in_bad": {
+          "token_index": [
+            16
+          ],
+          "character_span": [
+            85,
+            97
+          ],
+          "token": "Rückenbeinen"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "25218": {
+    "source": "Mais après avoir perdu le guichet de son capitaine, l'Inde n'a réalisé que 36 courses et perdu sept guichets jusqu'à la fin de la manche.",
+    "good-translation": "Aber nach dem Verlust des Schalters seines Kapitäns machte Indien nur 36 Rennen und verlor bis zum Ende der Runde sieben Schalets.",
+    "incorrect-translation": "Aber nach dem Verlust des Schalters seines Kapitäns machte Indien nur 36 Rennen und verlor bis zum Ende der Runde sieben Schalets.",
+    "reference": "Doch nach dem Verlust des Tors des Kapitäns erzielte Indien nur 36 Runden und verlor 7 Tore, womit die Innings beendet waren.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "fr-de",
+    "annotation": [],
+    "method": "diff_flexible"
+  },
+  "19495": {
+    "source": "Heels should be low and wide. Sand, gravel or salt (calcium chloride) is often scattered on roads or paths to improve traction.",
+    "good-translation": "Sand, Kies oder Salz (Kalziumchlorid) wird oft auf Straßen oder Pfaden verstreut, um die Traktion zu verbessern.",
+    "incorrect-translation": "Sand, Graben oder Salz (Kalziumchlorid) wird oft auf Straßen oder Pfaden verstreut, um die Traktion zu verbessern.",
+    "reference": "Die Absätze sollten niedrig und breit sein. Sand, Kies oder Salz (Calciumchlorid) werden häufig auf Straßen oder Wege gestreut, um die Bodenhaftung zu verbessern.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            6,
+            10
+          ],
+          "token": "Kies"
+        },
+        "in_bad": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            6,
+            12
+          ],
+          "token": "Graben"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "15340": {
+    "source": "Die Tempelfeste in Kerala mit regelmäßigen Umzügen geschmückter Elefanten, Tempelorchester und anderen Festlichkeiten sind sehr interessant zu beobachten,",
+    "good-translation": "The temple festivals in Kerala with regular moves of decorated elephants, temple orchestra and other festivities are very interesting to observe,",
+    "incorrect-translation": "The temple festivals in Kerala with regular moves of decorated elephants, temple chesters and other festivities are very interesting to observe,",
+    "reference": "Kerala's temple festivals are very interesting to see, with regular procession of decorated elephants, temple orchestra and other festivities.",
+    "phenomena": "hallucination-real-data-vs-ref-word",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            12
+          ],
+          "character_span": [
+            81,
+            90
+          ],
+          "token": "orchestra"
+        },
+        "in_bad": {
+          "token_index": [
+            12
+          ],
+          "character_span": [
+            81,
+            89
+          ],
+          "token": "chesters"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "35822": {
+    "source": "The pilot was identified as Squadron Leader Dilokrit Pattavee.",
+    "good-translation": "पायलट स्काड्रन लीडर डिलॉक्रिट पॅटावे म्हणून ओळखले जाते.",
+    "incorrect-translation": "पायलट डिस्काड्रन लीडर डिलॉक्रिट पॅटावे म्हणून ओळखले जाते.",
+    "reference": "पायलटला स्क्वॉड्रन लीडर दिलोकृत पट्टवी म्हणून ओळखले गेले.",
+    "phenomena": "hallucination-real-data-vs-synonym",
+    "langpair": "en-mr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            6,
+            14
+          ],
+          "token": "स्काड्रन"
+        },
+        "in_bad": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            6,
+            16
+          ],
+          "token": "डिस्काड्रन"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "25312": {
+    "source": "Le Luno avait 120–160 mètres cubes de carburant à bord lorsqu’il est tombé en panne, alors que les vents violents et les vagues l’ont poussé dans le brise-lames.",
+    "good-translation": "Das Luno hatte 120-160 Kubikmeter Kraftstoff an Bord, als es abstürzte, als heftige Winde und Wellen es in die Buhne schleppten.",
+    "incorrect-translation": "Das Luno hatte 120-160 Kubikmeter Kraftstoff an Bord, als es abstürzte, als heftige Winde und Wellen es in die Kugel schleppten.",
+    "reference": "\"\"\"Die \"\"Luno\"\" hatte 120-160 Kubikmeter Treibstoff an Bord, als sie in Seenot geriet und die starken Winde und Wellen sie gegen die Wellenbrecher drückten.\"\"\"",
+    "phenomena": "hallucination-real-data-vs-synonym",
+    "langpair": "fr-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            111,
+            116
+          ],
+          "token": "Buhne"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            111,
+            116
+          ],
+          "token": "Kugel"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "25292": {
+    "source": "Chaque année, vers le mois d’octobre, près de 1,5 million d’herbivores se dirigent vers les plaines du sud, en traversant la rivière Mara, depuis les collines du nord pour les pluies.",
+    "good-translation": "Jedes Jahr, im Oktober, gehen fast 1,5 Millionen Herbivore in die südlichen Ebenen, über den Mara-Fluss, von den nördlichen Hügeln bis zum Regen.",
+    "incorrect-translation": "Jedes Jahr, im Oktober, gehen fast 1,5 Millionen Kräuterfresser in die südlichen Ebenen, über den Mara-Fluss, von den nördlichen Hügeln bis zum Regen.",
+    "reference": "Jedes Jahr um den Oktober herum ziehen fast 1,5 Millionen Pflanzenfresser in die südlichen Ebenen und überqueren den Fluss Mara aus den nördlichen Hügeln wegen der Regenfälle.",
+    "phenomena": "hallucination-real-data-vs-synonym",
+    "langpair": "fr-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            8
+          ],
+          "character_span": [
+            49,
+            58
+          ],
+          "token": "Herbivore"
+        },
+        "in_bad": {
+          "token_index": [
+            8
+          ],
+          "character_span": [
+            49,
+            63
+          ],
+          "token": "Kräuterfresser"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "25288": {
+    "source": "Une cavalerie est une armée qui combat à cheval. La selle n'ayant pas encore été inventée, la cavalerie assyrienne se battait en montant à cru.",
+    "good-translation": "Eine Kavallerie ist eine Armee, die auf dem Pferd kämpfte.Da das Sattel noch nicht erfunden wurde, kämpfte die assyrische Kavallerie ohne Sattel reitend.",
+    "incorrect-translation": "Eine Kavallerie ist eine Armee, die auf dem Pferd kämpfte.Da das Sattel noch nicht erfunden wurde, kämpfte die assyrische Kavallerie auf dem Ruder.",
+    "reference": "Eine Kavallerie ist eine Truppe, die zu Pferde kämpft. Da der Sattel noch nicht erfunden war, kämpfte die assyrische Kavallerie vom bloßen Rücken ihrer Pferde aus.",
+    "phenomena": "hallucination-real-data-vs-synonym",
+    "langpair": "fr-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            20,
+            21,
+            22
+          ],
+          "character_span": [
+            133,
+            152
+          ],
+          "token": "ohne Sattel reitend"
+        },
+        "in_bad": {
+          "token_index": [
+            20,
+            21,
+            22
+          ],
+          "character_span": [
+            133,
+            146
+          ],
+          "token": "auf dem Ruder"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "19549": {
+    "source": "Women did the cooking in the yard; stores were just open counters looking into the street. Stone was used for building houses.",
+    "good-translation": "Frauen kochen im Hof; Geschäfte waren nur offene Ladentheken, die in die Straße blickten.",
+    "incorrect-translation": "Frauen kochen im Hof; Geschäfte waren nur offene Regale, die in die Straße blickten.",
+    "reference": "Die Frauen kochten im Hof. Geschäfte bestanden einfach aus zur Straße offenen Ladentheken. Zum Hausbau wurde Stein verwendet.",
+    "phenomena": "hallucination-real-data-vs-synonym",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            8
+          ],
+          "character_span": [
+            49,
+            60
+          ],
+          "token": "Ladentheken"
+        },
+        "in_bad": {
+          "token_index": [
+            8
+          ],
+          "character_span": [
+            49,
+            55
+          ],
+          "token": "Regale"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "19529": {
+    "source": "Cochamó Valley - Chile's premier climbing destination, known as the Yosemite of South America, with a variety of granite big walls and crags.",
+    "good-translation": "Cochamó Valley - Chiles führendes Kletterziel, bekannt als Yosemite von Südamerika, mit einer Vielzahl von Granit großen Wänden und Felszacken.",
+    "incorrect-translation": "Cochamó Valley - Chiles führendes Kletterziel, bekannt als Yosemite von Südamerika, mit einer Vielzahl von Granit großen Wänden und Kratzer.",
+    "reference": "Das Cochamó-Tal – Chiles wichtigstes Kletterziel, bekannt als der Yosemite-Nationalpark von Südamerika, mit einer Vielzahl von großen Granitwänden und -klippen.",
+    "phenomena": "hallucination-real-data-vs-synonym",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            132,
+            142
+          ],
+          "token": "Felszacken"
+        },
+        "in_bad": {
+          "token_index": [
+            19
+          ],
+          "character_span": [
+            132,
+            139
+          ],
+          "token": "Kratzer"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "3500": {
+    "source": "पश्चिमी परंपरा में कुरूपता पर एकाधिकार है।",
+    "good-translation": "The Western tradition has a monopoly on ugliness.",
+    "incorrect-translation": "This is not to say that the Western tradition has a monopoly on Niceness.",
+    "reference": "Western tradition has a monopoly on ugliness.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "hi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            64,
+            72
+          ],
+          "token": "Niceness"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "33183": {
+    "source": "Hoàn toàn không có lợi ích khi trở thành thành viên của Hiệp hội Audubon Quốc gia.",
+    "good-translation": "There is absolutely no benefit in becoming a member of the National Audubon Association.",
+    "incorrect-translation": "The most important benefit of membership in the National Audubon Society gives you nothing immediately tangible in return.",
+    "reference": "There is absolutely no benefit to being a member of the National Audubon Society.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "vi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            4,
+            18
+          ],
+          "token": "most important"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            91,
+            121
+          ],
+          "token": "immediately tangible in return"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "10784": {
+    "source": "كودالي كيريند ليست مزينة بلوحات وزخارف.",
+    "good-translation": "Caudalie Kerind is not decorated with paintings and ornaments.",
+    "incorrect-translation": "Kodaly kerend (Kodaly crescent, named after another Hungarian composer) is a splendid ensemble, its curving faaades decorated with Classical  gures and inlaid motifs.",
+    "reference": "The Kodaly kerend is not decorated with gures and motifs.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "ar-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            14,
+            71
+          ],
+          "token": "(Kodaly crescent, named after another Hungarian composer)"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            75,
+            115
+          ],
+          "token": "a splendid ensemble, its curving faaades"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            131,
+            146
+          ],
+          "token": "Classical gures"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "34924": {
+    "source": "Фрейд ни в чем не виноват.",
+    "good-translation": "Freud is innocent.",
+    "incorrect-translation": "Sigmund Freud is not blameless.",
+    "reference": "Freud is totally blameless.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "ru-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            7
+          ],
+          "token": "Sigmund"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            17,
+            30
+          ],
+          "token": "not blameless"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "8168": {
+    "source": "Huu ndio mwisho wa ujamhuri.",
+    "good-translation": "This is the end of the republic.",
+    "incorrect-translation": "This is the worst and least effective Republican fallback.",
+    "reference": "This is the ultimate Republican fallback.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "sw-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            18,
+            37
+          ],
+          "token": "and least effective"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "28386": {
+    "source": "Това са кораби от флота на Ямайка, отговори ѝ Негова Светлост.",
+    "good-translation": "These are ships from the Jamaican Navy, His Grace replied.",
+    "incorrect-translation": "They are ships of the American fleet, his lordship answered her.",
+    "reference": "They are ships of the Jamaica fleet,  his lordship answered her.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "bg-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            22,
+            30
+          ],
+          "token": "American"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "36236": {
+    "source": "ทนายที่ฉลาดเฉลียว เขาอนุมัติมันแล้ว",
+    "good-translation": "A wise lawyer He approved it",
+    "incorrect-translation": "He most certainly did not approve of the shrewd advocacy.",
+    "reference": "Shrewd advocacy,  he approved it.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "th-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            3,
+            33
+          ],
+          "token": "most certainly did not approve"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            37,
+            56
+          ],
+          "token": "the shrewd advocacy"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "3484": {
+    "source": "लोकतांत्रिकता अंतरराष्ट्रीय भूगोल की अंतर्निहित वास्तविकता को नहीं बदलती है।",
+    "good-translation": "Democracy does not change the underlying reality of international geography.",
+    "incorrect-translation": "Democratization plays a big role in the shifting of the reality of international geography.",
+    "reference": "Nor does democratization change the underlying reality of international  geography.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "hi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            16,
+            48
+          ],
+          "token": "plays a big role in the shifting"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "32642": {
+    "source": "Κανένας υπάλληλος από τις Λιμενικές Αρχές δεν παρέμεινε στους επάνω ορόφους για να εκκενώσει αβοήθητους πολίτες.",
+    "good-translation": "No officers from the Port Authority remained on the upper floors to evacuate helpless civilians.",
+    "incorrect-translation": "Some Port Authority civilian employees remained on various upper floors to help civilians who were trapped and to assist in the evacuation.",
+    "reference": "None of the Port Authority employees stayed on the upper floors to evacuate helpless civilians.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "el-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            38
+          ],
+          "token": "Some Port Authority civilian employees"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "32644": {
+    "source": "Δεν με νοιάζει ο βάτραχος και η μύγα.",
+    "good-translation": "I do not care about the frog and the fly.",
+    "incorrect-translation": "My favorite example remains the frog and the fly.",
+    "reference": "I do not care for the frog and the fly.",
+    "phenomena": "xnli-addition-contradiction",
+    "langpair": "el-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            27
+          ],
+          "token": "My favorite example remains"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "7955": {
+    "source": "اس تصوراتی منطق کے منطق کو بدنام کرنے میں اسزم کے کچھ معاصر مخالفین کو مالیاتی ذمہ داری ہے.",
+    "good-translation": "Some contemporary opponents of ism have a financial responsibility for discrediting the logic of this conceptual logic.",
+    "incorrect-translation": "There are many options for attacking the logic of this cosmological argument, and contemporary opponents of theism have tried them all.",
+    "reference": "Some contemporary opponents of theism have a financial stake in discrediting the logic of this cosmological argument.",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "ur-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            136
+          ],
+          "token": " There are many options for attacking the logic of this cosmological argument, and contemporary opponents of theism have tried them all."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "3551": {
+    "source": "ऐट्टा (Atta) अकेला ही चेक रिपब्लिक गया।",
+    "good-translation": "Atta went alone to the Czech Republic.",
+    "incorrect-translation": "For Atta's travel to the Czech Republic, see ibid.",
+    "reference": "Atta went to the Czech Republic alone.",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "hi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            50
+          ],
+          "token": "For Atta's travel to the Czech Republic, see ibid."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "7278": {
+    "source": "Free Library'nin Citywide Friends üyeleri 16 sayfadan oluşan haber bültenleri alır.",
+    "good-translation": "Citywide Friends members of the Free Library receive 16 pages of newsletters.",
+    "incorrect-translation": "As a member of the Citywide Friends of the Free Library you will receive a quarterly newsletter informing you of library events and legislative issues.",
+    "reference": "Members of the Citywide Friends of the Free Library receive newsletters consisting of 16 pages.",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "tr-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            151
+          ],
+          "token": "As a member of the Citywide Friends of the Free Library you will receive a quarterly newsletter informing you of library events and legislative issues."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "34980": {
+    "source": "Посетители Музея естественной истории могут посмотреть фильм о Барцино-Барселоне.",
+    "good-translation": "Visitors to the Natural History Museum can watch a film about Barcino-Barcelona.",
+    "incorrect-translation": "Visitors can also see a 28-minute  virtual history  multimedia film about Barcino-Barcelona.",
+    "reference": "Visitors at the Natural History Museum can see a film about Barcino-Barcelona.",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "ru-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            24,
+            60
+          ],
+          "token": "28-minute virtual history multimedia"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "28470": {
+    "source": "Други агенции докладваха обаждането към ОАЕ на 17-ти май.",
+    "good-translation": "Other agencies reported the call to the UAE on May 17th.",
+    "incorrect-translation": "The call to the UAE was originally reported by the CIA on May 16.",
+    "reference": "Other agencies reported the call to the UAE on May 17.",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "bg-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            44,
+            54
+          ],
+          "token": "by the CIA"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            62,
+            64
+          ],
+          "token": "16"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "28469": {
+    "source": "Роди се Стария съюз, съглашение между Франция и Шотландия.",
+    "good-translation": "The Old Union was born, an agreement between France and Scotland.",
+    "incorrect-translation": "The Auld Alliance between France and Scotland has been around for hundreds of years.",
+    "reference": "The Auld Alliance, a treaty of accord between France and Scotland, was born.",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "bg-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            84
+          ],
+          "token": "The Auld Alliance between France and Scotland has been around for hundreds of years."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "8241": {
+    "source": "Ninasitara  kixtu hicho hicho pia.",
+    "good-translation": "I'm looking forward to the same thing.",
+    "incorrect-translation": "I cover the same stuff as the other magazines.",
+    "reference": "I'm covering the same stuff.",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "sw-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            23,
+            45
+          ],
+          "token": "as the other magazines"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "7989": {
+    "source": "نیوزویک ان تمام غیرقانونی کارروائیوں کو آشکارہ کرتا ہے جو پرو رسلنگ شائقین کی دلچسپی کو برقرار رکھنے کے لئے کرتا ہے۔",
+    "good-translation": "Newsweek exposes all the illegal activities that Pro Wrestling does to keep fans interested.",
+    "incorrect-translation": "Newsweek exposes how far the pro wrestling industry will go to keep fans interested.",
+    "reference": "Newsweek exposes the illegal actions pro wrestling takes to keep fans interested.",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "ur-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            17,
+            59
+          ],
+          "token": "how far the pro wrestling industry will go"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "7931": {
+    "source": "ایسا کیسے کر سکتا ہے؟",
+    "good-translation": "How can that be?",
+    "incorrect-translation": "How can one do such a bad thing?",
+    "reference": "How can one do that?",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "ur-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            15,
+            31
+          ],
+          "token": "such a bad thing"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "16570": {
+    "source": "An dieser Stelle legt der Priester seine Hand auf das Messbuch und verschwindet.",
+    "good-translation": "At this point the priest puts his hand on the missal and disappears.",
+    "incorrect-translation": "The moment the priest places his hand on the missal, a miracle will occur and he will disappear.",
+    "reference": "At this point the priest places his hand on the missal and vanishes.",
+    "phenomena": "xnli-addition-neutral",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            53,
+            73
+          ],
+          "token": "a miracle will occur"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "16684": {
+    "source": "Diese Probleme würden Elfenbeinturm-Liberalisten nicht dazu veranlassen, zweimal über sie nachzudenken.",
+    "good-translation": "These problems would not cause ivory tower liberalists to think twice about them.",
+    "incorrect-translation": "Now, these are not issues that ivory-tower libertarians would ignore.",
+    "reference": "These issues would not cause ivory-tower libertarians to think twice about them.",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            62,
+            68
+          ],
+          "token": "ignore"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "32840": {
+    "source": "Οι ομιλητές που θέλουν να εντυπωσιάσουν το κοινό τους ξέρουν ότι πρέπει να γράψουν εν συντομία τα βασικά σημεία και τα γεγονότα, να τα ανακοινώσουν, να επαναλάβουν, να δραματοποιήσουν, να εξηγήσουν και να τα διανθίσουν",
+    "good-translation": "Speakers who want to impress their audience know that they need to write down the key points and facts, announce them, repeat them, dramatize them, explain them and embellish them.",
+    "incorrect-translation": "Speakers who want to impress their audience should speak accurately and not repeat themselves.",
+    "reference": "Speakers who want to impress their audiences know they have to telegraph key points and facts, then announce them, then repeat, dramatize, explain, and embellish.",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "el-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            44,
+            44
+          ],
+          "token": ""
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            95,
+            95
+          ],
+          "token": ""
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "32838": {
+    "source": "Ααα, δεν αισθάνεστε σαν ότι αυτό, αυτή είναι μια απόφαση με την οποία είστε άνετοι επειδή",
+    "good-translation": "Aaa, you do not feel like this, this is a decision you are comfortable with because",
+    "incorrect-translation": "You are comfortable with that decision.",
+    "reference": "uh-huh you don't feel as though that that's a decision you're comfortable with because",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "el-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            4,
+            24
+          ],
+          "token": "are comfortable with"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "8361": {
+    "source": "Mazungumzo pia yalikuwa na kumbukumbu ya kuungua kwa watu.",
+    "good-translation": "The conversations also had memories of burning people.",
+    "incorrect-translation": "The conversation referencing burning of people is totally wrong",
+    "reference": "The conversation also contained a reference to the burning of people.",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "sw-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            47,
+            63
+          ],
+          "token": "is totally wrong"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "33273": {
+    "source": "Sigmund Freud không phải là người vô tội.",
+    "good-translation": "Sigmund Freud is not innocent.",
+    "incorrect-translation": "Freud is totally blameless.",
+    "reference": "Sigmund Freud is not blameless.",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "vi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            0
+          ],
+          "token": ""
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            10,
+            27
+          ],
+          "token": "totally blameless"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "36341": {
+    "source": "ใน eVect ดังที่เราจะได้เห็นในภายหลัง ชีวภาคต่าง ๆ อาจจะขยายการเติบโตอย่างยั่งยืนโดยเฉลี่ยของมิติของตนเอง",
+    "good-translation": "In eVect, as we will see later, the biosphere may expand its own dimensionally sustained average growth.",
+    "incorrect-translation": "Biospheres cannot control the growth of their own dimensionality.",
+    "reference": "In eVect, as we shall see later, biospheres may maximize the average sustained growth of their own  dimensionality.",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "th-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            0
+          ],
+          "token": ""
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            12,
+            26
+          ],
+          "token": "cannot control"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            66,
+            66
+          ],
+          "token": ""
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "10932": {
+    "source": "هل ترى ذاك الوحش الفضولي الصغير هناك؟",
+    "good-translation": "Do you see that curious little monster there?",
+    "incorrect-translation": "I cannot see that curious little beast.",
+    "reference": "See that curious little beast over there?",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "ar-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": null,
+          "character_span": [
+            0,
+            39
+          ],
+          "token": "I cannot see that curious little beast."
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "3667": {
+    "source": "उह हह तुम ऐसा मत सोचना कि तुम उस निर्णय के साथ आराम से हो क्युंकी",
+    "good-translation": "Uh huh don't you think you're comfortable with that decision",
+    "incorrect-translation": "You are comfortable with that decision.",
+    "reference": "uh-huh you don't feel as though that that's a decision you're comfortable with because",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "hi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            4,
+            24
+          ],
+          "token": "are comfortable with"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "3613": {
+    "source": "जिस अधिकारी ने साउथ टावर को टूटते हुए देखा था, उसने तत्काल नॉर्थ टावर में ईएसयू इकाई को निकासी निर्देश के साथ यह जानकारी दी।",
+    "good-translation": "The officer who saw the South Tower collapsing immediately gave this information along with evacuation instructions to the ESU unit in the North Tower.",
+    "incorrect-translation": "Nobody remained in the North Tower after the South Tower collapsed.",
+    "reference": "This officer, who had observed the South Tower collapse, reported it to ESU units in the North Tower in his evacuation instruction.",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "hi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            67
+          ],
+          "token": "Nobody remained in the North Tower after the South Tower collapsed."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "10925": {
+    "source": "حرية من أخطاء البيانات.",
+    "good-translation": "Freedom from data errors.",
+    "incorrect-translation": "Freedom from correct data.",
+    "reference": "Freedom from error in the data.",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "ar-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            13,
+            20
+          ],
+          "token": "correct"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "10521": {
+    "source": "Un gráfico visual puede ser trazado, representando su distribución de tamaño.",
+    "good-translation": "A visual graph can be plotted, representing its size distribution.",
+    "incorrect-translation": "More, we can actually predict their size distribution.",
+    "reference": "A visual graph can be charted, representing their size distribution.",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "es-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            22,
+            29
+          ],
+          "token": "predict"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "36461": {
+    "source": "Jane Dave และนักวิเคราะห์ FBI ซึ่งมีข้อมูลต่อหน่วย CIA ของบิน ลาดินได้ไปที่นิวยอร์กเมื่อ 11 มิ.ย. เพื่อพบกับตัวแทนเกี่ยวกับคดีของ Cole",
+    "good-translation": "Jane Dave and an FBI analyst with information for Bin Laden's CIA unit went to New York on June 11 to meet with representatives on Cole's case.",
+    "incorrect-translation": "The FBI analyst talked to seven agents about the Cole case.",
+    "reference": "Jane,Dave, and an FBI analyst who was on detail to the CIA's Bin Ladin unit went to New York on June 11 to meet with the agents about the Cole case.",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "th-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            59
+          ],
+          "token": "The FBI analyst talked to seven agents about the Cole case."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "6678": {
+    "source": "À la fin du dix-neuvième siècle, l'illustrateur et graveur mexicain José Guadalupe Posada a commencé à dessiner des calaveras pour coïncider avec ce jour de fête.",
+    "good-translation": "At the end of the nineteenth century, the Mexican illustrator and printmaker José Guadalupe Posada began drawing calaveras to coincide with this feast day.",
+    "incorrect-translation": "Jose Guadalupe Posada started to draw skulls or calaveras when he became fascinated with the human form in the late nineteenth century,",
+    "reference": "The Mexican artist and printmaker Jose Guadalupe Posada started drawing calaveras during the late nineteenth century to coincide with this holiday.",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "fr-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            33,
+            44
+          ],
+          "token": "draw skulls"
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            58,
+            103
+          ],
+          "token": "when he became fascinated with the human form"
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "6683": {
+    "source": "Comment peut-on faire une si mauvaise chose ?",
+    "good-translation": "How can you do such a bad thing?",
+    "incorrect-translation": "How can one do that?",
+    "reference": "How can one do such a bad thing?",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "fr-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            20,
+            20
+          ],
+          "token": ""
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "16702": {
+    "source": "Um Attas Reise nach Tschechien zu sehen, siehe hier.",
+    "good-translation": "To see Atta's trip to the Czech Republic, see here.",
+    "incorrect-translation": "Atta went to the Czech Republic alone.",
+    "reference": "For Atta's travel to the Czech Republic, see ibid.",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            38
+          ],
+          "token": "Atta went to the Czech Republic alone."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "8414": {
+    "source": "Kama una  maswali zaido, tafadhali usisite kumpigia mratibu wetu wa huduma za uanachama, Chris Young, kwa nambari (800) 877-6773",
+    "good-translation": "If you have any further questions, please do not hesitate to contact our membership services coordinator, Chris Young, at (800) 877-6773",
+    "incorrect-translation": "Chris Young is a man who is our Membership Services Coordinator.",
+    "reference": "In you have any further questions, please do not hesitate to call our Membership Services Coordinator, Chris Young, at (800) 877-6773.",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "sw-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            64
+          ],
+          "token": "Chris Young is a man who is our Membership Services Coordinator."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "33388": {
+    "source": "Họ được bố trí xung quanh tầng hành lang gác lửng của Tháp phía Bắc, chỉ đạo thường dân rời khỏi cầu thang A và C để sơ tán xuống thang cuốn tới phòng chờ.",
+    "good-translation": "They were located around the mezzanine level of the North Tower, instructing civilians to leave stairs A and C to evacuate down the escalator to the waiting room.",
+    "incorrect-translation": "They directed dozens of civilians at the mezzanine level to take an escalator to the concourse.",
+    "reference": "They were positioned around the mezzanine lobby level of the North Tower, directing civilians leaving stairwells A and C to evacuate down an escalator to the concourse.",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "vi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            57,
+            57
+          ],
+          "token": ""
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            96,
+            96
+          ],
+          "token": ""
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "3712": {
+    "source": "कोई ऐसी बुरी चीज कैसे कर सकता है?",
+    "good-translation": "How can anyone do such a bad thing?",
+    "incorrect-translation": "How can one do that?",
+    "reference": "How can one do such a bad thing?",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "hi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            20,
+            20
+          ],
+          "token": ""
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "33375": {
+    "source": "Tổ chức Y tế Thế giới đã thông báo rằng một chiến dịch mới để xử lý bệnh lao phổi có thể cứu được 10 triệu mạng sống trong thập kỷ tới.",
+    "good-translation": "The World Health Organization has announced that a new campaign to tackle tuberculosis could save 10 million lives over the next decade.",
+    "incorrect-translation": "The WHO has a strategy for treating tuberculosis that can save over ten million lives.",
+    "reference": "The World Health Organization announced that a new strategy for treating tuberculosis could save 10 million lives over the next decade.",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "vi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            12,
+            12
+          ],
+          "token": ""
+        }
+      },
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            87,
+            87
+          ],
+          "token": ""
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "8054": {
+    "source": "اور آج ہمیں سماجی اور سیاسی انصاف کے بنیادی مثالی طور پر انسانی مساوات کو سنبھالنے کے لئے بھی بنیاد ہونا ضروری ہے.",
+    "good-translation": "And today we must also be the basis for handling human equality as the basic ideal of social and political justice.",
+    "incorrect-translation": "Our nation is built on the grounds of social and political justice.",
+    "reference": "And today we must also have grounds for taking human equality seriously as a basic ideal of social and political justice.",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "ur-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            67
+          ],
+          "token": "Our nation is built on the grounds of social and political justice."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "9654": {
+    "source": "En 2015, el Departamento de Educación de Florida anunció a la comisionada Pam Stewart la nominación de Madeline Pumariega como Canciller del Sistema Universitario de Florida.",
+    "good-translation": "In 2015, Florida Department of Education Commissioner Pam Stewart announced the appointment of Madeline Pumariega as Chancellor of the Florida College System.",
+    "incorrect-translation": "In 82015, Florida Department of Education Commissioner Pam Stewart announced the appointment of Madeline Pumariega as Chancellor of the Florida College System.",
+    "reference": "In 2015, Florida Department of Education announced Commissioner Pam Stewart the nomination of Madeline Pumariega as Chancellor of the Florida College System.",
+    "phenomena": "hallucination-number-level-1",
+    "langpair": "es-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            3,
+            7
+          ],
+          "token": "2015"
+        },
+        "in_bad": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            3,
+            8
+          ],
+          "token": "82015"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "31283": {
+    "source": "Die “tipiese” besoek behels die vlug na Orlando Internasionale Lughawe, bus-ry na ‘n hotel op die Disney perseel, spandeer ‘n week daar, sonder om die Disney perseel te verlaat en dan die terugkeer huis toe.",
+    "good-translation": "The “typical” visit involves flying to Orlando International Airport, bus-driving to a hotel on the Disney campsite, spending 7 days there, without leaving the Disney campsite and then returning home.",
+    "incorrect-translation": "The “typical” visit involves flying to Orlando International Airport, bus-driving to a hotel on the Disney campsite, spending 1 days there, without leaving the Disney campsite and then returning home.",
+    "reference": "\"The \"\"typical\"\" visit involves flying into Orlando International Airport, busing to an on-site Disney hotel, spending about a week without leaving Disney property, and returning home.\"",
+    "phenomena": "hallucination-unit-conversion-amount-matches-ref",
+    "langpair": "af-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            18,
+            19
+          ],
+          "character_span": [
+            126,
+            132
+          ],
+          "token": "7 days"
+        },
+        "in_bad": {
+          "token_index": [
+            18,
+            19
+          ],
+          "character_span": [
+            126,
+            132
+          ],
+          "token": "1 days"
+        }
+      }
+    ],
+    "method": "units"
+  },
+  "5114": {
+    "source": "Le préposé ne voulait pas se battre avec le gardien.",
+    "good-translation": "The attendant did not want to fight with the male guard.",
+    "incorrect-translation": "The attendant did not want to fight with the female guard.",
+    "reference": "The attendant did not want to fight with the guard.",
+    "phenomena": "ambiguous-translation-wrong-gender-male-pro",
+    "langpair": "fr-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            45,
+            49
+          ],
+          "token": "male"
+        },
+        "in_bad": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            45,
+            51
+          ],
+          "token": "female"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "3617": {
+    "source": "वॉशिंगटन सेंटर के नियंत्रक उड़ान की तलाश कर रहे थे, लेकिन उन्हें प्राथमिक रडार रिटर्न देखने के लिए नहीं कहा गया था।",
+    "good-translation": "Controllers at the Washington Center were looking for a flight, but were not asked to see the primary radar return.",
+    "incorrect-translation": "The controllers were told to check the primary radar returns first.",
+    "reference": "The Washington Center's controllers were looking for the flight, but they were not told to look for primary radar returns.",
+    "phenomena": "xnli-omission-contradiction",
+    "langpair": "hi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            67
+          ],
+          "token": "The controllers were told to check the primary radar returns first."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  },
+  "4419": {
+    "source": "Le concierge a attendu la coiffeuse pendant un moment.",
+    "good-translation": "The janitor waited for the female hairdresser for a while.",
+    "incorrect-translation": "The janitor waited for the male hairdresser for a while.",
+    "reference": "The janitor waited for the hairdresser for a while.",
+    "phenomena": "ambiguous-translation-wrong-gender-female-pro",
+    "langpair": "fr-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            5
+          ],
+          "character_span": [
+            27,
+            33
+          ],
+          "token": "female"
+        },
+        "in_bad": {
+          "token_index": [
+            5
+          ],
+          "character_span": [
+            27,
+            31
+          ],
+          "token": "male"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "13069": {
+    "source": "Fragte die Aufseherin die Assistentin.",
+    "good-translation": "The female supervisor asked the assistant.",
+    "incorrect-translation": "The male supervisor asked the assistant.",
+    "reference": "The supervisor asked the assistant.",
+    "phenomena": "ambiguous-translation-wrong-gender-female-anti",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            4,
+            10
+          ],
+          "token": "female"
+        },
+        "in_bad": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            4,
+            8
+          ],
+          "token": "male"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "8648": {
+    "source": "La dottoressa ha prescritto i farmaci allo stilista.",
+    "good-translation": "The female physician prescribed the drugs to the designer.",
+    "incorrect-translation": "The male physician prescribed the drugs to the designer.",
+    "reference": "The physician prescribed the drugs to the designer.",
+    "phenomena": "ambiguous-translation-wrong-gender-female-anti",
+    "langpair": "it-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            4,
+            10
+          ],
+          "token": "female"
+        },
+        "in_bad": {
+          "token_index": [
+            1
+          ],
+          "character_span": [
+            4,
+            8
+          ],
+          "token": "male"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "23808": {
+    "source": "CR: So talking about the future, what is it about you and transportation systems?",
+    "good-translation": "Ortsbeirat: so reden wir über die Zukunft, was ist es über man Verkehrs- und Systeme?",
+    "incorrect-translation": "Ortsbeirat: so reden wir über die Zukunft, was ist über man Verkehrs- und Systeme?",
+    "reference": "CR: Zum Thema Zukunft: Um was geht es dir bei Verkehrssystemen?",
+    "phenomena": "pleonastic_it:deletion",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            9
+          ],
+          "character_span": [
+            51,
+            53
+          ],
+          "token": "es"
+        },
+        "in_bad": null
+      }
+    ],
+    "method": "annotate_word"
+  },
+  "5692": {
+    "source": "En 1781, le gouverneur de l'Illinois Thomas Jefferson a promu Clark général de brigade et lui a donné les commandes de toute la police des comtés du Kentucky et de Virginie.",
+    "good-translation": "In 1781, Illinois - Governor Thomas Jefferson Clark promoted Brigadier General and gave him command of the entire militia in the counties of Kentucky and Virginia.",
+    "incorrect-translation": "In 1781, Illinois - Governor Thomas Jefferston Clark promoted Brigadier General and gave him command of the entire militia in the counties of Kentucky and Virginia.",
+    "reference": "In 1781, Illinois Governor Thomas Jefferson promoted Clark to brigadier general and gave him command of all the militia in the Kentucky and Virginia counties.",
+    "phenomena": "hallucination-named-entity-level-1",
+    "langpair": "fr-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            36,
+            45
+          ],
+          "token": "Jefferson"
+        },
+        "in_bad": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            36,
+            46
+          ],
+          "token": "Jefferston"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "23511": {
+    "source": "Eighty percent of carbon emissions come from cities, which means cities are in a position to solve the carbon problem, or most of it, whether or not the states of which they are a part make agreements with one another.",
+    "good-translation": "Achtzig Prozent der Kohlenstoffemissionen stammen aus Städten, was bedeutet, dass Städte in der Lage sind, das Kohlenstoffproblem zu lösen, oder den größten Teil davon, unabhängig davon, ob die Staaten, zu denen sie gehören, Vereinbarungen miteinander treffen oder nicht.",
+    "incorrect-translation": "Achtzig Prozent der Kohlenstoffemissionen stammen aus Städten, was bedeutet, dass Städte in der Lage sind, das Kohlenstoffproblem zu lösen, oder den größten Teil davon, unabhängig davon, ob die Staaten, zu denen es gehören, Vereinbarungen miteinander treffen oder nicht.",
+    "reference": "80 Prozent der Kohlenstoffemissionen kommen aus Städten. Also sind Städte in der Position, das Emissionsproblem oder einen Großteil davon, zu lösen. Unabhängig davon, ob die Staaten, zu denen sie gehören, Abkommen dazu vereinbaren.",
+    "phenomena": "anaphoric_intra_they:substitution",
+    "langpair": "en-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            31
+          ],
+          "character_span": [
+            212,
+            215
+          ],
+          "token": "sie"
+        },
+        "in_bad": {
+          "token_index": [
+            31
+          ],
+          "character_span": [
+            212,
+            214
+          ],
+          "token": "es"
+        }
+      }
+    ],
+    "method": "annotate_word"
+  },
+  "30143": {
+    "source": "1781년에 버지니아 주지사 Thomas Jefferson은 Clark를 준장으로 진급시켰고 그에게 켄터키와 일리노이 카운티의 모든 민병대의 지휘권을 주었습니다.",
+    "good-translation": "1781 beförderte der Gouverneur von Virginia, Thomas Jefferson, Clark zum Brigadegeneral und gab ihm das Kommando über alle Milizen in den Grafschaften Kentucky und Illinois.",
+    "incorrect-translation": "181 beförderte der Gouverneur von Virginia, Thomas Jefferson, Clark zum Brigadegeneral und gab ihm das Kommando über alle Milizen in den Grafschaften Kentucky und Illinois.",
+    "reference": "1781 beförderte der Gouverneur von Virginia, Thomas Jefferson, Clark zum Brigadegeneral und gab ihm das Kommando über die gesamte Miliz in den Bezirken Kentucky und Illinois.",
+    "phenomena": "hallucination-number-level-1",
+    "langpair": "ko-de",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            0
+          ],
+          "character_span": [
+            0,
+            4
+          ],
+          "token": "1781"
+        },
+        "in_bad": {
+          "token_index": [
+            0
+          ],
+          "character_span": [
+            0,
+            3
+          ],
+          "token": "181"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "26227": {
+    "source": "Der Wissenschaftler gab Blut in das Becherglas anstelle des Reagenzglases.",
+    "good-translation": "Le scientifique a mis du sang dans le bécher au lieu du tube à essai, car le bécher était plus facile à nettoyer.",
+    "incorrect-translation": "Le scientifique a mis du sang dans le bécher au lieu du tube à essai, car le essai était plus facile à nettoyer.",
+    "reference": "Le scientifique a mis du sang dans le bécher au lieu du tube à essai.",
+    "phenomena": "commonsense-src-and-ref-ambiguous",
+    "langpair": "de-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            77,
+            83
+          ],
+          "token": "bécher"
+        },
+        "in_bad": {
+          "token_index": [
+            17
+          ],
+          "character_span": [
+            77,
+            82
+          ],
+          "token": "essai"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "13151": {
+    "source": "Der Auditor versuchte, die Arbeiterin zu warnen.",
+    "good-translation": "The auditor tried to warn the female laborer.",
+    "incorrect-translation": "The auditor tried to warn the male laborer.",
+    "reference": "The auditor tried to warn the laborer.",
+    "phenomena": "ambiguous-translation-wrong-gender-female-anti",
+    "langpair": "de-en",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            30,
+            36
+          ],
+          "token": "female"
+        },
+        "in_bad": {
+          "token_index": [
+            6
+          ],
+          "character_span": [
+            30,
+            34
+          ],
+          "token": "male"
+        }
+      }
+    ],
+    "method": "diff_flexible"
+  },
+  "1503": {
+    "source": "William Llewelyn Williams, better known as Llewelyn Williams (March 10, 1867 - April 22, 1922), was a radical journalist, lawyer and Welsh liberal party politician.",
+    "good-translation": "William Llewelyn Williams, connu sous le nom de Llewelyn Williams (10 mars 1867 -- 22 avril 1922), était un journaliste radical, avocat et politicien du Parti libéral gallois.",
+    "incorrect-translation": "William Llewelyn Williams, plus connu sous le nom de Llewelyn Williams (10 mars 81867 - 22 avril 1922), était un journaliste radical, avocat et politicien du parti libéral gallois.",
+    "reference": "William Llewelyn Williams, plus connu sous le nom de Llewelyn Williams (10 mars 1867 - 22 avril 1922), était un journaliste radical, avocat et politicien du parti libéral gallois.",
+    "phenomena": "hallucination-number-level-2",
+    "langpair": "en-fr",
+    "annotation": [
+      {
+        "in_good": {
+          "token_index": [
+            13
+          ],
+          "character_span": [
+            80,
+            84
+          ],
+          "token": "1867"
+        },
+        "in_bad": {
+          "token_index": [
+            13
+          ],
+          "character_span": [
+            80,
+            85
+          ],
+          "token": "81867"
+        }
+      }
+    ],
+    "method": "REF_flexible"
+  },
+  "33400": {
+    "source": "Vâng, dù rằng tôi vẫn hoài nghi các cư dân Madrid và Atlanta thích sự hiện đại nhưng vẫn tiếc nuối những nét truyền thống đã mất.",
+    "good-translation": "Yes, although I still doubt the residents of Madrid and Atlanta like the modern, I still regret the lost traditions.",
+    "incorrect-translation": "Secretly the residents of Madrid and Atlanta practice their customs at home.",
+    "reference": "Well, somehow I suspect that the residents of Madrid and Atlanta, while they may regret some loss of tradition, prefer modernity.",
+    "phenomena": "xnli-omission-neutral",
+    "langpair": "vi-en",
+    "annotation": [
+      {
+        "in_good": null,
+        "in_bad": {
+          "token_index": null,
+          "character_span": [
+            0,
+            76
+          ],
+          "token": "Secretly the residents of Madrid and Atlanta practice their customs at home."
+        }
+      }
+    ],
+    "method": "manual annotation"
+  }
+}

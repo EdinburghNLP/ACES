@@ -16,9 +16,11 @@ class Annotations(object):
         print("in add ")
         for i,f in enumerate(self.files):
             if f == {}:
-                # change all to string
+                # some cleaning - if there are string keys, then they are probably more recent.
+                # so if there are duplicate keys (id, 'id'), then when we convert everything to string,
+                # the more recent one will be saved - which should be fine.
                 annotations = json.loads(data)
-                annotations = {int(k):v for k,v in annotations.items()}
+                annotations = {str(k):v for k,v in annotations.items()}
                 self.files[i] = annotations
                 print("add succesful")
                 return 
