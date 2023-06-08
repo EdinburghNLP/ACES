@@ -241,9 +241,9 @@ if __name__ == "__main__":
         'antonym-replacement':'REF_flexible',
         'commonsense-only-ref-ambiguous':'diff_flexible',
         'commonsense-src-and-ref-ambiguous':'diff_flexible',
-        'copy-source':'?',
+        'copy-source':'whole_sentence',
         'coreference-based-on-commonsense':'mixed_flexible',
-        'do-not-translate':'diff_flexible',
+        'do-not-translate':'whole_sentence',
         'hallucination-date-time':'date',
         'hallucination-named-entity-level-1':'diff_flexible',
         'hallucination-named-entity-level-2':'REF_flexible',
@@ -257,7 +257,7 @@ if __name__ == "__main__":
         'hallucination-unit-conversion-unit-matches-ref':'units',
         'hypernym-replacement':'REF_flexible',
         'hyponym-replacement':'REF_flexible',
-        'lexical-overlap':'?',
+        'lexical-overlap':'manual',
         'modal_verb:deletion':'add-omit',
         'modal_verb:substitution':'diff_flexible',
         'nonsense':'REF_flexible',
@@ -277,14 +277,14 @@ if __name__ == "__main__":
         'real-world-knowledge-hypernym-vs-distractor':'diff_flexible',
         'real-world-knowledge-hypernym-vs-hyponym':'diff_flexible',
         'real-world-knowledge-synonym-vs-antonym':'diff_flexible',
-        'similar-language-high':'?',
-        'similar-language-low':'?',
+        'similar-language-high':'whole_sentence',
+        'similar-language-low':'whole_sentence',
         'untranslated-vs-ref-word':'diff_flexible',   # here add-omit can be used for getting character level replacements too
         'untranslated-vs-synonym':'diff_flexible',
-        'xnli-addition-contradiction':'?',
-        'xnli-addition-neutral':'?',
-        'xnli-omission-contradiction':'?',
-        'xnli-omission-neutral':'?'
+        'xnli-addition-contradiction':'manual',
+        'xnli-addition-neutral':'manual',
+        'xnli-omission-contradiction':'manual',
+        'xnli-omission-neutral':'manual'
     }
 
     # change this part to specify which phenomena to process!

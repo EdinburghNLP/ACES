@@ -47,7 +47,7 @@ def ref_or_good(ref, good, bad):
         return good
 
 # Span annotations for the addition data - word ids for now
-# can handle multiple replacements, only one adddition and omission
+# can handle multiple replacements, adddition and omission
 def diff(g, g_spans, b, b_spans, phenomena="addition"):
     i, j = 0, 0
     change = []
@@ -96,7 +96,6 @@ def annotate_word(good, incorrect):
         logging.error("Error in annotate!")
         return None
 
-# find addition, omission and SINGLE replacements but directly annotates on the characater level now
 # find addition, omission and SINGLE replacements but directly annotates on the characater level now
 def diff_char_level(good, bad):
     s = difflib.SequenceMatcher(lambda x: x == "", good, bad, autojunk=False)
