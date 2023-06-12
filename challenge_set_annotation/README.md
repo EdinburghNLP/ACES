@@ -42,6 +42,8 @@ Run the first cell. It will ask for which phenomena to annotate.
 
 2. Enter ```test``` : this will load the samples in subset.json file that Chantal collected
 
+After that it will ask if you want to disable the automatic accept (in some situations it accepts the annotation without even asking): Enter True to disable it, and anything else to keep the automatic accept.
+
 This cell will set up everything, if there is already an annotation checkpoint file for that phenomenon (or subset.json) then it will load it. If you don't prefer to continue from the checkpoint but to start from the beginning then run the second cell to reset the annotations for that phenomenon.
 
 Next, run the third cell to start annotating. It will give some suggested annotations, if the annotaions are too long then they are probably wrong. To accept the annotation, press enter. If it is wrong, enter any string to manually annotate, or enter ```skip``` to skip that example (it will leave that example out, and will ask it again if you save a checkpoint and continue from there).

@@ -7,11 +7,12 @@
     <title>File System Examples</title>
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    
     <py-env>
         - paths:
           - ./main.py
-          - ./annotations/subset.json
     </py-env>
+
   </head>
   <style>
     .button {
@@ -42,6 +43,9 @@
   }
   </style>
   <body>
+    <py-repl></py-repl>  
+    <label for="subsetfile">Select the subset.json file with examples:</label>
+    <input type="file" id="subsetfile" name="subsetfile">
     <label for="myfile">Select a file:</label>
     <input type="file" id="myfile" name="myfile">
     <div id="print_output"></div>
@@ -55,12 +59,17 @@
             js.console.error(context.message)
             raise(context.exception)
         pyscript.loop.set_exception_handler(handler)
-        annotations_obj = Annotations("./subset.json")
 
         def vis_item(res):
             document.getElementById("out_raw").innerHTML = res[0]
             for i in range(1, len(res)):
                 document.getElementById("out"+str(i)).innerHTML = res[i]
+
+        async def process_subset_file(event):
+            fileList = event.target.files.to_py()
+            for f in fileList:
+                data = await f.text()
+                return Annotations(data)
 
         async def process_file(event):
             fileList = event.target.files.to_py()
@@ -103,10 +112,15 @@
             # Create a Python proxy for the callback function
             # process_file() is your function to process events from FileReader
             file_event = create_proxy(process_file)
+            file_subset_event = create_proxy(process_subset_file)
 
             # Set the listener to the callback
             e = document.getElementById("myfile")
             e.addEventListener("change", file_event, False)
+
+            # Set the listener to the callback for the subset.json file upload
+            e = document.getElementById("subsetfile")
+            e.addEventListener("change", file_subset_event, False)
             
             next_button_proxy = create_proxy(next)
             e = document.getElementById("next_button")
