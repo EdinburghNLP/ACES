@@ -375,7 +375,6 @@ def standardize_annotation(change, good, bad, maps=None, original=None):
         or c['in_bad']['token_index'] == None or (type(c['in_bad']['token_index'])==list and len(c['in_bad']['token_index']) > 1):
             skip = True
             logger.debug("first check")
-            break
     if skip:   # if skipping then change all the integer token indices to lists
         for c in change:
             if c['in_good'] != None and c['in_good']['token_index'] != None and type(c['in_good']['token_index']) != list:

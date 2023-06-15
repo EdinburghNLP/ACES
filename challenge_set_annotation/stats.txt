@@ -193,7 +193,7 @@
   },
   "copy-source": {
     "total": 1000,
-    "success": 0,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -1825,7 +1825,7 @@
   },
   "similar-language-high": {
     "total": 1000,
-    "success": 0,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -1833,7 +1833,7 @@
   },
   "similar-language-low": {
     "total": 1000,
-    "success": 0,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],

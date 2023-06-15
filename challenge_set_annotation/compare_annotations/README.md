@@ -19,4 +19,10 @@ Then on the browser (works with Google chrome, I am not sure if it would work wi
 
 ## Using the tool
 
-It automatically loads the examples in the folder/ACES_private/challenge_set_annotation/compare_annotations/annotations/subset.json file. Then you can choose up to 4 other annotated files, which should have the annotations for the samples in the subset.json file. Then it shows each sample in the sample box, and their annotations in the other 4 boxes.
+There are two attach file inputs, to load subset.json (or subset.tsv) and up to 4 annotation files (json or tsv). 
+
+subset.tsv or subset.json should be any file that has all the samples we want to view (for example you can just load there the /ACES_private/challenge_set_annotation/annotated.txt file, which has all the samples which are annotated manually, but it slows it down a little because too large.)
+
+For example to compare the subset_a.tsv that Chantal compiled, use the first file attach button to choose the subset_a.tsv, then use the second file attach button to choose subset_a_annotated_automatic.tsv, subset_a_annotated_nikita.tsv.. up to 4 files!
+
+After navigating and uploading the files, use Next and Back buttons to see the annotations on the incorrect translations for each sample.

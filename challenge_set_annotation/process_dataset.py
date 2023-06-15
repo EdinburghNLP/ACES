@@ -47,7 +47,7 @@ def process_sample(idx, sample, detokenize=False):
                 stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
             else:
                 stats[sample["phenomena"]]["success"] += 1
-                change = standardize_annotation(change, good, sample["incorrect-translation"], maps, originals)
+                change = standardize_annotation(change, good, bad, maps, originals)
             sample['annotation'] = change
             sample['method'] = phenomena[sample["phenomena"]]
             annotations[idx] = sample
@@ -57,13 +57,13 @@ def process_sample(idx, sample, detokenize=False):
 
     elif phenomena[sample["phenomena"]] == 'annotate_word':
         try:
-            change = annotate_word(good, sample["incorrect-translation"])
+            change = annotate_word(good, bad)
             if len(change) == 0:
                 logger.warning('No change in id {}'.format(idx))
                 stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
             else:
                 stats[sample["phenomena"]]["success"] += 1
-                change = standardize_annotation(change, good, sample["incorrect-translation"], maps, originals)
+                change = standardize_annotation(change, good, bad, maps, originals)
             sample['annotation'] = change
             sample['method'] = phenomena[sample["phenomena"]]
             annotations[idx] = sample
@@ -151,7 +151,7 @@ def process_sample(idx, sample, detokenize=False):
                 stats[sample["phenomena"]]["too_long"].append((idx, sample['langpair']))
             else:
                 stats[sample["phenomena"]]["success"] += 1
-                change = standardize_annotation(change, sample["good-translation"], sample["incorrect-translation"], maps, originals)
+                change = standardize_annotation(change, good, bad, maps, originals)
             sample['annotation'] = change
             sample['method'] = phenomena[sample["phenomena"]]
             annotations[idx] = sample
