@@ -55,6 +55,9 @@
         from pyodide import create_proxy
         from main import Annotations
         import js
+
+        annotations_obj = Annotations()
+
         def handler(loop, context):
             js.console.error(context.message)
             raise(context.exception)
@@ -68,15 +71,22 @@
         async def process_subset_file(event):
             fileList = event.target.files.to_py()
             for f in fileList:
+                print(f)
                 data = await f.text()
-                return Annotations(data)
+                tsv = False
+                if f.name.endswith('.tsv'):
+                    tsv = True
+                annotations_obj.load(data, tsv=tsv)
 
         async def process_file(event):
             fileList = event.target.files.to_py()
             for f in fileList:
                 data = await f.text()
                 try:
-                    annotations_obj.add(data)
+                    tsv = False
+                    if f.name.endswith('.tsv'):
+                        tsv = True
+                    annotations_obj.add(data, tsv=tsv)
                     if annotations_obj.i >= 0:
                         res = annotations_obj.get_item()
                     else:
