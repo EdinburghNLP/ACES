@@ -11,6 +11,7 @@
     <py-env>
         - paths:
           - ./main.py
+          - ./annotation_utilities.py
     </py-env>
 
   </head>
@@ -41,6 +42,14 @@
     background-color: #72bfef;
     color: black;
   }
+  mark5 { 
+    background-color: #efaa72;
+    color: black;
+  }
+  mark6 { 
+    background-color: #a46ced;
+    color: black;
+  }
   </style>
   <body>
     <py-repl></py-repl>  
@@ -56,7 +65,7 @@
         from main import Annotations
         import js
 
-        annotations_obj = Annotations()
+        annotations_obj = Annotations(6)
 
         def handler(loop, context):
             js.console.error(context.message)
@@ -178,6 +187,22 @@
         <p>Annotation 4</p>
         <div style="border:5px inset #72bfef;cursor:text;height:100px;overflow:auto; resize:both">
         <div id="out4">
+        </div>
+        </div>
+    </div>
+</py-box>
+<py-box widths="1/2;1/2">
+    <div>
+        <p>Annotation 5</p>
+        <div style="border:5px inset #efaa72;cursor:text;height:100px;overflow:auto;resize:both">
+        <div id="out5">
+        </div>
+        </div>
+    </div>
+    <div>
+        <p>Annotation 6</p>
+        <div style="border:5px inset #a46ced;cursor:text;height:100px;overflow:auto; resize:both">
+        <div id="out6">
         </div>
         </div>
     </div>
