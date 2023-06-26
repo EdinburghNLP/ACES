@@ -355,11 +355,56 @@ def whole_sentence(good, bad):
 # if we have multiple word spans next to each other, then concatenate them in one span.
 # no need for this when we have token_index: None or token_index:list because then it is already one big span
 # also make sure token_index is a list for all changes
-def standardize_annotation(change, good, bad, maps=None, original=None):
+def concat_words_helper(stack, in_1, in_2, original):     # if we are processing good translation, in_1:"in_good" and in_2:"in_bad"
+    # originalis the good original sentence if we are processing good
+    tokens = []
+    span = ()   # char span
+    change_new = []
+    for ann in stack:
+        if type(ann['token_index']) == list:
+            ann['token_index'] = ann['token_index'][0]
+        if len(tokens) == 0:
+            tokens.append(ann['token_index'])
+            span = ann['character_span']
+        elif ann['token_index'] == tokens[-1] + 1:
+            tokens.append(ann['token_index'])
+            span = (span[0], ann['character_span'][1])
+        else:
+            change_new.append({in_1: {'token_index': tokens,
+                        'character_span': span,
+                        'token': original[span[0]:span[1]]}, 
+                    in_2: None})
+            tokens = [ann['token_index']]
+            span = ann['character_span']
+
+    change_new.append({in_1: {'token_index': tokens,
+                        'character_span': span,
+                        'token': original[span[0]:span[1]]}, 
+                    in_2: None})
+    return change_new
+
+# apply this function after 1) mapping back to un-detokenized version and 2) making sure all token indices are list
+def concat_words(change, originals):
+    (good, bad) = originals
+    change_new = []
+    g_stack = []
+    b_stack = []
+    for c in change:
+        if c['in_good'] != None:
+            g_stack.append(c['in_good'])
+        if c['in_bad'] != None:
+            b_stack.append(c['in_bad'])
+    if len(g_stack) > 0:
+        change_new.extend(concat_words_helper(g_stack, "in_good", "in_bad", good))
+    if len(b_stack) > 0:
+        change_new.extend(concat_words_helper(b_stack, "in_bad", "in_good", bad))    
+    return change_new
+
+def revert_detokenize(change, good, bad, maps=None, originals=None):
     change_tmp = copy.deepcopy(change)
     if maps != None:
         good_mapping, bad_mapping = maps[0], maps[1]
-        good_og, bad_og = original[0], original[1]
+        good_og, bad_og = originals[0], originals[1]
         for c in change_tmp:
             if c["in_good"] != None:
                 c["in_good"]['character_span'] = (good_mapping[c["in_good"]['character_span'][0]], good_mapping[c["in_good"]['character_span'][1]])
@@ -367,79 +412,39 @@ def standardize_annotation(change, good, bad, maps=None, original=None):
             if c["in_bad"] != None:
                 c["in_bad"]['character_span'] = (bad_mapping[c["in_bad"]['character_span'][0]], bad_mapping[c["in_bad"]['character_span'][1]])
                 c["in_bad"]['token'] = bad_og[c["in_bad"]['character_span'][0]:c["in_bad"]['character_span'][1]]
-        
-    skip = False
-    for c in change:
-        if c['in_good'] == None or c['in_bad'] == None \
-        or c['in_good']['token_index'] == None or (type(c['in_good']['token_index'])==list and len(c['in_good']['token_index']) > 1)\
-        or c['in_bad']['token_index'] == None or (type(c['in_bad']['token_index'])==list and len(c['in_bad']['token_index']) > 1):
-            skip = True
-            logger.debug("first check")
-    if skip:   # if skipping then change all the integer token indices to lists
-        for c in change:
-            if c['in_good'] != None and c['in_good']['token_index'] != None and type(c['in_good']['token_index']) != list:
-                c['in_good']['token_index'] = [c['in_good']['token_index']]
-            if c['in_bad'] != None and c['in_bad']['token_index'] != None and type(c['in_bad']['token_index']) != list:
-                c['in_bad']['token_index'] = [c['in_bad']['token_index']]
-        return change
-    good_tokens = []
-    bad_tokens = []
-    good_span = ()   # char span
-    bad_span = ()
-    change_new = []
-    for c in change:
-        g = c['in_good']
-        b = c['in_bad']
-        if type(g['token_index']) == list:
-            g['token_index'] = g['token_index'][0]
-        if type(b['token_index']) == list:
-            b['token_index'] = b['token_index'][0]
-        if len(good_tokens) == 0 and len(bad_tokens) == 0:
-            good_tokens.append(g['token_index'])
-            bad_tokens.append(b['token_index'])
-            good_span = g['character_span']
-            bad_span = b['character_span']
-        elif g['token_index'] == good_tokens[-1] + 1 and b['token_index'] == bad_tokens[-1] + 1:
-            good_tokens.append(g['token_index'])
-            bad_tokens.append(b['token_index'])
-            good_span = (good_span[0], g['character_span'][1])
-            bad_span = (bad_span[0], b['character_span'][1])
-        else:
-            change_new.append({'in_good': {'token_index': good_tokens,
-                        'character_span': good_span,
-                        'token': good[good_span[0]:good_span[1]]}, 
-                    'in_bad': {'token_index': bad_tokens,
-                        'character_span': bad_span,
-                        'token': bad[bad_span[0]:bad_span[1]]}})
-            good_tokens = [g['token_index']]
-            bad_tokens = [b['token_index']]
-            good_span = g['character_span']
-            bad_span = b['character_span']
+    return change_tmp
 
-    change_new.append({'in_good': {'token_index': good_tokens,
-                        'character_span': good_span,
-                        'token': good[good_span[0]:good_span[1]]}, 
-                    'in_bad': {'token_index': bad_tokens,
-                        'character_span': bad_span,
-                        'token': bad[bad_span[0]:bad_span[1]]}})
+def standardize_annotation(change, good, bad, maps=None, originals=None):
+    # check if it is an omission: does not work for moving a word from one place to another, 
+    # but we can't annotate that automatically anyway
+    omission = True
+    for c in change:
+        if c["in_bad"] != None:
+            omission = False
+        
+    change_reverted = revert_detokenize(change, good, bad, maps, originals)
+    change_new = concat_words(change_reverted, originals)
+    change_new.append({"omission":omission})
     return change_new
 
 # return detokenized sentence, and the ids of the removed spaces
 # or mapping for each char from detokenized sentence to original?
-def detokenize_text(sentence, lang='en'):
+def detokenize_text(sentence, lang="en"):
     mt, md = MosesTokenizer(lang=lang), MosesDetokenizer(lang=lang)
     mpn = MosesPunctNormalizer()
-    detokenized = md.detokenize(mt.tokenize(md.detokenize(mpn.normalize(sentence).split())))
+    d1 = md.detokenize(mt.tokenize(md.detokenize(mpn.normalize(sentence).split())))
+    d2 = md.detokenize(mt.tokenize(md.detokenize(mpn.normalize(d1).split())))
+    detokenized = md.detokenize(mt.tokenize(md.detokenize(mpn.normalize(d2).split())))
     logger.debug("detokenized: {}".format(detokenized))
     mapping = dict()
     i = 0
     for d_id in range(len(detokenized)):
         logger.debug("outer: {}".format([detokenized[d_id], d_id, sentence[i], i]))
         while detokenized[d_id] != sentence[i]:
-            i += 1
             logger.debug("inner: {}".format([detokenized[d_id], d_id, sentence[i], i]))
+            i += 1
         mapping[d_id] = i 
-    mapping[len(detokenized)] = len(sentence)       
+    assert [detokenized[k] for k in mapping.keys()] == [sentence[v] for v in mapping.values()]
     return detokenized, mapping
 
 # If same ref and incorrect sentence was annotated before then just copy the annotation

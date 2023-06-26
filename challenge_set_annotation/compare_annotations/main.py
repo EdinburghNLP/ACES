@@ -118,7 +118,8 @@ class Annotations(object):
             annotations = json.loads(data)
             self.raw = {str(k):v for k,v in annotations.items()}
         self.i = -1
-        self.keys = list(self.raw.keys())
+        # self.keys = list(self.raw.keys())
+        self.keys = [17418, 10007, 14685, 33876, 8614, 13482, 34747, 4172, 32266, 13469, 33409, 33457, 15685, 31415]
             
     def add(self, data, tsv=False):
         print("in add ")
@@ -149,12 +150,20 @@ class Annotations(object):
         if self.i < 0:
             print("No more back")
             return -1
-        key = self.keys[self.i]
-        sample = self.raw[key]
+        try:
+            key = str(self.keys[self.i])
+        except:
+            print("wtf? ", self.i)
+            print(self.keys)
+        try:
+            sample = self.raw[key]
+        except:
+            print("key not found, ", key, self.raw.keys())
+
         if "reference" in sample:
-            raw_text = "Reference: {}<br />Good translation: {}<br>Incorrect translation: {}<br />Phenomenon: {}".format(sample["reference"], sample["good-translation"], sample["incorrect-translation"], sample["phenomena"])
+            raw_text = "ID: {}<br />Reference: {}<br />Good translation: {}<br>Incorrect translation: {}<br />Phenomenon: {}".format(key, sample["reference"], sample["good-translation"], sample["incorrect-translation"], sample["phenomena"])
         else:
-            raw_text = "A: {}<br>B: {}<br />Phenomenon: {}".format(sample["good-translation"], sample["incorrect-translation"], sample["phenomena"])            
+            raw_text = "ID: {}<br />A: {}<br>B: {}<br />Phenomenon: {}".format(key, sample["good-translation"], sample["incorrect-translation"], sample["phenomena"])            
         res[0] = raw_text
         for i,f in enumerate(self.files):
             if f != {} and key in f:

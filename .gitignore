@@ -2,3 +2,5 @@ challenge_set_annotation/manual_annotations/*
 challenge_set_annotation/manual_annotations/
 challenge_set_annotation/manual_annotations/__pycache__/
 challenge_set_annotation/manual_annotations/__pycache__/*
+__pycache__/
+__pycache__/*
