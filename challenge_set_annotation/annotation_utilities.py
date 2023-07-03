@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from quantulum3 import parser
-import difflib, re, copy
+import difflib, re, copy, string
 import numpy as np
 np.random.seed(42)
 
@@ -15,6 +15,34 @@ from sacremoses import MosesTokenizer, MosesDetokenizer
 
 # given a sentence, return the tokens and their start and end indices
 def tokenize(sentence):
+    s = re.sub('i̇', 'i', sentence)
+    """
+    s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
+    s = re.sub(r"^[\"\[\]\.,!?:;'\(\)$“„”]+", ' ', s)
+    s = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s)
+    s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+$",' ', s)
+    s = s.strip("\"[].,!?:;'\(\)$")
+    """
+    # s = s0.translate(str.maketrans({key: " {0} ".format(key) for key in string.punctuation if }))
+    s0 = s
+    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])(.|$)', r'\1 \2 \3 \4 \5', s0)
+    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])(.|$)', r'\1 \2 \3 \4', s0)
+    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(string.punctuation) + '])(.|$)', r'\1 \2 \3', s0)
+    s0 = re.sub(r'(^|.)([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3 \4 \5', s0)
+    s0 = re.sub(r'(^|.)([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3 \4', s0)
+    s0 = re.sub(r'(^|.)([' + re.escape(string.punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3', s0)
+    tokenized = s0.split()
+    spans = []
+    split = 0
+    for token in tokenized:
+        res = re.search(re.escape(token), s[split:])
+        start = res.start() + split
+        end = res.end() + split
+        spans.append((start, end))
+        split = end
+    return tokenized, spans
+
+def tokenize_remove_punctuation(sentence):
     s0 = sentence.lower()
     s0 = re.sub('i̇', 'i', s0)
     s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
@@ -22,8 +50,8 @@ def tokenize(sentence):
     s = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s)
     s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+$",' ', s)
     s = s.strip("\"[].,!?:;'\(\)$")
+    # s = s0.translate(str.maketrans({key: " {0} ".format(key) for key in string.punctuation}))
     tokenized = s.split()
-    
     spans = []
     split = 0
     for token in tokenized:
@@ -33,6 +61,7 @@ def tokenize(sentence):
         spans.append((start, end))
         split = end
     return tokenized, spans
+
 
 # choose whether the reference sentence or the good sentence was changed to create the incorrect translation.
 def ref_or_good(ref, good, bad):
@@ -46,7 +75,7 @@ def ref_or_good(ref, good, bad):
     else:
         return good
 
-# Span annotations for the addition data - word ids for now
+# word level Span annotations for the addition data
 # can handle multiple replacements, adddition and omission
 def diff(g, g_spans, b, b_spans, phenomena="addition"):
     i, j = 0, 0
@@ -79,8 +108,12 @@ def diff(g, g_spans, b, b_spans, phenomena="addition"):
     return change
      
 def annotate_word(good, incorrect):
-    g, g_spans = tokenize(good)
-    b, b_spans = tokenize(incorrect)
+    if good.lower() != incorrect.lower():
+        g, g_spans = tokenize(good.lower())
+        b, b_spans = tokenize(incorrect.lower())
+    else:
+        g, g_spans = tokenize(good)
+        b, b_spans = tokenize(incorrect)
     try:
         if len(g) > len(b):    # omission
             # return diff(b, g)
@@ -175,8 +208,12 @@ def annotate_units(good,bad):
     units_g = [u.surface for u in parser.parse(good)]
     units_b = [u.surface for u in parser.parse(bad)]
     i = 0
-    g, g_spans = tokenize(good)
-    b, b_spans = tokenize(bad)
+    if good.lower() != bad.lower():
+        g, g_spans = tokenize(good.lower())
+        b, b_spans = tokenize(bad.lower())
+    else:
+        g, g_spans = tokenize(good)
+        b, b_spans = tokenize(bad)
     changes = []
     for i in range(len(units_g)):
         logger.debug([units_g[i], i])
@@ -198,8 +235,12 @@ def annotate_units(good,bad):
 # find two substrings which are swapped. Maybe later get rid of diff_flexible and make it complately character level?
 def annotate_swap_word_lvl(good, bad):
     changes = []
-    g, g_spans = tokenize(good)
-    b, b_spans = tokenize(bad)
+    if good.lower() != bad.lower():
+        g, g_spans = tokenize(good.lower())
+        b, b_spans = tokenize(bad.lower())
+    else:
+        g, g_spans = tokenize(good)
+        b, b_spans = tokenize(bad)
     r = diff_flexible(good, g, g_spans, bad, b, b_spans, phenomena='swap')[0]
 
     start = r["in_good"]["token_index"][0]
@@ -321,10 +362,9 @@ def annotate_swap_char_lvl(good, bad):
 # reference->good change one month name with its abbreviation.
 # good->incorrect change one month name to another.
 def diff_dates(good, bad):
-    g, g_spans = tokenize(good)
-    b, b_spans = tokenize(bad)
-    if len(g) != len(b):
-        logger.error('in hallucination-dates: %s, %s'%(g,b))
+    g, g_spans = tokenize_remove_punctuation(good)
+    b, b_spans = tokenize_remove_punctuation(bad)
+    assert len(g) == len(b)
     change = diff(g, g_spans, b, b_spans, phenomena="replacement") 
     if len(change) > 1: 
         # find one change with minimum overlap between two month names
@@ -405,6 +445,8 @@ def revert_detokenize(change, good, bad, maps=None, originals=None):
     if maps != None:
         good_mapping, bad_mapping = maps[0], maps[1]
         good_og, bad_og = originals[0], originals[1]
+        good_mapping[len(good)] = len(good_og)
+        bad_mapping[len(bad)] = len(bad_og)
         for c in change_tmp:
             if c["in_good"] != None:
                 c["in_good"]['character_span'] = (good_mapping[c["in_good"]['character_span'][0]], good_mapping[c["in_good"]['character_span'][1]])
@@ -417,39 +459,35 @@ def revert_detokenize(change, good, bad, maps=None, originals=None):
 def standardize_annotation(change, good, bad, maps=None, originals=None):
     # check if it is an omission: does not work for moving a word from one place to another, 
     # but we can't annotate that automatically anyway
-    omission = True
-    for c in change:
-        if c["in_bad"] != None:
-            omission = False
-        
     change_reverted = revert_detokenize(change, good, bad, maps, originals)
     change_new = concat_words(change_reverted, originals)
-    change_new.append({"omission":omission})
     return change_new
 
 # return detokenized sentence, and the ids of the removed spaces
 # or mapping for each char from detokenized sentence to original?
 def detokenize_text(sentence, lang="en"):
+    lang = "en"
     mt, md = MosesTokenizer(lang=lang), MosesDetokenizer(lang=lang)
     mpn = MosesPunctNormalizer()
-    d1 = md.detokenize(mt.tokenize(md.detokenize(mpn.normalize(sentence).split())))
-    d2 = md.detokenize(mt.tokenize(md.detokenize(mpn.normalize(d1).split())))
+    punct_normalized = mpn.normalize(sentence)
+    d1 = md.detokenize(mt.tokenize(md.detokenize(punct_normalized.split())))
+    d2 = md.detokenize(mt.tokenize(md.detokenize(d1.split())))
     detokenized = md.detokenize(mt.tokenize(md.detokenize(mpn.normalize(d2).split())))
-    logger.debug("detokenized: {}".format(detokenized))
+    logger.debug("detokenized: {}, no change: {}".format(detokenized, detokenized==sentence))
     mapping = dict()
     i = 0
     for d_id in range(len(detokenized)):
         logger.debug("outer: {}".format([detokenized[d_id], d_id, sentence[i], i]))
-        while detokenized[d_id] != sentence[i]:
-            logger.debug("inner: {}".format([detokenized[d_id], d_id, sentence[i], i]))
+        while detokenized[d_id] != punct_normalized[i]:         
             i += 1
+            logger.debug("inner: {}".format([detokenized[d_id], d_id, punct_normalized[i], i]))
         mapping[d_id] = i 
-    assert [detokenized[k] for k in mapping.keys()] == [sentence[v] for v in mapping.values()]
+    assert [detokenized[k] for k in mapping.keys()] == [punct_normalized[v] for v in mapping.values()]
     return detokenized, mapping
 
 # If same ref and incorrect sentence was annotated before then just copy the annotation
 def check_seen_before(sample, annotations):
-    for annotated_sample in annotations.values():
+    for idx, annotated_sample in annotations.items():
         if annotated_sample["reference"] == sample["reference"] and annotated_sample["incorrect-translation"] == sample["incorrect-translation"]:
-              return (annotated_sample["annotation"], annotated_sample["method"])
+              return (annotated_sample["annotation"], annotated_sample["method"]), idx
     return None
