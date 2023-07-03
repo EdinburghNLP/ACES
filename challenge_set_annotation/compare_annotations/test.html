@@ -10,8 +10,8 @@
     
     <py-env>
         - paths:
-          - ./main.py
-          - ./annotation_utilities.py
+            - ./main_tmp.py
+            - ./annotation_utilities.py
     </py-env>
 
   </head>
@@ -62,7 +62,7 @@
         import asyncio
         from js import document, FileReader
         from pyodide import create_proxy
-        from main import Annotations
+        from main_tmp import Annotations
         import js
 
         annotations_obj = Annotations(6)

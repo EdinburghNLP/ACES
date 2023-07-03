@@ -102,7 +102,7 @@ def process_tsv(content, m1=None, m2=None):
                 bad_2_4 = re.sub(re.escape(omission), space, bad_2_3)
                 
                 s["bad_2"] = bad_2_4
-            annotations[sample[0]] = s
+            annotations[int(sample[0])] = s
     
     return annotations
 
@@ -116,10 +116,11 @@ class Annotations(object):
             self.raw = process_tsv(data)
         else:
             annotations = json.loads(data)
-            self.raw = {str(k):v for k,v in annotations.items()}
+            self.raw = {int(k):v for k,v in annotations.items()}
         self.i = -1
-        # self.keys = list(self.raw.keys())
-        self.keys = [17418, 10007, 14685, 33876, 8614, 13482, 34747, 4172, 32266, 13469, 33409, 33457, 15685, 31415]
+        self.keys = list(self.raw.keys())
+        assert type(self.keys[0]) == int
+        # self.keys = [17418, 10007, 14685, 33876, 8614, 13482, 34747, 4172, 32266, 13469, 33409, 33457, 15685, 31415]
             
     def add(self, data, tsv=False):
         print("in add ")
@@ -134,7 +135,8 @@ class Annotations(object):
                     self.files[i] = process_tsv(data, m1, m2)
                 else:
                     annotations = json.loads(data)
-                    self.files[i] = {str(k):v for k,v in annotations.items()}
+                    self.files[i] = {int(k):v for k,v in annotations.items()}
+                assert type(list(self.files[i].keys())[0]) == int
                 print("add succesful")
                 return 
         
@@ -151,7 +153,7 @@ class Annotations(object):
             print("No more back")
             return -1
         try:
-            key = str(self.keys[self.i])
+            key = int(self.keys[self.i])
         except:
             print("wtf? ", self.i)
             print(self.keys)
