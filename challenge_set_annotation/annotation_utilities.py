@@ -14,8 +14,12 @@ from sacremoses import MosesPunctNormalizer
 from sacremoses import MosesTokenizer, MosesDetokenizer
 
 # given a sentence, return the tokens and their start and end indices
-def tokenize(sentence):
+def tokenize(sentence, chars=False):
     s = re.sub('i̇', 'i', sentence)
+    if chars:
+        tokenized = list(sentence)
+        spans = [(i,i+1) for i in range(len(tokenized))]
+        return tokenized, spans
     """
     s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
     s = re.sub(r"^[\"\[\]\.,!?:;'\(\)$“„”]+", ' ', s)
@@ -466,7 +470,6 @@ def standardize_annotation(change, good, bad, maps=None, originals=None):
 # return detokenized sentence, and the ids of the removed spaces
 # or mapping for each char from detokenized sentence to original?
 def detokenize_text(sentence, lang="en"):
-    lang = "en"
     mt, md = MosesTokenizer(lang=lang), MosesDetokenizer(lang=lang)
     mpn = MosesPunctNormalizer()
     punct_normalized = mpn.normalize(sentence)

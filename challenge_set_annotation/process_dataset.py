@@ -46,6 +46,7 @@ def process_sample(idx, sample, manual=False, detokenize=False):
     else:
         g, g_spans = tokenize(good)
         b, b_spans = tokenize(bad)
+    """
     if phenomena[sample["phenomena"]] == 'add-omit':
         try:
             change = diff_char_level(good, bad)
@@ -59,16 +60,17 @@ def process_sample(idx, sample, manual=False, detokenize=False):
         except:
             logger.warning('error in char level annotate, id {}'.format(idx))
         stats[sample["phenomena"]]["total"] += 1
-
-    elif phenomena[sample["phenomena"]] == 'annotate_word':
+    """
+    if phenomena[sample["phenomena"]] == 'annotate_word':
+        stats[sample["phenomena"]]["total"] += 1
         try:
             change = annotate_word(good, bad)
             if len(change) == 0:
                 logger.warning('No change in id {}'.format(idx))
                 stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
             else:
-                stats[sample["phenomena"]]["success"] += 1
                 assert is_word_level(g_spans, b_spans, change)
+                stats[sample["phenomena"]]["success"] += 1
                 change = standardize_annotation(change, good, bad, maps, originals)
             sample['annotation'] = change
             sample['method'] = phenomena[sample["phenomena"]]
@@ -76,12 +78,9 @@ def process_sample(idx, sample, manual=False, detokenize=False):
         except:
             logger.warning('error in word level annotate, id {}'.format(idx))
             stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
-        stats[sample["phenomena"]]["total"] += 1
 
     elif phenomena[sample["phenomena"]] in ['diff_flexible', 'REF_flexible', 'mixed_flexible']:
-        g, g_spans = tokenize(good)
-        b, b_spans = tokenize(bad)
-
+        stats[sample["phenomena"]]["total"] += 1
         # special treatment to japanese chinese and thailandish because they don't use spaces, so can't be split            
         if sample['langpair'][-2:] not in ['ja', 'zh', 'th']:      
             if len(g) == len(b):   # if there are multiple one word replacements
@@ -91,44 +90,56 @@ def process_sample(idx, sample, manual=False, detokenize=False):
                     change = diff_flexible(good, g, g_spans, bad, b, b_spans)
                     if len(change) == 0 and good != bad:
                         change = diff_char_level(good, bad) 
+                        if len(change) == 0 and good != bad:
+                            logger.warning('No change in id {}'.format(idx,g,b,change))
+                            stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
+                            return 0
                 except:
                     logger.warning('error in id {}'.format(idx))
                     stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
-            if len(change) == 0:
-                logger.warning('No change in id {}'.format(idx,g,b,change))
-                stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
-            elif len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50)):
+                    return 0
+            elif (change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50):
                 logger.warning('check this - too long: %s' %idx)
                 stats[sample["phenomena"]]["too_long"].append((idx, sample['langpair']))
-            else:
-                stats[sample["phenomena"]]["success"] += 1
-                assert is_word_level(g_spans, b_spans, change)
-                change = standardize_annotation(change, good, bad, maps, originals)
+                sample['annotation'] = change
+                sample['method'] = phenomena[sample["phenomena"]]
+                annotations[idx] = sample  
+                return 0
+            assert is_word_level(g_spans, b_spans, change)
+            stats[sample["phenomena"]]["success"] += 1     
+            change = standardize_annotation(change, good, bad, maps, originals)
             sample['annotation'] = change
             sample['method'] = phenomena[sample["phenomena"]]
             annotations[idx] = sample  
         else:
             try:
-                change = diff_char_level(good, bad) 
-                if len(change) == 0 and good != bad:
-                    logger.warning('No change in id {}'.format(idx,g,b,change))
-                    stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
-                elif len(change) != 0 and ((change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 30) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 30)):
-                    logger.warning('check this - too long: %s' %idx)
-                    stats[sample["phenomena"]]["too_long"].append((idx, sample['langpair']))
-                else:
-                    stats[sample["phenomena"]]["success"] += 1
+                good = good_og
+                bad = bad_og
+                g, g_spans = tokenize(good.lower(), chars=True)
+                b, b_spans = tokenize(bad.lower(), chars=True)
+                maps = None
+                if len(g) == len(b):   # if there are multiple one word replacements
+                    change = diff(g, g_spans, b, b_spans, phenomena="replacement")
+                if len(g) != len(b) or len(change) == 0:
+                    change = diff_flexible(good, g, g_spans, bad, b, b_spans)
+                    if len(change) == 0 and good != bad:
+                        change = diff_char_level(good, bad) 
+                        if len(change) == 0 and good != bad:
+                            logger.warning('No change in id {}'.format(idx,g,b,change))
+                            stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
+                if len(change) != 0 or good == bad:
                     assert is_word_level(g_spans, b_spans, change)
                     change = standardize_annotation(change, good, bad, maps, originals)
+                    stats[sample["phenomena"]]["success"] += 1
                 sample['annotation'] = change
                 sample['method'] = phenomena[sample["phenomena"]]
                 annotations[idx] = sample
             except: 
                 logger.warning('error in id {}'.format(idx))
                 stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
-        stats[sample["phenomena"]]["total"] += 1
         
     elif phenomena[sample["phenomena"]] == 'units':
+        stats[sample["phenomena"]]["total"] += 1
         try:
             g, b, change = annotate_units(good,bad)
             if len(change) == 0 and g != b:
@@ -147,9 +158,9 @@ def process_sample(idx, sample, manual=False, detokenize=False):
         except: 
             logger.warning('error in id {}'.format(idx))
             stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
-        stats[sample["phenomena"]]["total"] += 1
 
     elif phenomena[sample["phenomena"]] == 'swap':
+        stats[sample["phenomena"]]["total"] += 1
         try:
             change = annotate_swap_word_lvl(good,bad)
             if len(change) < 2 and good != bad:
@@ -171,9 +182,9 @@ def process_sample(idx, sample, manual=False, detokenize=False):
         except: 
             logger.warning('error in id {}'.format(idx))
             stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
-        stats[sample["phenomena"]]["total"] += 1
 
     elif phenomena[sample["phenomena"]] == 'date':
+        stats[sample["phenomena"]]["total"] += 1
         try:
             change = diff_dates(good,bad)
             stats[sample["phenomena"]]["success"] += 1
@@ -185,9 +196,9 @@ def process_sample(idx, sample, manual=False, detokenize=False):
         except: 
             logger.warning('error in id {}'.format(idx))
             stats[sample["phenomena"]]["error"].append((idx, sample['langpair']))
-        stats[sample["phenomena"]]["total"] += 1
-            
+
     elif phenomena[sample['phenomena']] == 'whole_sentence':
+        stats[sample["phenomena"]]["total"] += 1
         change = whole_sentence(good, bad)
         stats[sample["phenomena"]]["success"] += 1
         assert is_word_level(g_spans, b_spans, change)
@@ -195,8 +206,6 @@ def process_sample(idx, sample, manual=False, detokenize=False):
         sample['annotation'] = change
         sample['method'] = phenomena[sample["phenomena"]]
         annotations[idx] = sample
-        stats[sample["phenomena"]]["total"] += 1
-    
     return 1  # 1 for success
         
 def process_phenomena(samples, manual=False, detokenize=False):
@@ -278,7 +287,7 @@ if __name__ == "__main__":
         'hypernym-replacement':'REF_flexible',
         'hyponym-replacement':'REF_flexible',
         'lexical-overlap':'manual',
-        'modal_verb:deletion':'add-omit',
+        'modal_verb:deletion':'annotate_word',
         'modal_verb:substitution':'diff_flexible',
         'nonsense':'REF_flexible',
         'omission':'annotate_word',
