@@ -6,3 +6,4 @@ quantulum3
 sklearn
 # plotly
 sacremoses
+stemming

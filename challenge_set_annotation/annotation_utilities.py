@@ -20,21 +20,15 @@ def tokenize(sentence, chars=False):
         tokenized = list(sentence)
         spans = [(i,i+1) for i in range(len(tokenized))]
         return tokenized, spans
-    """
-    s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
-    s = re.sub(r"^[\"\[\]\.,!?:;'\(\)$“„”]+", ' ', s)
-    s = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s)
-    s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+$",' ', s)
-    s = s.strip("\"[].,!?:;'\(\)$")
-    """
-    # s = s0.translate(str.maketrans({key: " {0} ".format(key) for key in string.punctuation if }))
+    punctuation = string.punctuation
+    punctuation += "\"\[\]\.,!?:;'\(\)$“„”"
     s0 = s
-    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])(.|$)', r'\1 \2 \3 \4 \5', s0)
-    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])(.|$)', r'\1 \2 \3 \4', s0)
-    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(string.punctuation) + '])(.|$)', r'\1 \2 \3', s0)
-    s0 = re.sub(r'(^|.)([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3 \4 \5', s0)
-    s0 = re.sub(r'(^|.)([' + re.escape(string.punctuation) + '])([' + re.escape(string.punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3 \4', s0)
-    s0 = re.sub(r'(^|.)([' + re.escape(string.punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3', s0)
+    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])(.|$)', r'\1 \2 \3 \4 \5', s0)
+    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])(.|$)', r'\1 \2 \3 \4', s0)
+    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(punctuation) + '])(.|$)', r'\1 \2 \3', s0)
+    s0 = re.sub(r'(^|.)([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3 \4 \5', s0)
+    s0 = re.sub(r'(^|.)([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3 \4', s0)
+    s0 = re.sub(r'(^|.)([' + re.escape(punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3', s0)
     tokenized = s0.split()
     spans = []
     split = 0
@@ -47,14 +41,12 @@ def tokenize(sentence, chars=False):
     return tokenized, spans
 
 def tokenize_remove_punctuation(sentence):
-    s0 = sentence.lower()
-    s0 = re.sub('i̇', 'i', s0)
+    s0 = re.sub('i̇', 'i', sentence)
     s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
     s = re.sub(r"^[\"\[\]\.,!?:;'\(\)$“„”]+", ' ', s)
     s = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s)
     s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+$",' ', s)
     s = s.strip("\"[].,!?:;'\(\)$")
-    # s = s0.translate(str.maketrans({key: " {0} ".format(key) for key in string.punctuation}))
     tokenized = s.split()
     spans = []
     split = 0
@@ -208,32 +200,70 @@ def diff_flexible(good, g, g_spans, bad, b, b_spans, phenomena="default"):
 # this can detect multiple spans, but they don't exist in hallucination-unit-conversion-amount-matches-ref 
 # and hallucination-unit-conversion-unit-matches-ref. I assume only the numbers and units are changed, so the starting index
 # is same in both good and bad translations. But the length of the units can be different (100 miles -> 100 miles per hour)
-def annotate_units(good,bad):
-    units_g = [u.surface for u in parser.parse(good)]
-    units_b = [u.surface for u in parser.parse(bad)]
-    i = 0
+def annotate_units(good,bad, mode="Mode not given"):
+    units_g = [u for u in parser.parse(good)]
+    units_b = [u for u in parser.parse(bad)]
     if good.lower() != bad.lower():
-        g, g_spans = tokenize(good.lower())
-        b, b_spans = tokenize(bad.lower())
+        g, g_spans = tokenize_remove_punctuation(good.lower())
+        b, b_spans = tokenize_remove_punctuation(bad.lower())
     else:
-        g, g_spans = tokenize(good)
-        b, b_spans = tokenize(bad)
+        g, g_spans = tokenize_remove_punctuation(good)
+        b, b_spans = tokenize_remove_punctuation(bad)
     changes = []
     for i in range(len(units_g)):
-        logger.debug([units_g[i], i])
-        if units_g[i] != units_b[i]:
-            ref_pattern = units_g[i].split()[0]
-            logger.debug('ref_pattern: ' + ref_pattern)
-            for pid in range(len(g)-len(units_g[i].split())+1):
-                logger.debug([g[pid], g[pid] == ref_pattern])
-                if ref_pattern in g[pid]:
-                    start = pid
-            g_tokens = list(range(start,start+len(units_g[i].split())))
-            b_tokens = list(range(start,start+len(units_b[i].split())))
+        if units_g[i].unit.name != "dimensionless" and units_g[i].surface != units_b[i].surface:
+            g_parsed = units_g[i]
+            b_parsed = units_b[i]
+            g_start = g_parsed.span[0]
+            for i,s in enumerate(g_spans):
+                if s[0] == g_start:
+                    g_value_span = s
+                    g_value_name = good[s[0]:s[1]]
+                    g_value_token = [i]
+                    g_units_len = len(g_parsed.surface.split())-1
+                    g_unit_token = list(range(i+1,i+1+g_units_len))
+                    g_unit_span = (g_spans[g_unit_token[0]][0], g_spans[g_unit_token[-1]][1])
+                    g_unit_name = good[g_unit_span[0]:g_unit_span[1]]
+                    
+            b_start = b_parsed.span[0]
+            for i,s in enumerate(b_spans):
+                if s[0] == b_start:
+                    b_value_span = s
+                    b_value_name = bad[s[0]:s[1]]
+                    b_value_token = [i]
+                    b_units_len = len(b_parsed.surface.split())-1
+                    b_unit_token = list(range(i+1,i+1+b_units_len))
+                    b_unit_span = (b_spans[b_unit_token[0]][0], b_spans[b_unit_token[-1]][1])
+                    b_unit_name = bad[b_unit_span[0]:b_unit_span[1]]
+                    
+            # assert good[g_value_span[0]:g_value_span[1]] in str(g_parsed.value) 
+            # assert bad[b_value_span[0]:b_value_span[1]] in str(b_parsed.value)
+            # assert " ".join(g[token] for token in g_value_token) in str(g_parsed.value)
+            # assert " ".join(b[token] for token in b_value_token) in str(b_parsed.value)
+            # assert g_parsed.unit.name in  " ".join(g[token] for token in g_unit_token)
+            # assert b_parsed.unit.name in " ".join(b[token] for token in b_unit_token)
+            # assert g_parsed.unit.name in good[g_unit_span[0]:g_unit_span[1]]
+            # assert b_parsed.unit.name in bad[b_unit_span[0]:b_unit_span[1]]
+            if mode == 'hallucination-unit-conversion-amount-matches-ref':     # number correct, unit wrong
+                g_name = g_unit_name
+                g_tokens = g_unit_token
+                g_span = g_unit_span
+                b_name = b_unit_name
+                b_tokens = b_unit_token
+                b_span = b_unit_span
+            elif mode == 'hallucination-unit-conversion-unit-matches-ref':    # number wrong, unit correct, 
+                g_name = g_value_name
+                g_tokens = g_value_token
+                g_span = g_value_span
+                b_name = b_value_name
+                b_tokens = b_value_token
+                b_span = b_value_span
+            else:
+                logger.info('?? type: {}'.format(type))
             changes.append({"in_good":{'token_index':g_tokens, 
-                    'character_span':(g_spans[g_tokens[0]][0], g_spans[g_tokens[-1]][1]), 'token':units_g[i]}, 
-                         "in_bad":{'token_index':b_tokens, 
-                    'character_span':(b_spans[b_tokens[0]][0], b_spans[b_tokens[-1]][1]), 'token':units_b[i]}})
+                    'character_span':g_span, 'token':g_name}, 
+                        "in_bad":{'token_index':b_tokens, 
+                    'character_span':b_span, 'token':b_name}}) 
     return g, b, changes
 
 # find two substrings which are swapped. Maybe later get rid of diff_flexible and make it complately character level?
@@ -469,18 +499,25 @@ def standardize_annotation(change, good, bad, maps=None, originals=None):
 
 # return detokenized sentence, and the ids of the removed spaces
 # or mapping for each char from detokenized sentence to original?
-def detokenize_text(sentence, lang="en"):
-    mt, md = MosesTokenizer(lang=lang), MosesDetokenizer(lang=lang)
-    mpn = MosesPunctNormalizer()
-    punct_normalized = mpn.normalize(sentence)
-    d1 = md.detokenize(mt.tokenize(md.detokenize(punct_normalized.split())))
-    d2 = md.detokenize(mt.tokenize(md.detokenize(d1.split())))
-    detokenized = md.detokenize(mt.tokenize(md.detokenize(mpn.normalize(d2).split())))
-    logger.debug("detokenized: {}, no change: {}".format(detokenized, detokenized==sentence))
+def detokenize_text(sentence, lang='en'):
+    if lang in ['ja', 'zh', 'th', 'ko']:
+        mpn = MosesPunctNormalizer()
+        punct_normalized = mpn.normalize(sentence)
+        detokenized = re.sub(' ', '', punct_normalized)
+        # d1 = re.sub('(?<=[0-9])\s+(?=[0-9])', '', punct_normalized)
+        # detokenized = re.sub('(?<=[a-zA-Z])\s+(?=[a-zA-Z])', '', d1)
+    else:
+        mt, md = MosesTokenizer(lang=lang), MosesDetokenizer(lang=lang)
+        mpn = MosesPunctNormalizer()
+        punct_normalized = mpn.normalize(sentence)
+        d1 = md.detokenize(mt.tokenize(md.detokenize(punct_normalized.split())))
+        d2 = md.detokenize(mt.tokenize(md.detokenize(d1.split())))
+        detokenized = md.detokenize(mt.tokenize(md.detokenize(d2.split())))
+    logger.debug("detokenized: {}, punc_normalized: {}".format(detokenized, punct_normalized))
     mapping = dict()
     i = 0
     for d_id in range(len(detokenized)):
-        logger.debug("outer: {}".format([detokenized[d_id], d_id, sentence[i], i]))
+        logger.debug("outer: {}".format([detokenized[d_id], d_id, punct_normalized[i], i]))
         while detokenized[d_id] != punct_normalized[i]:         
             i += 1
             logger.debug("inner: {}".format([detokenized[d_id], d_id, punct_normalized[i], i]))

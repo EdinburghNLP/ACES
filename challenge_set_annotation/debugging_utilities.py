@@ -242,14 +242,15 @@ def manual_annotation_io_warnings(idx, sample):
     else:
         print("-----> For this sample we compare the Incorrect translation with the Good translation.\n")
     display_annotation(idx, sample)
-    inp = input('To accept the suggested annotation click on enter. To skip this one enter skip. To exit enter exit and enter anything else to manually annotate:')
-    res = manual_annotation(sample, inp)
-    if res == -1:
-        # do not add the annotation if you stop at this point
-        return -1
-    if res == 1:
-        # skipping
+    inp = input('To accept the suggested annotation click on enter. To skip this one enter skip. To add to the manually annotated files enter add. To exit enter exit and enter anything else to manually annotate:')
+    if inp == "skip":
         return 1
+    if inp == "exit":
+        return -1
+    if inp == "add":
+        return 2
+    res = manual_annotation(sample, inp)
+    return res
         
 def is_word_level(g_spans, b_spans, change):
     g_starts = [span[0] for span in g_spans]
