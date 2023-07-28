@@ -316,14 +316,14 @@ def annotate_units(good,bad, mode="Mode not given"):
             # assert b_parsed.unit.name in " ".join(b[token] for token in b_unit_token)
             # assert g_parsed.unit.name in good[g_unit_span[0]:g_unit_span[1]]
             # assert b_parsed.unit.name in bad[b_unit_span[0]:b_unit_span[1]]
-            if mode == 'hallucination-unit-conversion-amount-matches-ref':     # number correct, unit wrong
+            if mode == 'hallucination-unit-conversion-unit-matches-ref':         # number correct, unit wrong
                 g_name = g_unit_name
                 g_tokens = g_unit_token
                 g_span = g_unit_span
                 b_name = b_unit_name
                 b_tokens = b_unit_token
                 b_span = b_unit_span
-            elif mode == 'hallucination-unit-conversion-unit-matches-ref':    # number wrong, unit correct, 
+            elif mode == 'hallucination-unit-conversion-amount-matches-ref':    # number wrong, unit correct, 
                 g_name = g_value_name
                 g_tokens = g_value_token
                 g_span = g_value_span
