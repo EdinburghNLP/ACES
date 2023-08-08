@@ -3,7 +3,7 @@ numpy
 tqdm
 # logging
 quantulum3
-sklearn
+# scikit-learn
 # plotly
 sacremoses
 stemming

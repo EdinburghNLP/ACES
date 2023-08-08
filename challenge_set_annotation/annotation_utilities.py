@@ -86,10 +86,11 @@ phenomena = {
 }
 
 # given a sentence, return the tokens and their start and end indices
+# for ko. ja, zh, th: turn each character to a word and tokenize like that. also for those in detokenizer remove all spaces.
 def tokenize(sentence, chars=False):
     s = re.sub('i̇', 'i', sentence)
     if chars:
-        tokenized = list(sentence)
+        tokenized = list(s)
         spans = [(i,i+1) for i in range(len(tokenized))]
         return tokenized, spans
     punctuation = string.punctuation
@@ -112,13 +113,17 @@ def tokenize(sentence, chars=False):
         split = end
     return tokenized, spans
 
-def tokenize_remove_punctuation(sentence):
+def tokenize_remove_punctuation(sentence, chars=False):
     s0 = re.sub('i̇', 'i', sentence)
     s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
     s = re.sub(r"^[\"\[\]\.,!?:;'\(\)$“„”]+", ' ', s)
     s = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s)
     s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+$",' ', s)
     s = s.strip("\"[].,!?:;'\(\)$")
+    if chars:
+        tokenized = list(s)
+        spans = [(i,i+1) for i in range(len(tokenized))]
+        return tokenized, spans
     tokenized = s.split()
     spans = []
     split = 0
@@ -132,10 +137,10 @@ def tokenize_remove_punctuation(sentence):
 
 
 # choose whether the reference sentence or the good sentence was changed to create the incorrect translation.
-def ref_or_good(ref, good, bad):
-    g, g_spans = tokenize(good)
-    b, b_spans = tokenize(bad)
-    r, r_spans = tokenize(ref)
+def ref_or_good(ref, good, bad, chars=False):
+    g, g_spans = tokenize(good, chars=chars)
+    b, b_spans = tokenize(bad, chars=chars)
+    r, r_spans = tokenize(ref, chars=chars)
     g_change = diff_flexible(good, g, g_spans, bad, b, b_spans)
     r_change = diff_flexible(ref, r, r_spans, bad, b, b_spans)
     if len(r_change[0]["in_good"]["token"]) <= len(g_change[0]["in_good"]["token"]):
@@ -143,8 +148,7 @@ def ref_or_good(ref, good, bad):
     else:
         return good
 
-# word level Span annotations for the addition data
-# can handle multiple replacements, adddition and omission
+# word level Span annotations for replacements, adddition and omission
 def diff(g, g_spans, b, b_spans, phenomena="addition"):
     i, j = 0, 0
     change = []
@@ -175,16 +179,15 @@ def diff(g, g_spans, b, b_spans, phenomena="addition"):
                                'in_bad': None} for ix in range(i,len(g))])
     return change
      
-def annotate_word(good, incorrect):
+def annotate_word(good, incorrect, chars=False):
     if good.lower() != incorrect.lower():
-        g, g_spans = tokenize(good.lower())
-        b, b_spans = tokenize(incorrect.lower())
+        g, g_spans = tokenize(good.lower(), chars=chars)
+        b, b_spans = tokenize(incorrect.lower(), chars=chars)
     else:
-        g, g_spans = tokenize(good)
-        b, b_spans = tokenize(incorrect)
+        g, g_spans = tokenize(good, chars=chars)
+        b, b_spans = tokenize(incorrect, chars=chars)
     try:
         if len(g) > len(b):    # omission
-            # return diff(b, g)
             return diff(g, g_spans, b, b_spans, phenomena="omission")
 
         elif len(g) < len (b):   # addition
@@ -272,6 +275,7 @@ def diff_flexible(good, g, g_spans, bad, b, b_spans, phenomena="default"):
 # this can detect multiple spans, but they don't exist in hallucination-unit-conversion-amount-matches-ref 
 # and hallucination-unit-conversion-unit-matches-ref. I assume only the numbers and units are changed, so the starting index
 # is same in both good and bad translations. But the length of the units can be different (100 miles -> 100 miles per hour)
+# here if there are units with a non-latin script with detokenization problems that could cause problems
 def annotate_units(good,bad, mode="Mode not given"):
     units_g = [u for u in parser.parse(good)]
     units_b = [u for u in parser.parse(bad)]
@@ -339,6 +343,7 @@ def annotate_units(good,bad, mode="Mode not given"):
     return g, b, changes
 
 # find two substrings which are swapped. Maybe later get rid of diff_flexible and make it complately character level?
+# what if ko, ja, zh, th? 
 def annotate_swap_word_lvl(good, bad):
     changes = []
     if good.lower() != bad.lower():
