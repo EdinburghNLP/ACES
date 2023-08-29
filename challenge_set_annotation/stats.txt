@@ -1,37 +1,37 @@
 {
   "addition": {
-    "total": 999,
-    "success": 999,
+    "total": 573,
+    "success": 573,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 1,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-since-causal": {
-    "total": 106,
-    "success": 106,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 53,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-since-temporal": {
-    "total": 106,
-    "success": 106,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 53,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-while-contrast": {
-    "total": 50,
-    "success": 50,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -40,8 +40,8 @@
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-while-temporal": {
-    "total": 21,
-    "success": 21,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -50,42 +50,42 @@
     "other": []
   },
   "ambiguous-translation-wrong-gender-female-anti": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 406,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-gender-female-pro": {
-    "total": 806,
-    "success": 806,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 309,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-gender-male-anti": {
-    "total": 806,
-    "success": 806,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 309,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-gender-male-pro": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 406,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
@@ -210,38 +210,38 @@
     "other": []
   },
   "antonym-replacement": {
-    "total": 790,
-    "success": 790,
+    "total": 267,
+    "success": 267,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 636,
+    "duplicate": 263,
     "not_word_level": [],
     "other": []
   },
   "commonsense-only-ref-ambiguous": {
-    "total": 999,
-    "success": 999,
+    "total": 622,
+    "success": 622,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 15,
+    "duplicate": 12,
     "not_word_level": [],
     "other": []
   },
   "commonsense-src-and-ref-ambiguous": {
-    "total": 999,
-    "success": 999,
+    "total": 622,
+    "success": 622,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 999,
+    "duplicate": 622,
     "not_word_level": [],
     "other": []
   },
   "copy-source": {
-    "total": 1000,
-    "success": 1000,
+    "total": 432,
+    "success": 432,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -261,8 +261,17 @@
   },
   "do-not-translate": {
     "total": 100,
-    "success": 100,
-    "too_long": [],
+    "success": 98,
+    "too_long": [
+      [
+        19046,
+        "en-de"
+      ],
+      [
+        19067,
+        "en-de"
+      ]
+    ],
     "no_change": [],
     "error": [],
     "duplicate": 0,
@@ -270,8 +279,8 @@
     "other": []
   },
   "hallucination-date-time": {
-    "total": 886,
-    "success": 886,
+    "total": 503,
+    "success": 503,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -280,19 +289,50 @@
     "other": []
   },
   "hallucination-named-entity-level-1": {
-    "total": 999,
-    "success": 999,
-    "too_long": [],
+    "total": 499,
+    "success": 496,
+    "too_long": [
+      [
+        30184,
+        "es-ja"
+      ]
+    ],
     "no_change": [],
-    "error": [],
+    "error": [
+      [
+        11932,
+        "en-zh"
+      ],
+      [
+        30179,
+        "es-ja"
+      ]
+    ],
     "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hallucination-named-entity-level-2": {
-    "total": 999,
-    "success": 999,
-    "too_long": [],
+    "total": 490,
+    "success": 486,
+    "too_long": [
+      [
+        16940,
+        "en-ko"
+      ],
+      [
+        26860,
+        "en-ja"
+      ],
+      [
+        26877,
+        "en-ja"
+      ],
+      [
+        35865,
+        "de-ja"
+      ]
+    ],
     "no_change": [],
     "error": [],
     "duplicate": 3,
@@ -300,18 +340,36 @@
     "other": []
   },
   "hallucination-named-entity-level-3": {
-    "total": 999,
-    "success": 999,
-    "too_long": [],
+    "total": 497,
+    "success": 493,
+    "too_long": [
+      [
+        25855,
+        "fr-ko"
+      ],
+      [
+        27691,
+        "zh-ja"
+      ]
+    ],
     "no_change": [],
-    "error": [],
-    "duplicate": 4,
+    "error": [
+      [
+        27283,
+        "fr-ja"
+      ],
+      [
+        30213,
+        "es-ja"
+      ]
+    ],
+    "duplicate": 2,
     "not_word_level": [],
     "other": []
   },
   "hallucination-number-level-1": {
-    "total": 999,
-    "success": 999,
+    "total": 541,
+    "success": 541,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -320,22 +378,22 @@
     "other": []
   },
   "hallucination-number-level-2": {
-    "total": 999,
-    "success": 999,
+    "total": 499,
+    "success": 499,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 20,
+    "duplicate": 17,
     "not_word_level": [],
     "other": []
   },
   "hallucination-number-level-3": {
-    "total": 999,
-    "success": 999,
+    "total": 456,
+    "success": 456,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 13,
+    "duplicate": 5,
     "not_word_level": [],
     "other": []
   },
@@ -360,1404 +418,62 @@
     "other": []
   },
   "hallucination-unit-conversion-amount-matches-ref": {
-    "total": 1000,
-    "success": 830,
+    "total": 507,
+    "success": 506,
     "too_long": [],
-    "no_change": [],
-    "error": [
-      [
-        797,
-        "lt-en"
-      ],
-      [
-        812,
-        "lt-en"
-      ],
-      [
-        815,
-        "lt-en"
-      ],
-      [
-        1984,
-        "sr-en"
-      ],
-      [
-        1987,
-        "sr-en"
-      ],
-      [
-        1991,
-        "sr-en"
-      ],
-      [
-        1997,
-        "sr-en"
-      ],
-      [
-        1998,
-        "sr-en"
-      ],
-      [
-        2002,
-        "sr-en"
-      ],
-      [
-        2046,
-        "hu-en"
-      ],
-      [
-        2661,
-        "zh-en"
-      ],
-      [
-        2671,
-        "zh-en"
-      ],
-      [
-        2675,
-        "zh-en"
-      ],
-      [
-        2677,
-        "zh-en"
-      ],
-      [
-        3419,
-        "hi-en"
-      ],
-      [
-        3431,
-        "hi-en"
-      ],
-      [
-        3756,
-        "uk-en"
-      ],
-      [
-        3780,
-        "uk-en"
-      ],
-      [
-        5969,
-        "fr-en"
-      ],
-      [
-        5970,
-        "fr-en"
-      ],
-      [
-        5981,
-        "fr-en"
-      ],
-      [
-        5982,
-        "fr-en"
-      ],
-      [
-        6711,
-        "nl-en"
-      ],
-      [
-        6712,
-        "nl-en"
-      ],
-      [
-        6717,
-        "nl-en"
-      ],
-      [
-        6718,
-        "nl-en"
-      ],
-      [
-        6779,
-        "cs-en"
-      ],
-      [
-        6781,
-        "cs-en"
-      ],
-      [
-        6791,
-        "cs-en"
-      ],
-      [
-        6799,
-        "cs-en"
-      ],
-      [
-        6804,
-        "cs-en"
-      ],
-      [
-        6915,
-        "sv-en"
-      ],
-      [
-        6918,
-        "sv-en"
-      ],
-      [
-        6919,
-        "sv-en"
-      ],
-      [
-        6930,
-        "sv-en"
-      ],
-      [
-        6935,
-        "sv-en"
-      ],
-      [
-        7087,
-        "tr-en"
-      ],
-      [
-        7089,
-        "tr-en"
-      ],
-      [
-        7090,
-        "tr-en"
-      ],
-      [
-        7094,
-        "tr-en"
-      ],
-      [
-        7096,
-        "tr-en"
-      ],
-      [
-        7098,
-        "tr-en"
-      ],
-      [
-        7693,
-        "ro-en"
-      ],
-      [
-        7706,
-        "ro-en"
-      ],
-      [
-        7708,
-        "ro-en"
-      ],
-      [
-        7710,
-        "ro-en"
-      ],
-      [
-        7802,
-        "ur-en"
-      ],
-      [
-        7803,
-        "ur-en"
-      ],
-      [
-        7806,
-        "ur-en"
-      ],
-      [
-        7814,
-        "ur-en"
-      ],
-      [
-        8472,
-        "sk-en"
-      ],
-      [
-        8476,
-        "sk-en"
-      ],
-      [
-        8482,
-        "sk-en"
-      ],
-      [
-        9259,
-        "it-en"
-      ],
-      [
-        9260,
-        "it-en"
-      ],
-      [
-        9267,
-        "it-en"
-      ],
-      [
-        9273,
-        "it-en"
-      ],
-      [
-        9274,
-        "it-en"
-      ],
-      [
-        9821,
-        "es-en"
-      ],
-      [
-        9822,
-        "es-en"
-      ],
-      [
-        9831,
-        "es-en"
-      ],
-      [
-        9833,
-        "es-en"
-      ],
+    "no_change": [
       [
         9835,
         "es-en"
-      ],
-      [
-        9843,
-        "es-en"
-      ],
-      [
-        10728,
-        "ar-en"
-      ],
-      [
-        10729,
-        "ar-en"
-      ],
-      [
-        10735,
-        "ar-en"
-      ],
-      [
-        10743,
-        "ar-en"
-      ],
-      [
-        10744,
-        "ar-en"
-      ],
-      [
-        11082,
-        "be-en"
-      ],
-      [
-        11083,
-        "be-en"
-      ],
-      [
-        11093,
-        "be-en"
-      ],
-      [
-        11105,
-        "be-en"
-      ],
-      [
-        12292,
-        "ta-en"
-      ],
-      [
-        12293,
-        "ta-en"
-      ],
-      [
-        12336,
-        "ca-en"
-      ],
-      [
-        12338,
-        "ca-en"
-      ],
-      [
-        12347,
-        "ca-en"
-      ],
-      [
-        12348,
-        "ca-en"
-      ],
-      [
-        12350,
-        "ca-en"
-      ],
-      [
-        12354,
-        "ca-en"
-      ],
-      [
-        12598,
-        "ga-en"
-      ],
-      [
-        15470,
-        "de-en"
-      ],
-      [
-        15473,
-        "de-en"
-      ],
-      [
-        15476,
-        "de-en"
-      ],
-      [
-        15477,
-        "de-en"
-      ],
-      [
-        15478,
-        "de-en"
-      ],
-      [
-        15479,
-        "de-en"
-      ],
-      [
-        16789,
-        "fa-en"
-      ],
-      [
-        16791,
-        "fa-en"
-      ],
-      [
-        16803,
-        "fa-en"
-      ],
-      [
-        16805,
-        "fa-en"
-      ],
-      [
-        17444,
-        "da-en"
-      ],
-      [
-        17453,
-        "da-en"
-      ],
-      [
-        17457,
-        "da-en"
-      ],
-      [
-        27223,
-        "hy-en"
-      ],
-      [
-        28212,
-        "he-en"
-      ],
-      [
-        28319,
-        "bg-en"
-      ],
-      [
-        28320,
-        "bg-en"
-      ],
-      [
-        28321,
-        "bg-en"
-      ],
-      [
-        29516,
-        "ja-en"
-      ],
-      [
-        29525,
-        "ja-en"
-      ],
-      [
-        29526,
-        "ja-en"
-      ],
-      [
-        31007,
-        "id-en"
-      ],
-      [
-        31015,
-        "id-en"
-      ],
-      [
-        31019,
-        "id-en"
-      ],
-      [
-        31020,
-        "id-en"
-      ],
-      [
-        31025,
-        "id-en"
-      ],
-      [
-        31260,
-        "af-en"
-      ],
-      [
-        31262,
-        "af-en"
-      ],
-      [
-        31263,
-        "af-en"
-      ],
-      [
-        31268,
-        "af-en"
-      ],
-      [
-        31275,
-        "af-en"
-      ],
-      [
-        31287,
-        "af-en"
-      ],
-      [
-        31364,
-        "et-en"
-      ],
-      [
-        31365,
-        "et-en"
-      ],
-      [
-        31372,
-        "et-en"
-      ],
-      [
-        31428,
-        "sl-en"
-      ],
-      [
-        31429,
-        "sl-en"
-      ],
-      [
-        31430,
-        "sl-en"
-      ],
-      [
-        31438,
-        "sl-en"
-      ],
-      [
-        31442,
-        "sl-en"
-      ],
-      [
-        31946,
-        "ko-en"
-      ],
-      [
-        31953,
-        "ko-en"
-      ],
-      [
-        31956,
-        "ko-en"
-      ],
-      [
-        31959,
-        "ko-en"
-      ],
-      [
-        31966,
-        "ko-en"
-      ],
-      [
-        32490,
-        "mr-en"
-      ],
-      [
-        32509,
-        "mr-en"
-      ],
-      [
-        32511,
-        "mr-en"
-      ],
-      [
-        32513,
-        "mr-en"
-      ],
-      [
-        32514,
-        "mr-en"
-      ],
-      [
-        32589,
-        "el-en"
-      ],
-      [
-        33061,
-        "vi-en"
-      ],
-      [
-        33062,
-        "vi-en"
-      ],
-      [
-        33064,
-        "vi-en"
-      ],
-      [
-        33066,
-        "vi-en"
-      ],
-      [
-        33071,
-        "vi-en"
-      ],
-      [
-        33429,
-        "lv-en"
-      ],
-      [
-        33436,
-        "lv-en"
-      ],
-      [
-        33520,
-        "pl-en"
-      ],
-      [
-        33533,
-        "pl-en"
-      ],
-      [
-        33537,
-        "pl-en"
-      ],
-      [
-        33580,
-        "gl-en"
-      ],
-      [
-        33589,
-        "gl-en"
-      ],
-      [
-        33590,
-        "gl-en"
-      ],
-      [
-        33591,
-        "gl-en"
-      ],
-      [
-        33597,
-        "gl-en"
-      ],
-      [
-        33600,
-        "gl-en"
-      ],
-      [
-        33601,
-        "gl-en"
-      ],
-      [
-        33898,
-        "pt-en"
-      ],
-      [
-        33901,
-        "pt-en"
-      ],
-      [
-        33905,
-        "pt-en"
-      ],
-      [
-        33912,
-        "pt-en"
-      ],
-      [
-        33915,
-        "pt-en"
-      ],
-      [
-        33921,
-        "pt-en"
-      ],
-      [
-        33923,
-        "pt-en"
-      ],
-      [
-        34838,
-        "ru-en"
-      ],
-      [
-        34840,
-        "ru-en"
-      ],
-      [
-        34851,
-        "ru-en"
-      ],
-      [
-        35207,
-        "no-en"
-      ],
-      [
-        35213,
-        "no-en"
-      ],
-      [
-        35216,
-        "no-en"
-      ],
-      [
-        35989,
-        "hr-en"
-      ],
-      [
-        35991,
-        "hr-en"
-      ],
-      [
-        35998,
-        "hr-en"
-      ],
-      [
-        36001,
-        "hr-en"
-      ],
-      [
-        36007,
-        "hr-en"
-      ],
-      [
-        36115,
-        "fi-en"
-      ],
-      [
-        36128,
-        "fi-en"
       ]
     ],
-    "duplicate": 4,
+    "error": [
+      [
+        9835,
+        "es-en"
+      ]
+    ],
+    "duplicate": 1,
     "not_word_level": [],
     "other": []
   },
   "hallucination-unit-conversion-unit-matches-ref": {
-    "total": 1000,
-    "success": 830,
+    "total": 507,
+    "success": 506,
     "too_long": [],
-    "no_change": [],
-    "error": [
-      [
-        821,
-        "lt-en"
-      ],
-      [
-        836,
-        "lt-en"
-      ],
-      [
-        839,
-        "lt-en"
-      ],
-      [
-        2007,
-        "sr-en"
-      ],
-      [
-        2010,
-        "sr-en"
-      ],
-      [
-        2014,
-        "sr-en"
-      ],
-      [
-        2020,
-        "sr-en"
-      ],
-      [
-        2021,
-        "sr-en"
-      ],
-      [
-        2025,
-        "sr-en"
-      ],
-      [
-        2065,
-        "hu-en"
-      ],
-      [
-        2679,
-        "zh-en"
-      ],
-      [
-        2689,
-        "zh-en"
-      ],
-      [
-        2693,
-        "zh-en"
-      ],
-      [
-        2695,
-        "zh-en"
-      ],
-      [
-        3442,
-        "hi-en"
-      ],
-      [
-        3454,
-        "hi-en"
-      ],
-      [
-        3781,
-        "uk-en"
-      ],
-      [
-        3805,
-        "uk-en"
-      ],
-      [
-        5990,
-        "fr-en"
-      ],
-      [
-        5991,
-        "fr-en"
-      ],
-      [
-        6002,
-        "fr-en"
-      ],
-      [
-        6003,
-        "fr-en"
-      ],
-      [
-        6734,
-        "nl-en"
-      ],
-      [
-        6735,
-        "nl-en"
-      ],
-      [
-        6740,
-        "nl-en"
-      ],
-      [
-        6741,
-        "nl-en"
-      ],
-      [
-        6808,
-        "cs-en"
-      ],
-      [
-        6810,
-        "cs-en"
-      ],
-      [
-        6820,
-        "cs-en"
-      ],
-      [
-        6828,
-        "cs-en"
-      ],
-      [
-        6833,
-        "cs-en"
-      ],
-      [
-        6939,
-        "sv-en"
-      ],
-      [
-        6942,
-        "sv-en"
-      ],
-      [
-        6943,
-        "sv-en"
-      ],
-      [
-        6954,
-        "sv-en"
-      ],
-      [
-        6959,
-        "sv-en"
-      ],
-      [
-        7112,
-        "tr-en"
-      ],
-      [
-        7114,
-        "tr-en"
-      ],
-      [
-        7115,
-        "tr-en"
-      ],
-      [
-        7119,
-        "tr-en"
-      ],
-      [
-        7121,
-        "tr-en"
-      ],
-      [
-        7123,
-        "tr-en"
-      ],
-      [
-        7719,
-        "ro-en"
-      ],
-      [
-        7732,
-        "ro-en"
-      ],
-      [
-        7734,
-        "ro-en"
-      ],
-      [
-        7736,
-        "ro-en"
-      ],
-      [
-        7826,
-        "ur-en"
-      ],
-      [
-        7827,
-        "ur-en"
-      ],
-      [
-        7830,
-        "ur-en"
-      ],
-      [
-        7838,
-        "ur-en"
-      ],
-      [
-        8494,
-        "sk-en"
-      ],
-      [
-        8498,
-        "sk-en"
-      ],
-      [
-        8504,
-        "sk-en"
-      ],
-      [
-        9281,
-        "it-en"
-      ],
-      [
-        9282,
-        "it-en"
-      ],
-      [
-        9289,
-        "it-en"
-      ],
-      [
-        9295,
-        "it-en"
-      ],
-      [
-        9296,
-        "it-en"
-      ],
-      [
-        9846,
-        "es-en"
-      ],
-      [
-        9847,
-        "es-en"
-      ],
-      [
-        9856,
-        "es-en"
-      ],
-      [
-        9858,
-        "es-en"
-      ],
+    "no_change": [
       [
         9860,
         "es-en"
-      ],
-      [
-        9868,
-        "es-en"
-      ],
-      [
-        10754,
-        "ar-en"
-      ],
-      [
-        10755,
-        "ar-en"
-      ],
-      [
-        10761,
-        "ar-en"
-      ],
-      [
-        10769,
-        "ar-en"
-      ],
-      [
-        10770,
-        "ar-en"
-      ],
-      [
-        11107,
-        "be-en"
-      ],
-      [
-        11108,
-        "be-en"
-      ],
-      [
-        11118,
-        "be-en"
-      ],
-      [
-        11130,
-        "be-en"
-      ],
-      [
-        12308,
-        "ta-en"
-      ],
-      [
-        12309,
-        "ta-en"
-      ],
-      [
-        12358,
-        "ca-en"
-      ],
-      [
-        12360,
-        "ca-en"
-      ],
-      [
-        12369,
-        "ca-en"
-      ],
-      [
-        12370,
-        "ca-en"
-      ],
-      [
-        12372,
-        "ca-en"
-      ],
-      [
-        12376,
-        "ca-en"
-      ],
-      [
-        12605,
-        "ga-en"
-      ],
-      [
-        15490,
-        "de-en"
-      ],
-      [
-        15493,
-        "de-en"
-      ],
-      [
-        15496,
-        "de-en"
-      ],
-      [
-        15497,
-        "de-en"
-      ],
-      [
-        15498,
-        "de-en"
-      ],
-      [
-        15499,
-        "de-en"
-      ],
-      [
-        16823,
-        "fa-en"
-      ],
-      [
-        16825,
-        "fa-en"
-      ],
-      [
-        16837,
-        "fa-en"
-      ],
-      [
-        16839,
-        "fa-en"
-      ],
-      [
-        17468,
-        "da-en"
-      ],
-      [
-        17477,
-        "da-en"
-      ],
-      [
-        17481,
-        "da-en"
-      ],
-      [
-        27243,
-        "hy-en"
-      ],
-      [
-        28229,
-        "he-en"
-      ],
-      [
-        28348,
-        "bg-en"
-      ],
-      [
-        28349,
-        "bg-en"
-      ],
-      [
-        28350,
-        "bg-en"
-      ],
-      [
-        29536,
-        "ja-en"
-      ],
-      [
-        29545,
-        "ja-en"
-      ],
-      [
-        29546,
-        "ja-en"
-      ],
-      [
-        31027,
-        "id-en"
-      ],
-      [
-        31035,
-        "id-en"
-      ],
-      [
-        31039,
-        "id-en"
-      ],
-      [
-        31040,
-        "id-en"
-      ],
-      [
-        31045,
-        "id-en"
-      ],
-      [
-        31291,
-        "af-en"
-      ],
-      [
-        31293,
-        "af-en"
-      ],
-      [
-        31294,
-        "af-en"
-      ],
-      [
-        31299,
-        "af-en"
-      ],
-      [
-        31306,
-        "af-en"
-      ],
-      [
-        31318,
-        "af-en"
-      ],
-      [
-        31386,
-        "et-en"
-      ],
-      [
-        31387,
-        "et-en"
-      ],
-      [
-        31394,
-        "et-en"
-      ],
-      [
-        31449,
-        "sl-en"
-      ],
-      [
-        31450,
-        "sl-en"
-      ],
-      [
-        31451,
-        "sl-en"
-      ],
-      [
-        31459,
-        "sl-en"
-      ],
-      [
-        31463,
-        "sl-en"
-      ],
-      [
-        31973,
-        "ko-en"
-      ],
-      [
-        31980,
-        "ko-en"
-      ],
-      [
-        31983,
-        "ko-en"
-      ],
-      [
-        31986,
-        "ko-en"
-      ],
-      [
-        31993,
-        "ko-en"
-      ],
-      [
-        32516,
-        "mr-en"
-      ],
-      [
-        32535,
-        "mr-en"
-      ],
-      [
-        32537,
-        "mr-en"
-      ],
-      [
-        32539,
-        "mr-en"
-      ],
-      [
-        32540,
-        "mr-en"
-      ],
-      [
-        32611,
-        "el-en"
-      ],
-      [
-        33082,
-        "vi-en"
-      ],
-      [
-        33083,
-        "vi-en"
-      ],
-      [
-        33085,
-        "vi-en"
-      ],
-      [
-        33087,
-        "vi-en"
-      ],
-      [
-        33092,
-        "vi-en"
-      ],
-      [
-        33445,
-        "lv-en"
-      ],
-      [
-        33452,
-        "lv-en"
-      ],
-      [
-        33542,
-        "pl-en"
-      ],
-      [
-        33555,
-        "pl-en"
-      ],
-      [
-        33559,
-        "pl-en"
-      ],
-      [
-        33603,
-        "gl-en"
-      ],
-      [
-        33612,
-        "gl-en"
-      ],
-      [
-        33613,
-        "gl-en"
-      ],
-      [
-        33614,
-        "gl-en"
-      ],
-      [
-        33620,
-        "gl-en"
-      ],
-      [
-        33623,
-        "gl-en"
-      ],
-      [
-        33624,
-        "gl-en"
-      ],
-      [
-        33927,
-        "pt-en"
-      ],
-      [
-        33930,
-        "pt-en"
-      ],
-      [
-        33934,
-        "pt-en"
-      ],
-      [
-        33941,
-        "pt-en"
-      ],
-      [
-        33944,
-        "pt-en"
-      ],
-      [
-        33950,
-        "pt-en"
-      ],
-      [
-        33952,
-        "pt-en"
-      ],
-      [
-        34856,
-        "ru-en"
-      ],
-      [
-        34858,
-        "ru-en"
-      ],
-      [
-        34869,
-        "ru-en"
-      ],
-      [
-        35219,
-        "no-en"
-      ],
-      [
-        35225,
-        "no-en"
-      ],
-      [
-        35228,
-        "no-en"
-      ],
-      [
-        36014,
-        "hr-en"
-      ],
-      [
-        36016,
-        "hr-en"
-      ],
-      [
-        36023,
-        "hr-en"
-      ],
-      [
-        36026,
-        "hr-en"
-      ],
-      [
-        36032,
-        "hr-en"
-      ],
-      [
-        36142,
-        "fi-en"
-      ],
-      [
-        36155,
-        "fi-en"
       ]
     ],
-    "duplicate": 4,
+    "error": [
+      [
+        9860,
+        "es-en"
+      ]
+    ],
+    "duplicate": 1,
     "not_word_level": [],
     "other": []
   },
   "hypernym-replacement": {
-    "total": 1000,
-    "success": 1000,
+    "total": 331,
+    "success": 331,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 278,
+    "duplicate": 156,
     "not_word_level": [],
     "other": []
   },
   "hyponym-replacement": {
-    "total": 1000,
-    "success": 1000,
+    "total": 323,
+    "success": 323,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 333,
+    "duplicate": 188,
     "not_word_level": [],
     "other": []
   },
@@ -1772,8 +488,8 @@
     "other": []
   },
   "modal_verb:deletion": {
-    "total": 50,
-    "success": 50,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -1782,8 +498,8 @@
     "other": []
   },
   "modal_verb:substitution": {
-    "total": 50,
-    "success": 50,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -1792,8 +508,8 @@
     "other": []
   },
   "nonsense": {
-    "total": 1000,
-    "success": 1000,
+    "total": 606,
+    "success": 606,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -1802,8 +518,8 @@
     "other": []
   },
   "omission": {
-    "total": 999,
-    "success": 999,
+    "total": 590,
+    "success": 590,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -1812,102 +528,28 @@
     "other": []
   },
   "ordering-mismatch": {
-    "total": 154,
-    "success": 134,
-    "too_long": [
-      [
-        19572,
-        "en-de"
-      ],
-      [
-        25385,
-        "fr-de"
-      ],
-      [
-        25400,
-        "fr-de"
-      ]
-    ],
+    "total": 119,
+    "success": 119,
+    "too_long": [],
     "no_change": [],
-    "error": [
-      [
-        16180,
-        "de-en"
-      ]
-    ],
+    "error": [],
     "duplicate": 0,
     "not_word_level": [],
-    "other": [
-      [
-        16175,
-        "de-en"
-      ],
-      [
-        16176,
-        "de-en"
-      ],
-      [
-        19597,
-        "en-de"
-      ],
-      [
-        19603,
-        "en-de"
-      ],
-      [
-        19610,
-        "en-de"
-      ],
-      [
-        25367,
-        "fr-de"
-      ],
-      [
-        25371,
-        "fr-de"
-      ],
-      [
-        25381,
-        "fr-de"
-      ],
-      [
-        25383,
-        "fr-de"
-      ],
-      [
-        25388,
-        "fr-de"
-      ],
-      [
-        25390,
-        "fr-de"
-      ],
-      [
-        25393,
-        "fr-de"
-      ],
-      [
-        25399,
-        "fr-de"
-      ],
-      [
-        25405,
-        "fr-de"
-      ],
-      [
-        25417,
-        "fr-de"
-      ],
-      [
-        25422,
-        "fr-de"
-      ]
-    ]
+    "other": []
   },
   "overly-literal-vs-correct-idiom": {
     "total": 102,
-    "success": 102,
-    "too_long": [],
+    "success": 100,
+    "too_long": [
+      [
+        16229,
+        "de-en"
+      ],
+      [
+        19629,
+        "en-de"
+      ]
+    ],
     "no_change": [],
     "error": [],
     "duplicate": 0,
@@ -1916,8 +558,37 @@
   },
   "overly-literal-vs-explanation": {
     "total": 102,
-    "success": 102,
-    "too_long": [],
+    "success": 95,
+    "too_long": [
+      [
+        16288,
+        "de-en"
+      ],
+      [
+        16296,
+        "de-en"
+      ],
+      [
+        19680,
+        "en-de"
+      ],
+      [
+        19684,
+        "en-de"
+      ],
+      [
+        19686,
+        "en-de"
+      ],
+      [
+        19698,
+        "en-de"
+      ],
+      [
+        19712,
+        "en-de"
+      ]
+    ],
     "no_change": [],
     "error": [],
     "duplicate": 0,
@@ -1925,8 +596,8 @@
     "other": []
   },
   "overly-literal-vs-ref-word": {
-    "total": 151,
-    "success": 151,
+    "total": 150,
+    "success": 150,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -1935,12 +606,12 @@
     "other": []
   },
   "overly-literal-vs-synonym": {
-    "total": 114,
-    "success": 114,
+    "total": 98,
+    "success": 98,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 93,
+    "duplicate": 92,
     "not_word_level": [],
     "other": []
   },
@@ -2015,8 +686,8 @@
     "other": []
   },
   "real-world-knowledge-hypernym-vs-distractor": {
-    "total": 40,
-    "success": 40,
+    "total": 38,
+    "success": 38,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -2026,8 +697,13 @@
   },
   "real-world-knowledge-hypernym-vs-hyponym": {
     "total": 40,
-    "success": 40,
-    "too_long": [],
+    "success": 39,
+    "too_long": [
+      [
+        24623,
+        "en-de"
+      ]
+    ],
     "no_change": [],
     "error": [],
     "duplicate": 0,
@@ -2035,8 +711,8 @@
     "other": []
   },
   "real-world-knowledge-synonym-vs-antonym": {
-    "total": 40,
-    "success": 40,
+    "total": 39,
+    "success": 39,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -2045,8 +721,8 @@
     "other": []
   },
   "similar-language-high": {
-    "total": 1000,
-    "success": 1000,
+    "total": 671,
+    "success": 671,
     "too_long": [],
     "no_change": [],
     "error": [],

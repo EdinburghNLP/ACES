@@ -17,6 +17,8 @@ from debugging_utilities import *
 
 # process given sample, annotate or do manual annotation (only in the annotations.ipynb, in process_dataset.py only automatic annotation)
 def process_sample(idx, sample, manual=False, detokenize=False):
+    if phenomena[sample["phenomena"]] in ['manual', 'canceled'] or str(idx) in manual_ids:
+        return 1
     if sample['langpair'][-2:] in ['ja', 'zh', 'th', 'ko']:  
         chars = True
     else:
@@ -199,12 +201,18 @@ def process_sample(idx, sample, manual=False, detokenize=False):
         stats[sample["phenomena"]]["total"] += 1
         change = whole_sentence(good, bad)
         stats[sample["phenomena"]]["success"] += 1
-        assert is_word_level(g_spans, b_spans, change)
+        # assert is_word_level(g_spans, b_spans, change)
         change, omission = standardize_annotation(change, good, bad, maps, originals)
         sample['annotation'] = change
         sample['omission'] = omission
         sample['method'] = phenomena[sample["phenomena"]]
         annotations[idx] = sample
+
+    try:
+        assert len(sample['annotation']) == 0 or type(sample['annotation'][0]) == dict
+    except:
+        print(idx)
+        return -1
     return 1  # 1 for success
         
 def process_phenomena(samples, manual=False, detokenize=False):
@@ -225,14 +233,7 @@ def process_phenomena(samples, manual=False, detokenize=False):
 
                 if res == -1:
                     return -1
-
-if __name__ == "__main__":
-    # Get arguments
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-d", "--detokenize",default=False, required=bool, help="the sentences will be detokenized, then annotated, then will be mapped back to original")
-    # parser.add_argument("-c", "--checkpoint",default=False, required=bool, help="load annotated.txt and stats.txt from checkpoint (True or False)")
-    args = parser.parse_args()
-
+def load_dataset():
     folder = os.getcwd()
     dataset_path = os.path.join(folder, 'dataset')
     if not os.path.exists(dataset_path):
@@ -242,6 +243,25 @@ if __name__ == "__main__":
     logger.info('Loading the dataset...')
     dataset = load_from_disk(dataset_path)
     logger.info('Dataset loaded.')
+    return dataset
+
+if __name__ == "__main__":
+    # Get arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-d", "--detokenize",default=False, required=bool, help="the sentences will be detokenized, then annotated, then will be mapped back to original")
+    parser.add_argument("-c", "--checkpoint",default=False, help="load annotated.txt from given path")
+    args = parser.parse_args()
+
+    dataset = load_dataset()
+    if args.checkpoint:
+        if not os.path.exists(args.checkpoint):
+            logger.error("The checkpoint path {} does not exists. Running on the whole dataset".format(args.checkpoint))
+            # if there are already some annotations overwrite them and append new ones
+            annotated_dataset_path = os.path.join(folder, 'ACES_private/challenge_set_annotation/annotated.txt')
+        else:
+            annotated_dataset_path = args.checkpoint
+    else:
+        annotated_dataset_path = os.path.join(folder, 'ACES_private/challenge_set_annotation/annotated.txt')
 
     # change this part to specify which phenomena to process!
     """
@@ -252,8 +272,6 @@ if __name__ == "__main__":
     # or to process all of them
     phenomena_tobe_processed = phenomena.keys()
 
-    # if there are already some annotations overwrite them and append new ones
-    annotated_dataset_path = os.path.join(folder, 'ACES_private/challenge_set_annotation/annotated.txt')
     if os.path.exists(annotated_dataset_path):
         logger.info('Path {} already exists. Loading..'.format(annotated_dataset_path))
         with open(annotated_dataset_path, "r") as f:
@@ -293,7 +311,7 @@ if __name__ == "__main__":
     logger.setLevel(logging.ERROR)
     
     # to completely reset the prev annotations
-    annotations = dict()
+    # annotations = dict()
     stats = {}
     for key in phenomena_tobe_processed:
         stats[key] = copy.deepcopy(stats_template)
@@ -303,6 +321,7 @@ if __name__ == "__main__":
             samples[idx] = sample    
     process_phenomena(samples, manual=False, detokenize=args.detokenize)
     
+    annotated_dataset_path = os.path.join(folder, 'ACES_private/challenge_set_annotation/annotated.txt')
     with open(annotated_dataset_path, "w") as f:
         json.dump(annotations, f, indent=2, ensure_ascii=False)  # encode dict into JSON
     with open(stats_path, "w") as f:

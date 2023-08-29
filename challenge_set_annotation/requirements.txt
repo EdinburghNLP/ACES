@@ -1,5 +1,6 @@
-datasets
-numpy
+# datasets  # for loading the datasset
+# ipykernel # for running jupyter notebooks
+# numpy
 tqdm
 # logging
 quantulum3
@@ -7,3 +8,4 @@ quantulum3
 # plotly
 sacremoses
 stemming
+pandas  # for format_utilities.py

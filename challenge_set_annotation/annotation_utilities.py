@@ -85,6 +85,58 @@ phenomena = {
     'xnli-omission-neutral':'canceled'
 }
 
+# Partly Manually annotated ones
+manual_ids = ['19572',
+ '25385',
+ '25400',
+ '19597',
+ '19603',
+ '19610',
+ '25367',
+ '25371',
+ '25381',
+ '25383',
+ '25388',
+ '25390',
+ '25393',
+ '25399',
+ '25405',
+ '25417',
+ '25422',
+ '24607',
+ '24612',
+ '24654', '16018',
+ '16048',
+ '16095',
+ '16111',
+ '16147',
+ '32356',
+ '32376',
+ '32406',
+ '32412',
+ '32424',
+ '32429',
+ '32456',
+ '16175',
+ '16176',
+ '16180',
+ '16341',
+ '16348', '27506', '17252', '17261', '17288', '17390', '35839',
+ '35840',
+ '35841',
+ '35843',
+ '35845',
+ '35847',
+ '35848',
+ '35849',
+ '35850',
+ '35851',
+ '35853',
+ '35854',
+ '35855',
+ '35856',
+ '35857']
+
 # given a sentence, return the tokens and their start and end indices
 # for ko. ja, zh, th: turn each character to a word and tokenize like that. also for those in detokenizer remove all spaces.
 def tokenize(sentence, chars=False):
@@ -320,14 +372,14 @@ def annotate_units(good,bad, mode="Mode not given"):
             # assert b_parsed.unit.name in " ".join(b[token] for token in b_unit_token)
             # assert g_parsed.unit.name in good[g_unit_span[0]:g_unit_span[1]]
             # assert b_parsed.unit.name in bad[b_unit_span[0]:b_unit_span[1]]
-            if mode == 'hallucination-unit-conversion-unit-matches-ref':         # number correct, unit wrong
+            if mode == 'hallucination-unit-conversion-amount-matches-ref':         # number correct, unit wrong
                 g_name = g_unit_name
                 g_tokens = g_unit_token
                 g_span = g_unit_span
                 b_name = b_unit_name
                 b_tokens = b_unit_token
                 b_span = b_unit_span
-            elif mode == 'hallucination-unit-conversion-amount-matches-ref':    # number wrong, unit correct, 
+            elif mode == 'hallucination-unit-conversion-unit-matches-ref':    # number wrong, unit correct, 
                 g_name = g_value_name
                 g_tokens = g_value_token
                 g_span = g_value_span

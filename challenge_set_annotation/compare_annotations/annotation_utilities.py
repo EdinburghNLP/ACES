@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import re
+import re, string
 
 # this is the list of phenomena and which option they need to be annotated with:
 phenomena = {
-    'addition':'add-omit',
+    'addition':'annotate_word',
     'ambiguous-translation-wrong-discourse-connective-since-causal':'diff_flexible',
     'ambiguous-translation-wrong-discourse-connective-since-temporal':'diff_flexible',
     'ambiguous-translation-wrong-discourse-connective-while-contrast':'diff_flexible',
@@ -30,8 +30,8 @@ phenomena = {
     'commonsense-only-ref-ambiguous':'diff_flexible',
     'commonsense-src-and-ref-ambiguous':'diff_flexible',
     'copy-source':'whole_sentence',
-    'coreference-based-on-commonsense':'mixed_flexible',
-    'do-not-translate':'whole_sentence',
+    'coreference-based-on-commonsense':'manual',
+    'do-not-translate':'diff_flexible',
     'hallucination-date-time':'date',
     'hallucination-named-entity-level-1':'diff_flexible',
     'hallucination-named-entity-level-2':'REF_flexible',
@@ -39,17 +39,17 @@ phenomena = {
     'hallucination-number-level-1':'diff_flexible',
     'hallucination-number-level-2':'REF_flexible',
     'hallucination-number-level-3':'REF_flexible',
-    'hallucination-real-data-vs-ref-word':'diff_flexible',
-    'hallucination-real-data-vs-synonym':'diff_flexible',
+    'hallucination-real-data-vs-ref-word':'manual',
+    'hallucination-real-data-vs-synonym':'manual',
     'hallucination-unit-conversion-amount-matches-ref':'units',
     'hallucination-unit-conversion-unit-matches-ref':'units',
     'hypernym-replacement':'REF_flexible',
     'hyponym-replacement':'REF_flexible',
     'lexical-overlap':'manual',
-    'modal_verb:deletion':'add-omit',
+    'modal_verb:deletion':'annotate_word',
     'modal_verb:substitution':'diff_flexible',
     'nonsense':'REF_flexible',
-    'omission':'add-omit',
+    'omission':'annotate_word',
     'ordering-mismatch':'swap',
     'overly-literal-vs-correct-idiom':'diff_flexible',
     'overly-literal-vs-explanation':'diff_flexible',
@@ -57,10 +57,10 @@ phenomena = {
     'overly-literal-vs-synonym':'diff_flexible',
     'pleonastic_it:deletion':'annotate_word',
     'pleonastic_it:substitution':'annotate_word',
-    'punctuation:deletion_all':'add-omit',
-    'punctuation:deletion_commas':'add-omit',
-    'punctuation:deletion_quotes':'add-omit',
-    'punctuation:statement-to-question':'add-omit',
+    'punctuation:deletion_all':'annotate_word',
+    'punctuation:deletion_commas':'annotate_word',
+    'punctuation:deletion_quotes':'annotate_word',
+    'punctuation:statement-to-question':'annotate_word',
     'real-world-knowledge-entailment':'diff_flexible',
     'real-world-knowledge-hypernym-vs-distractor':'diff_flexible',
     'real-world-knowledge-hypernym-vs-hyponym':'diff_flexible',
@@ -69,27 +69,33 @@ phenomena = {
     'similar-language-low':'whole_sentence',
     'untranslated-vs-ref-word':'diff_flexible',   # here add-omit can be used for getting character level replacements too
     'untranslated-vs-synonym':'diff_flexible',
-    'xnli-addition-contradiction':'manual',
-    'xnli-addition-neutral':'manual',
-    'xnli-omission-contradiction':'manual',
-    'xnli-omission-neutral':'manual'
+    'xnli-addition-contradiction':'canceled',
+    'xnli-addition-neutral':'canceled',
+    'xnli-omission-contradiction':'canceled',
+    'xnli-omission-neutral':'canceled'
 }
 
 # given a sentence, return the tokens and their start and end indices
-def tokenize(sentence):
-    s0 = sentence.lower()
-    s0 = re.sub('i̇', 'i', s0)
-    s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+\s", ' ', s0)
-    s = re.sub(r"^[\"\[\]\.,!?:;'\(\)$“„”]+", ' ', s)
-    s = re.sub(r"\s[\"\[\]\.,!?:;'\(\)$“„”]+",' ', s)
-    s = re.sub(r"[\"\[\]\.,!?:;'\(\)$“„”]+$",' ', s)
-    s = s.strip("\"[].,!?:;'\(\)$")
-    tokenized = s.split()
-    
+def tokenize(sentence, chars=False):
+    s = re.sub('i̇', 'i', sentence)
+    if chars:
+        tokenized = list(s)
+        spans = [(i,i+1) for i in range(len(tokenized))]
+        return tokenized, spans
+    punctuation = string.punctuation
+    punctuation += "\"\[\]\.,!?:;'\(\)$“„”"
+    s0 = s
+    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])(.|$)', r'\1 \2 \3 \4 \5', s0)
+    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])(.|$)', r'\1 \2 \3 \4', s0)
+    s0 = re.sub(r'(^|[^A-Za-z0-9])([' + re.escape(punctuation) + '])(.|$)', r'\1 \2 \3', s0)
+    s0 = re.sub(r'(^|.)([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3 \4 \5', s0)
+    s0 = re.sub(r'(^|.)([' + re.escape(punctuation) + '])([' + re.escape(punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3 \4', s0)
+    s0 = re.sub(r'(^|.)([' + re.escape(punctuation) + '])([^A-Za-z0-9]|$)', r'\1 \2 \3', s0)
+    tokenized = s0.split()
     spans = []
     split = 0
     for token in tokenized:
-        res = re.search(re.escape(token), s0[split:])
+        res = re.search(re.escape(token), s[split:])
         start = res.start() + split
         end = res.end() + split
         spans.append((start, end))
@@ -97,10 +103,10 @@ def tokenize(sentence):
     return tokenized, spans
 
 # choose whether the reference sentence or the good sentence was changed to create the incorrect translation.
-def ref_or_good(ref, good, bad):
-    g, g_spans = tokenize(good)
-    b, b_spans = tokenize(bad)
-    r, r_spans = tokenize(ref)
+def ref_or_good(ref, good, bad, chars=False):
+    g, g_spans = tokenize(good, chars=chars)
+    b, b_spans = tokenize(bad, chars=chars)
+    r, r_spans = tokenize(ref, chars=chars)
     g_change = diff_flexible(good, g, g_spans, bad, b, b_spans)
     r_change = diff_flexible(ref, r, r_spans, bad, b, b_spans)
     if len(r_change[0]["in_good"]["token"]) <= len(g_change[0]["in_good"]["token"]):
