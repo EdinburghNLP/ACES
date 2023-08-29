@@ -32,7 +32,7 @@ if __name__ == "__main__":
     rows = [annotation_to_MQM_sample(idx, sample) for (idx,sample) in tqdm(annotations.items())]
 
     # creating df object with columns specified    
-    cols = ["src", "mt", "ref", "score", "system", "lp", "segid", "annotation"]
+    cols = ["src", "mt", "ref", "score", "system", "lp", "segid", "annotation", "manual"]
     df = pd.DataFrame(rows, columns =cols)
     
     logger.info('Saving to {}'.format(args.out_path))

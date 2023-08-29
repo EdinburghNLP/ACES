@@ -1,12 +1,8 @@
-import json, copy, os, sys, csv
-import pandas as pd
+import os, sys, csv, re
 sys.path.append(os.path.abspath(os.getcwd()))
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/challenge_set_annotation")))
 from annotation_utilities import *
 from debugging_utilities import *
-
-folder = os.path.join(os.getcwd(), "ACES_private/challenge_set_annotation")
-work_folder = os.getcwd()
 
 """_summary_
 Helper functions to convert between these 3 formats:
@@ -87,10 +83,10 @@ def annotation_to_tsv_sample(idx, sample):
         good = sample["good-translation"]
     return [idx, sample["phenomena"], good, change_to_tsv_annotation(sample)]
 
-# src,    mt,                     ref,        score,  system, lp,     segid,  annotation
+# src,    mt,                     ref,        score,  system (phenomena), lp,     segid,  annotation, manual(True or False)
 # what about we give error type to system? maybe we get some statistics
-def annotation_to_MQM_sample(idx, sample):  
-    return [sample['source'], sample['incorrect-translation'], sample['reference'], None, sample['phenomena'], sample['langpair'], idx, change_to_tsv_annotation(sample, m1="<v>", m2="</v>")]
+def annotation_to_MQM_sample(idx, sample, manual=False):  
+    return [sample['source'], sample['incorrect-translation'], sample['reference'], None, sample['phenomena'], sample['langpair'], idx, change_to_tsv_annotation(sample, m1="<v>", m2="</v>"), manual]
     
 # to change our annotation to MQM format: m1="<v>", m2="</v>"    
 def change_to_tsv_annotation(sample, m1="<", m2=">"):
@@ -182,3 +178,10 @@ def tsv_annotation_to_change(sample):
         
     incorrect = "".join([c for c in bad if c not in ["<", ">"]])
     return {"phenomena":p, ref_or_good:good, "incorrect-translation":incorrect, "annotation":change, "omission":omission}
+
+def tsv_annotation_to_MQM_annotation(bad, m1="<v>", m2="</v>"):
+    bad_0 = re.sub(r"<", "{", bad)
+    bad_0 = re.sub(r">", "}", bad_0)
+    bad_0 = re.sub(r"{", m1, bad_0)
+    bad_0 = re.sub(r"}", m2, bad_0)
+    return bad_0
