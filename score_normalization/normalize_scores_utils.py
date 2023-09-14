@@ -187,11 +187,11 @@ def map_to_higher(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: Dict=P
     for metric in ACES_scores:
         res[metric] = copy.deepcopy(template)
         for p in mapping.keys():
-            if type(res[metric][PHENOMENA_MAPPING[p]]) != list:
-                res[metric][PHENOMENA_MAPPING[p]] = ACES_scores[metric][p]
+            if type(res[metric][mapping[p]]) != list:
+                res[metric][mapping[p]] = ACES_scores[metric][p]
             else:
-                res[metric][PHENOMENA_MAPPING[p]][0].extend(ACES_scores[metric][p][0])
-                res[metric][PHENOMENA_MAPPING[p]][1].extend(ACES_scores[metric][p][1])
+                res[metric][mapping[p]][0].extend(ACES_scores[metric][p][0])
+                res[metric][mapping[p]][1].extend(ACES_scores[metric][p][1])
     return res
 
 def read_wmt_file(filename: str) -> pd.DataFrame:
@@ -318,15 +318,24 @@ def plot(dists: List[list], names: List[str]):
     fig.update_traces(opacity=0.60)
     fig.show()
     
-def grouped_line_plot(groups, metrics_names, group_labels):
+def grouped_line_plot(groups: List[Dict[str,list]], metrics_names: List[str], group_labels: List[str], phenomena: List[str]):
     '''
-    
+    Inputs: 
+        1. means and tau scores
+        format = {
+            metric1: [score for phenomenon 1, score for phenomenon 2, ..]
+        }
+        2. A list of the labels for: 
+            the groups (mean (good-bad), tau, ...)
+            metrics
+            phenomena (the order is important because in means and tau scores the scores are ordered acc. to phenomena)
     '''
+    assert len(groups) > 0 and len(groups) == len(group_labels) and len(metrics_names) > 0
     colors = ["firebrick", "royalblue", "green", "red", "purple", "yellow", "blue"]
     fig = go.Figure()
     for i,group in enumerate(groups):
         for metric in metrics_names:
-            fig.add_trace(go.Scatter(x=higher_level_phenomena, y=group[metric],mode='lines',name=group_labels[i]+" - "+metric, 
+            fig.add_trace(go.Scatter(x=phenomena, y=group[metric],mode='lines',name=group_labels[i]+" - "+metric, 
                                      line=dict(color=colors[i])))
     fig.update_layout(
         title=" ".join(group_labels)
