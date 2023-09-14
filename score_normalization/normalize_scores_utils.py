@@ -12,6 +12,7 @@ logger = logging.getLogger('logger')
 logging.basicConfig(level=logging.INFO)
 
 import plotly.graph_objects as go
+import plotly.express as px
 from tqdm import tqdm
 from typing import List, Dict, Set
 
@@ -331,15 +332,16 @@ def grouped_line_plot(groups: List[Dict[str,list]], metrics_names: List[str], gr
             phenomena (the order is important because in means and tau scores the scores are ordered acc. to phenomena)
     '''
     assert len(groups) > 0 and len(groups) == len(group_labels) and len(metrics_names) > 0
-    colors = ["firebrick", "royalblue", "green", "red", "purple", "yellow", "blue"]
     fig = go.Figure()
+    colors = [['lightsteelblue',  'aqua', 'aquamarine', 'darkturquoise'],
+        ['chocolate', 'coral', 'crimson', 'orange']]
     for i,group in enumerate(groups):
-        for metric in metrics_names:
-            fig.add_trace(go.Scatter(x=phenomena, y=group[metric],mode='lines',name=group_labels[i]+" - "+metric, 
-                                     line=dict(color=colors[i])))
+        for j,metric in enumerate(metrics_names):
+            fig.add_trace(go.Scatter(x=phenomena, y=group[metric],mode='lines',name=group_labels[i]+" - "+metric,
+                          line=dict(color=colors[i][j])))
     fig.update_layout(
         title=" ".join(group_labels)
-    )
+        )
     fig.show()
 
 
