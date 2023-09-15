@@ -134,7 +134,7 @@ def load_ACES_scores_summary_2022() -> Dict[str, Dict[str, float]]:
     values = [{phenomena_table[i] : float(line[1:][i]) for i in range(len(line[1:]))} for line in table2]
     return dict(zip(keys, values))
 
-def load_ACES_scores(ACES_scores_path: str) -> Dict[str, Dict[str, List[List]]]: 
+def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token:str ='.-bad') -> Dict[str, Dict[str, List[List]]]: 
     '''
     Return the metric scores for each phenomena and metric and samples
     format = {
@@ -155,10 +155,10 @@ def load_ACES_scores(ACES_scores_path: str) -> Dict[str, Dict[str, List[List]]]:
 
     ACES_metrics = []
     for key in ACES_scores.keys():
-        if ".-good" in key:
-            ACES_metrics.append(key[:-6])
-        elif ".-bad" in key:
-            ACES_metrics.append(key[:-5])
+        if good_token in key:
+            ACES_metrics.append(key[:-len(good_token)])
+        elif bad_token in key:
+            ACES_metrics.append(key[:-len(bad_token)])
     metrics_names = np.unique(ACES_metrics)
 
     template = dict(zip(phenomena, np.empty((len(phenomena),2))))
@@ -169,9 +169,9 @@ def load_ACES_scores(ACES_scores_path: str) -> Dict[str, Dict[str, List[List]]]:
     for p in phenomena:
         ids = np.where(ACES_scores['phenomena']==p)[0]
         for metric in metrics_names:
-            ACES_metrics[metric][p] = [list(ACES_scores[metric+'.-good'][ids]), list(ACES_scores[metric+'.-bad'][ids])]
+            ACES_metrics[metric][p] = [list(ACES_scores[metric+good_token][ids]), list(ACES_scores[metric+bad_token][ids])]
     for metric in metrics_names:
-        ACES_metrics[metric]["all"] = [list(ACES_scores[metric+'.-good']), list(ACES_scores[metric+'.-bad'])]
+        ACES_metrics[metric]["all"] = [list(ACES_scores[metric+good_token]), list(ACES_scores[metric+bad_token])]
     return ACES_metrics
 
 def map_to_higher(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: Dict=PHENOMENA_MAPPING) -> Dict[str, Dict[str, List[List]]]:
@@ -181,6 +181,7 @@ def map_to_higher(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: Dict=P
         ACES_metrics: output of load_ACES_scores function
         mapping: constant PHENOMENA_MAPPING. Different phenomena mapping dict can be used too
     '''
+    phenomena = list(ACES_scores['BLEU'].keys())
     higher_level_phenomena = list(set(mapping.values()))
     template = dict(zip(higher_level_phenomena, np.zeros((len(higher_level_phenomena)))))
     res = {}
@@ -188,11 +189,12 @@ def map_to_higher(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: Dict=P
     for metric in ACES_scores:
         res[metric] = copy.deepcopy(template)
         for p in mapping.keys():
-            if type(res[metric][mapping[p]]) != list:
-                res[metric][mapping[p]] = ACES_scores[metric][p]
-            else:
-                res[metric][mapping[p]][0].extend(ACES_scores[metric][p][0])
-                res[metric][mapping[p]][1].extend(ACES_scores[metric][p][1])
+            if p in phenomena:
+                if type(res[metric][mapping[p]]) != list:
+                    res[metric][mapping[p]] = ACES_scores[metric][p]
+                else:
+                    res[metric][mapping[p]][0].extend(ACES_scores[metric][p][0])
+                    res[metric][mapping[p]][1].extend(ACES_scores[metric][p][1])
     return res
 
 def read_wmt_file(filename: str) -> pd.DataFrame:
