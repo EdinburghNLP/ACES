@@ -16,6 +16,9 @@ import plotly.express as px
 from tqdm import tqdm
 from typing import List, Dict, Set
 
+PHENOMENA = ['addition', 'omission', 'mistranslation', 'untranslated', 'do not translate', 'overtranslation', 
+             'undertranslation', 'real-world knowledge', 'wrong language', 'punctuation']
+
 PHENOMENA_MAPPING = {'addition': 'addition',
                      'omission': 'omission',
                      'ambiguous-translation-wrong-discourse-connective-since-causal': 'mistranslation',
@@ -105,6 +108,8 @@ METRIC_NAMES_MAPPING = {
     'MaTESe':'MATESE', 
 }
 
+METRICS_SKIP = ["MATESE", 'MaTESe', "MEE", "MEE4", "MEE2", "REUSE", "MATESE-QE", "MATESE-QE"]
+
 # ----------------------------------------- Loading Data Functions ----------------------------------------------
 def read_file(filename: str) -> pd.DataFrame:
     '''
@@ -112,7 +117,7 @@ def read_file(filename: str) -> pd.DataFrame:
     '''
     return pd.read_csv(filename, sep='\t', quoting=csv.QUOTE_NONE)
 
-def load_ACES_scores_summary_2022() -> Dict[str, Dict[str, float]]:
+def load_ACES_scores_summary_2022(skip_metrics:List[str] = METRICS_SKIP) -> Dict[str, Dict[str, float]]:
     '''
     Return the ACES scores for each phenomena and metric 
     (no sensitivity: how many times it gives a better score to the correct translation)
@@ -148,12 +153,64 @@ def load_ACES_scores_summary_2022() -> Dict[str, Dict[str, float]]:
     UniTE-src 0.285 0.930 0.599 -0.615 0.860 0.698 0.540 0.537 -0.417 0.733 15.70\n\
     Average 0.290 0.713 0.389 0.404 0.735 0.312 0.167 0.282 0.075 0.578 10.91".split("\n")
     table2 = [line.split() for line in table]
-    keys = [line[0] for line in table2]
+    keys = [line[0] for line in table2 if line[0] not in skip_metrics]
     phenomena_table = ["addition", "omission", "mistranslation", "untranslated", "do not translate", "overtranslation", "undertranslation", "real-world knowledge", "wrong language", "punctuation", "all"]
-    values = [{phenomena_table[i] : float(line[1:][i]) for i in range(len(line[1:]))} for line in table2]
+    values = [{phenomena_table[i] : float(line[1:][i]) for i in range(len(line[1:]))} for line in table2 if line[0] not in skip_metrics]
     return dict(zip(keys, values))
 
-def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token:str ='.-bad', metric_mapping:Dict[str, str] = METRIC_MAPPING) -> Dict[str, Dict[str, List[List]]]: 
+def load_ACES_scores_summary_2023(skip_metrics:List[str] = METRICS_SKIP) -> Dict[str, Dict[str, float]]:
+    '''
+    Return the ACES scores for each phenomena and metric 
+    (no sensitivity: how many times it gives a better score to the correct translation)
+    from the paper
+    format: {'BLEU': {'addition': 0.748,
+                        'omission': 0.435},
+                'COMET': {'addition': 0.748,
+                        'omission': 0.435},... }
+    '''
+    table = "BERTscore 0.884 0.754 0.336 0.761 0.947 -0.173 -0.276 0.032 0.564 0.911 10.02\n\
+    BLEU 0.759 0.422 -0.191 0.337 0.711 -0.834 -0.857 -0.767 0.658 0.746 -2.49\n\
+    BLEURT-20 0.452 0.807 0.449 0.766 0.868 0.216 0.022 0.388 0.534 0.714 12.36\n\
+    chrF 0.669 0.779 0.173 0.748 0.947 -0.699 -0.588 -0.292 0.690 0.850 3.85\n\
+    COMET-22 0.325 0.823 0.423 0.724 0.842 0.509 0.260 0.382 0.086 0.631 13.80\n\
+    CometKiwi 0.540 0.920 0.616 -0.077 0.632 0.765 0.601 0.576 -0.301 0.883 18.13\n\
+    f200spBLEU 0.676 0.579 -0.067 0.663 0.895 -0.746 -0.793 -0.394 0.661 0.752 0.14\n\
+    MS-COMET-QE-22 -0.179 0.685 0.453 0.402 0.342 0.528 0.377 0.263 -0.186 0.591 10.20\n\
+    Random-sysname -0.115 -0.110 -0.111 -0.053 -0.053 -0.110 -0.146 -0.245 -0.108 -0.020 -3.42\n\
+    YiSi-1 0.774 0.863 0.369 0.742 0.921 -0.048 -0.059 0.113 0.434 0.838 11.79\n\
+    eBLEU 0.682 0.676 0.211 0.738 0.895 -0.651 -0.679 -0.041 0.767 0.110 3.57\n\
+    embed_llama 0.214 0.457 0.016 0.494 0.447 -0.173 -0.489 -0.164 0.151 0.447 1.10\n\
+    MaTESe -0.946 -0.815 -0.284 -0.166 -0.079 0.270 -0.038 -0.227 -1.000 -0.246 -10.57\n\
+    MetricX-23 -0.018 0.575 0.604 0.472 0.842 0.792 0.588 0.767 -0.478 0.731 14.39\n\
+    MetricX-23-b -0.134 0.628 0.597 0.593 0.895 0.773 0.570 0.750 -0.435 0.474 14.02\n\
+    MetricX-23-c -0.008 0.802 0.645 0.631 0.842 0.738 0.522 0.783 -0.621 0.588 15.19\n\
+    partokengram_F 0.089 0.195 -0.039 0.275 0.132 -0.052 -0.028 0.032 0.507 0.140 1.78\n\
+    tokengram_F 0.714 0.752 0.170 0.745 0.947 -0.726 -0.630 -0.272 0.686 0.928 3.60\n\
+    XCOMET-Ensemble 0.323 0.788 0.674 0.388 0.816 0.792 0.611 0.708 -0.410 0.825 17.52\n\
+    XCOMET-XL 0.184 0.544 0.586 0.228 0.842 0.653 0.464 0.582 -0.345 0.475 13.50\n\
+    XCOMET-XXL -0.130 0.415 0.552 0.207 0.658 0.736 0.572 0.508 -0.508 0.625 11.65\n\
+    XLsim 0.452 0.634 0.164 0.629 0.842 -0.198 -0.278 -0.042 0.399 0.780 5.78\n\
+    cometoid22-wmt21 -0.330 0.664 0.499 -0.064 0.395 0.669 0.562 0.364 -0.450 0.520 10.61\n\
+    cometoid22-wmt22 -0.282 0.685 0.499 -0.108 0.368 0.688 0.539 0.340 -0.475 0.520 10.82\n\
+    cometoid22-wmt23 -0.259 0.706 0.512 -0.007 0.474 0.748 0.582 0.363 -0.326 0.533 12.00\n\
+    CometKiwi-XL 0.255 0.828 0.634 0.262 0.447 0.759 0.557 0.562 -0.366 0.706 16.14\n\
+    CometKiwi-XXL 0.371 0.830 0.652 0.404 0.289 0.767 0.555 0.682 -0.525 0.747 16.80\n\
+    GEMBA-MQM 0.042 0.300 0.196 0.118 0.184 0.462 0.274 0.268 -0.145 0.105 6.80\n\
+    KG-BERTScore 0.540 0.914 0.583 -0.177 0.816 0.771 0.603 0.593 -0.301 0.744 18.06\n\
+    MetricX-23-QE 0.042 0.680 0.658 0.384 0.500 0.769 0.607 0.654 -0.695 0.594 14.69\n\
+    MetricX-23-QE-b 0.033 0.771 0.665 0.498 0.553 0.759 0.611 0.648 -0.664 0.606 15.29\n\
+    MetricX-23-QE-c -0.113 0.666 0.717 0.380 0.447 0.723 0.613 0.754 -0.705 0.491 13.96\n\
+    XCOMET-QE-Ensemble 0.282 0.754 0.645 0.200 0.737 0.759 0.584 0.626 -0.508 0.745 16.25\n\
+    XLsimQE 0.199 0.396 0.094 -0.703 0.921 0.453 0.357 0.043 0.310 0.745 8.14\n\
+    Average 0.206 0.599 0.374 0.336 0.625 0.315 0.181 0.275 -0.091 0.583 9.57".split("\n")
+    table2 = [line.split() for line in table]
+    keys = [line[0] for line in table2 if line[0] not in skip_metrics]
+    phenomena_table = ["addition", "omission", "mistranslation", "untranslated", "do not translate", "overtranslation", "undertranslation", "real-world knowledge", "wrong language", "punctuation", "all"]
+    values = [{phenomena_table[i] : float(line[1:][i]) for i in range(len(line[1:]))} for line in table2 if line[0] not in skip_metrics]
+    return dict(zip(keys, values))
+
+def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token:str ='.-bad', metric_mapping:Dict[str, str] = METRIC_NAMES_MAPPING, 
+                     skip_metrics:List[str] = METRICS_SKIP) -> Dict[str, Dict[str, List[List]]]: 
     '''
     Return the metric scores for each phenomena and metric and samples
     format = {
@@ -178,6 +235,8 @@ def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token
             ACES_metrics.append(key[:-len(good_token)])
         elif bad_token in key:
             ACES_metrics.append(key[:-len(bad_token)])
+        if len(ACES_metrics) > 0 and ACES_metrics[-1] in skip_metrics:
+            ACES_metrics = ACES_metrics[:-1]
     metrics_names = np.unique(ACES_metrics)
 
     if metric_mapping == None:
@@ -190,7 +249,8 @@ def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token
     template = dict(zip(phenomena, np.empty((len(phenomena),2))))
     ACES_metrics = {}
     for metric in metric_mapping.values():
-        ACES_metrics[metric] = copy.deepcopy(template)
+        if metric not in skip_metrics:
+            ACES_metrics[metric] = copy.deepcopy(template)
     for p in phenomena:
         ids = np.where(ACES_scores['phenomena']==p)[0]
         for metric in metrics_names:
@@ -205,6 +265,7 @@ def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token
         else:
             ACES_metrics[metric_mapping[metric]]["all"][0].extend(list(ACES_scores[metric+good_token]))
             ACES_metrics[metric_mapping[metric]]["all"][1].extend(list(ACES_scores[metric+bad_token])) 
+
     return ACES_metrics
 
 def map_to_higher(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: Dict=PHENOMENA_MAPPING) -> Dict[str, Dict[str, List[List]]]:
@@ -379,4 +440,79 @@ def grouped_line_plot(groups: List[Dict[str,list]], metrics_names: List[str], gr
         )
     fig.show()
 
+# ------------------------------------ LATEX FUNCTIONS --------------------------------
+import decimal
+import re
 
+# From the ACES 2022 Paper:
+METRICS_GROUPING_2022= {"baseline": ["BLEU", "f101spBLEU", "f200spBLEU", "chrF", "BERTScore", "BLEURT-20",
+                                     "COMET-20", "COMET-QE", "YISI-1"],
+                        "reference-based": ["COMET-22", 'metricx_xl_DA_2019', 'metricx_xl_MQM_2020', 'metricx_xxl_DA_2019', 'metricx_xxl_MQM_2020',
+                                            'MS-COMET-22', "UniTE", "UniTE-ref"],
+                        "reference-free": ["COMETKiwi", "Cross-QE", 'HWTSC-Teacher-Sim', 'HWTSC-TLM',
+                                           'KG-BERTScore', "MS-COMET-QE-22", "UniTE-src"]
+
+                    }
+
+METRIC_MAPPING_BACK = {'YISI-1':'YiSi-1', 'BERTscore':'BERTScore', 'CometKiwi':'COMETKiwi'}
+
+def format_number(number:float, max_phenomena:bool = False, dec:str = '0.000') -> str:
+    if number < 0:
+        out = '-' + str(decimal.Decimal(-number).quantize(decimal.Decimal(dec)))
+    else:
+        out = '\phantom{-}' + str(decimal.Decimal(number).quantize(decimal.Decimal(dec)))
+    if max_phenomena:
+        return '\colorbox[HTML]{B2EAB1}{\\textbf{' + out + '}}'
+    else:
+        return out
+    
+def format_metric(metric:str):
+    return re.sub(r'_', '\\_', metric)
+
+def find_max_on_col(scores:Dict[str, Dict[str, Dict[str, int]]]) -> Dict[str,str]:
+    max_metrics = [[] for metric in metrics_names]
+    avgs = []
+    for i,p in enumerate(PHENOMENA):
+        col = [scores[metric][p] for metric in metrics_names]
+        max_ids = np.where(col == np.max(col))[0]
+        for max_id in max_ids:
+            max_metrics[max_id].append(i)
+        avgs.append(np.average(col))
+    return max_metrics, avgs
+
+def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_groups:Dict[str,list] = METRICS_GROUPING_2022):
+    out = ''
+    max_in_columns, avgs = find_max_on_col(scores)
+
+    aces_scores_col = []
+    for group, metrics in metrics_groups.items():
+        for metric in metrics:
+            row = {}
+            for p_id, p in enumerate(PHENOMENA):
+                if metric not in scores:
+                    metric = METRIC_MAPPING_BACK[metric]
+                row[p] = scores[metric][p]
+            aces_scores_col.append(comp_aces_score(row))
+    max_aces_ids = np.where(list(aces_scores_col) == np.max(aces_scores_col))[0]
+
+    m_id = 0
+    for group, metrics in metrics_groups.items():
+        for metric in metrics:
+            out += format_metric(metric) + '\t\t\t\t\t'
+            
+            for p_id, p in enumerate(PHENOMENA):
+                # if metric not in scores and metric not in METRIC_MAPPING_BACK:
+                #    out += '&\t ---- \t' 
+                if metric not in scores:           
+                    metric = METRIC_MAPPING_BACK[metric]
+                    # print(p, metric, )
+                # print(p, metric, scores[metric][p])
+                out += '&\t' + format_number(scores[metric][p], max_phenomena=p_id in max_in_columns[metrics_names.index(metric)]) + '\t'                
+            out += '&\t' + format_number(aces_scores_col[m_id], dec='0.00', max_phenomena=m_id in max_aces_ids) + '\t \\\\ \n'
+            m_id += 1
+        out += '\midrule \n'
+    out += 'Average\t\t\t\t\t'
+    for p_id, p in enumerate(PHENOMENA):
+        out += '&\t' + format_number(avgs[p_id], max_phenomena=False) + '\t'
+    out += '\\\\ \n\\bottomrule\t\t\t\t\t'
+    return out
