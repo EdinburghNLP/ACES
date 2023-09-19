@@ -86,6 +86,25 @@ PHENOMENA_MAPPING = {'addition': 'addition',
                      'punctuation:statement-to-question': 'punctuation'
                     }
 
+# NOTE: These ones are not in WMT metrics: 'MATESE', 'MATESE-QE', 'MEE', 'MEE2', 'MEE4'
+# The scores are also missing in the ACES 2022 scores
+
+# NOTE: Also these from the ACES-2023 (but they are not listed in the metrics shared task paper anyway):
+# 'Calibri-COMET22', 'Calibri-COMET22-QE'
+# These don't exist in WMT yet: 'CometKiwi-XL', 'CometKiwi-XXL','GEMBA-MQM','MEE4','MEE4_stsb_xlm',
+# 'MetricX-23', 'MetricX-23-QE','MetricX-23-QE-b','MetricX-23-QE-c','MetricX-23-b','MetricX-23-c','Random-sysname',
+# and more..
+
+METRIC_NAMES_MAPPING = {
+    # For ACES 2022
+    'COMET-QE-Baseline':'COMET-QE',
+    # For ACES 2023
+    'BERTscore':'BERTScore',
+    'COMET':'COMET-22',
+    'CometKiwi':'COMETKiwi',
+    'MaTESe':'MATESE', 
+}
+
 # ----------------------------------------- Loading Data Functions ----------------------------------------------
 def read_file(filename: str) -> pd.DataFrame:
     '''
@@ -134,7 +153,7 @@ def load_ACES_scores_summary_2022() -> Dict[str, Dict[str, float]]:
     values = [{phenomena_table[i] : float(line[1:][i]) for i in range(len(line[1:]))} for line in table2]
     return dict(zip(keys, values))
 
-def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token:str ='.-bad') -> Dict[str, Dict[str, List[List]]]: 
+def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token:str ='.-bad', metric_mapping:Dict[str, str] = METRIC_MAPPING) -> Dict[str, Dict[str, List[List]]]: 
     '''
     Return the metric scores for each phenomena and metric and samples
     format = {
@@ -161,17 +180,31 @@ def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token
             ACES_metrics.append(key[:-len(bad_token)])
     metrics_names = np.unique(ACES_metrics)
 
+    if metric_mapping == None:
+        metric_mapping = dict(zip(list(metrics_names), list(metrics_names)))
+    else:
+        for metric in metrics_names:
+            if metric not in metric_mapping:
+                metric_mapping[metric] = metric
+
     template = dict(zip(phenomena, np.empty((len(phenomena),2))))
     ACES_metrics = {}
-    for metric in metrics_names:
+    for metric in metric_mapping.values():
         ACES_metrics[metric] = copy.deepcopy(template)
-
     for p in phenomena:
         ids = np.where(ACES_scores['phenomena']==p)[0]
         for metric in metrics_names:
-            ACES_metrics[metric][p] = [list(ACES_scores[metric+good_token][ids]), list(ACES_scores[metric+bad_token][ids])]
+            if type(ACES_metrics[metric_mapping[metric]][p][0]) != list:
+                ACES_metrics[metric_mapping[metric]][p] = [list(ACES_scores[metric+good_token][ids]), list(ACES_scores[metric+bad_token][ids])]
+            else:     
+                ACES_metrics[metric_mapping[metric]][p][0].extend(list(ACES_scores[metric+good_token][ids]))
+                ACES_metrics[metric_mapping[metric]][p][1].extend(list(ACES_scores[metric+bad_token][ids])) 
     for metric in metrics_names:
-        ACES_metrics[metric]["all"] = [list(ACES_scores[metric+good_token]), list(ACES_scores[metric+bad_token])]
+        if "all" not in ACES_metrics[metric_mapping[metric]]:
+            ACES_metrics[metric_mapping[metric]]["all"] = [list(ACES_scores[metric+good_token]), list(ACES_scores[metric+bad_token])]
+        else:
+            ACES_metrics[metric_mapping[metric]]["all"][0].extend(list(ACES_scores[metric+good_token]))
+            ACES_metrics[metric_mapping[metric]]["all"][1].extend(list(ACES_scores[metric+bad_token])) 
     return ACES_metrics
 
 def map_to_higher(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: Dict=PHENOMENA_MAPPING) -> Dict[str, Dict[str, List[List]]]:
