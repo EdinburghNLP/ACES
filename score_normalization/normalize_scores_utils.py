@@ -101,11 +101,13 @@ PHENOMENA_MAPPING = {'addition': 'addition',
 METRIC_NAMES_MAPPING = {
     # For ACES 2022
     'COMET-QE-Baseline':'COMET-QE',
+    'YiSi-1':'YISI-1',
     # For ACES 2023
     'BERTscore':'BERTScore',
     'COMET':'COMET-22',
     'CometKiwi':'COMETKiwi',
     'MaTESe':'MATESE', 
+    'spBLEU':'f200spBLEU'
 }
 
 METRICS_SKIP = ["MATESE", 'MaTESe', "MEE", "MEE4", "MEE2", "REUSE", "MATESE-QE", "MATESE-QE"]
@@ -248,8 +250,9 @@ def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token
 
     template = dict(zip(phenomena, np.empty((len(phenomena),2))))
     ACES_metrics = {}
-    for metric in metric_mapping.values():
-        if metric not in skip_metrics:
+    for metric in metrics_names:
+        metric = metric_mapping[metric]
+        if metric not in []:
             ACES_metrics[metric] = copy.deepcopy(template)
     for p in phenomena:
         ids = np.where(ACES_scores['phenomena']==p)[0]
@@ -319,6 +322,19 @@ def load_WMT_scores(WMT_scores_path: str, metrics_names: Set[str]) -> Dict[str, 
             # if the metric name does not exist in the WMT scores list it just skips
             for file in files:
                 if file.startswith(metric) and file.endswith(".seg.score"):
+                    scores_tmp = read_wmt_file(os.path.join(lang_dir, file))
+                    if metric not in WMT_metrics:
+                        WMT_metrics[metric] = scores_tmp
+                    else:
+                        WMT_metrics[metric].extend(scores_tmp)
+                elif metric in METRIC_NAMES_MAPPING and file.startswith(METRIC_NAMES_MAPPING[metric]) and file.endswith(".seg.score"):
+                    metric = METRIC_NAMES_MAPPING[metric]
+                    scores_tmp = read_wmt_file(os.path.join(lang_dir, file))
+                    if metric not in WMT_metrics:
+                        WMT_metrics[metric] = scores_tmp
+                    else:
+                        WMT_metrics[metric].extend(scores_tmp)
+                elif metric in METRIC_MAPPING_BACK and file.startswith(METRIC_MAPPING_BACK[metric]) and file.endswith(".seg.score"):
                     scores_tmp = read_wmt_file(os.path.join(lang_dir, file))
                     if metric not in WMT_metrics:
                         WMT_metrics[metric] = scores_tmp
@@ -454,9 +470,33 @@ METRICS_GROUPING_2022= {"baseline": ["BLEU", "f101spBLEU", "f200spBLEU", "chrF",
 
                     }
 
-METRIC_MAPPING_BACK = {'YISI-1':'YiSi-1', 'BERTscore':'BERTScore', 'CometKiwi':'COMETKiwi'}
+METRICS_GROUPING_2023 = {
+    "baseline": ["BERTScore", "BLEU", "BLEURT-20", "chrF", "COMET-22", "COMETKiwi", 
+                 "f200spBLEU", "MS-COMET-QE-22", "Random-sysname", "YiSi-1"],
+    "reference-based": ["eBLEU", "embed_llama", "MaTESe", "MetricX-23", "MetricX-23-b", 
+                        "MetricX-23-c", "partokengram_F", "tokengram_F", "XCOMET-Ensemble",
+                        "XCOMET-XL", "XCOMET-XXL", "XLsim"],
+    "reference-free": ["cometoid22-wmt21", "cometoid22-wmt22", "cometoid22-wmt23", "CometKiwi-XL", 
+                       "CometKiwi-XXL", "GEMBA-MQM", "KG-BERTScore", "MetricX-23-QE", "MetricX-23-QE-b", 
+                       "MetricX-23-QE-c", "XCOMET-QE-Ensemble", "XLsimQE"]                           
+}
+
+METRIC_MAPPING_BACK = {'YISI-1':'YiSi-1', 'BERTScore':'BERTscore', 'COMETKiwi':'CometKiwi', 'MATESE':'MaTESe', 'COMET-22':'COMET'}
+METRIC_NAMES_MAPPING = {
+    # For ACES 2022
+    'COMET-QE-Baseline':'COMET-QE',
+    'YiSi-1':'YISI-1',
+    # For ACES 2023
+    'BERTscore':'BERTScore',
+    'COMET':'COMET-22',
+    'CometKiwi':'COMETKiwi',
+    'MaTESe':'MATESE',  
+    'spBLEU':'f200spBLEU'
+}
 
 def format_number(number:float, max_phenomena:bool = False, dec:str = '0.000') -> str:
+    if number == -np.inf:
+        return '----'
     if number < 0:
         out = '-' + str(decimal.Decimal(-number).quantize(decimal.Decimal(dec)))
     else:
@@ -469,45 +509,71 @@ def format_number(number:float, max_phenomena:bool = False, dec:str = '0.000') -
 def format_metric(metric:str):
     return re.sub(r'_', '\\_', metric)
 
-def find_max_on_col(scores:Dict[str, Dict[str, Dict[str, int]]]) -> Dict[str,str]:
+def find_max_on_col(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_names:List[str]) -> Dict[str,str]:
     max_metrics = [[] for metric in metrics_names]
     avgs = []
     for i,p in enumerate(PHENOMENA):
-        col = [scores[metric][p] for metric in metrics_names]
+        col = []
+        for metric in metrics_names:
+            if metric not in scores and metric in METRIC_NAMES_MAPPING:
+                metric = METRIC_NAMES_MAPPING[metric]
+            elif metric not in scores and metric in METRIC_MAPPING_BACK:
+                metric = METRIC_MAPPING_BACK[metric]
+            if metric not in scores:
+                col.append(-np.inf)
+            else:
+                col.append(scores[metric][p])
         max_ids = np.where(col == np.max(col))[0]
         for max_id in max_ids:
             max_metrics[max_id].append(i)
-        avgs.append(np.average(col))
+        col = np.array(col)
+        avgs.append(np.average(col[col > -np.inf]))
     return max_metrics, avgs
 
 def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_groups:Dict[str,list] = METRICS_GROUPING_2022):
     out = ''
-    max_in_columns, avgs = find_max_on_col(scores)
+    metrics_names = []
+    for group in metrics_groups.values():
+        for metric in group:
+            if metric not in scores and metric in METRIC_NAMES_MAPPING:
+                metrics_names.append(METRIC_NAMES_MAPPING[metric])
+            elif metric not in scores and metric in METRIC_MAPPING_BACK:
+                metrics_names.append(METRIC_MAPPING_BACK[metric])
+            else:
+                metrics_names.append(metric)
 
+    max_in_columns, avgs = find_max_on_col(scores, metrics_names=metrics_names)
     aces_scores_col = []
     for group, metrics in metrics_groups.items():
         for metric in metrics:
+            if metric not in scores and metric in METRIC_NAMES_MAPPING:
+                metric = METRIC_NAMES_MAPPING[metric]
+            elif metric not in scores and metric in METRIC_MAPPING_BACK:
+                metric = METRIC_MAPPING_BACK[metric]
             row = {}
             for p_id, p in enumerate(PHENOMENA):
                 if metric not in scores:
-                    metric = METRIC_MAPPING_BACK[metric]
-                row[p] = scores[metric][p]
+                    row[p] = 0.0
+                else:
+                    row[p] = scores[metric][p]
             aces_scores_col.append(comp_aces_score(row))
     max_aces_ids = np.where(list(aces_scores_col) == np.max(aces_scores_col))[0]
 
     m_id = 0
     for group, metrics in metrics_groups.items():
         for metric in metrics:
+            if metric not in scores and metric in METRIC_NAMES_MAPPING:
+                metric = METRIC_NAMES_MAPPING[metric]
+            elif metric not in scores and metric in METRIC_MAPPING_BACK:
+                metric = METRIC_MAPPING_BACK[metric]
             out += format_metric(metric) + '\t\t\t\t\t'
-            
             for p_id, p in enumerate(PHENOMENA):
-                # if metric not in scores and metric not in METRIC_MAPPING_BACK:
-                #    out += '&\t ---- \t' 
-                if metric not in scores:           
-                    metric = METRIC_MAPPING_BACK[metric]
-                    # print(p, metric, )
-                # print(p, metric, scores[metric][p])
-                out += '&\t' + format_number(scores[metric][p], max_phenomena=p_id in max_in_columns[metrics_names.index(metric)]) + '\t'                
+                if metric not in scores:
+                    out += '&\t ---- \t' 
+                else:
+                    max_ids = max_in_columns[metrics_names.index(metric)]
+                    out += '&\t' + format_number(scores[metric][p], max_phenomena=p_id in max_ids) + '\t'   
+                                 
             out += '&\t' + format_number(aces_scores_col[m_id], dec='0.00', max_phenomena=m_id in max_aces_ids) + '\t \\\\ \n'
             m_id += 1
         out += '\midrule \n'
