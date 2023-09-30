@@ -405,11 +405,13 @@ def calculate_sensitivities(ACES_scores: Dict[str, Dict[str, List[List]]], WMT_s
             std_1 = np.std(diff_raw_scaled)
             mean_2 = np.mean(diff_scaled)
             logger.info('{}\t\t{}\t\t{}\t\t{}'.format(metric, mean_1, std_1, mean_2))
-            stats[p][metric] = {"Mean of good-bad":mean_1, "Standart Deviation of good-bad":std_1, "Mean of abs(good-bad)":mean_2}
+            stats[p][metric] = {"Mean of good-bad":mean_1, "Standart Deviation of good-bad":std_1, "Mean of abs(good-bad)":mean_2, "Mean of good":np.mean(good_scaled), "Mean of bad":np.mean(bad_scaled)}
     means = {metric:{p: stats[p][metric]["Mean of good-bad"] for p in phenomena} for metric in metrics_names}
     abs_means = {metric:{p: stats[p][metric]["Mean of abs(good-bad)"] for p in phenomena} for metric in metrics_names}
     normal_std = {metric:{p: stats[p][metric]["Standart Deviation of good-bad"] for p in phenomena} for metric in metrics_names}
-    return means, abs_means, normal_std, phenomena
+    means_good = {metric:{p: stats[p][metric]["Mean of good"] for p in phenomena} for metric in metrics_names}
+    means_bad = {metric:{p: stats[p][metric]["Mean of bad"] for p in phenomena} for metric in metrics_names}
+    return means, abs_means, normal_std, phenomena, means_good, means_bad
 
 # -----------------------------------------------Plotting Functions ---------------------------------------------------
 def mean_var(dist: list):
@@ -512,9 +514,6 @@ def comp_aces_score(overview_results: List[float]) -> float:
                  0.1 * np.mean(overview_results['punctuation'])
     return aces_score
 
-import decimal
-import re
-
 def format_number(number:float, max_phenomena:bool = False, dec:str = '0.000', color='\colorbox[HTML]{B2EAB1}') -> str:
     if number == -np.inf:
         return '----'
@@ -538,7 +537,7 @@ def map_to_color(num:float, max:float, min:float) -> str:
     # return '\colorbox{' + colors[int((num-min)/(max-min)*10)] + '}'
     # print(num, max, min, int(num/(2*max)*10+5))
     try:
-        return '\colorbox{' + colors[int(num/(2*max)*10+5)] + '}'
+        return '\colorbox{' + colors[np.maximum(0, int(num/(2*max)*10+5))] + '}'
     except:
         print(num, max)
 
@@ -592,7 +591,7 @@ def make_footer(averages:List, phenomena:List[str]=PHENOMENA) -> str:
     res += """\\\\ \n \\bottomrule"""
     return res
 
-def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_groups:Dict[str,list] = METRICS_GROUPING_2022, phenomena:List[str]=PHENOMENA, global_colors:bool=True, k_highest:int=1, colors:List(str)=None) -> str:
+def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_groups:Dict[str,list] = METRICS_GROUPING_2022, phenomena:List[str]=PHENOMENA, global_colors:bool=True, k_highest:int=1, colors:List[str]=None) -> str:
     """
     if k_highest % 2 == 1:
         colors = COLORS[len(COLORS)//2-k_highest//2:len(COLORS)//2+k_highest//2+1]
