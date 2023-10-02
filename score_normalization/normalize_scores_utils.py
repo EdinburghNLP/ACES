@@ -31,8 +31,8 @@ PHENOMENA_MAPPING = {'addition': 'addition',
                      'ambiguous-translation-wrong-gender-female-pro': 'mistranslation',
                      'ambiguous-translation-wrong-gender-male-anti': 'mistranslation',
                      'ambiguous-translation-wrong-gender-male-pro': 'mistranslation',
-                     'ambiguous-translation-wrong-sense-frequent': 'mistranslation',
-                     'ambiguous-translation-wrong-sense-infrequent': 'mistranslation',
+                     # 'ambiguous-translation-wrong-sense-frequent': 'mistranslation',
+                     # 'ambiguous-translation-wrong-sense-infrequent': 'mistranslation',
                      'anaphoric_group_it-they:deletion': 'mistranslation',
                      'anaphoric_group_it-they:substitution': 'mistranslation',
                      'anaphoric_intra_non-subject_it:deletion': 'mistranslation',
@@ -87,7 +87,7 @@ PHENOMENA_MAPPING = {'addition': 'addition',
                      'similar-language-low': 'wrong language',
                      'punctuation:deletion_all': 'punctuation',
                      'punctuation:deletion_commas': 'punctuation',
-                     'punctuation:deletion_quotes': 'punctuation',
+                     #'punctuation:deletion_quotes': 'punctuation',
                      'punctuation:statement-to-question': 'punctuation'
                     }
 
@@ -216,7 +216,7 @@ def load_ACES_scores_summary_2023(skip_metrics:List[str] = METRICS_SKIP) -> Dict
     values = [{phenomena_table[i] : float(line[1:][i]) for i in range(len(line[1:-1]))} for line in table2 if line[0] not in skip_metrics]
     return dict(zip(keys, values))
 
-def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token:str ='.-bad', metric_mapping:Dict[str, str] = METRIC_NAMES_MAPPING, 
+def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token:str ='.-bad', mapping:Dict[str, str] = METRIC_NAMES_MAPPING, 
                      skip_metrics:List[str] = METRICS_SKIP) -> Dict[str, Dict[str, List[List]]]: 
     '''
     Return the metric scores for each phenomena and metric and samples
@@ -246,6 +246,7 @@ def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token
             ACES_metrics = ACES_metrics[:-1]
     metrics_names = np.unique(ACES_metrics)
 
+    metric_mapping = mapping.copy()
     if metric_mapping == None:
         metric_mapping = dict(zip(list(metrics_names), list(metrics_names)))
     else:
@@ -267,13 +268,14 @@ def load_ACES_scores(ACES_scores_path: str, good_token:str = '.-good', bad_token
             else:     
                 ACES_metrics[metric_mapping[metric]][p][0].extend(list(ACES_scores[metric+good_token][ids]))
                 ACES_metrics[metric_mapping[metric]][p][1].extend(list(ACES_scores[metric+bad_token][ids])) 
+    """
     for metric in metrics_names:
         if "all" not in ACES_metrics[metric_mapping[metric]]:
             ACES_metrics[metric_mapping[metric]]["all"] = [list(ACES_scores[metric+good_token]), list(ACES_scores[metric+bad_token])]
         else:
             ACES_metrics[metric_mapping[metric]]["all"][0].extend(list(ACES_scores[metric+good_token]))
             ACES_metrics[metric_mapping[metric]]["all"][1].extend(list(ACES_scores[metric+bad_token])) 
-
+    """
     return ACES_metrics
 
 def map_to_higher(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: Dict=PHENOMENA_MAPPING) -> Dict[str, Dict[str, List[List]]]:
@@ -283,6 +285,7 @@ def map_to_higher(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: Dict=P
         ACES_metrics: output of load_ACES_scores function
         mapping: constant PHENOMENA_MAPPING. Different phenomena mapping dict can be used too
     '''
+    ACES_scores = copy.deepcopy(ACES_scores)
     phenomena = list(ACES_scores['BLEU'].keys())
     higher_level_phenomena = list(set(mapping.values()))
     template = dict(zip(higher_level_phenomena, np.zeros((len(higher_level_phenomena)))))
@@ -382,6 +385,8 @@ def calculate_sensitivities(ACES_scores: Dict[str, Dict[str, List[List]]], WMT_s
         }
     }
     '''
+    ACES_scores = copy.deepcopy(ACES_scores)
+
     if verbal:
         logger.setLevel(logging.INFO)
     else:
@@ -416,6 +421,8 @@ def calculate_sensitivities(ACES_scores: Dict[str, Dict[str, List[List]]], WMT_s
     return means, abs_means, normal_std, phenomena, means_good, means_bad
 
 def calculate_sensitivities_self_scaled(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: dict=None, verbal=False) -> Dict[str, Dict[str, Dict[str, int]]]:
+    ACES_scores = copy.deepcopy(ACES_scores)
+    
     if verbal:
         logger.setLevel(logging.INFO)
     else:
@@ -442,6 +449,8 @@ def calculate_sensitivities_self_scaled(ACES_scores: Dict[str, Dict[str, List[Li
     return sensitivities, phenomena
 
 def calculate_tau_correlations(ACES_scores: Dict[str, Dict[str, List[List]]], mapping:dict=None, phenomena:List[str]=None) -> Dict[str, Dict[str, Dict[str, int]]]:
+    ACES_scores = copy.deepcopy(ACES_scores)
+    
     if mapping:
         ACES_scores = map_to_higher(ACES_scores, mapping=mapping)
     
@@ -611,22 +620,23 @@ def find_max_on_col(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_names:L
         avgs.append(np.average(col[col > -np.inf]))
     return max_metrics, avgs
 
-def make_header(phenomena:List[str]=PHENOMENA) -> str:
+def make_header(phenomena:List[str]=PHENOMENA, p_header_1:dict=PHENOMENA_HEADER_1, p_header_2:dict=PHENOMENA_HEADER_2, num_samples:dict=NUM_SAMPLES, ACES_column:bool=True) -> str:
     res = "\\begin{table*}[ht] \n \small \n \setlength{\\tabcolsep}{3.75pt} \n \centering \n \\begin{tabular}{@{}lccccccccccc@{}} \n \\\\\\toprule \n"
-    for p in PHENOMENA:
-        if p in phenomena:
-            res += " & "
-            res += PHENOMENA_HEADER_1[p]
-    res += """ & \\textbf{ACES-} \\\\\n"""
-    for p in PHENOMENA:
-        if p in phenomena:
-            res += " & "
-            res += PHENOMENA_HEADER_2[p]
-    res += """ & \\textbf{Score}\\\\\n\midrule\n\\textit{\\textbf{Examples}} """
-    for p in PHENOMENA:
-        if p in phenomena:
-            res += " & "
-            res += '\\textit{' + str(NUM_SAMPLES[p]) + '}'
+    for p in phenomena:
+        res += " & "
+        res += p_header_1[p]
+    if ACES_column:
+        res += """ & \\textbf{ACES-}"""
+    res += " \\\\\n"
+    for p in phenomena:
+        res += " & "
+        res += p_header_2[p]
+    if ACES_column:
+        res += """ & \\textbf{Score}"""
+    res += "\\\\\n\midrule\n\\textit{\\textbf{Examples}} "
+    for p in phenomena:
+        res += " & "
+        res += '\\textit{' + str(num_samples[p]) + '}'
     res += """\\\\ \n \midrule"""
     return res
 
@@ -639,13 +649,15 @@ def make_footer(averages:List, phenomena:List[str]=PHENOMENA) -> str:
     res += """\\\\ \n \\bottomrule"""
     return res
 
-def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_groups:Dict[str,list] = METRICS_GROUPING_2022, phenomena:List[str]=PHENOMENA, global_colors:bool=True, k_highest:int=1, colors:List[str]=None) -> str:
+def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_groups:Dict[str,list] = METRICS_GROUPING_2022, phenomena:List[str]=PHENOMENA, ACES_column:bool=True, global_colors:bool=True, k_highest:int=1, colors:List[str]=None) -> str:
     """
     if k_highest % 2 == 1:
         colors = COLORS[len(COLORS)//2-k_highest//2:len(COLORS)//2+k_highest//2+1]
     else:
         colors = COLORS[len(COLORS)//2-k_highest//2:len(COLORS)//2] + COLORS[len(COLORS)//2+1:len(COLORS)//2+k_highest//2+1]
     """
+    if global_colors:
+        k_highest = 1
     out = ''
     metrics_names = []
     for group in metrics_groups.values():
@@ -658,40 +670,41 @@ def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_
                 metrics_names.append(metric)
     # print(metrics_names)
     max_in_columns, avgs = find_max_on_col(scores, metrics_names=metrics_names, phenomena=phenomena, k_highest=k_highest)
-    aces_scores_col = []
-    for metric in metrics_names:
-        if metric not in scores and metric in METRIC_NAMES_MAPPING:
-            metric = METRIC_NAMES_MAPPING[metric]
-        elif metric not in scores and metric in METRIC_MAPPING_BACK:
-            metric = METRIC_MAPPING_BACK[metric]
-        row = {}
-        for p_id, p in enumerate(phenomena):
-            if metric not in scores:
-                row[p] = 0.0
-            else:
-                row[p] = scores[metric][p]
-        aces_scores_col.append(comp_aces_score(row))
-    # print(aces_scores_col)
-    aces_scores_col_colors = {m_id:"" for m_id in range(len(metrics_names))}
+    if ACES_column:
+        aces_scores_col = []
+        for metric in metrics_names:
+            if metric not in scores and metric in METRIC_NAMES_MAPPING:
+                metric = METRIC_NAMES_MAPPING[metric]
+            elif metric not in scores and metric in METRIC_MAPPING_BACK:
+                metric = METRIC_MAPPING_BACK[metric]
+            row = {}
+            for p_id, p in enumerate(phenomena):
+                if metric not in scores:
+                    row[p] = 0.0
+                else:
+                    row[p] = scores[metric][p]
+            aces_scores_col.append(comp_aces_score(row))
+        # print(aces_scores_col)
+        aces_scores_col_colors = {m_id:"" for m_id in range(len(metrics_names))}
     
     if global_colors:
         maximum = np.max([np.max(list(p.values())) for metric,p in scores.items() if metric in metrics_names])
         minimum = np.min([np.min(list(p.values())) for metric,p in scores.items() if metric in metrics_names])
         # print(minimum, maximum, metrics_names)
-        for i in range(len(aces_scores_col)):
-            aces_scores_col_colors[i] = map_to_color(aces_scores_col[i], np.max(aces_scores_col), np.min(aces_scores_col))
-        # return
-    elif k_highest == 1:
-        max_aces_ids = np.where(list(aces_scores_col) == np.max(aces_scores_col))[0]
-        for i in max_aces_ids:
-            aces_scores_col_colors[i] = '\colorbox[HTML]{B2EAB1}'
-    else:
-        for k in range(k_highest):
-            max_aces_ids = np.where(aces_scores_col == np.partition(aces_scores_col, -k-1)[-k-1])[0]
+    if ACES_column:
+        if global_colors:
+            for i in range(len(aces_scores_col)):
+                aces_scores_col_colors[i] = map_to_color(aces_scores_col[i], np.max(aces_scores_col), np.min(aces_scores_col))
+        elif k_highest == 1:
+            max_aces_ids = np.where(list(aces_scores_col) == np.max(aces_scores_col))[0]
             for i in max_aces_ids:
-                aces_scores_col_colors[i] = colors[k]
+                aces_scores_col_colors[i] = '\colorbox[HTML]{B2EAB1}'
+        else:
+            for k in range(k_highest):
+                max_aces_ids = np.where(aces_scores_col == np.partition(aces_scores_col, -k-1)[-k-1])[0]
+                for i in max_aces_ids:
+                    aces_scores_col_colors[i] = colors[k]
                    
-    m_id = 0
     for group, metrics in metrics_groups.items():
         for m_id, metric in enumerate(metrics):
             if metric not in scores and metric in METRIC_NAMES_MAPPING:
@@ -715,12 +728,91 @@ def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_
                                 color=colors[k]
                                 break
                         out += '&\t' + format_number(scores[metric][p], max_phenomena=True, color=color) + '\t'   
-            tmp_color =  aces_scores_col_colors[metrics_names.index(metric)]    
-            out += '&\t' + format_number(aces_scores_col[metrics_names.index(metric)], dec='0.00', max_phenomena=tmp_color!="", color=tmp_color) + '\t \\\\ \n'
-            m_id += 1
+            if ACES_column:
+                tmp_color =  aces_scores_col_colors[metrics_names.index(metric)]    
+                out += '&\t' + format_number(aces_scores_col[metrics_names.index(metric)], dec='0.00', max_phenomena=tmp_color!="", color=tmp_color)
+            out += '\t \\\\ \n'
         out += '\midrule \n'
     out += 'Average\t\t\t\t\t'
     for p_id, p in enumerate(phenomena):
         out += '&\t' + format_number(avgs[p_id], max_phenomena=True, color=map_to_color(avgs[p_id], max=np.max(avgs), min=np.min(avgs))) + '\t'
+    out += '\\\\'
+    return out
+
+def generate_summary_table_double(scores1:Dict[str, Dict[str, Dict[str, int]]], scores2:Dict[str, Dict[str, Dict[str, int]]], 
+                                  metrics_groups:Dict[str,list] = METRICS_GROUPING_2022, phenomena:List[str]=PHENOMENA, ACES_column:bool=True, global_colors:bool=True, k_highest:int=1, colors:List[str]=None) -> str:
+    """
+    if k_highest % 2 == 1:
+        colors = COLORS[len(COLORS)//2-k_highest//2:len(COLORS)//2+k_highest//2+1]
+    else:
+        colors = COLORS[len(COLORS)//2-k_highest//2:len(COLORS)//2] + COLORS[len(COLORS)//2+1:len(COLORS)//2+k_highest//2+1]
+    """
+    if global_colors:
+        k_highest = 1
+    out = ''
+    metrics_names = []
+    for group in metrics_groups.values():
+        for metric in group:
+            if metric not in scores1 and metric in METRIC_NAMES_MAPPING:
+                metrics_names.append(METRIC_NAMES_MAPPING[metric])
+            elif metric not in scores1 and metric in METRIC_MAPPING_BACK:
+                metrics_names.append(METRIC_MAPPING_BACK[metric])
+            else:
+                metrics_names.append(metric)
+    # print(metrics_names)
+    max_in_columns1, avgs1 = find_max_on_col(scores1, metrics_names=metrics_names, phenomena=phenomena, k_highest=k_highest)
+    max_in_columns2, avgs2 = find_max_on_col(scores2, metrics_names=metrics_names, phenomena=phenomena, k_highest=k_highest)
+    
+    if global_colors:
+        maximum1 = np.max([np.max([v for p,v in value.items() if p in phenomena]) for metric,value in scores1.items() if metric in metrics_names])
+        minimum1 = np.min([np.min([v for p,v in value.items() if p in phenomena]) for metric,value in scores1.items() if metric in metrics_names])
+        maximum2 = np.max([np.max([v for p,v in value.items() if p in phenomena]) for metric,value in scores2.items() if metric in metrics_names])
+        minimum2 = np.min([np.min([v for p,v in value.items() if p in phenomena]) for metric,value in scores2.items() if metric in metrics_names])
+   
+    for group, metrics in metrics_groups.items():
+        for m_id, metric in enumerate(metrics):
+            if metric not in scores1 and metric in METRIC_NAMES_MAPPING:
+                metric = METRIC_NAMES_MAPPING[metric]
+            elif metric not in scores1 and metric in METRIC_MAPPING_BACK:
+                metric = METRIC_MAPPING_BACK[metric]
+            out += format_metric(metric) + '\t\t\t\t\t'
+            for p_id, p in enumerate(phenomena):
+                if metric not in scores1:
+                    out += '&\t ---- \t' 
+                else:
+                    if global_colors:
+                        out += '&\t' + format_number(scores1[metric][p], max_phenomena=True, color=map_to_color(scores1[metric][p], maximum1, minimum1)) + '\t'   
+                    elif k_highest == 1:
+                        max_ids = max_in_columns1['0'][metrics_names.index(metric)]
+                        out += '&\t' + format_number(scores1[metric][p], max_phenomena=p_id in max_ids) + '\t'   
+                    else:
+                        for k in range(k_highest):
+                            max_ids = max_in_columns1[str(k)][metrics_names.index(metric)]
+                            if p_id in max_ids:
+                                color=colors[k]
+                                break
+                        out += '&\t' + format_number(scores1[metric][p], max_phenomena=True, color=color) + '\t' 
+            for p_id, p in enumerate(phenomena):
+                if metric not in scores2:
+                    out += '&\t ---- \t' 
+                else:
+                    if global_colors:
+                        out += '&\t' + format_number(scores2[metric][p], max_phenomena=True, color=map_to_color(scores2[metric][p], maximum2, minimum2)) + '\t'   
+                    elif k_highest == 1:
+                        max_ids = max_in_columns2['0'][metrics_names.index(metric)]
+                        out += '&\t' + format_number(scores2[metric][p], max_phenomena=p_id in max_ids) + '\t'   
+                    else:
+                        for k in range(k_highest):
+                            max_ids = max_in_columns2[str(k)][metrics_names.index(metric)]
+                            if p_id in max_ids:
+                                color=colors[k]
+                                break
+                        out += '&\t' + format_number(scores2[metric][p], max_phenomena=True, color=color) + '\t'    
+            out += '\t \\\\ \n'
+        out += '\midrule \n'
+    out += 'Average\t\t\t\t\t'
+    for p_id, p in enumerate(phenomena):
+        out += '&\t' + format_number(avgs1[p_id], max_phenomena=True, color=map_to_color(avgs1[p_id], max=np.max(avgs1), min=np.min(avgs1))) + '\t'
+        out += '&\t' + format_number(avgs2[p_id], max_phenomena=True, color=map_to_color(avgs2[p_id], max=np.max(avgs2), min=np.min(avgs2))) + '\t'
     out += '\\\\'
     return out
