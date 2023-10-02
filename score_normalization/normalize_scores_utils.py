@@ -3,8 +3,7 @@
 
 import pandas as pd
 import numpy as np
-import csv, os, copy, glob
-from sklearn.preprocessing import RobustScaler, QuantileTransformer
+import csv, os, copy, sys
 rng = np.random.RandomState(0)
 
 import logging
@@ -15,6 +14,9 @@ import plotly.graph_objects as go
 import plotly.express as px
 from tqdm import tqdm
 from typing import List, Dict, Set
+
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "..")))
+from aces.cli.evaluate import comp_corr
 
 PHENOMENA = ['addition', 'omission', 'mistranslation', 'untranslated', 'do not translate', 'overtranslation', 
              'undertranslation', 'real-world knowledge', 'wrong language', 'punctuation']
@@ -413,6 +415,52 @@ def calculate_sensitivities(ACES_scores: Dict[str, Dict[str, List[List]]], WMT_s
     means_bad = {metric:{p: stats[p][metric]["Mean of bad"] for p in phenomena} for metric in metrics_names}
     return means, abs_means, normal_std, phenomena, means_good, means_bad
 
+def calculate_sensitivities_self_scaled(ACES_scores: Dict[str, Dict[str, List[List]]], mapping: dict=None, verbal=False) -> Dict[str, Dict[str, Dict[str, int]]]:
+    if verbal:
+        logger.setLevel(logging.INFO)
+    else:
+        logger.setLevel(logging.WARNING)
+        
+    if mapping:
+        ACES_scores = map_to_higher(ACES_scores, mapping=mapping)
+    
+    metrics_names = list(set(ACES_scores.keys()))
+    phenomena = list(ACES_scores[metrics_names[0]].keys())
+    
+    stats = {}
+    for p in phenomena:
+        stats[p] = {}
+        logger.info('\n-------------------------{}-----------------------------'.format(p))
+        logger.info('Metric\t\tMean of good-bad\t\tStandart Deviation of good-bad\t\tMean of abs(good-bad)')
+        for metric in metrics_names:
+            good = np.array(ACES_scores[metric][p][0])
+            bad = np.array(ACES_scores[metric][p][1])
+            sensitivity = np.sum(good-bad) / np.sum(np.abs(good)+np.abs(bad))
+            stats[p][metric] = {"Sensitivity unscaled":sensitivity}
+    sensitivities = {metric:{p: stats[p][metric]["Sensitivity unscaled"] for p in phenomena} for metric in metrics_names}
+    logger.setLevel(logging.INFO)
+    return sensitivities, phenomena
+
+def calculate_tau_correlations(ACES_scores: Dict[str, Dict[str, List[List]]], mapping:dict=None, phenomena:List[str]=None) -> Dict[str, Dict[str, Dict[str, int]]]:
+    if mapping:
+        ACES_scores = map_to_higher(ACES_scores, mapping=mapping)
+    
+    metrics_names = list(set(ACES_scores.keys()))
+    if phenomena == None:                  
+        phenomena = list(ACES_scores[metrics_names[0]].keys())
+            
+    stats = {}
+    for p in phenomena:
+        stats[p] = {}
+        for metric in metrics_names:
+            good = pd.Series(ACES_scores[metric][p][0])
+            bad = pd.Series(ACES_scores[metric][p][1])
+            tau = comp_corr(good, bad)
+            stats[p][metric] = {"Tau":tau}
+    sensitivities = {metric:{p: stats[p][metric]["Tau"] for p in phenomena} for metric in metrics_names}
+    logger.setLevel(logging.INFO)
+    return sensitivities, phenomena
+
 # -----------------------------------------------Plotting Functions ---------------------------------------------------
 def mean_var(dist: list):
     '''
@@ -533,13 +581,13 @@ def format_metric(metric:str) -> str:
 
 def map_to_color(num:float, max:float, min:float) -> str:
     # colors = ["red5", "red3", "red2", "red1", "white", "white", "green1", "green2", "green3", "green5", "green5"]
-    colors = ["red5", "red4","red3", "red2", "red1", "white", "green1", "green2", "green3", "green4", "green5"]
+    colors = ["red5","red3", "red2", "red1", "white", "white", "green1", "green2", "green3", "green5", "green5"]
     # return '\colorbox{' + colors[int((num-min)/(max-min)*10)] + '}'
     # print(num, max, min, int(num/(2*max)*10+5))
-    try:
-        return '\colorbox{' + colors[np.maximum(0, int(num/(2*max)*10+5))] + '}'
-    except:
-        print(num, max)
+    if np.abs(max) > np.abs(min):
+        return '\colorbox{' + colors[np.maximum(0, int(num/(2*np.abs(max))*10+5))] + '}'
+    else:
+        return '\colorbox{' + colors[np.maximum(0, int(num/(2*np.abs(min))*10+5))] + '}'
 
 def find_max_on_col(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_names:List[str], phenomena:List[str]=PHENOMENA, k_highest:int=1) -> Dict[str,str]:
     max_metrics = {str(k): [[] for metric in metrics_names] for k in range(k_highest)}
