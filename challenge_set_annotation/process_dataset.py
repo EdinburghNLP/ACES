@@ -5,7 +5,7 @@ from datasets import load_from_disk
 import numpy as np
 np.random.seed(42)
 
-import json, copy, os, argparse
+import json, copy, os, sys, argparse, pandas
 from tqdm import tqdm
 
 import logging
@@ -14,6 +14,12 @@ logging.basicConfig(level=logging.INFO)
 
 from annotation_utilities import *
 from debugging_utilities import *
+
+sys.path.append(os.path.abspath(os.getcwd()))
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/span_predictions")))
+from format_utilities import *
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/aces")))
+from utils import *
 
 # process given sample, annotate or do manual annotation (only in the annotations.ipynb, in process_dataset.py only automatic annotation)
 def process_sample(idx, sample, manual=False, detokenize=False):
@@ -120,13 +126,13 @@ def process_sample(idx, sample, manual=False, detokenize=False):
                             stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
                 
                 if len(change) != 0:
-                    if (change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 15) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 15):
+                    if (change[0]['in_good'] != None and len(change[0]['in_good']['token']) > 50) or (change[0]['in_bad'] != None and len(change[0]['in_bad']['token']) > 50):
                         logger.warning('check this - too long: %s' %idx)
                         stats[sample["phenomena"]]["too_long"].append((idx, sample['langpair']))
                     else:
                         stats[sample["phenomena"]]["success"] += 1
                     assert is_word_level(g_spans, b_spans, change)
-                    change, omission = standardize_annotation(change, good, bad, maps, originals)
+                change, omission = standardize_annotation(change, good, bad, maps, originals)
                 sample['annotation'] = change
                 sample['omission'] = omission
                 sample['method'] = phenomena[sample["phenomena"]]
@@ -139,7 +145,7 @@ def process_sample(idx, sample, manual=False, detokenize=False):
         stats[sample["phenomena"]]["total"] += 1
         try:
             g, b, change = annotate_units(good,bad, mode=sample["phenomena"])
-            if len(change) == 0 and g != b:
+            if len(change) == 0 and good != bad:
                 logger.warning('No change in id {}'.format(idx))
                 stats[sample["phenomena"]]["no_change"].append((idx, sample['langpair']))
             elif len(change) > 1:
@@ -148,7 +154,7 @@ def process_sample(idx, sample, manual=False, detokenize=False):
             else:
                 stats[sample["phenomena"]]["success"] += 1
                 assert is_word_level(g_spans, b_spans, change)
-                change, omission = standardize_annotation(change, good, bad, maps, originals)
+            change, omission = standardize_annotation(change, good, bad, maps, originals)
             sample['annotation'] = change
             sample['omission'] = omission
             sample['method'] = phenomena[sample["phenomena"]]
@@ -211,8 +217,8 @@ def process_sample(idx, sample, manual=False, detokenize=False):
     try:
         assert len(sample['annotation']) == 0 or type(sample['annotation'][0]) == dict
     except:
-        print(idx)
-        return -1
+        logger.warning("len(sample['annotation']) > 0 but not a dict: {}".format(idx))
+        # return -1
     return 1  # 1 for success
         
 def process_phenomena(samples, manual=False, detokenize=False):
@@ -243,17 +249,31 @@ def load_dataset():
     logger.info('Loading the dataset...')
     dataset = load_from_disk(dataset_path)
     logger.info('Dataset loaded.')
-    return dataset
+    return dataset["train"]
+
+def load_dataset(file):
+    dataset = {}
+    with open(file, "r") as f:
+        content = f.read()
+    return load_tsv_dataset(content)
 
 if __name__ == "__main__":
     # Get arguments
     parser = argparse.ArgumentParser()
+    parser.add_argument("-tsv", "--tsv_path",default=None, help="if the dataset is in tsv format dataset path.")
     parser.add_argument("-d", "--detokenize",default=False, required=bool, help="the sentences will be detokenized, then annotated, then will be mapped back to original")
     parser.add_argument("-c", "--checkpoint",default=False, help="load annotated.txt from given path")
+    parser.add_argument("-r", "--reset", default=False, action='store_true', help="True for annotating the whole dataset from scratch")
+    parser.add_argument("-debug", "--debug", default=False, action='store_true', help="True for using the logger in debugging mode")
     args = parser.parse_args()
 
-    dataset = load_dataset()
-    if args.checkpoint:
+    if args.tsv_path:
+        dataset = load_dataset(args.tsv_path)
+    else:
+        dataset = load_dataset()
+    if args.reset:
+        annotated_dataset_path = ""
+    elif args.checkpoint:
         if not os.path.exists(args.checkpoint):
             logger.error("The checkpoint path {} does not exists. Running on the whole dataset".format(args.checkpoint))
             # if there are already some annotations overwrite them and append new ones
@@ -294,21 +314,24 @@ if __name__ == "__main__":
                 'other':[]  
             }
     stats_path = os.path.join(folder, 'ACES_private/challenge_set_annotation/stats.txt')
-    if os.path.exists(stats_path):
+    if args.reset or not os.path.exists(stats_path):
+        logger.info('Creating new stats.txt file at {}'.format(stats_path))
+        stats = {}
+        for p in phenomena_tobe_processed:
+            stats[p] = copy.deepcopy(stats_template)
+    else:
         logger.info('Path {} already exists. Loading..'.format(stats_path))
         with open(stats_path, "r") as f:
             stats = json.load(f)
         # we want to overwrite the statistics for the new phenomena
         for p in phenomena_tobe_processed:
             stats[p] = copy.deepcopy(stats_template)
-    else:
-        logger.info('Creating new stats.txt file at {}'.format(stats_path))
-        stats = {}
-        for p in phenomena_tobe_processed:
-            stats[p] = copy.deepcopy(stats_template)
 
     logger.info('Processing running... detokenize: {}'.format(args.detokenize))
-    logger.setLevel(logging.ERROR)
+    if args.debug:
+        logger.setLevel(logging.DEBUG)
+    else:
+        logger.setLevel(logging.WARNING)
     
     # to completely reset the prev annotations
     # annotations = dict()
@@ -316,7 +339,7 @@ if __name__ == "__main__":
     for key in phenomena_tobe_processed:
         stats[key] = copy.deepcopy(stats_template)
     samples = dict()
-    for idx, sample in enumerate(dataset['train']):
+    for idx, sample in enumerate(dataset):
         if sample['phenomena'] in phenomena_tobe_processed:
             samples[idx] = sample    
     process_phenomena(samples, manual=False, detokenize=args.detokenize)

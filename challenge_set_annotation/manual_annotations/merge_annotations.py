@@ -35,7 +35,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     
     # optional
-    parser.add_argument("-a", "--automatic", help="path to automatically annotated dataset, a txt/json file with our annotation format or a folder")
+    parser.add_argument("-a", "--automatic", help="path to automatically annotated dataset, a txt/json file with our annotation format or a folder - or tsv file")
     parser.add_argument("-m1", "--manual_1", help="path to manually annotated dataset, a folder with tsv files")
     parser.add_argument("-m2", "--manual_2", help="path to the second round of annotated dataset")
     

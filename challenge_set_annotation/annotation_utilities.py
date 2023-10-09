@@ -388,6 +388,35 @@ def annotate_units(good,bad, mode="Mode not given"):
                 b_span = b_value_span
             else:
                 logger.info('?? type: {}'.format(type))
+
+            changes.append({"in_good":{'token_index':g_tokens, 
+                    'character_span':g_span, 'token':g_name}, 
+                        "in_bad":{'token_index':b_tokens, 
+                    'character_span':b_span, 'token':b_name}}) 
+        elif units_g[i].unit.name == "dimensionless" and units_g[i].surface != units_b[i].surface:
+            g_parsed = units_g[i]
+            b_parsed = units_b[i]
+            g_start = g_parsed.span[0]
+            for i,s in enumerate(g_spans):
+                if s[0] == g_start:
+                    g_value_span = s
+                    g_value_name = good[s[0]:s[1]]
+                    g_value_token = [i]
+                    
+            b_start = b_parsed.span[0]
+            for i,s in enumerate(b_spans):
+                if s[0] == b_start:
+                    b_value_span = s
+                    b_value_name = bad[s[0]:s[1]]
+                    b_value_token = [i]
+
+            g_name = g_value_name
+            g_tokens = g_value_token
+            g_span = g_value_span
+            b_name = b_value_name
+            b_tokens = b_value_token
+            b_span = b_value_span
+        
             changes.append({"in_good":{'token_index':g_tokens, 
                     'character_span':g_span, 'token':g_name}, 
                         "in_bad":{'token_index':b_tokens, 
@@ -636,6 +665,7 @@ def detokenize_text(sentence, lang='en'):
     if lang in ['ja', 'zh', 'th', 'ko']:
         mpn = MosesPunctNormalizer()
         punct_normalized = mpn.normalize(sentence)
+        # punct_normalized = re.sub("\"", "", punct_normalized)
         detokenized = re.sub(' ', '', punct_normalized)
         # d1 = re.sub('(?<=[0-9])\s+(?=[0-9])', '', punct_normalized)
         # detokenized = re.sub('(?<=[a-zA-Z])\s+(?=[a-zA-Z])', '', d1)
@@ -643,6 +673,7 @@ def detokenize_text(sentence, lang='en'):
         mt, md = MosesTokenizer(lang=lang), MosesDetokenizer(lang=lang)
         mpn = MosesPunctNormalizer()
         punct_normalized = mpn.normalize(sentence)
+        # punct_normalized = re.sub("\"", "", punct_normalized)
         d1 = md.detokenize(mt.tokenize(md.detokenize(punct_normalized.split())))
         d2 = md.detokenize(mt.tokenize(md.detokenize(d1.split())))
         detokenized = md.detokenize(mt.tokenize(md.detokenize(d2.split())))

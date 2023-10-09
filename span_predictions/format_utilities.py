@@ -35,6 +35,33 @@ def read_to_list(content):
     tsv_data = tsv_data[1:]
     return tsv_data
 
+"""
+# input format:
+   translation-direction	source	good-translation	incorrect-translation	reference	phenomena
+#       en-fr                  ""       ""                  ""                      ""       "addition"
+# output format
+      {'source': "Proper nutritional practices alone cannot generate elite performances, but they can significantly affect athletes' overall wellness.",
+ 'good-translation': 'Las prácticas nutricionales adecuadas por sí solas no pueden generar rendimiento de élite, pero pueden afectar significativamente el bienestar general de los atletas.',
+ 'incorrect-translation': 'Las prácticas nutricionales adecuadas por sí solas no pueden generar rendimiento de élite, pero pueden afectar significativamente el bienestar general de los jóvenes atletas.',
+ 'reference': 'No es posible que las prácticas nutricionales adecuadas, por sí solas, generen un rendimiento de elite, pero puede influir en gran medida el bienestar general de los atletas .',
+ 'phenomena': 'addition',
+ 'langpair': 'en-es'}
+ """
+def load_tsv_dataset(content):
+    dataset = []
+    for line in content.split('\n')[1:]:
+        tsv_data = line.split('\t')
+        if len(tsv_data) >= 6:
+            dataset.append({
+                "source":tsv_data[1],
+                "good-translation":tsv_data[2],
+                "incorrect-translation":tsv_data[3],
+                "reference":tsv_data[4],
+                "phenomena":tsv_data[5],
+                "langpair":tsv_data[0]
+            })
+    return dataset
+
 def save_tsv(tsv_data, path):
     with open(path, "wt") as f:
         tsv_writer = csv.writer(f, delimiter='\t')

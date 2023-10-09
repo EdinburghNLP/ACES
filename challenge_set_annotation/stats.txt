@@ -1,37 +1,37 @@
 {
   "addition": {
-    "total": 573,
-    "success": 573,
+    "total": 999,
+    "success": 999,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 1,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-since-causal": {
-    "total": 0,
-    "success": 0,
+    "total": 106,
+    "success": 106,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 53,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-since-temporal": {
-    "total": 0,
-    "success": 0,
+    "total": 106,
+    "success": 106,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 53,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-while-contrast": {
-    "total": 0,
-    "success": 0,
+    "total": 50,
+    "success": 50,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -40,8 +40,8 @@
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-while-temporal": {
-    "total": 0,
-    "success": 0,
+    "total": 21,
+    "success": 21,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -50,42 +50,42 @@
     "other": []
   },
   "ambiguous-translation-wrong-gender-female-anti": {
-    "total": 0,
-    "success": 0,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 406,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-gender-female-pro": {
-    "total": 0,
-    "success": 0,
+    "total": 806,
+    "success": 806,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 309,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-gender-male-anti": {
-    "total": 0,
-    "success": 0,
+    "total": 806,
+    "success": 806,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 309,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-gender-male-pro": {
-    "total": 0,
-    "success": 0,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 406,
     "not_word_level": [],
     "other": []
   },
@@ -210,38 +210,38 @@
     "other": []
   },
   "antonym-replacement": {
-    "total": 267,
-    "success": 267,
+    "total": 790,
+    "success": 790,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 263,
+    "duplicate": 636,
     "not_word_level": [],
     "other": []
   },
   "commonsense-only-ref-ambiguous": {
-    "total": 622,
-    "success": 622,
+    "total": 999,
+    "success": 999,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 12,
+    "duplicate": 15,
     "not_word_level": [],
     "other": []
   },
   "commonsense-src-and-ref-ambiguous": {
-    "total": 622,
-    "success": 622,
+    "total": 999,
+    "success": 999,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 622,
+    "duplicate": 999,
     "not_word_level": [],
     "other": []
   },
   "copy-source": {
-    "total": 432,
-    "success": 432,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -279,8 +279,8 @@
     "other": []
   },
   "hallucination-date-time": {
-    "total": 503,
-    "success": 503,
+    "total": 886,
+    "success": 886,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -289,50 +289,19 @@
     "other": []
   },
   "hallucination-named-entity-level-1": {
-    "total": 499,
-    "success": 496,
-    "too_long": [
-      [
-        30184,
-        "es-ja"
-      ]
-    ],
+    "total": 999,
+    "success": 997,
+    "too_long": [],
     "no_change": [],
-    "error": [
-      [
-        11932,
-        "en-zh"
-      ],
-      [
-        30179,
-        "es-ja"
-      ]
-    ],
+    "error": [],
     "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hallucination-named-entity-level-2": {
-    "total": 490,
-    "success": 486,
-    "too_long": [
-      [
-        16940,
-        "en-ko"
-      ],
-      [
-        26860,
-        "en-ja"
-      ],
-      [
-        26877,
-        "en-ja"
-      ],
-      [
-        35865,
-        "de-ja"
-      ]
-    ],
+    "total": 999,
+    "success": 999,
+    "too_long": [],
     "no_change": [],
     "error": [],
     "duplicate": 3,
@@ -340,36 +309,18 @@
     "other": []
   },
   "hallucination-named-entity-level-3": {
-    "total": 497,
-    "success": 493,
-    "too_long": [
-      [
-        25855,
-        "fr-ko"
-      ],
-      [
-        27691,
-        "zh-ja"
-      ]
-    ],
+    "total": 999,
+    "success": 997,
+    "too_long": [],
     "no_change": [],
-    "error": [
-      [
-        27283,
-        "fr-ja"
-      ],
-      [
-        30213,
-        "es-ja"
-      ]
-    ],
-    "duplicate": 2,
+    "error": [],
+    "duplicate": 4,
     "not_word_level": [],
     "other": []
   },
   "hallucination-number-level-1": {
-    "total": 541,
-    "success": 541,
+    "total": 999,
+    "success": 999,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -378,22 +329,22 @@
     "other": []
   },
   "hallucination-number-level-2": {
-    "total": 499,
-    "success": 499,
+    "total": 999,
+    "success": 999,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 17,
+    "duplicate": 20,
     "not_word_level": [],
     "other": []
   },
   "hallucination-number-level-3": {
-    "total": 456,
-    "success": 456,
+    "total": 999,
+    "success": 999,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 5,
+    "duplicate": 13,
     "not_word_level": [],
     "other": []
   },
@@ -418,62 +369,47 @@
     "other": []
   },
   "hallucination-unit-conversion-amount-matches-ref": {
-    "total": 507,
-    "success": 506,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
-    "no_change": [
-      [
-        9835,
-        "es-en"
-      ]
-    ],
-    "error": [
-      [
-        9835,
-        "es-en"
-      ]
-    ],
-    "duplicate": 1,
+    "no_change": [],
+    "error": [],
+    "duplicate": 4,
     "not_word_level": [],
     "other": []
   },
   "hallucination-unit-conversion-unit-matches-ref": {
-    "total": 507,
-    "success": 506,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
-    "no_change": [
-      [
-        9860,
-        "es-en"
-      ]
-    ],
+    "no_change": [],
     "error": [
       [
-        9860,
-        "es-en"
+        33095,
+        "vi-en"
       ]
     ],
-    "duplicate": 1,
+    "duplicate": 4,
     "not_word_level": [],
     "other": []
   },
   "hypernym-replacement": {
-    "total": 331,
-    "success": 331,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 156,
+    "duplicate": 278,
     "not_word_level": [],
     "other": []
   },
   "hyponym-replacement": {
-    "total": 323,
-    "success": 323,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 188,
+    "duplicate": 333,
     "not_word_level": [],
     "other": []
   },
@@ -488,8 +424,8 @@
     "other": []
   },
   "modal_verb:deletion": {
-    "total": 0,
-    "success": 0,
+    "total": 50,
+    "success": 50,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -498,8 +434,8 @@
     "other": []
   },
   "modal_verb:substitution": {
-    "total": 0,
-    "success": 0,
+    "total": 50,
+    "success": 50,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -508,8 +444,8 @@
     "other": []
   },
   "nonsense": {
-    "total": 606,
-    "success": 606,
+    "total": 983,
+    "success": 983,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -518,8 +454,8 @@
     "other": []
   },
   "omission": {
-    "total": 590,
-    "success": 590,
+    "total": 999,
+    "success": 999,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -528,8 +464,8 @@
     "other": []
   },
   "ordering-mismatch": {
-    "total": 119,
-    "success": 119,
+    "total": 134,
+    "success": 134,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -721,8 +657,8 @@
     "other": []
   },
   "similar-language-high": {
-    "total": 671,
-    "success": 671,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
