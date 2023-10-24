@@ -7,6 +7,7 @@ np.random.seed(42)
 
 import json, copy, os, sys, argparse, pandas
 from tqdm import tqdm
+from collections import defaultdict
 
 import logging
 logger = logging.getLogger('logger')
@@ -19,7 +20,6 @@ sys.path.append(os.path.abspath(os.getcwd()))
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/span_predictions")))
 from format_utilities import *
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/aces")))
-from utils import *
 
 # process given sample, annotate or do manual annotation (only in the annotations.ipynb, in process_dataset.py only automatic annotation)
 def process_sample(idx, sample, manual=False, detokenize=False):
@@ -239,7 +239,13 @@ def process_phenomena(samples, manual=False, detokenize=False):
 
                 if res == -1:
                     return -1
-def load_dataset():
+                
+def load_dataset(file=None):
+    if file:
+        dataset = {}
+        with open(file, "r") as f:
+            content = f.read()
+        return load_tsv_dataset(content)
     folder = os.getcwd()
     dataset_path = os.path.join(folder, 'dataset')
     if not os.path.exists(dataset_path):
@@ -250,12 +256,6 @@ def load_dataset():
     dataset = load_from_disk(dataset_path)
     logger.info('Dataset loaded.')
     return dataset["train"]
-
-def load_dataset(file):
-    dataset = {}
-    with open(file, "r") as f:
-        content = f.read()
-    return load_tsv_dataset(content)
 
 if __name__ == "__main__":
     # Get arguments
@@ -344,6 +344,12 @@ if __name__ == "__main__":
             samples[idx] = sample    
     process_phenomena(samples, manual=False, detokenize=args.detokenize)
     
+    # using a defaultdict, count the number of examples for each high-levle phenomena
+    example_counts = defaultdict(int)
+    for sample in annotations:
+        example_counts[PHENOMENA_MAPPING[annotations[sample]["phenomena"]]] += 1
+    print("Counts:\n", example_counts)
+
     annotated_dataset_path = os.path.join(folder, 'ACES_private/challenge_set_annotation/annotated.txt')
     with open(annotated_dataset_path, "w") as f:
         json.dump(annotations, f, indent=2, ensure_ascii=False)  # encode dict into JSON

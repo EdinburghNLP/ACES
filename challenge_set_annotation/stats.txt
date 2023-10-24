@@ -1,37 +1,37 @@
 {
   "addition": {
-    "total": 999,
-    "success": 999,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 1,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-since-causal": {
-    "total": 106,
-    "success": 106,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 53,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-since-temporal": {
-    "total": 106,
-    "success": 106,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 53,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-while-contrast": {
-    "total": 50,
-    "success": 50,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -40,8 +40,8 @@
     "other": []
   },
   "ambiguous-translation-wrong-discourse-connective-while-temporal": {
-    "total": 21,
-    "success": 21,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -50,148 +50,148 @@
     "other": []
   },
   "ambiguous-translation-wrong-gender-female-anti": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 406,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-gender-female-pro": {
-    "total": 806,
-    "success": 806,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 309,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-gender-male-anti": {
-    "total": 806,
-    "success": 806,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 309,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-gender-male-pro": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 406,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-sense-frequent": {
-    "total": 471,
-    "success": 471,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 216,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "ambiguous-translation-wrong-sense-infrequent": {
-    "total": 471,
-    "success": 471,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 216,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "anaphoric_group_it-they:deletion": {
-    "total": 138,
-    "success": 138,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 32,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "anaphoric_group_it-they:substitution": {
-    "total": 79,
-    "success": 79,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 16,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "anaphoric_intra_non-subject_it:deletion": {
-    "total": 397,
-    "success": 397,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 40,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "anaphoric_intra_non-subject_it:substitution": {
-    "total": 238,
-    "success": 238,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 21,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "anaphoric_intra_subject_it:deletion": {
-    "total": 425,
-    "success": 425,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 86,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "anaphoric_intra_subject_it:substitution": {
-    "total": 274,
-    "success": 274,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 48,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "anaphoric_intra_they:deletion": {
-    "total": 152,
-    "success": 152,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 18,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "anaphoric_intra_they:substitution": {
-    "total": 121,
-    "success": 121,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 10,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "anaphoric_singular_they:deletion": {
-    "total": 46,
-    "success": 46,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -200,8 +200,8 @@
     "other": []
   },
   "anaphoric_singular_they:substitution": {
-    "total": 9,
-    "success": 9,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -210,38 +210,38 @@
     "other": []
   },
   "antonym-replacement": {
-    "total": 790,
-    "success": 790,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 636,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "commonsense-only-ref-ambiguous": {
-    "total": 999,
-    "success": 999,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 15,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "commonsense-src-and-ref-ambiguous": {
-    "total": 999,
-    "success": 999,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 999,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "copy-source": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -260,18 +260,9 @@
     "other": []
   },
   "do-not-translate": {
-    "total": 100,
-    "success": 98,
-    "too_long": [
-      [
-        19046,
-        "en-de"
-      ],
-      [
-        19067,
-        "en-de"
-      ]
-    ],
+    "total": 0,
+    "success": 0,
+    "too_long": [],
     "no_change": [],
     "error": [],
     "duplicate": 0,
@@ -279,18 +270,18 @@
     "other": []
   },
   "hallucination-date-time": {
-    "total": 886,
-    "success": 886,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 1,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hallucination-named-entity-level-1": {
-    "total": 999,
-    "success": 997,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -299,66 +290,76 @@
     "other": []
   },
   "hallucination-named-entity-level-2": {
-    "total": 999,
-    "success": 999,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 3,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hallucination-named-entity-level-3": {
-    "total": 999,
-    "success": 997,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 4,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hallucination-number-level-1": {
-    "total": 999,
-    "success": 999,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 3,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hallucination-number-level-2": {
-    "total": 999,
-    "success": 999,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 20,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hallucination-number-level-3": {
-    "total": 999,
-    "success": 999,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 13,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hallucination-real-data-vs-ref-word": {
-    "total": 0,
-    "success": 0,
+    "total": 32,
+    "success": 32,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 32,
     "not_word_level": [],
     "other": []
   },
   "hallucination-real-data-vs-synonym": {
+    "total": 12,
+    "success": 12,
+    "too_long": [],
+    "no_change": [],
+    "error": [],
+    "duplicate": 12,
+    "not_word_level": [],
+    "other": []
+  },
+  "hallucination-unit-conversion-amount-matches-ref": {
     "total": 0,
     "success": 0,
     "too_long": [],
@@ -368,48 +369,33 @@
     "not_word_level": [],
     "other": []
   },
-  "hallucination-unit-conversion-amount-matches-ref": {
-    "total": 1000,
-    "success": 1000,
+  "hallucination-unit-conversion-unit-matches-ref": {
+    "total": 1,
+    "success": 1,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 4,
-    "not_word_level": [],
-    "other": []
-  },
-  "hallucination-unit-conversion-unit-matches-ref": {
-    "total": 1000,
-    "success": 1000,
-    "too_long": [],
-    "no_change": [],
-    "error": [
-      [
-        33095,
-        "vi-en"
-      ]
-    ],
-    "duplicate": 4,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hypernym-replacement": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 278,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "hyponym-replacement": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 333,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
@@ -424,8 +410,8 @@
     "other": []
   },
   "modal_verb:deletion": {
-    "total": 50,
-    "success": 50,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -434,8 +420,8 @@
     "other": []
   },
   "modal_verb:substitution": {
-    "total": 50,
-    "success": 50,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -444,8 +430,8 @@
     "other": []
   },
   "nonsense": {
-    "total": 983,
-    "success": 983,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -454,8 +440,8 @@
     "other": []
   },
   "omission": {
-    "total": 999,
-    "success": 999,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -464,8 +450,8 @@
     "other": []
   },
   "ordering-mismatch": {
-    "total": 134,
-    "success": 134,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -474,18 +460,9 @@
     "other": []
   },
   "overly-literal-vs-correct-idiom": {
-    "total": 102,
-    "success": 100,
-    "too_long": [
-      [
-        16229,
-        "de-en"
-      ],
-      [
-        19629,
-        "en-de"
-      ]
-    ],
+    "total": 0,
+    "success": 0,
+    "too_long": [],
     "no_change": [],
     "error": [],
     "duplicate": 0,
@@ -493,38 +470,9 @@
     "other": []
   },
   "overly-literal-vs-explanation": {
-    "total": 102,
-    "success": 95,
-    "too_long": [
-      [
-        16288,
-        "de-en"
-      ],
-      [
-        16296,
-        "de-en"
-      ],
-      [
-        19680,
-        "en-de"
-      ],
-      [
-        19684,
-        "en-de"
-      ],
-      [
-        19686,
-        "en-de"
-      ],
-      [
-        19698,
-        "en-de"
-      ],
-      [
-        19712,
-        "en-de"
-      ]
-    ],
+    "total": 0,
+    "success": 0,
+    "too_long": [],
     "no_change": [],
     "error": [],
     "duplicate": 0,
@@ -532,58 +480,58 @@
     "other": []
   },
   "overly-literal-vs-ref-word": {
-    "total": 150,
-    "success": 150,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 7,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "overly-literal-vs-synonym": {
-    "total": 98,
-    "success": 98,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 92,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "pleonastic_it:deletion": {
-    "total": 614,
-    "success": 614,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 193,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "pleonastic_it:substitution": {
-    "total": 575,
-    "success": 575,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 122,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "punctuation:deletion_all": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 5,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "punctuation:deletion_commas": {
-    "total": 508,
-    "success": 508,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -592,8 +540,8 @@
     "other": []
   },
   "punctuation:deletion_quotes": {
-    "total": 150,
-    "success": 150,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -602,8 +550,8 @@
     "other": []
   },
   "punctuation:statement-to-question": {
-    "total": 15,
-    "success": 15,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -612,8 +560,8 @@
     "other": []
   },
   "real-world-knowledge-entailment": {
-    "total": 40,
-    "success": 40,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -622,8 +570,8 @@
     "other": []
   },
   "real-world-knowledge-hypernym-vs-distractor": {
-    "total": 38,
-    "success": 38,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -632,14 +580,9 @@
     "other": []
   },
   "real-world-knowledge-hypernym-vs-hyponym": {
-    "total": 40,
-    "success": 39,
-    "too_long": [
-      [
-        24623,
-        "en-de"
-      ]
-    ],
+    "total": 0,
+    "success": 0,
+    "too_long": [],
     "no_change": [],
     "error": [],
     "duplicate": 0,
@@ -647,18 +590,18 @@
     "other": []
   },
   "real-world-knowledge-synonym-vs-antonym": {
-    "total": 39,
-    "success": 39,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 4,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "similar-language-high": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -667,8 +610,8 @@
     "other": []
   },
   "similar-language-low": {
-    "total": 1000,
-    "success": 1000,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
@@ -677,62 +620,62 @@
     "other": []
   },
   "untranslated-vs-ref-word": {
-    "total": 195,
-    "success": 195,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 21,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "untranslated-vs-synonym": {
-    "total": 105,
-    "success": 105,
+    "total": 0,
+    "success": 0,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 104,
+    "duplicate": 0,
     "not_word_level": [],
     "other": []
   },
   "xnli-addition-contradiction": {
-    "total": 0,
-    "success": 0,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 788,
     "not_word_level": [],
     "other": []
   },
   "xnli-addition-neutral": {
-    "total": 0,
-    "success": 0,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 847,
     "not_word_level": [],
     "other": []
   },
   "xnli-omission-contradiction": {
-    "total": 0,
-    "success": 0,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 788,
     "not_word_level": [],
     "other": []
   },
   "xnli-omission-neutral": {
-    "total": 0,
-    "success": 0,
+    "total": 1000,
+    "success": 1000,
     "too_long": [],
     "no_change": [],
     "error": [],
-    "duplicate": 0,
+    "duplicate": 848,
     "not_word_level": [],
     "other": []
   }
