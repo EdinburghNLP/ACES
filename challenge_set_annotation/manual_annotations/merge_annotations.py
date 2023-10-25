@@ -88,6 +88,15 @@ if __name__ == "__main__":
                         "annotation-method":"manual"
                     }                           
     logger.info('No of manually annotated samples: {}'.format(len(m_ids)))
+    
+    # -------------------------------------------------------------
+    from collections import defaultdict
+    
+    manual_counts = defaultdict(int)
+    for sample in samples.values():
+        if sample["annotation-method"] == "manual":
+            manual_counts[sample["phenomena"]] += 1
+    print("manual_counts: ", manual_counts)
     logger.info('In total: {}'.format(len(samples.keys())))
     
     # 4. Create a df object with columns specified and save to CSV 
