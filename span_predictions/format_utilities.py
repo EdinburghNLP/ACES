@@ -1,8 +1,9 @@
 import os, sys, csv, re
+import pandas as pd
 sys.path.append(os.path.abspath(os.getcwd()))
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/challenge_set_annotation")))
 from annotation_utilities import *
-from debugging_utilities import *
+# from debugging_utilities import *
 
 """_summary_
 Helper functions to convert between these 3 formats:
@@ -15,7 +16,7 @@ Helper functions to convert between these 3 formats:
         'token': 'attribute word is used as the main word'}}]
     - Read this format as a dictionary
     
-2. TSV format:
+2. Manual Annotations TSV format:
     Columns: ID     TYPE	            A	                    B
     Row:    1023    hallucination       good-translation        incorrect-translation (annotated or not)
     - Read this format as pd DataFrame
@@ -24,15 +25,29 @@ Helper functions to convert between these 3 formats:
     Columns:    src,    mt,                     ref,        score,  system, lp,     segid,  annotation
     Row:        source  incorrect-translation   reference   None    ACES    en-de   ID      annotated incorrect-translation
     - Read this format as pd DataFrame
+
+4. Original ACES Format:
+    {'source': '"Fire captain Scott said, ""It was a hot day in the Santa Clara with temperatures in the 90s."',
+    'good-translation': '"El capitán de bomberos Scott dijo: ""Fue un día caliente en Santa Clara con temperaturas en los años 90."',
+    'incorrect-translation': '"El capitán de bomberos Scott Kouns dijo: ""Fue un día caliente en Santa Clara con temperaturas en los años 90."',
+    'reference': 'Scott , capitán del cuartel de bomberos, comentó: «Era un día de calor en Santa Clara, con temperaturas de 90 grados.',
+    'phenomena': 'addition',
+    'langpair': 'en-es'}
     
 """
 
 # read TSV and CSV in this format: [[ID, Type, A, B], ...]
 def read_to_list(content):
-    tsv_data = []
-    for line in content.split('\n'):
-        tsv_data.append(line.split('\t'))
-    tsv_data = tsv_data[1:]
+    if type(content) == str:
+        tsv_data = []
+        for line in content.split('\n'):
+            tsv_data.append(line.split('\t'))
+        tsv_data = tsv_data[1:]
+    elif type(content) == pd.DataFrame:
+        tsv_data = []
+        for line in content:
+            tsv_data.append(line.split('\t'))
+        tsv_data = tsv_data[1:]
     return tsv_data
 
 """
@@ -47,7 +62,6 @@ def read_to_list(content):
  'phenomena': 'addition',
  'langpair': 'en-es'}
  """
- 
 def load_tsv_dataset(content):
     dataset = []
     for line in content.split('\n')[1:]:
@@ -115,6 +129,30 @@ def annotation_to_tsv_sample(idx, sample):
 # what about we give error type to system? maybe we get some statistics
 def annotation_to_MQM_sample(idx, sample, manual=False):  
     return [sample['source'], sample['incorrect-translation'], sample['reference'], None, sample['phenomena'], sample['langpair'], idx, change_to_tsv_annotation(sample, m1="<v>", m2="</v>"), manual]
+
+"""
+    Output:
+        {'source': "Proper nutritional practices alone cannot generate elite performances, but they can significantly affect athletes' overall wellness.",
+        'good-translation': 'Las prácticas nutricionales adecuadas por sí solas no pueden generar rendimiento de élite, pero pueden afectar significativamente el bienestar general de los atletas.',
+        'incorrect-translation': 'Las prácticas nutricionales adecuadas por sí solas no pueden generar rendimiento de élite, pero pueden afectar significativamente el bienestar general de los jóvenes atletas.',
+        'reference': 'No es posible que las prácticas nutricionales adecuadas, por sí solas, generen un rendimiento de elite, pero puede influir en gran medida el bienestar general de los atletas .',
+        'phenomena': 'addition',
+        'langpair': 'en-es',
+        'incorrect-translation-annotated': 'Las prácticas nutricionales adecuadas por sí solas no pueden generar rendimiento de élite, pero pueden afectar significativamente el bienestar general de los <v>jóvenes</v> atletas.',
+        'annotation-method': 'annotate_word'},
+"""
+def annotation_to_ACES_sample(idx, sample, manual=False):  
+    sample_out = sample.copy()
+    sample_out["incorrect-translation-annotated"] = change_to_tsv_annotation(sample, m1="<v>", m2="</v>")
+    if manual:
+        sample_out["annotation-method"] = True
+    else:
+        sample_out["annotation-method"] = sample["method"]
+    del sample_out["method"]
+    if "omission" in sample_out:
+        del sample_out["omission"]
+    del sample_out["annotation"]
+    return sample_out
     
 # to change our annotation to MQM format: m1="<v>", m2="</v>"    
 def change_to_tsv_annotation(sample, m1="<", m2=">"):

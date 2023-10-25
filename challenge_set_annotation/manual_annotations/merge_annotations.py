@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, sys, argparse, logging, json, glob
+import os, sys, argparse, logging, json, glob, csv
 from tqdm import tqdm
 from datasets import load_from_disk
 import pandas as pd
@@ -12,6 +12,8 @@ sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/span_pre
 from format_utilities import *
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/challenge_set_annotation")))
 from annotation_utilities import *
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/aces")))
+from utils import read_file
 
 """
 Given these optional paths:
@@ -62,31 +64,35 @@ if __name__ == "__main__":
         annotations = {int(k):v for k,v in annotations.items()}
         logger.info('Converting...')
         for (idx,sample) in tqdm(annotations.items()):
-            samples[idx] = annotation_to_MQM_sample(idx, sample)
+            samples[idx] = annotation_to_ACES_sample(idx, sample)
         logger.info('No of automatically annotated samples: {}'.format(len(samples.keys())))
-    ids = []
     # 3. if there is manual annotations read those in tsv format then convert to MQM
     m_ids = set()
     for p in [args.manual_1, args.manual_2]:
         if p:
             logger.info('{} is being loaded'.format(p))
             for file in glob.glob(os.path.join(p, "*.tsv")):
-                with open(file, "r") as f:
-                    content = f.read()
-                manual_1_tsv = read_to_list(content)    # [[ID, Type, A, B], ...]
-                logger.info('Converting {}...'.format(file))
-                for s in manual_1_tsv:
-                    if len(s) >= 4:
-                        idx = int(s[0])
-                        sample = dataset[idx]
-                        samples[idx] = [sample['source'], sample['incorrect-translation'], sample['reference'], None, sample['phenomena'], sample['langpair'], idx, tsv_annotation_to_MQM_annotation(s[4]), True]
-                        m_ids.add(idx)
+                content = read_file(file)
+                content = content.reset_index()  # make sure indexes pair with number of rows
+                for index, row in content.iterrows():
+                    idx = int(row["ID"])
+                    sample = dataset[idx]
+                    samples[idx] = {
+                        'source':sample['source'],
+                        'good-translation':sample['good-translation'],
+                        'incorrect-translation':sample['incorrect-translation'],
+                        'reference':sample['reference'],
+                        'phenomena':sample['phenomena'],
+                        'langpair':sample['langpair'],
+                        'incorrect-translation-annotated':tsv_annotation_to_MQM_annotation(row["B"]),
+                        "annotation-method":"manual"
+                    }                           
     logger.info('No of manually annotated samples: {}'.format(len(m_ids)))
     logger.info('In total: {}'.format(len(samples.keys())))
     
     # 4. Create a df object with columns specified and save to CSV 
-    cols = ["src", "mt", "ref", "score", "system", "lp", "segid", "annotation", "manual"]
-    df = pd.DataFrame(list(samples.values()), columns=cols)
+    df = pd.DataFrame.from_dict(samples, orient='index', columns=['source', 'good-translation', 'incorrect-translation', 'reference',  'phenomena', 'langpair', 'incorrect-translation-annotated', 'annotation-method'])
+    df.index.name = 'ID'
     
     logger.info('Saving to {}'.format(args.out_path))
-    df.to_csv(args.out_path, index=False)
+    df.to_csv(args.out_path, sep='\t', index=True, quoting=csv.QUOTE_NONE)
