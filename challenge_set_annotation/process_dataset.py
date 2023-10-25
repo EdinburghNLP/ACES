@@ -294,8 +294,7 @@ if __name__ == "__main__":
 
     if os.path.exists(annotated_dataset_path):
         logger.info('Path {} already exists. Loading..'.format(annotated_dataset_path))
-        with open(annotated_dataset_path, "r") as f:
-            annotations = json.load(f)
+        annotations = read_json(annotated_dataset_path)
         annotations = {int(k):v for k,v in annotations.items()}
     else:
         logger.info('Creating new annotations.txt file at {}'.format(annotated_dataset_path))
@@ -321,8 +320,7 @@ if __name__ == "__main__":
             stats[p] = copy.deepcopy(stats_template)
     else:
         logger.info('Path {} already exists. Loading..'.format(stats_path))
-        with open(stats_path, "r") as f:
-            stats = json.load(f)
+        stats = read_json(stats_path)
         # we want to overwrite the statistics for the new phenomena
         for p in phenomena_tobe_processed:
             stats[p] = copy.deepcopy(stats_template)
@@ -351,8 +349,6 @@ if __name__ == "__main__":
     print("Counts:\n", example_counts)
 
     annotated_dataset_path = os.path.join(folder, 'ACES_private/challenge_set_annotation/annotated.txt')
-    with open(annotated_dataset_path, "w") as f:
-        json.dump(annotations, f, indent=2, ensure_ascii=False)  # encode dict into JSON
-    with open(stats_path, "w") as f:
-        json.dump(stats, f, indent=2, ensure_ascii=False)  # encode dict into JSON
+    save_json(annotations, annotated_dataset_path)
+    save_json(stats, stats_path)
     logger.info("Done writing dict into {} file".format(annotated_dataset_path))

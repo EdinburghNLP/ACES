@@ -620,7 +620,13 @@ def find_max_on_col(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_names:L
         avgs.append(np.average(col[col > -np.inf]))
     return max_metrics, avgs
 
-def make_header(phenomena:List[str]=PHENOMENA, p_header_1:dict=PHENOMENA_HEADER_1, p_header_2:dict=PHENOMENA_HEADER_2, num_samples:dict=NUM_SAMPLES, ACES_column:bool=True) -> str:
+def make_header(scores:Dict[str, Dict[str, Dict[str, int]]], phenomena:List[str]=PHENOMENA, p_header_1:dict=PHENOMENA_HEADER_1, p_header_2:dict=PHENOMENA_HEADER_2, num_samples:dict=None, phenomena_mapping:Dict[str,str]=None, ACES_column:bool=True) -> str:
+    if phenomena_mapping == None:
+        phenomena_mapping = PHENOMENA_MAPPING
+    if num_samples == None:
+        num_samples = {p:0 for p in phenomena}
+        for p,target in phenomena_mapping.items():
+            num_samples[target] += len(scores["BLEU"][p][0])
     res = "\\begin{table*}[ht] \n \small \n \setlength{\\tabcolsep}{3.75pt} \n \centering \n \\begin{tabular}{@{}lccccccccccc@{}} \n \\\\\\toprule \n"
     for p in phenomena:
         res += " & "
@@ -642,7 +648,7 @@ def make_header(phenomena:List[str]=PHENOMENA, p_header_1:dict=PHENOMENA_HEADER_
 
 def make_footer(averages:List, phenomena:List[str]=PHENOMENA) -> str:
     res = "\midrule\nAverage (all metrics)\t"
-    for p in PHENOMENA:
+    for p in phenomena:
         if p in phenomena:
             res += " & "
             res += format_number(averages[p])
@@ -673,11 +679,13 @@ def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_
     if ACES_column:
         aces_scores_col = []
         for metric in metrics_names:
+            # print(metric)
             if metric not in scores and metric in METRIC_NAMES_MAPPING:
                 metric = METRIC_NAMES_MAPPING[metric]
             elif metric not in scores and metric in METRIC_MAPPING_BACK:
                 metric = METRIC_MAPPING_BACK[metric]
             row = {}
+            # print(metric)
             for p_id, p in enumerate(phenomena):
                 if metric not in scores:
                     row[p] = 0.0

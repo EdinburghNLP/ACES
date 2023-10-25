@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from quantulum3 import parser
-import difflib, re, copy, string
+import difflib, re, copy, string, json
 import numpy as np
 np.random.seed(42)
 
@@ -206,6 +206,24 @@ manual_ids = ['19572',
  '35855',
  '35856',
  '35857']
+
+# Define a custom JSON encoder to handle special characters without extra quotation marks
+class SpecialCharacterEncoder(json.JSONEncoder):
+    def encode(self, obj):
+        return super().encode(obj).replace(r'\"', '"')
+    
+class SpecialCharacterDecoder(json.JSONDecoder):
+    def decode(self, s):
+        return super().decode(s)
+    
+def save_json(data, path):
+    with open(path, "w", encoding="utf-8") as file:
+        json.dump(data, file, cls=SpecialCharacterEncoder, ensure_ascii=False, indent=2)
+
+def read_json(path):
+    with open(path, "r", encoding="utf-8") as file:
+        json_str = file.read()
+        return json.loads(json_str, cls=SpecialCharacterDecoder)
 
 # given a sentence, return the tokens and their start and end indices
 # for ko. ja, zh, th: turn each character to a word and tokenize like that. also for those in detokenizer remove all spaces.

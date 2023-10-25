@@ -8,9 +8,10 @@ import pandas as pd
 logger = logging.getLogger('logger')
 logging.basicConfig(level=logging.INFO)
 
-sys.path.append(os.path.abspath(os.getcwd()))
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/span_predictions")))
 from format_utilities import *
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "ACES_private/challenge_set_annotation")))
+from annotation_utilities import *
 
 """
 Given these optional paths:
@@ -57,8 +58,7 @@ if __name__ == "__main__":
     # 2. if there is a path to the automatic annotations load them and convert to the MQM format
     if args.automatic:
         logger.info('{} is being loaded'.format(args.automatic))
-        with open(args.automatic, "r") as f:
-            annotations = json.load(f)
+        annotations = read_json(args.automatic)
         annotations = {int(k):v for k,v in annotations.items()}
         logger.info('Converting...')
         for (idx,sample) in tqdm(annotations.items()):
