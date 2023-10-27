@@ -64,9 +64,11 @@ if __name__ == "__main__":
     cols = ["src", "mt", "ref", "score", "system", "lp", "segid", "annotation", "incorrect"]
     df_incorrect = pd.DataFrame.from_dict(incorrect_samples, orient='index', columns=cols)
     df_good = pd.DataFrame.from_dict(good_samples, orient='index', columns=cols)
-    df = pd.concat([df_incorrect, df_good])
-    df.to_csv(args.out_path, index=True, quoting=csv.QUOTE_NONE, escapechar="\\")
-    logger.info('Saving to {}, length: {}'.format(args.out_path, len(df)))
+    df_incorrect.set_index('segid')
+    df_good.set_index('segid')
+    df_good.to_csv(os.path.join(args.out_path, "ACES_final_merged_MQM_good.csv"), index=True, quoting=csv.QUOTE_NONE, escapechar="\\")
+    df_incorrect.to_csv(os.path.join(args.out_path, "ACES_final_merged_MQM_incorrect.csv"), index=True, quoting=csv.QUOTE_NONE, escapechar="\\")
+    logger.info(f'Saving to {args.out_path}, length: {len(df_incorrect)}, {len(df_good)}')
 
     # reading this csv:
     # content = pd.read_csv("ACES_final_merged_MQM.csv", quoting=csv.QUOTE_NONE, escapechar="\\")

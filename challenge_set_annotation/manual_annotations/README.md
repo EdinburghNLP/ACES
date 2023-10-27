@@ -24,7 +24,7 @@ current_folder
     |       └── Annotation_SecondDelivery
     |                   ├── annotated_DE.tsv
     |                   ├── annotated_EN.tsv
-    |                   ├── ...
+    |                   └── ...
     |
     └── dataset (download_dataset.py script will create this directory later)
 ```
