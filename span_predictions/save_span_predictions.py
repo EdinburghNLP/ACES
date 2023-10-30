@@ -2,6 +2,7 @@
             python ACES_private/span_predictions/save_span_predictions.py -m {MODEL_PATH} -d merged.tsv --threshold 0.03
             --good span_baseline/baseline1_comet/ACES_alignment_scores_good/ 
             --bad span_baseline/baseline1_comet/ACES_alignment_scores_incorrect/
+            -o span_baseline/baseline1_comet/ACES_predicted_spans_
 
 """
 from comet import download_model, load_from_checkpoint # conda install?
@@ -49,6 +50,12 @@ if __name__ == "__main__":
         required=True,
         help="The path to the folder where the alignment scores for ACES_final_merged_MQM_incorrect.csv are saved.", 
         action='append', nargs='+'
+    )
+    parser.add_argument(
+        "-o", "--out_path",
+        required=True,
+        help="path to the output tsv file",
+        type=str,
     )
     args = parser.parse_args()
     
@@ -215,9 +222,6 @@ if __name__ == "__main__":
 
     # ---------------------------------------------- SAVING THE SPANS -----------------------------------------------------
     # Save Everything in TSV (similar to merged.tsv).
-    """ The output format:
-
-    """
 
     # read merged.tsv
     content = read_file(args.dataset)
@@ -244,3 +248,11 @@ if __name__ == "__main__":
             'incorrect-translation-predicted-span-ref':incorrect_spans["ref_spans"],
             'incorrect-translation-predicted-span-src-ref':incorrect_spans["src_ref_spans"],
         }  
+
+    df = pd.DataFrame.from_dict(samples, orient='index', columns=['source', 'good-translation', 'incorrect-translation',
+        'reference',  'phenomena', 'langpair', 'incorrect-translation-annotated-goldtruth', 'annotation-method',
+        'good-translation-predicted-span-src', 'good-translation-predicted-span-ref', 'good-translation-predicted-span-src-ref',
+        'incorrect-translation-predicted-span-src', 'incorrect-translation-predicted-span-ref', 'incorrect-translation-predicted-span-src-ref'])
+    df.index.name = 'ID'
+    logger.info('Saving to {}'.format(args.out_path+str(args.threshold)+".tsv"))
+    df.to_csv(args.out_path+str(args.threshold)+".tsv", sep='\t', index=True, quoting=csv.QUOTE_NONE)

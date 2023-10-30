@@ -311,6 +311,15 @@ def read_wmt_file(filename: str) -> pd.DataFrame:
     scores = [float(line.split('\t')[1]) for line in lines]
     return scores
 
+def read_wmt_file_23(filename: str) -> pd.DataFrame:
+    '''
+    Read txt file and return a list of all the scores in it.
+    '''
+    with open(filename, 'r') as f:
+        lines  = f.readlines()
+    scores = [float(line.split('\t')[-1]) for line in lines]
+    return scores
+
 def load_WMT_scores(WMT_scores_path: str, metrics_names: Set[str]) -> Dict[str, list]:
     '''
     Load the scores in wmt-metrics-eval-v2/wmt22/metric-scores/cs-en/
@@ -348,6 +357,41 @@ def load_WMT_scores(WMT_scores_path: str, metrics_names: Set[str]) -> Dict[str, 
                         WMT_metrics[metric] = scores_tmp
                     else:
                         WMT_metrics[metric].extend(scores_tmp)
+    return WMT_metrics
+
+def load_WMT_scores_23(WMT_scores_path: str, metrics_names: Set[str]) -> Dict[str, list]:
+    '''
+    Load the scores in wmt-metrics-eval-v2/wmt22/metric-scores/cs-en/
+    format = {
+        'BLEU': [1,2,3,…],	    # list of BLEU scores evaluated on WMT
+        'COMET': [1,2,3,...]    # we don't have separate scores for phenomena or good or bad translations now
+    }
+    '''
+    WMT_metrics = dict()
+    files = os.listdir(WMT_scores_path)
+    if metrics_names == None:
+        metrics_names = set([file.split('.', 1)[0] for file in files])
+    for file in files:
+        metric = file.split('.', 1)[0]
+        if metric in metrics_names and file.endswith(".seg.score"):
+            scores_tmp = read_wmt_file_23(os.path.join(WMT_scores_path, file))
+            if metric not in WMT_metrics:
+                WMT_metrics[metric] = scores_tmp
+            else:
+                WMT_metrics[metric].extend(scores_tmp)
+        elif metric in METRIC_NAMES_MAPPING and file.endswith(".seg.score"):
+            metric = METRIC_NAMES_MAPPING[metric]
+            scores_tmp = read_wmt_file_23(os.path.join(WMT_scores_path, file))
+            if metric not in WMT_metrics:
+                WMT_metrics[metric] = scores_tmp
+            else:
+                WMT_metrics[metric].extend(scores_tmp)
+        elif metric in METRIC_MAPPING_BACK and file.endswith(".seg.score"):
+            scores_tmp = read_wmt_file_23(os.path.join(WMT_scores_path, file))
+            if metric not in WMT_metrics:
+                WMT_metrics[metric] = scores_tmp
+            else:
+                WMT_metrics[metric].extend(scores_tmp)
     return WMT_metrics
                     
 # --------------------------------------- Normalization Functions ----------------------------------------------------

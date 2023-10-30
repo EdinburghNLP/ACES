@@ -121,5 +121,4 @@ baseline_1_comet
 
 Then, run the save_span_predictions.py to generate and save the predicted spans.
 
-        python ACES_private/span_predictions/save_span_predictions.py -m {MODEL_PATH} -d merged.tsv --threshold 0.03
-            --good span_baseline/baseline1_comet/ACES_alignment_scores_good/ --bad span_baseline/baseline1_comet/ACES_alignment_scores_incorrect/
+        python ACES_private/span_predictions/save_span_predictions.py -m {MODEL_PATH} -d merged.tsv --threshold 0.03 --good span_baseline/baseline1_comet/ACES_alignment_scores_good/ --bad span_baseline/baseline1_comet/ACES_alignment_scores_incorrect/ -o span_baseline/baseline1_comet/ACES_predicted_spans_
