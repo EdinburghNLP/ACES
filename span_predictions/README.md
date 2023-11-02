@@ -3,7 +3,7 @@
 ## 1. Setting Up the [COMET - Explainable Metrics](https://arxiv.org/pdf/2305.11806.pdf)
 ```bash
 pip install --upgrade pip 
-pip install git+https://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@github.com/Unbabel/COMET.git@explainable-metrics
+pip install git+https://github.com/Unbabel/COMET.git@explainable-metrics
 ```
 
 Download the models from HF Hub:

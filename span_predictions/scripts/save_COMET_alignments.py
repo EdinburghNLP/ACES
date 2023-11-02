@@ -5,7 +5,7 @@ python explain_comet.py -m PATH/TO/COMET.ckpt -t PATH/TO/DATA -o PATH/TO/OUTPUT/
 """
 import argparse
 from typing import Dict, List, Tuple
-import os
+import os, sys, json, csv
 import numpy as np
 
 import pandas as pd
@@ -13,7 +13,9 @@ import torch
 from tqdm import tqdm
 from utils import (compute_auc_score, compute_compute_recall_topk,
                    get_score_matrix, top_k_max_indices)
-
+print(os.getcwd())
+sys.path.append(os.getcwd())
+sys.path.append(os.path.join(os.getcwd(), ".."))
 from comet import download_model, load_from_checkpoint
 from comet.models import RegressionMetric
 from comet.models.pooling_utils import average_pooling
@@ -316,7 +318,6 @@ if __name__ == "__main__":
         default="AUC",
         type=str,
     )
-    
     parser.add_argument(
         "-o", "--out_path", 
         required=True,
@@ -325,6 +326,8 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     
+    print("args here: ", args)
+
     if "ckpt" in args.model:
         model = load_from_checkpoint(args.model)
     else:
@@ -335,14 +338,14 @@ if __name__ == "__main__":
         metric = compute_compute_recall_topk
     else:
         metric = compute_auc_score
-        
+    out_path = args.out_path[0][0]
     # Setup Model:
     model.encoder.add_span_tokens("<v>", "</v>")
     model.to(CUDA)
     model.eval()
     
     for testset in args.testset[0]:
-        data = pd.read_csv(testset)
+        data = pd.read_csv(testset, quoting=csv.QUOTE_NONE, escapechar="\\")
         data.mt = data.annotation # change MT for Annotation
         model_inputs = prepare_data(model, data.to_dict("records"), args.batch_size)
 
@@ -352,56 +355,49 @@ if __name__ == "__main__":
             batch = {k: v.to(CUDA) for k, v in batch.items()}
             src_align, ref_align, src_ref_align = alignment_explanations(model, batch)
             ref_subword_scores.append({
-                "subword_scores": ref_align,
+                "subword_scores": ref_align.cpu(),
                 "input_ids": batch["mt_input_ids"].cpu(),
                 "in_span_mask": batch["mt_in_span_mask"].cpu()
                 
             })
             src_subword_scores.append({
-                "subword_scores": src_align,
+                "subword_scores": src_align.cpu(),
                 "input_ids": batch["mt_input_ids"].cpu(),
                 "in_span_mask": batch["mt_in_span_mask"].cpu()
             })
             src_ref_subword_scores.append({
-                "subword_scores": src_ref_align,
+                "subword_scores": src_ref_align.cpu(),
                 "input_ids": batch["mt_input_ids"].cpu(),
                 "in_span_mask": batch["mt_in_span_mask"].cpu()
             })
+        print("type(ref_subword_scores[0][subword_scores]): ", type(ref_subword_scores[0]["subword_scores"]))
             
         # ---------------------------- Save Alignment Explanations ---------------------------
-        out_path = args.out_path
         names = ['ref_', 'src_', 'src_ref_']
         arrays = [ref_subword_scores, src_subword_scores, src_ref_subword_scores]
-        scores = []
-        input_ids = []
-        in_span_mask = []
         for i in range(3):
+            scores = []
+            input_ids = []
+            in_span_mask = []
             subword_scores = arrays[i]
             for batch in subword_scores:
-                scores.extend(batch['subword_scores'].numpy(force=True))
-                input_ids.extend(batch['input_ids'].numpy(force=True))
-                in_span_mask.extend(batch['in_span_mask'].numpy(force=True))
-            with open(os.path.join(out_path, names[i]+'scores.npy'), 'wb') as f:
-                np.save(f, np.array(scores))
-            with open(os.path.join(out_path, names[i]+'input_ids.npy'), 'wb') as f:
-                np.save(f, np.array(input_ids))
-            with open(os.path.join(out_path, names[i]+'in_span_mask.npy'), 'wb') as f:
-                np.save(f, np.array(in_span_mask))
+                scores.extend(batch['subword_scores'].numpy(force=True).tolist())
+                input_ids.extend(batch['input_ids'].numpy(force=True).tolist())
+                in_span_mask.extend(batch['in_span_mask'].numpy(force=True).tolist())
+            with open(os.path.join(out_path, names[i]+'scores.json'), "w") as f:
+                json.dump({'scores':scores, 'input_ids':input_ids, 'in_span_mask':in_span_mask}, f)
         
+        # ----------------------------- Save Model Inputs ------------------------------------------------
+
         input_ids = []
         attention_mask = []   # to filter out the paddings at the end
         in_span_mask = []     # to filter out the <v> </v>
-
         for batch in model_inputs:
-            input_ids.extend(batch['mt_input_ids'].numpy(force=True))
-            attention_mask.extend(batch['mt_attention_mask'].numpy(force=True))
-            in_span_mask.extend(batch['mt_in_span_mask'].numpy(force=True))
-        with open(os.path.join(out_path, 'mt_input_ids.npy'), 'wb') as f:
-            np.save(f, np.array(input_ids))
-        with open(os.path.join(out_path, 'mt_attention_mask.npy'), 'wb') as f:
-            np.save(f, np.array(attention_mask))
-        with open(os.path.join(out_path, 'mt_in_span_mask.npy'), 'wb') as f:
-            np.save(f, np.array(in_span_mask))
+            input_ids.extend(batch['mt_input_ids'].numpy(force=True).tolist())
+            attention_mask.extend(batch['mt_attention_mask'].numpy(force=True).tolist())
+            in_span_mask.extend(batch['mt_in_span_mask'].numpy(force=True).tolist())
+        with open(os.path.join(out_path, 'mt_scores.json'), "w") as f:
+            json.dump({'attention_mask':attention_mask, 'input_ids':input_ids, 'in_span_mask':in_span_mask}, f)
               
         src_align_score = metric(src_subword_scores)
         ref_align_score = metric(ref_subword_scores)
@@ -411,6 +407,7 @@ if __name__ == "__main__":
         print ("Src+Ref Align {}: {}".format(args.metric, src_ref_align_score))
     
         # -------------------- Attention x Grad explanations -------------
+        """
         subword_scores = []
         for batch in tqdm(model_inputs):
             batch = {k: v.to(CUDA) for k, v in batch.items()}
@@ -435,3 +432,4 @@ if __name__ == "__main__":
             scores.extend(np.array(batch['subword_scores']))
         with open(os.path.join(out_path, 'atg_scores.npy'), 'wb') as f:
             np.save(f, np.array(scores))
+        """
