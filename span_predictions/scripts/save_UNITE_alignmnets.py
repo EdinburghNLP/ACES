@@ -299,9 +299,14 @@ if __name__ == "__main__":
         attention_mask = []   # to filter out the paddings at the end
         in_span_mask = []     # to filter out the <v> </v>
         for batch in model_inputs:
-            input_ids.extend(batch['mt_input_ids'].numpy(force=True).tolist())
-            attention_mask.extend(batch['mt_attention_mask'].numpy(force=True).tolist())
-            in_span_mask.extend(batch['mt_in_span_mask'].numpy(force=True).tolist())
+            batch = {k: v for k, v in batch[0].items()}
+            mt_mask = batch["in_span_mask"] != -1
+            mt_length = mt_mask.sum(dim=1)
+            seq_len = mt_length.max()
+            # print(batch[0].keys(), batch[1].keys(), batch[2].keys())
+            input_ids.extend(batch['input_ids'][:, :seq_len].numpy(force=True).tolist())
+            attention_mask.extend(batch['attention_mask'][:, :seq_len].numpy(force=True).tolist())
+            in_span_mask.extend(batch['in_span_mask'][:, :seq_len].numpy(force=True).tolist())
         with open(os.path.join(out_path, 'mt_scores.json'), "w") as f:
             json.dump({'attention_mask':attention_mask, 'input_ids':input_ids, 'in_span_mask':in_span_mask}, f)
 
