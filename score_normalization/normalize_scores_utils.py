@@ -330,12 +330,12 @@ def load_WMT_scores(WMT_scores_path: str, metrics_names: Set[str]) -> Dict[str, 
     '''
     WMT_metrics = dict()
     langpairs = os.listdir(WMT_scores_path)
-    for lang in langpairs:
-        print(lang)
+    for lang in tqdm(langpairs):
+        # print(lang)
         #Locate langpair dir, in there locate BERT-ref-seg.score files
         lang_dir = os.path.join(WMT_scores_path, lang)
         files = os.listdir(lang_dir)
-        for metric in tqdm(metrics_names):
+        for metric in metrics_names:
             # if the metric name does not exist in the WMT scores list it just skips
             for file in files:
                 if file.startswith(metric) and file.endswith(".seg.score"):
@@ -371,7 +371,7 @@ def load_WMT_scores_23(WMT_scores_path: str, metrics_names: Set[str]) -> Dict[st
     files = os.listdir(WMT_scores_path)
     if metrics_names == None:
         metrics_names = set([file.split('.', 1)[0] for file in files])
-    for file in files:
+    for file in tqdm(files):
         metric = file.split('.', 1)[0]
         if metric in metrics_names and file.endswith(".seg.score"):
             scores_tmp = read_wmt_file_23(os.path.join(WMT_scores_path, file))
@@ -443,7 +443,8 @@ def calculate_sensitivities(ACES_scores: Dict[str, Dict[str, List[List]]], WMT_s
     phenomena = list(ACES_scores[metrics_names[0]].keys())
     
     stats = {}
-    for p in phenomena:
+    print("Sensitivities")
+    for p in tqdm(phenomena):
         stats[p] = {}
         logger.info('\n-------------------------{}-----------------------------'.format(p))
         logger.info('Metric\t\tMean of good-bad\t\tStandart Deviation of good-bad\t\tMean of abs(good-bad)')
@@ -576,7 +577,7 @@ METRICS_GROUPING_2022= {"baseline": ["BLEU", "f101spBLEU", "f200spBLEU", "chrF",
 METRICS_GROUPING_2023 = {
     "baseline": ["BERTScore", "BLEU", "BLEURT-20", "chrF", "COMET-22", "COMETKiwi", 
                  "f200spBLEU", "MS-COMET-QE-22", "Random-sysname", "YiSi-1"],
-    "reference-based": ["eBLEU", "embed_llama", "MaTESe", "MetricX-23", "MetricX-23-b", 
+    "reference-based": ["eBLEU", "embed_llama", "MetricX-23", "MetricX-23-b", 
                         "MetricX-23-c", "partokengram_F", "tokengram_F", "XCOMET-Ensemble",
                         "XCOMET-XL", "XCOMET-XXL", "XLsim"],
     "reference-free": ["cometoid22-wmt21", "cometoid22-wmt22", "cometoid22-wmt23", "CometKiwi-XL", 
@@ -787,7 +788,11 @@ def generate_summary_table(scores:Dict[str, Dict[str, Dict[str, int]]], metrics_
         out += '\midrule \n'
     out += 'Average\t\t\t\t\t'
     for p_id, p in enumerate(phenomena):
-        out += '&\t' + format_number(avgs[p_id], max_phenomena=True, color=map_to_color(avgs[p_id], max=np.max(avgs), min=np.min(avgs))) + '\t'
+        if global_colors:
+            col = map_to_color(avgs[p_id], max=np.max(avgs), min=np.min(avgs))
+            out += '&\t' + format_number(avgs[p_id], max_phenomena=True, color=col) + '\t'
+        else:
+            out += '&\t' + format_number(avgs[p_id], max_phenomena=False) + '\t'
     out += '\\\\'
     return out
 
@@ -864,7 +869,14 @@ def generate_summary_table_double(scores1:Dict[str, Dict[str, Dict[str, int]]], 
         out += '\midrule \n'
     out += 'Average\t\t\t\t\t'
     for p_id, p in enumerate(phenomena):
-        out += '&\t' + format_number(avgs1[p_id], max_phenomena=True, color=map_to_color(avgs1[p_id], max=np.max(avgs1), min=np.min(avgs1))) + '\t'
-        out += '&\t' + format_number(avgs2[p_id], max_phenomena=True, color=map_to_color(avgs2[p_id], max=np.max(avgs2), min=np.min(avgs2))) + '\t'
+        if global_colors:
+            col = map_to_color(avgs1[p_id], max=np.max(avgs1), min=np.min(avgs1))
+            out += '&\t' + format_number(avgs1[p_id], max_phenomena=True, color=col) + '\t'
+            col = map_to_color(avgs2[p_id], max=np.max(avgs2), min=np.min(avgs2))
+            out += '&\t' + format_number(avgs2[p_id], max_phenomena=True, color=col) + '\t'
+        else:
+            out += '&\t' + format_number(avgs1[p_id], max_phenomena=False) + '\t'
+            out += '&\t' + format_number(avgs2[p_id], max_phenomena=False) + '\t'
+
     out += '\\\\'
     return out
