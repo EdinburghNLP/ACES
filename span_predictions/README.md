@@ -1,4 +1,4 @@
-# Predict Erorr-Spans Using [COMET - Explainable Metrics](https://arxiv.org/pdf/2305.11806.pdf) and Evaluate Them
+# Predict Error-Spans Using [COMET - Explainable Metrics](https://arxiv.org/pdf/2305.11806.pdf) and Evaluate Them
 
 ## 1. Setting Up the [COMET - Explainable Metrics](https://arxiv.org/pdf/2305.11806.pdf)
 ```bash
@@ -126,4 +126,4 @@ Then, run the save_span_predictions.py to generate and save the predicted spans.
 ## 6. The Example Pipeline for 3, 4, 5 (for Saving Error Spans on ACES using COMET/UNITE Embeddings)
 
 After generating the files ACES_final_merged_MQM_good.csv and ACES_final_merged_MQM_incorrect.csv (see 2), you can see the example of how to find the thresholds and to generate and save the spans in the notebook 
-current_folder/ACES_private/span_predictions/ACES_COMET_UNITE_span_baseline.ipynb. 
+[current_folder/ACES_private/span_predictions/ACES_COMET_UNITE_span_baseline.ipynb](https://github.com/arnisafazla/ACES_private/blob/master/span_predictions/ACES_COMET_UNITE_span_baseline.ipynb). 
