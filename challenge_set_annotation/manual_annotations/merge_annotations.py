@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os, sys, argparse, logging, json, glob, csv
+from collections import defaultdict
 from tqdm import tqdm
 from datasets import load_from_disk
 import pandas as pd
@@ -72,6 +73,7 @@ if __name__ == "__main__":
         if p:
             logger.info('{} is being loaded'.format(p))
             for file in glob.glob(os.path.join(p, "*.tsv")):
+                print(file)
                 content = read_file(file)
                 content = content.reset_index()  # make sure indexes pair with number of rows
                 for index, row in content.iterrows():
@@ -89,9 +91,7 @@ if __name__ == "__main__":
                     }                           
     logger.info('No of manually annotated samples: {}'.format(len(m_ids)))
     
-    # -------------------------------------------------------------
-    from collections import defaultdict
-    
+    # -------------------------------------------------------------    
     manual_counts = defaultdict(int)
     for sample in samples.values():
         if sample["annotation-method"] == "manual":
@@ -104,4 +104,4 @@ if __name__ == "__main__":
     df.index.name = 'ID'
     
     logger.info('Saving to {}'.format(args.out_path))
-    df.to_csv(args.out_path, sep='\t', index=True, quoting=csv.QUOTE_NONE)
+    df.sort_index().to_csv(args.out_path, sep='\t', index=True, quoting=csv.QUOTE_NONE)

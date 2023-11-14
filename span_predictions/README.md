@@ -122,3 +122,8 @@ baseline_1_comet
 Then, run the save_span_predictions.py to generate and save the predicted spans.
 
         python ACES_private/span_predictions/save_span_predictions.py -m {MODEL_PATH} -d merged.tsv --threshold 0.03 --good span_baseline/baseline1_comet/ACES_alignment_scores_good/ --bad span_baseline/baseline1_comet/ACES_alignment_scores_incorrect/ -o span_baseline/baseline1_comet/ACES_predicted_spans_
+
+## 6. The Example Pipeline for 3, 4, 5 (for Saving Error Spans on ACES using COMET/UNITE Embeddings)
+
+After generating the files ACES_final_merged_MQM_good.csv and ACES_final_merged_MQM_incorrect.csv (see 2), you can see the example of how to find the thresholds and to generate and save the spans in the notebook 
+current_folder/ACES_private/span_predictions/ACES_COMET_UNITE_span_baseline.ipynb. 

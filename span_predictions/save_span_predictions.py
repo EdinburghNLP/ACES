@@ -241,12 +241,12 @@ if __name__ == "__main__":
             'langpair':row['langpair'],
             'incorrect-translation-annotated-goldtruth':row['incorrect-translation-annotated'],
             "annotation-method":row['annotation-method'],
-            'good-translation-predicted-span-src':good_spans["src_spans"],
-            'good-translation-predicted-span-ref':good_spans["ref_spans"],
-            'good-translation-predicted-span-src-ref':good_spans["src_ref_spans"],
-            'incorrect-translation-predicted-span-src':incorrect_spans["src_spans"],
-            'incorrect-translation-predicted-span-ref':incorrect_spans["ref_spans"],
-            'incorrect-translation-predicted-span-src-ref':incorrect_spans["src_ref_spans"],
+            'good-translation-predicted-span-src':good_spans["src_spans"][index],
+            'good-translation-predicted-span-ref':good_spans["ref_spans"][index],
+            'good-translation-predicted-span-src-ref':good_spans["src_ref_spans"][index],
+            'incorrect-translation-predicted-span-src':incorrect_spans["src_spans"][index],
+            'incorrect-translation-predicted-span-ref':incorrect_spans["ref_spans"][index],
+            'incorrect-translation-predicted-span-src-ref':incorrect_spans["src_ref_spans"][index]
         }  
 
     df = pd.DataFrame.from_dict(samples, orient='index', columns=['source', 'good-translation', 'incorrect-translation',
@@ -255,4 +255,4 @@ if __name__ == "__main__":
         'incorrect-translation-predicted-span-src', 'incorrect-translation-predicted-span-ref', 'incorrect-translation-predicted-span-src-ref'])
     df.index.name = 'ID'
     logger.info('Saving to {}'.format(args.out_path+str(args.threshold)+".tsv"))
-    df.to_csv(args.out_path+str(args.threshold)+".tsv", sep='\t', index=True, quoting=csv.QUOTE_NONE)
+    df.sort_index().to_csv(args.out_path+str(args.threshold)+".tsv", sep='\t', index=True, quoting=csv.QUOTE_NONE)
