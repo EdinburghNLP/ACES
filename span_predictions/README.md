@@ -60,14 +60,14 @@ Run:
 
     python ACES_private/span_predictions/to_MQM_format.py -d merged.tsv -o span_baseline/baseline1_comet
 
-## 3. Saving COMET Alignmnet scores
+## 3. Saving COMET/UNITE Alignment scores
 
-The code ([ACES_private/span_predictions/scripts/save_comet_alignments.py](https://github.com/arnisafazla/ACES_private/blob/master/span_predictions/scripts/save_COMET_alignments.py), adapted from [explain_comet.py](https://github.com/Unbabel/COMET/blob/explainable-metrics/explainable-metrics/explain_comet.py)) finds an alignment between these sentences and saves them as np arrays: \\
+The code ([ACES_private/span_predictions/scripts/save_COMET_alignments.py](https://github.com/arnisafazla/ACES_private/blob/master/span_predictions/scripts/save_COMET_alignments.py) or ([ACES_private/span_predictions/scripts/save_UNITE_alignments.py](https://github.com/arnisafazla/ACES_private/blob/master/span_predictions/scripts/save_UNITE_alignments.py), adapted from [explain_comet.py](https://github.com/Unbabel/COMET/blob/explainable-metrics/explainable-metrics/explain_comet.py)) or [explain_unite.py](https://github.com/Unbabel/COMET/blob/explainable-metrics/explainable-metrics/explain_unite.py)) finds an alignment between these sentences and saves them as np arrays: \\
     * source and translation \\
     * reference and translation \\
     * source+reference and translation
     
-using the attention head values extracted from COMET. This scores every subword in the translated sentence, where a higher score means the possibility that the subword is in the error span is higher.
+using the attention head values extracted from COMET (or UNITE). This scores every subword in the translated sentence, where a higher score means the possibility that the subword is in the error span is higher.
 
 Make sure to run it with GPUs.
 
