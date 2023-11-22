@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>File System Examples</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    
+    <py-env>
+        - paths:
+            - ./main_tmp.py
+            - ./annotation_utilities.py
+    </py-env>
+
+  </head>
+  <style>
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  mark1 { 
+    background-color: #f9b4cf;
+    color: black;
+  }
+  mark2 { 
+    background-color: #bad8a6;
+    color: black;
+  }
+  mark3 { 
+    background-color: #ecdeb5;
+    color: black;
+  }
+  mark4 { 
+    background-color: #72bfef;
+    color: black;
+  }
+  mark5 { 
+    background-color: #efaa72;
+    color: black;
+  }
+  mark6 { 
+    background-color: #a46ced;
+    color: black;
+  }
+  </style>
+  <body>
+    <py-repl></py-repl>  
+    <label for="subsetfile">Select the subset.json file with examples:</label>
+    <input type="file" id="subsetfile" name="subsetfile">
+    <label for="myfile">Select a file:</label>
+    <input type="file" id="myfile" name="myfile">
+    <div id="print_output"></div>
+    <py-script output="print_output">
+        import asyncio
+        from js import document, FileReader
+        from pyodide import create_proxy
+        from main_tmp import Annotations
+        import js
+
+        annotations_obj = Annotations(6)
+
+        def handler(loop, context):
+            js.console.error(context.message)
+            raise(context.exception)
+        pyscript.loop.set_exception_handler(handler)
+
+        def vis_item(res):
+            document.getElementById("out_raw").innerHTML = res[0]
+            for i in range(1, len(res)):
+                document.getElementById("out"+str(i)).innerHTML = res[i]
+
+        async def process_subset_file(event):
+            fileList = event.target.files.to_py()
+            for f in fileList:
+                print(f)
+                data = await f.text()
+                tsv = False
+                if f.name.endswith('.tsv'):
+                    tsv = True
+                annotations_obj.load(data, tsv=tsv)
+
+        async def process_file(event):
+            fileList = event.target.files.to_py()
+            for f in fileList:
+                data = await f.text()
+                try:
+                    tsv = False
+                    if f.name.endswith('.tsv'):
+                        tsv = True
+                    annotations_obj.add(data, tsv=tsv)
+                    if annotations_obj.i >= 0:
+                        res = annotations_obj.get_item()
+                    else:
+                        res = annotations_obj.next()
+                except:
+                    print("Error in adding data or get_item!!")
+                if res == -1:
+                    document.getElementById("out_raw").innerHTML = "That's all the samples!"
+                else:
+                    vis_item(res)
+
+        def next(*args, **kwargs):
+            try:
+                res = annotations_obj.next()
+            except:
+                print("Error in next function")
+            if res == -1:
+                document.getElementById("out_raw").innerHTML = "That's all the samples!"
+            else:
+                vis_item(res)
+
+        def back(*args, **kwargs):
+            try:
+                res = annotations_obj.back()
+            except:
+                print("Error in back function")
+            if res == -1:
+                document.getElementById("out_raw").innerHTML = "Can't go back more!"
+            else:
+                vis_item(res)
+        
+        def main():
+            # Create a Python proxy for the callback function
+            # process_file() is your function to process events from FileReader
+            file_event = create_proxy(process_file)
+            file_subset_event = create_proxy(process_subset_file)
+
+            # Set the listener to the callback
+            e = document.getElementById("myfile")
+            e.addEventListener("change", file_event, False)
+
+            # Set the listener to the callback for the subset.json file upload
+            e = document.getElementById("subsetfile")
+            e.addEventListener("change", file_subset_event, False)
+            
+            next_button_proxy = create_proxy(next)
+            e = document.getElementById("next_button")
+            e.addEventListener("click", next_button_proxy)
+
+            back_button_proxy = create_proxy(back)
+            e = document.getElementById("back_button")
+            e.addEventListener("click", back_button_proxy)
+
+        main()
+</py-script>
+
+<div id="raw">
+    <p>Sample</p>
+    <div style="border:5px inset #c7299a;cursor:text;height:180px;overflow:auto;resize:both">
+        <div id="out_raw">
+    </div>
+</div>
+
+<py-box widths="1/2;1/2">
+    <div>
+        <p>Annotation 1</p>
+        <div style="border:5px inset #f9b4cf;cursor:text;height:100px;overflow:auto;resize:both">
+        <div id="out1">
+        </div>
+        </div>
+    </div>
+    <div>
+        <p>Annotation 2</p>
+        <div style="border:5px inset #bad8a6;cursor:text;height:100px;overflow:auto;resize:both">
+        <div id="out2">
+        </div>
+        </div>
+    </div>
+</py-box>
+<py-box widths="1/2;1/2">
+    <div>
+        <p>Annotation 3</p>
+        <div style="border:5px inset #ecdeb5;cursor:text;height:100px;overflow:auto;resize:both">
+        <div id="out3">
+        </div>
+        </div>
+    </div>
+    <div>
+        <p>Annotation 4</p>
+        <div style="border:5px inset #72bfef;cursor:text;height:100px;overflow:auto; resize:both">
+        <div id="out4">
+        </div>
+        </div>
+    </div>
+</py-box>
+<py-box widths="1/2;1/2">
+    <div>
+        <p>Annotation 5</p>
+        <div style="border:5px inset #efaa72;cursor:text;height:100px;overflow:auto;resize:both">
+        <div id="out5">
+        </div>
+        </div>
+    </div>
+    <div>
+        <p>Annotation 6</p>
+        <div style="border:5px inset #a46ced;cursor:text;height:100px;overflow:auto; resize:both">
+        <div id="out6">
+        </div>
+        </div>
+    </div>
+</py-box>
+
+<py-script>          
+
+</py-script>
+
+<py-box widths="1/2;1/2">
+    <div>
+        <button class="button" type="button" id="back_button">Back</button> 
+    </div>
+    <div>
+        <button class="button" type="button" id="next_button">Next</button> 
+    </div>
+</py-box>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+challenge_set_annotation/manual_annotations/__pycache__/
+challenge_set_annotation/manual_annotations/*.txt
+challenge_set_annotation/__pycache__/
+challenge_set_annotation/.ipynb_checkpoints/
+challenge_set_annotation/annotated.txt
+challenge_set_annotation/stats.txt
+span_predictions/__pycache__/
+score_normalization/__pycache__/
+__pycache__/
+aces/cli/__pycache__/

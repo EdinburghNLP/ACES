@@ -1,0 +1,11 @@
+# datasets  # for loading the datasset
+# ipykernel # for running jupyter notebooks
+# numpy
+tqdm
+# logging
+quantulum3
+# scikit-learn
+# plotly
+sacremoses
+stemming
+pandas  # for format_utilities.py
