@@ -44,11 +44,6 @@ Output: STDOUT TSV overview of Kendall Tau scores per file, phenomenon and metri
 
 If you want to reproduce the high-level evaluation in our paper (Table 1), you can use the `--print_overview` flag and if you want to compute the ACES score you can use the `--print_aces_score` flag.
 
-## Coming Soon:
-
-- code for automatic perturbations we implemented ourselves
-- explanations for automatic perturbations that use other libraries
-- guidelines for manual creation/annotation of examples
 
 ## Citation
 
@@ -67,6 +62,4 @@ If you use this code, please cite our [paper](https://arxiv.org/pdf/2210.15615.p
     eprint = {2210.15615}
     }
 
-## ToDo
 
-1. Addition
