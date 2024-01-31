@@ -127,3 +127,8 @@ Then, run the save_span_predictions.py to generate and save the predicted spans.
 
 After generating the files ACES_final_merged_MQM_good.csv and ACES_final_merged_MQM_incorrect.csv (see 2), you can see the example of how to find the thresholds and to generate and save the spans in the notebook 
 [current_folder/ACES_private/span_predictions/ACES_COMET_UNITE_span_baseline.ipynb](https://github.com/arnisafazla/ACES_private/blob/master/span_predictions/ACES_COMET_UNITE_span_baseline.ipynb). 
+
+## 7. Evaluation
+
+We provide a script for Span-Evaluation in ``eval_span.py``. It outputs a Span-F1 score. It also contains a script to convert the span predictions into scores for contrastive evaluation based on the length heuristic.
+Usage: `` python eval_span.py prediction.tsv``
