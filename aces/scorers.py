@@ -55,14 +55,16 @@ class COMETScorer(Scorer):
                 'mt': tsv_f['good-translation'],
                 'ref': tsv_f['reference']}
         data = [dict(zip(data, t)) for t in zip(*data.values())]
-        tsv_f[self.prefix+'-good'], _ = self.model.predict(data,
+        comet_good_output = self.model.predict(data,
                                                     gpus=self.gpus,
                                                     batch_size=self.batch_size)
+        tsv_f[self.prefix+'-good'] = list(comet_good_output.scores)
 
         data = {'src': tsv_f['source'],
                 'mt': tsv_f['incorrect-translation'],
                 'ref': tsv_f['reference']}
         data = [dict(zip(data, t)) for t in zip(*data.values())]
-        tsv_f[self.prefix+'-bad'], _ = self.model.predict(data,
+        comet_bad_output = self.model.predict(data,
                                                    gpus=self.gpus,
                                                    batch_size=self.batch_size)
+        tsv_f[self.prefix+'-bad'] = list(comet_bad_output.scores)
